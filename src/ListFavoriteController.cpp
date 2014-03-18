@@ -95,9 +95,9 @@ void ListFavoriteController::parse(const QString &page) {
 	    model = new GroupDataModel(
 					QStringList() << "category" << "title"
 				);
-	    model->setGrouping(ItemGrouping::ByFullValue);
 	    listView->setDataModel(model);
 	}
+	model->setGrouping(ItemGrouping::ByFullValue);
 
 
 	qDebug() << "start parser";
@@ -128,6 +128,7 @@ void ListFavoriteController::parse(const QString &page) {
 	regexp.setMinimal(true);
 
 
+	QRegExp rmAndAmp("&amp;");
 	pos = 0;
 	while((pos = regexp.indexIn(page, pos)) != -1) {
 		pos += regexp.matchedLength();
@@ -136,9 +137,12 @@ void ListFavoriteController::parse(const QString &page) {
 
 		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " pos in file " << pos;
 
+		QString s = regexp.cap(1);
+		s.replace(rmAndAmp, "&");			// replace "&amp;"  by  "&"
+
 		QVariantMap topic;
 		topic["category"] = categoriesLabels[catIndex-1];
-		topic["caption"] = regexp.cap(1);
+		topic["caption"] = s;
 		model->insert(topic);
 
 	}
