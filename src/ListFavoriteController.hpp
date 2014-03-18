@@ -10,12 +10,17 @@
 
 
 #include <QtCore/QObject>
+#include <bb/cascades/AbstractPane>
+#include <bb/cascades/GroupDataModel>
 
 
 class ListFavoriteController : public QObject {
 	Q_OBJECT
 
 	private:
+
+		static bb::cascades::AbstractPane   *m_Pane;
+		bb::cascades::GroupDataModel		*m_DataModel;
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -24,6 +29,7 @@ class ListFavoriteController : public QObject {
 		virtual ~ListFavoriteController() {};
 
 
+		static void setAbstractPane(bb::cascades::AbstractPane *root);
 
 
 	// ----------------------------------------------------------------------------------------------

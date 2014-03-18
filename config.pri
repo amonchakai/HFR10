@@ -11,7 +11,8 @@ device {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Globals.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
@@ -28,7 +29,8 @@ device {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Globals.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
@@ -47,7 +49,8 @@ simulator {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Globals.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \

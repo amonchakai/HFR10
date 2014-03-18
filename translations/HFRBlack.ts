@@ -2,9 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
+    <name>DisplayCategoryListPage</name>
+    <message>
+        <location filename="../assets/DisplayCategoryListPage.qml" line="13"/>
+        <source>HFR 4 BB</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="53"/>
+        <location filename="../src/ListFavoriteController.cpp" line="63"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -19,6 +27,24 @@
     <message>
         <location filename="../src/LoginController.cpp" line="65"/>
         <source>Login failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowTabbedPane</name>
+    <message>
+        <location filename="../assets/MainWindowTabbedPane.qml" line="11"/>
+        <source>Forum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/MainWindowTabbedPane.qml" line="23"/>
+        <source>MP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/MainWindowTabbedPane.qml" line="35"/>
+        <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -18,14 +18,25 @@ Page {
         
         ListView {
             id: listFav
-            dataModel: dataFav
+            objectName: "listFav"
+            
+            dataModel: GroupDataModel {
+                id: theModel
+                sortingKeys: ["category"]
+            }
             
             listItemComponents: [
                 ListItemComponent {
-                    type: "item"
+                    type: "header"
+                    Header {
+                        title: ListItemData
+                    }
+                },
+                ListItemComponent {
+                    type: "listItem"
                     
                     StandardListItem {
-                        title: ListItemData.title
+                        title: ListItemData.caption
                     }
                 }
             ]
@@ -34,29 +45,8 @@ Page {
          attachedObjects: [
              ListFavoriteController {
                  id: listFavoriteController
-             },
-
-             GroupDataModel {
-                 id: dataFav
-                 grouping: ItemGrouping.None
-             },
-             
-             DataSource {
-                 id: dataSource
-                 
-                 source: "model/feeds.xml"
-                 query: "/*/td"
-                 type: DataSourceType.Xml
-                 
-                 onDataLoaded: {
-                     dataFav.clear();
-                     dataFav.insertList(data)
-                 }
              }
          ]
          
-         onCreationCompleted: {
-             dataSource.load();
-         }
     }
 }

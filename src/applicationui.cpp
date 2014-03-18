@@ -21,9 +21,15 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
 
+#include <bb/cascades/GroupDataModel>
+#include <bb/cascades/ListView>
+#include <bb/cascades/controls/standardlistitem.h>
+
+
 #include "LoginController.hpp"
 #include "ListFavoriteController.hpp"
 #include "CookieJar.hpp"
+#include "DataObjects.h"
 
 using namespace bb::cascades;
 
@@ -48,20 +54,25 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     onSystemLanguageChanged();
 
 
+    // -------------------------------------------------------------------------------------------------------
     // Register controllers to QML
     qmlRegisterType<LoginController>("Network.LoginController", 1, 0, "LoginController");
     qmlRegisterType<ListFavoriteController>("Network.ListFavoriteController", 1, 0, "ListFavoriteController");
 
 
 
+    // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set
     // to ensure the document gets destroyed properly at shut down.
-    QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
-
+    QmlDocument *qml = QmlDocument::create("asset:///main.qml")
+    						.parent(this);
 
 
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
+
+    ListFavoriteController::setAbstractPane(root);
+
 
     // Set created root object as the application scene
     app->setScene(root);
