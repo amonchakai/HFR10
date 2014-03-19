@@ -33,11 +33,48 @@ Page {
                     }
                 },
                 ListItemComponent {
-                    type: "listItem"
-                    
+                    type: "item"
+/*                    
+                    Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.TopToBottom
+                        }
+                        verticalAlignment: VerticalAlignment.Fill
+                        Label {
+                            text: ListItemData.caption
+                        }
+                        
+                        Container {
+                            layout: StackLayout {
+                                orientation: LayoutOrientation.LeftToRight
+                            }
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            Label {
+                                text: ListItemData.lastAuthor
+                                textStyle {
+                                    base: SystemDefaults.TextStyles.SmallText
+                                    color: Color.Gray
+                                }
+                            }
+                            Label {
+                                text: ListItemData.timestamp
+                                textStyle {
+                                    base: SystemDefaults.TextStyles.SmallText
+                                    color: Color.Gray
+                                }
+                            }
+                        }
+                        
+                        
+                    }*/
+
                     StandardListItem {
                         title: ListItemData.caption
+                        //status: ListItemData.lastAuthor
+                        description: ListItemData.timestamp + " - " +ListItemData.lastAuthor
                     }
+
+
                 }
             ]
          }

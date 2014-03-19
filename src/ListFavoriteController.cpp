@@ -7,6 +7,7 @@
 #include <QNetworkRequest>
 #include <QUrl>
 #include <QRegExp>
+#include <QDateTime>
 
 #include <bb/cascades/ListView>
 
@@ -98,11 +99,13 @@ void ListFavoriteController::parse(const QString &page) {
 			m_DataModel->clear();
 		} else {
 			m_DataModel = new GroupDataModel(
-						QStringList() << "category" << "title"
+						QStringList() << "category" << "caption" << "timestamp" << "lastAuthor" << "urlFirstPost" << "indexLastPost"
 					);
 			listView->setDataModel(m_DataModel);
 		}
 		m_DataModel->setGrouping(ItemGrouping::ByFullValue);
+	} else {
+		m_DataModel->clear();
 	}
 
 
@@ -129,29 +132,50 @@ void ListFavoriteController::parse(const QString &page) {
 
 	// Get favorite topics
 	//QRegExp regexp(QString("<td.*(class=\"sujetCase3\")?.*class=\"cCatTopic\".*title=\"Sujet n°([0-9]+)\">(.+)?</a></td>"));
-	regexp = QRegExp("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>"); // match topics' name
+	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>")  	// topics' name
+						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
+						   + ".*<td class=\"sujetCase5\"><a href=.+#t([0-9]+)\"><img src"			// index to last read post
+						   + ".*<td class=\"sujetCase9.*class=\"Tableau\">(.+)" 					// time stamp
+						   + "<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type");	// last contributor
+
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
 	regexp.setMinimal(true);
 
 
-	QRegExp rmAndAmp("&amp;");
+	QRegExp andAmp("&amp;");
+	QString today = QDateTime::currentDateTime().toString("dd-MM-yyyy");
 	pos = 0;
 	while((pos = regexp.indexIn(page, pos)) != -1) {
 		pos += regexp.matchedLength();
 		int catIndex = 0;
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}	// use the position of the category into the stream to find the category's index
 
-		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " pos in file " << pos;
+//		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
 
 		QString s = regexp.cap(1);
-		s.replace(rmAndAmp, "&");			// replace "&amp;"  by  "&"
+		s.replace(andAmp, "&");			// replace "&amp;"  by  "&"
 
 		QVariantMap topic;
 		topic["category"] = categoriesLabels[catIndex-1];
 		topic["caption"] = s;
+		topic["urlFirstPost"]  = regexp.cap(2);
+		topic["indexLastPost"] = regexp.cap(3);
+
+		s = regexp.cap(4);
+		if(s.mid(0,10).compare(today) == 0)
+			topic["timestamp"] = s.mid(23,5);
+		else
+			topic["timestamp"] = s.mid(0,10);
+
+
+		topic["lastAuthor"] = regexp.cap(5);
+
+
 		m_DataModel->insert(topic);
 
 	}
+
+	qDebug() << "parser end!";
 
 }
 
