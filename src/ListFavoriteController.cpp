@@ -18,7 +18,7 @@ bb::cascades::AbstractPane *ListFavoriteController::m_Pane = NULL;
 
 
 ListFavoriteController::ListFavoriteController(QObject *parent)
-	: QObject(parent) {
+	: QObject(parent), m_DataModel(NULL) {
 
 }
 
@@ -74,30 +74,36 @@ void ListFavoriteController::checkReply() {
 
 void ListFavoriteController::parse(const QString &page) {
 
-	using namespace bb::cascades;
 
-	ListView *listView = NULL;
-	if(m_Pane != NULL) {
-		listView = m_Pane->findChild<ListView *>("listFav");
-		if(listView == NULL) {
-			qDebug() << "Object null";
+	// ----------------------------------------------------------------------------------------------
+	// get the dataModel of the listview if not already available
+
+	if(m_DataModel == NULL) {
+		using namespace bb::cascades;
+
+		ListView *listView = NULL;
+		if(m_Pane != NULL) {
+			listView = m_Pane->findChild<ListView *>("listFav");
+			if(listView == NULL) {
+				qWarning() << "Object null: list view not found in the QML tree!";
+				return;
+			}
+		} else {
+			qWarning() << "setAbstractPane was called too late!";
 			return;
 		}
-	} else {
-		qDebug() << "setAbstractPane was called too late";
-		return;
-	}
 
-	GroupDataModel* model = dynamic_cast<GroupDataModel*>(listView->dataModel());
-	if (model) {
-		model->clear();
-	} else {
-	    model = new GroupDataModel(
-					QStringList() << "category" << "title"
-				);
-	    listView->setDataModel(model);
+		m_DataModel = dynamic_cast<GroupDataModel*>(listView->dataModel());
+		if (m_DataModel) {
+			m_DataModel->clear();
+		} else {
+			m_DataModel = new GroupDataModel(
+						QStringList() << "category" << "title"
+					);
+			listView->setDataModel(m_DataModel);
+		}
+		m_DataModel->setGrouping(ItemGrouping::ByFullValue);
 	}
-	model->setGrouping(ItemGrouping::ByFullValue);
 
 
 	qDebug() << "start parser";
@@ -143,7 +149,7 @@ void ListFavoriteController::parse(const QString &page) {
 		QVariantMap topic;
 		topic["category"] = categoriesLabels[catIndex-1];
 		topic["caption"] = s;
-		model->insert(topic);
+		m_DataModel->insert(topic);
 
 	}
 
