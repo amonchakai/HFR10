@@ -11,7 +11,7 @@
 #include <QNetworkCookieJar>
 
 class CookieJar : public QNetworkCookieJar {
-	Q_OBJECT
+	Q_OBJECT;
 
 
 public:
