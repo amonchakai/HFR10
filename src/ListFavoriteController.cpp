@@ -99,7 +99,13 @@ void ListFavoriteController::parse(const QString &page) {
 			m_DataModel->clear();
 		} else {
 			m_DataModel = new GroupDataModel(
-						QStringList() << "category" << "caption" << "timestamp" << "lastAuthor" << "urlFirstPost" << "indexLastPost"
+						QStringList() << "category"
+									  << "caption"
+									  << "timestamp"
+									  << "lastAuthor"
+									  << "urlFirstPost"
+									  << "indexLastPost"
+									  << "pages"
 					);
 			listView->setDataModel(m_DataModel);
 		}
@@ -134,7 +140,9 @@ void ListFavoriteController::parse(const QString &page) {
 	//QRegExp regexp(QString("<td.*(class=\"sujetCase3\")?.*class=\"cCatTopic\".*title=\"Sujet n°([0-9]+)\">(.+)?</a></td>"));
 	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>")  	// topics' name
 						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
+						   + "([0-9]+)</a></td>"													// overall number of pages
 						   + ".*<td class=\"sujetCase5\"><a href=.+#t([0-9]+)\"><img src"			// index to last read post
+						   + ".*p.([0-9]+)"										// last page read number
 						   + ".*<td class=\"sujetCase9.*class=\"Tableau\">(.+)" 					// time stamp
 						   + "<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type");	// last contributor
 
@@ -159,16 +167,17 @@ void ListFavoriteController::parse(const QString &page) {
 		topic["category"] = categoriesLabels[catIndex-1];
 		topic["caption"] = s;
 		topic["urlFirstPost"]  = regexp.cap(2);
-		topic["indexLastPost"] = regexp.cap(3);
+		topic["pages"] = regexp.cap(5) + " / " + regexp.cap(3);
+		topic["indexLastPost"] = regexp.cap(4);
 
-		s = regexp.cap(4);
+		s = regexp.cap(6);
 		if(s.mid(0,10).compare(today) == 0)
 			topic["timestamp"] = s.mid(23,5);
 		else
 			topic["timestamp"] = s.mid(0,10);
 
 
-		topic["lastAuthor"] = regexp.cap(5);
+		topic["lastAuthor"] = regexp.cap(7);
 
 
 		m_DataModel->insert(topic);

@@ -34,7 +34,7 @@ Page {
                 },
                 ListItemComponent {
                     type: "item"
-/*                    
+                    
                     Container {
                         layout: StackLayout {
                             orientation: LayoutOrientation.TopToBottom
@@ -45,35 +45,37 @@ Page {
                         }
                         
                         Container {
-                            layout: StackLayout {
-                                orientation: LayoutOrientation.LeftToRight
+                            layout: DockLayout {
                             }
                             horizontalAlignment: HorizontalAlignment.Fill
+
                             Label {
-                                text: ListItemData.lastAuthor
+                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
+                                horizontalAlignment: HorizontalAlignment.Right
                                 textStyle {
                                     base: SystemDefaults.TextStyles.SmallText
-                                    color: Color.Gray
+                                    color: Color.Blue
                                 }
                             }
+                            
                             Label {
-                                text: ListItemData.timestamp
+                                text: ListItemData.pages
+                                horizontalAlignment: HorizontalAlignment.Left
                                 textStyle {
                                     base: SystemDefaults.TextStyles.SmallText
                                     color: Color.Gray
                                 }
                             }
                         }
-                        
-                        
-                    }*/
-
+                        Divider {}
+                    }
+/*
                     StandardListItem {
                         title: ListItemData.caption
                         //status: ListItemData.lastAuthor
                         description: ListItemData.timestamp + " - " +ListItemData.lastAuthor
                     }
-
+*/
 
                 }
             ]
