@@ -1,5 +1,5 @@
 1
-21
+22
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 Favorite.qml
@@ -21,3 +21,4 @@ model/listCategories.xml
 model/sample-category-list.xml
 model/sample-topic-list.xml
 Settings.qml
+ThreadPage.qml
