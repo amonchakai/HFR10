@@ -41,7 +41,7 @@ NavigationPane {
 	                        layout: StackLayout {
 	                            orientation: LayoutOrientation.TopToBottom
 	                        }
-	                        verticalAlignment: VerticalAlignment.Fill
+	                        verticalAlignment: VerticalAlignment.Top
 	                        Label {
 	                            text: ListItemData.caption
 	                        }
@@ -80,10 +80,10 @@ NavigationPane {
 	                // Create the content page and push it on top to drill down to it.
 	                var page = threadPage.createObject();
 	                
-	                // Set the title and source of the feed that the user selected. 
+	                // Set the url of the page to load and thread caption. 
 	                page.urlPage = chosenItem.urlFirstPost
-	                page.title   = chosenItem.caption
-	                
+	                page.caption   = chosenItem.caption
+	                	                
 	                nav.push(page);
 	            }
 	            

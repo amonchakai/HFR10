@@ -67,6 +67,14 @@
     </message>
 </context>
 <context>
+    <name>ShowThreadController</name>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="68"/>
+        <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main</name>
     <message>
         <location filename="../assets/main.qml" line="25"/>

@@ -1,20 +1,18 @@
 /*
- * ListFavoriteController.hpp
+ * ShowThreadController.hpp
  *
- *  Created on: 15 mars 2014
+ *  Created on: 20 mars 2014
  *      Author: PierreL
  */
 
-#ifndef LISTFAVORITECONTROLLER_HPP_
-#define LISTFAVORITECONTROLLER_HPP_
-
+#ifndef SHOWTHREADCONTROLLER_HPP_
+#define SHOWTHREADCONTROLLER_HPP_
 
 #include <QtCore/QObject>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
 
-
-class ListFavoriteController : public QObject {
+class ShowThreadController : public QObject {
 	Q_OBJECT;
 
 	private:
@@ -25,8 +23,8 @@ class ListFavoriteController : public QObject {
 
 	// ----------------------------------------------------------------------------------------------
 	public:
-	    ListFavoriteController(QObject *parent = 0);
-		virtual ~ListFavoriteController() {};
+		ShowThreadController(QObject *parent = 0);
+		virtual ~ShowThreadController() {};
 
 
 		static void setAbstractPane(bb::cascades::AbstractPane *root);
@@ -35,7 +33,7 @@ class ListFavoriteController : public QObject {
 	// ----------------------------------------------------------------------------------------------
 
 	public Q_SLOTS:
-		void getFavorite();
+		void showThread(const QString &url);
 		void checkReply();
 
 
@@ -46,13 +44,13 @@ class ListFavoriteController : public QObject {
 
 
 
-
 	// ----------------------------------------------------------------------------------------------
 	private:
 
 		void parse(const QString &page);
+		void parsePost(const QString &postIdex, const QString &author, const QString &post);
 
 };
 
 
-#endif /* LISTFAVORITECONTROLLER_HPP_ */
+#endif /* SHOWTHREADCONTROLLER_HPP_ */

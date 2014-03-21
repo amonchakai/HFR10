@@ -28,6 +28,8 @@
 
 #include "LoginController.hpp"
 #include "ListFavoriteController.hpp"
+#include "ShowThreadController.hpp"
+
 #include "CookieJar.hpp"
 #include "DataObjects.h"
 
@@ -58,6 +60,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // Register controllers to QML
     qmlRegisterType<LoginController>("Network.LoginController", 1, 0, "LoginController");
     qmlRegisterType<ListFavoriteController>("Network.ListFavoriteController", 1, 0, "ListFavoriteController");
+    qmlRegisterType<ShowThreadController>("Network.ShowThreadController", 1, 0, "ShowThreadController");
 
 
 
@@ -72,6 +75,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
     ListFavoriteController::setAbstractPane(root);
+    ShowThreadController::setAbstractPane(root);
 
 
     // Set created root object as the application scene

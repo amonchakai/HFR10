@@ -125,6 +125,8 @@ void ListFavoriteController::parse(const QString &page) {
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
 	regexp.setMinimal(true);
 
+	QRegExp andAmp("&amp;");
+
 	QList<int> indexCategories;
 	QList<QString> categoriesLabels;
 
@@ -132,7 +134,9 @@ void ListFavoriteController::parse(const QString &page) {
 	while((pos = regexp.indexIn(page, pos)) != -1) {
 		pos += regexp.matchedLength();
 		indexCategories.push_back(pos);					// Store position of each category into the stream
-		categoriesLabels.push_back(regexp.cap(1));		// Store the matching label
+
+		QString s(regexp.cap(1)); s.replace(andAmp, "&");
+		categoriesLabels.push_back(s);		// Store the matching label
 	}
 
 
@@ -150,7 +154,6 @@ void ListFavoriteController::parse(const QString &page) {
 	regexp.setMinimal(true);
 
 
-	QRegExp andAmp("&amp;");
 	QString today = QDateTime::currentDateTime().toString("dd-MM-yyyy");
 	pos = 0;
 	while((pos = regexp.indexIn(page, pos)) != -1) {
@@ -166,7 +169,9 @@ void ListFavoriteController::parse(const QString &page) {
 		QVariantMap topic;
 		topic["category"] = categoriesLabels[catIndex-1];
 		topic["caption"] = s;
-		topic["urlFirstPost"]  = regexp.cap(2);
+
+		s = regexp.cap(2); s.replace(andAmp, "&");  				// replace "&amp;"  by  "&"
+		topic["urlFirstPost"]  = s;
 		topic["pages"] = regexp.cap(5) + " / " + regexp.cap(3);
 		topic["indexLastPost"] = regexp.cap(4);
 

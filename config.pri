@@ -8,6 +8,7 @@ device {
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.cpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -17,6 +18,7 @@ device {
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.hpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 
@@ -26,6 +28,7 @@ device {
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.cpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -35,6 +38,7 @@ device {
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.hpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
@@ -46,6 +50,7 @@ simulator {
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.cpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -55,6 +60,7 @@ simulator {
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
                  $$quote($$BASEDIR/src/Network/HFRNetworkAccessManager.hpp) \
+                 $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
