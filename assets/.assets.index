@@ -1,9 +1,10 @@
 1
-22
+24
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 Favorite.qml
 Home.qml
+images/default_avatar.png
 images/icon_about.png
 images/icon_browse.png
 images/icon_drap_lecture.gif
@@ -20,5 +21,6 @@ model/feeds.xml
 model/listCategories.xml
 model/sample-category-list.xml
 model/sample-topic-list.xml
+PostRenderer.qml
 Settings.qml
 ThreadPage.qml

@@ -54,4 +54,14 @@ public:
 };
 
 
+
+struct PostDetailItem {
+	QString author;
+	QString avatar_url;
+	QString avatar_onDisk;
+	QString timestamp;
+	QString post;
+};
+
+
 #endif /* DATAOBJECTS_H_ */

@@ -11,6 +11,9 @@
 #include <QtCore/QObject>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
+#include <QList>
+
+struct PostDetailItem;
 
 class ShowThreadController : public QObject {
 	Q_OBJECT;
@@ -19,7 +22,8 @@ class ShowThreadController : public QObject {
 
 		static bb::cascades::AbstractPane   *m_Pane;
 		bb::cascades::GroupDataModel		*m_DataModel;
-
+		QList<PostDetailItem>				*m_Datas;
+		mutable QReadWriteLock	 			 m_EditData;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -29,12 +33,14 @@ class ShowThreadController : public QObject {
 
 		static void setAbstractPane(bb::cascades::AbstractPane *root);
 
+		void updateView();
 
 	// ----------------------------------------------------------------------------------------------
 
 	public Q_SLOTS:
 		void showThread(const QString &url);
 		void checkReply();
+
 
 
 
@@ -49,7 +55,6 @@ class ShowThreadController : public QObject {
 
 		void parse(const QString &page);
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
-
 };
 
 

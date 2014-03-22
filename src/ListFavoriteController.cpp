@@ -141,7 +141,6 @@ void ListFavoriteController::parse(const QString &page) {
 
 
 	// Get favorite topics
-	//QRegExp regexp(QString("<td.*(class=\"sujetCase3\")?.*class=\"cCatTopic\".*title=\"Sujet n°([0-9]+)\">(.+)?</a></td>"));
 	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>")  	// topics' name
 						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
 						   + "([0-9]+)</a></td>"													// overall number of pages
@@ -161,7 +160,7 @@ void ListFavoriteController::parse(const QString &page) {
 		int catIndex = 0;
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}	// use the position of the category into the stream to find the category's index
 
-//		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
+		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
 
 		QString s = regexp.cap(1);
 		s.replace(andAmp, "&");			// replace "&amp;"  by  "&"

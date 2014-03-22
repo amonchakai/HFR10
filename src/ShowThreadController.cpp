@@ -20,14 +20,14 @@
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
-
+#include  "Network/WebResourceManager.h"
+#include  "DataObjects.h"
 
 bb::cascades::AbstractPane *ShowThreadController::m_Pane = NULL;
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_DataModel(NULL) {
-
+	: QObject(parent), m_DataModel(NULL), m_Datas(new QList<PostDetailItem>) {
 }
 
 
@@ -86,9 +86,6 @@ void ShowThreadController::parse(const QString &page) {
 
 	QRegExp regexp = QRegExp(QString("<td class=\"messCase1\" width=\"180\" valign=\"top\" rowspan=\"1\"><a name=\"t([0-9]+)\">")  	// post index
 								   + ".*</a></div><div><b class=\"s2\">(.+)</b></div>");											// pseudo
-						//		   + "(<span class=\"MoodStatus\">.+</span>)?"
-						//		   + ".*<div class=\"avatar_center\" style=\"clear:both\"><img src=\"(.*|)\" alt=\"\" /></div>"			// link to avatar
-						//		   + ".*</div><div class=\"spacer\">&nbsp;</div></div><div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\"> </div></p></div></td></tr>"
 
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
 	regexp.setMinimal(true);
@@ -120,6 +117,7 @@ void ShowThreadController::parse(const QString &page) {
 
 	qDebug() << "end parsing";
 
+	updateView();
 }
 
 
@@ -132,7 +130,11 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	avatarRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	avatarRegexp.setMinimal(true);
 
-	QRegExp postContentRegexp = QRegExp("</div></div><div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\">");
+	QRegExp timestampRegexp = QRegExp(QString( "<div class=\"left\">(.+)<a href="));
+	timestampRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	timestampRegexp.setMinimal(true);
+
+	QRegExp postContentRegexp = QRegExp(QString("</div></div><div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\">"));
 	postContentRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	postContentRegexp.setMinimal(true);
 
@@ -145,12 +147,84 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		avatar = avatarRegexp.cap(1);
 
 	QString postContent;
-	if(postContentRegexp.indexIn(post, 0) != -1)
+	QString timestamp;
+
+	if(timestampRegexp.indexIn(post, 0) != -1) {
+		timestamp = timestampRegexp.cap(1);
+		timestamp = timestamp.mid(9,31);
+		timestamp.replace(QRegExp("&nbsp;"), " ");
+
+	}
+
+	if(postContentRegexp.indexIn(post, 0) != -1) {
 		postContent = postContentRegexp.cap(1);
+	}
+
+	if(postContent.isEmpty())
+		return;
+
+	m_Datas->push_back(PostDetailItem());
+
+	if(avatar.isEmpty())
+		m_Datas->last().avatar_url = "asset:///images/default_avatar.png";
+	else
+		m_Datas->last().avatar_url = avatar;
 
 
-	qDebug() << author << mood << avatar << postContent;
+	m_Datas->last().author = author;
+	m_Datas->last().timestamp = timestamp;
+	m_Datas->last().post = postContent;
 
 }
 
+void ShowThreadController::updateView() {
+
+	// ----------------------------------------------------------------------------------------------
+	// get the dataModel of the listview if not already available
+
+	if(m_DataModel == NULL) {
+		using namespace bb::cascades;
+
+		ListView *listView = NULL;
+		if(m_Pane != NULL) {
+			listView = m_Pane->findChild<ListView *>("threadView");
+			if(listView == NULL) {
+				qWarning() << "Object null: list view not found in the QML tree!";
+				return;
+			}
+		} else {
+			qWarning() << "setAbstractPane was called too late!";
+			return;
+		}
+
+		m_DataModel = dynamic_cast<GroupDataModel*>(listView->dataModel());
+		if (m_DataModel) {
+			m_DataModel->clear();
+		} else {
+			m_DataModel = new GroupDataModel(
+						QStringList() << "author"
+									  << "avatar"
+									  << "timestamp"
+									  << "post"
+					);
+			listView->setDataModel(m_DataModel);
+		}
+	} else {
+		m_DataModel->clear();
+	}
+
+	// ----------------------------------------------------------------------------------------------
+	// push data to the view
+
+	for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
+		QVariantMap post;
+		post["author"] = m_Datas->at(i).author;
+		post["timestamp"] = m_Datas->at(i).timestamp;
+		post["avatar"] = m_Datas->at(i).avatar_url;
+		post["post"] = m_Datas->at(i).post;
+
+		m_DataModel->insert(post);
+	}
+
+}
 
