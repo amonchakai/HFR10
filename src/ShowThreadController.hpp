@@ -9,8 +9,7 @@
 #define SHOWTHREADCONTROLLER_HPP_
 
 #include <QtCore/QObject>
-#include <bb/cascades/AbstractPane>
-#include <bb/cascades/GroupDataModel>
+#include <bb/cascades/ListView>
 #include <QList>
 
 struct PostDetailItem;
@@ -20,8 +19,7 @@ class ShowThreadController : public QObject {
 
 	private:
 
-		static bb::cascades::AbstractPane   *m_Pane;
-		bb::cascades::GroupDataModel		*m_DataModel;
+		bb::cascades::ListView 				*m_ListView;
 		QList<PostDetailItem*>				*m_Datas;
 		mutable QReadWriteLock	 			 m_EditData;
 
@@ -31,14 +29,13 @@ class ShowThreadController : public QObject {
 		virtual ~ShowThreadController() {};
 
 
-		static void setAbstractPane(bb::cascades::AbstractPane *root);
-
 		void updateView();
 
 	// ----------------------------------------------------------------------------------------------
 
 	public Q_SLOTS:
 		void showThread(const QString &url);
+		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void checkReply();
 
 

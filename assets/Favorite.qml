@@ -110,5 +110,9 @@ NavigationPane {
 	         ]
 	         
 	    }
+	    
+	    onCreationCompleted: {
+            listFavoriteController.setListView(listFav);
+        }
 	}
 }

@@ -78,9 +78,6 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
-    ListFavoriteController::setAbstractPane(root);
-    ShowThreadController::setAbstractPane(root);
-
 
     // Set created root object as the application scene
     app->setScene(root);

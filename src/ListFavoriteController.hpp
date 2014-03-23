@@ -10,8 +10,7 @@
 
 
 #include <QtCore/QObject>
-#include <bb/cascades/AbstractPane>
-#include <bb/cascades/GroupDataModel>
+#include <bb/cascades/ListView>
 
 
 class ListFavoriteController : public QObject {
@@ -19,8 +18,7 @@ class ListFavoriteController : public QObject {
 
 	private:
 
-		static bb::cascades::AbstractPane   *m_Pane;
-		bb::cascades::GroupDataModel		*m_DataModel;
+		bb::cascades::ListView   *m_ListView;
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -29,12 +27,10 @@ class ListFavoriteController : public QObject {
 		virtual ~ListFavoriteController() {};
 
 
-		static void setAbstractPane(bb::cascades::AbstractPane *root);
-
-
 	// ----------------------------------------------------------------------------------------------
 
 	public Q_SLOTS:
+		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void getFavorite();
 		void checkReply();
 

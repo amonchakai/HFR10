@@ -17,23 +17,21 @@
 #include <QDateTime>
 
 #include <bb/cascades/ListView>
+#include <bb/cascades/AbstractPane>
+#include <bb/cascades/GroupDataModel>
+
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
 #include  "Network/WebResourceManager.h"
 #include  "DataObjects.h"
 
-bb::cascades::AbstractPane *ShowThreadController::m_Pane = NULL;
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_DataModel(NULL), m_Datas(new QList<PostDetailItem*>) {
+	: QObject(parent), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>) {
 }
 
-
-void ShowThreadController::setAbstractPane(bb::cascades::AbstractPane *root) {
-	m_Pane = root;
-}
 
 
 void ShowThreadController::showThread(const QString &url) {
@@ -184,42 +182,28 @@ void ShowThreadController::updateView() {
 
 	// ----------------------------------------------------------------------------------------------
 	// get the dataModel of the listview if not already available
+	using namespace bb::cascades;
 
-	if(m_DataModel == NULL) {
-		qDebug() << "model does not exists";
-		using namespace bb::cascades;
 
-		ListView *listView = NULL;
-		if(m_Pane != NULL) {
-			qDebug() << "get list view";
-			listView = m_Pane->findChild<ListView *>("threadView");
-			if(listView == NULL) {
-				qWarning() << "Object null: list view not found in the QML tree!";
-				return;
-			}
-		} else {
-			qWarning() << "setAbstractPane was called too late!";
-			return;
-		}
+	if(m_ListView == NULL) {
+		qDebug() << "did not received the listview. quit.";
+		return;
+	}
 
-		m_DataModel = dynamic_cast<GroupDataModel*>(listView->dataModel());
-		qDebug() << "attempt to get the data model";
-		if (m_DataModel) {
-			qDebug() << "clear model";
-			m_DataModel->clear();
-		} else {
-			qDebug() << "create new model";
-			m_DataModel = new GroupDataModel(
-						QStringList() << "author"
-									  << "avatar"
-									  << "timestamp"
-									  << "post"
-					);
-			listView->setDataModel(m_DataModel);
-		}
+	GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+	qDebug() << "attempt to get the data model";
+	if (dataModel) {
+		qDebug() << "clear model";
+		dataModel->clear();
 	} else {
-		qDebug() << "model already exists, clean it";
-		m_DataModel->clear();
+		qDebug() << "create new model";
+		dataModel = new GroupDataModel(
+					QStringList() << "author"
+								  << "avatar"
+								  << "timestamp"
+								  << "post"
+				);
+		m_ListView->setDataModel(dataModel);
 	}
 
 	// ----------------------------------------------------------------------------------------------
@@ -230,7 +214,7 @@ void ShowThreadController::updateView() {
 		datas.push_back(m_Datas->at(i));
 	}
 
-	m_DataModel->insertList(datas);
+	dataModel->insertList(datas);
 
 }
 

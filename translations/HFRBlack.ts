@@ -12,7 +12,7 @@
 <context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="63"/>
+        <location filename="../src/ListFavoriteController.cpp" line="58"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -69,7 +69,7 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="68"/>
+        <location filename="../src/ShowThreadController.cpp" line="66"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

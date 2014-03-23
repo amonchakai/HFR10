@@ -9,24 +9,19 @@
 #include <QRegExp>
 #include <QDateTime>
 
-#include <bb/cascades/ListView>
+#include <bb/cascades/AbstractPane>
+#include <bb/cascades/GroupDataModel>
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
 
 
-bb::cascades::AbstractPane *ListFavoriteController::m_Pane = NULL;
-
 
 ListFavoriteController::ListFavoriteController(QObject *parent)
-	: QObject(parent), m_DataModel(NULL) {
+	: QObject(parent), m_ListView(NULL) {
 
 }
 
-
-void ListFavoriteController::setAbstractPane(bb::cascades::AbstractPane *root) {
-	m_Pane = root;
-}
 
 
 void ListFavoriteController::getFavorite() {
@@ -76,26 +71,18 @@ void ListFavoriteController::parse(const QString &page) {
 	// ----------------------------------------------------------------------------------------------
 	// get the dataModel of the listview if not already available
 
-	if(m_DataModel == NULL) {
-		using namespace bb::cascades;
+	if(m_ListView == NULL) {
+		qWarning() << "the list view is either not provided or not a listview...";
+		return;
+	}
 
-		ListView *listView = NULL;
-		if(m_Pane != NULL) {
-			listView = m_Pane->findChild<ListView *>("listFav");
-			if(listView == NULL) {
-				qWarning() << "Object null: list view not found in the QML tree!";
-				return;
-			}
-		} else {
-			qWarning() << "setAbstractPane was called too late!";
-			return;
-		}
+	using namespace bb::cascades;
 
-		m_DataModel = dynamic_cast<GroupDataModel*>(listView->dataModel());
-		if (m_DataModel) {
-			m_DataModel->clear();
-		} else {
-			m_DataModel = new GroupDataModel(
+	GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+	if (dataModel) {
+		dataModel->clear();
+	} else {
+		dataModel = new GroupDataModel(
 						QStringList() << "category"
 									  << "caption"
 									  << "timestamp"
@@ -104,12 +91,9 @@ void ListFavoriteController::parse(const QString &page) {
 									  << "indexLastPost"
 									  << "pages"
 					);
-			listView->setDataModel(m_DataModel);
-		}
-		m_DataModel->setGrouping(ItemGrouping::ByFullValue);
-	} else {
-		m_DataModel->clear();
+		m_ListView->setDataModel(dataModel);
 	}
+	dataModel->setGrouping(ItemGrouping::ByFullValue);
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -179,7 +163,7 @@ void ListFavoriteController::parse(const QString &page) {
 		topic["lastAuthor"] = regexp.cap(7);
 
 
-		m_DataModel->insert(topic);
+		dataModel->insert(topic);
 
 	}
 
