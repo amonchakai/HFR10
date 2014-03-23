@@ -27,7 +27,7 @@ bb::cascades::AbstractPane *ShowThreadController::m_Pane = NULL;
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_DataModel(NULL), m_Datas(new QList<PostDetailItem>) {
+	: QObject(parent), m_DataModel(NULL), m_Datas(new QList<PostDetailItem*>) {
 }
 
 
@@ -71,8 +71,6 @@ void ShowThreadController::checkReply() {
 
 		reply->deleteLater();
 	}
-
-	emit complete(response);
 }
 
 
@@ -101,6 +99,9 @@ void ShowThreadController::parse(const QString &page) {
 		lastPseudo = regexp.cap(2);
 	}
 
+
+	m_Datas->clear();				// cleanup data before loading new data
+
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
 
@@ -118,6 +119,8 @@ void ShowThreadController::parse(const QString &page) {
 	qDebug() << "end parsing";
 
 	updateView();
+
+	emit complete();
 }
 
 
@@ -163,17 +166,17 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	if(postContent.isEmpty())
 		return;
 
-	m_Datas->push_back(PostDetailItem());
+	m_Datas->push_back(new PostDetailItem());
 
 	if(avatar.isEmpty())
-		m_Datas->last().avatar_url = "asset:///images/default_avatar.png";
+		m_Datas->last()->setAvatar("asset:///images/default_avatar.png");
 	else
-		m_Datas->last().avatar_url = avatar;
+		m_Datas->last()->setAvatar(avatar);
 
 
-	m_Datas->last().author = author;
-	m_Datas->last().timestamp = timestamp;
-	m_Datas->last().post = postContent;
+	m_Datas->last()->setAuthor(author);
+	m_Datas->last()->setTimestamp(timestamp);
+	m_Datas->last()->setPost(postContent);
 
 }
 
@@ -183,10 +186,12 @@ void ShowThreadController::updateView() {
 	// get the dataModel of the listview if not already available
 
 	if(m_DataModel == NULL) {
+		qDebug() << "model does not exists";
 		using namespace bb::cascades;
 
 		ListView *listView = NULL;
 		if(m_Pane != NULL) {
+			qDebug() << "get list view";
 			listView = m_Pane->findChild<ListView *>("threadView");
 			if(listView == NULL) {
 				qWarning() << "Object null: list view not found in the QML tree!";
@@ -198,9 +203,12 @@ void ShowThreadController::updateView() {
 		}
 
 		m_DataModel = dynamic_cast<GroupDataModel*>(listView->dataModel());
+		qDebug() << "attempt to get the data model";
 		if (m_DataModel) {
+			qDebug() << "clear model";
 			m_DataModel->clear();
 		} else {
+			qDebug() << "create new model";
 			m_DataModel = new GroupDataModel(
 						QStringList() << "author"
 									  << "avatar"
@@ -210,21 +218,19 @@ void ShowThreadController::updateView() {
 			listView->setDataModel(m_DataModel);
 		}
 	} else {
+		qDebug() << "model already exists, clean it";
 		m_DataModel->clear();
 	}
 
 	// ----------------------------------------------------------------------------------------------
 	// push data to the view
 
+	QList<QObject*> datas;
 	for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
-		QVariantMap post;
-		post["author"] = m_Datas->at(i).author;
-		post["timestamp"] = m_Datas->at(i).timestamp;
-		post["avatar"] = m_Datas->at(i).avatar_url;
-		post["post"] = m_Datas->at(i).post;
-
-		m_DataModel->insert(post);
+		datas.push_back(m_Datas->at(i));
 	}
+
+	m_DataModel->insertList(datas);
 
 }
 

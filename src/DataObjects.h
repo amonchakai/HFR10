@@ -55,12 +55,48 @@ public:
 
 
 
-struct PostDetailItem {
-	QString author;
-	QString avatar_url;
-	QString avatar_onDisk;
-	QString timestamp;
-	QString post;
+class PostDetailItem : public QObject {
+	Q_OBJECT;
+
+	Q_PROPERTY( QString author		READ getAuthor      WRITE setAuthor		NOTIFY authorChanged)
+	Q_PROPERTY( QString avatar		READ getAvatar      WRITE setAvatar		NOTIFY avatarChanged)
+	Q_PROPERTY( QString timestamp	READ getTimestamp	WRITE setTimestamp	NOTIFY timestampChanged)
+	Q_PROPERTY( QString post		READ getPost		WRITE setPost		NOTIFY postChanged)
+
+	// ----------------------------------------------------------------------------------------------
+
+private:
+	QString m_Author;
+	QString m_Avatar;
+	QString m_Timestamp;
+	QString m_Post;
+
+
+public:
+
+	PostDetailItem(QObject *parent = 0) : QObject(parent) {};
+	virtual ~PostDetailItem() {}
+
+	inline const QString &getAuthor() const				{ return m_Author; }
+	inline void			  setAuthor(const QString &s)	{ m_Author = s; }
+
+	inline const QString &getAvatar() const				{ return m_Avatar; }
+	inline void			  setAvatar(const QString &s)	{ m_Avatar = s; }
+
+	inline const QString &getTimestamp() const			{ return m_Timestamp; }
+	inline void			  setTimestamp(const QString &s){ m_Timestamp = s; }
+
+	inline const QString &getPost() const				{ return m_Post; }
+	inline void			  setPost(const QString &s)		{ m_Post = s; }
+
+
+	// ----------------------------------------------------------------------------------------------
+	Q_SIGNALS:
+		void authorChanged();
+		void avatarChanged();
+		void timestampChanged();
+		void postChanged();
+
 };
 
 

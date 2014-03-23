@@ -1,5 +1,5 @@
 1
-24
+25
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 Favorite.qml
@@ -15,6 +15,7 @@ images/icon_forum.png
 images/icon_home.png
 images/icon_mp.png
 images/icon_settings.png
+images/Thumbs.db
 main.qml
 MainWindowTabbedPane.qml
 model/feeds.xml

@@ -54,7 +54,6 @@ void ListFavoriteController::checkReply() {
 	if (reply) {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
@@ -67,8 +66,6 @@ void ListFavoriteController::checkReply() {
 
 		reply->deleteLater();
 	}
-
-	emit complete(response);
 }
 
 
@@ -115,8 +112,6 @@ void ListFavoriteController::parse(const QString &page) {
 	}
 
 
-	qDebug() << "start parser";
-
 	// ----------------------------------------------------------------------------------------------
 	// Parse categories using regexp
 
@@ -160,7 +155,7 @@ void ListFavoriteController::parse(const QString &page) {
 		int catIndex = 0;
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}	// use the position of the category into the stream to find the category's index
 
-		qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
+		//qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
 
 		QString s = regexp.cap(1);
 		s.replace(andAmp, "&");			// replace "&amp;"  by  "&"
@@ -188,7 +183,7 @@ void ListFavoriteController::parse(const QString &page) {
 
 	}
 
-	qDebug() << "parser end!";
+	emit complete();
 
 }
 

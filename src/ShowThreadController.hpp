@@ -22,7 +22,7 @@ class ShowThreadController : public QObject {
 
 		static bb::cascades::AbstractPane   *m_Pane;
 		bb::cascades::GroupDataModel		*m_DataModel;
-		QList<PostDetailItem>				*m_Datas;
+		QList<PostDetailItem*>				*m_Datas;
 		mutable QReadWriteLock	 			 m_EditData;
 
 	// ----------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ class ShowThreadController : public QObject {
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
-		void complete(const QString &info);
+		void complete();
 
 
 

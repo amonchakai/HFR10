@@ -42,7 +42,7 @@ class ListFavoriteController : public QObject {
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
-		void complete(const QString &info);
+		void complete();
 
 
 

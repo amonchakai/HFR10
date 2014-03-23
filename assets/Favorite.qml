@@ -8,15 +8,21 @@ NavigationPane {
     Page {
 	    Container {
 	        
-	        
-	        
 	        Button {
 	            text: "load"
 	            horizontalAlignment: HorizontalAlignment.Fill
 	            onClicked: {
 	                listFavoriteController.getFavorite()
+	                activityIndicator.start();
 	            }
 	        }
+	        
+            ActivityIndicator {
+                id: activityIndicator
+                horizontalAlignment: HorizontalAlignment.Center
+                verticalAlignment: VerticalAlignment.Center
+                preferredHeight: 200
+            }
 	        
 	        ListView {
 	            id: listFav
@@ -92,6 +98,10 @@ NavigationPane {
 	         attachedObjects: [
 	             ListFavoriteController {
 	                 id: listFavoriteController
+	                 
+	                 onComplete: {
+	                        activityIndicator.stop();
+	                 }
 	             }, 
 	             ComponentDefinition {
 	                 id: threadPage
