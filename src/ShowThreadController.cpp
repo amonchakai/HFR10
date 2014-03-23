@@ -75,8 +75,6 @@ void ShowThreadController::checkReply() {
 
 void ShowThreadController::parse(const QString &page) {
 
-	qDebug() << "start parser";
-
 	// ----------------------------------------------------------------------------------------------
 	// Parse posts
 
@@ -100,9 +98,11 @@ void ShowThreadController::parse(const QString &page) {
 
 	m_Datas->clear();				// cleanup data before loading new data
 
+	// Cut the entire page into posts
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
 
+		// parse each post individually
 		parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
 
 
@@ -112,9 +112,6 @@ void ShowThreadController::parse(const QString &page) {
 
 	}
 	parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
-
-
-	qDebug() << "end parsing";
 
 	updateView();
 
@@ -171,10 +168,47 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	else
 		m_Datas->last()->setAvatar(avatar);
 
+	// parse the post so it can be rendered in HTML within a listitem
+	cleanupPost(postContent);
 
 	m_Datas->last()->setAuthor(author);
 	m_Datas->last()->setTimestamp(timestamp);
 	m_Datas->last()->setPost(postContent);
+
+}
+
+void ShowThreadController::cleanupPost(QString &post) {
+
+//	post = "<p><strong>tototot</strong>fdhjfbsd</p>";
+//	return;
+//	post = post.mid(0,184);
+
+	QString cleanPost;
+	QRegExp quoteRegexp(QString( "</p><div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\".+t([0-9]+)\" class=\"Topic\">")
+								+"(.+)"														// author
+								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div><p>"		// message
+			);
+
+	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	quoteRegexp.setMinimal(true);
+
+	int lastPos = 0;
+	int pos = 0;
+	while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
+		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+
+		cleanPost += "<table class=\"citation\" post=\"" + quoteRegexp.cap(1) + "\"><tr><th>" + quoteRegexp.cap(2) + "</th></tr><tr><td>" + quoteRegexp.cap(3) + "</td></tr></table>";
+		//qDebug() << quoteRegexp.cap(1) << quoteRegexp.cap(2) << quoteRegexp.cap(3);
+
+		pos += quoteRegexp.matchedLength();
+		//qDebug() << quoteRegexp.matchedLength();
+		lastPos = pos;
+	}
+	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+
+	post = cleanPost;
+	qDebug() << post;
+
 
 }
 
@@ -186,14 +220,12 @@ void ShowThreadController::updateView() {
 
 
 	if(m_ListView == NULL) {
-		qDebug() << "did not received the listview. quit.";
+		qWarning() << "did not received the listview. quit.";
 		return;
 	}
 
 	GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
-	qDebug() << "attempt to get the data model";
 	if (dataModel) {
-		qDebug() << "clear model";
 		dataModel->clear();
 	} else {
 		qDebug() << "create new model";

@@ -66,8 +66,6 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
 
 
-
-
     // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set
     // to ensure the document gets destroyed properly at shut down.

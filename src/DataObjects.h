@@ -87,6 +87,7 @@ public:
 	inline void			  setTimestamp(const QString &s){ m_Timestamp = s; }
 
 	inline const QString &getPost() const				{ return m_Post; }
+	inline       QString &getPost()						{ return m_Post; }
 	inline void			  setPost(const QString &s)		{ m_Post = s; }
 
 

@@ -52,6 +52,7 @@ class ShowThreadController : public QObject {
 
 		void parse(const QString &page);
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
+		void cleanupPost(QString &post);
 };
 
 
