@@ -8,7 +8,8 @@ Page {
     property string  caption
         
     Container {
-        
+        id: pageContainer
+
         ActivityIndicator {
             id: activityIndicator
             horizontalAlignment: HorizontalAlignment.Center
@@ -30,6 +31,19 @@ Page {
                     type: "item"
                     
                         Container {
+                            id: headerContainer
+                            
+                            function themeStyleToHeaderColor(style){
+                                switch (style) {
+                                    case VisualStyle.Bright:
+                                        return Color.create(0.96,0.96,0.96);
+                                    case VisualStyle.Dark: 
+                                        return Color.create(0.01,0.01,0.01);
+                                    default :
+                                        return Color.create(0.96,0.96,0.96);    
+                                }
+                                return Color.create(0.96,0.96,0.96); 
+                            }
                             
                             layout: StackLayout {
                                 orientation: LayoutOrientation.TopToBottom
@@ -37,7 +51,7 @@ Page {
                             
                             horizontalAlignment: HorizontalAlignment.Fill
                             Container {
-                                background: Color.create(0.96,0.96,0.96);
+                                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                                 horizontalAlignment: HorizontalAlignment.Fill
                                 verticalAlignment: VerticalAlignment.Fill
                                 preferredWidth: 400
@@ -109,11 +123,52 @@ Page {
         }
     ]
     
+    actions: [
+        ActionItem {
+            title: qsTr("Reply")
+            imageSource: "asset:///images/icon_write.png"
+            ActionBar.placement: ActionBarPlacement.OnBar
+        },
+        ActionItem {
+            title: qsTr("First page")
+            imageSource: "asset:///images/icon_prev_all.png"
+            onTriggered: {
+                showThreadController.firstPage();
+                activityIndicator.start();
+            }
+        },
+        ActionItem {
+             title: qsTr("Last page")
+             imageSource: "asset:///images/icon_next_all.png"
+             onTriggered: {
+                 showThreadController.lastPage();
+                 activityIndicator.start();
+             }
+        },
+        ActionItem {
+            title: qsTr("Prev page")
+            imageSource: "asset:///images/icon_prev.png"
+            onTriggered: {
+                showThreadController.prevPage();
+                activityIndicator.start();
+            }
+        },
+        ActionItem {
+        	title: qsTr("Next page")
+        	imageSource: "asset:///images/icon_next.png"
+        	onTriggered: {
+        		showThreadController.nextPage();
+                activityIndicator.start();
+            }
+        }
+        
+    ]
+        
     
     onUrlPageChanged: {
-//        showThreadController.showThread(urlPage)
         showThreadController.setListView(threadView);
-        showThreadController.showThread("/forum2.php?config=hfr.inc&cat=25&subcat=535&post=1197&page=875&p=1&sondage=0&owntopic=1&trash=0&trash_post=0&print=0&numreponse=0&quote_only=0&new=0&nojs=0")
+        showThreadController.showThread(urlPage);
+
         activityIndicator.start();
     }
 }

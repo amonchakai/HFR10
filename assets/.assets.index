@@ -1,5 +1,5 @@
 1
-85
+92
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 Favorite.qml
@@ -14,7 +14,13 @@ images/icon_favorites.png
 images/icon_forum.png
 images/icon_home.png
 images/icon_mp.png
+images/icon_next.png
+images/icon_next_all.png
+images/icon_pen.png
+images/icon_prev.png
+images/icon_prev_all.png
 images/icon_settings.png
+images/icon_write.png
 images/smiley/24.gif
 images/smiley/ange.gif
 images/smiley/benetton.gif
@@ -70,6 +76,7 @@ images/smiley/spamafote.gif
 images/smiley/spookie.gif
 images/smiley/sum.gif
 images/smiley/sweat.gif
+images/smiley/Thumbs.db
 images/smiley/tongue.gif
 images/smiley/vomi.gif
 images/smiley/wahoo.gif

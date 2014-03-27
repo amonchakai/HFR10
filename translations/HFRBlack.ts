@@ -69,8 +69,36 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="66"/>
+        <location filename="../src/ShowThreadController.cpp" line="70"/>
         <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThreadPage</name>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="128"/>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="133"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="141"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="149"/>
+        <source>Prev page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="157"/>
+        <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -36,6 +36,10 @@ ShowThreadController::ShowThreadController(QObject *parent)
 
 void ShowThreadController::showThread(const QString &url) {
 
+	// -----------------------------------------------------------------------------------------
+	// request page
+	m_Url = url;
+
 	QNetworkRequest request(DefineConsts::FORUM_URL+url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
@@ -74,6 +78,54 @@ void ShowThreadController::checkReply() {
 
 
 void ShowThreadController::parse(const QString &page) {
+
+	QRegExp amp("&amp;");
+	QRegExp pageURL("</b>&nbsp;&nbsp;<a href=\"(.+)\" class=\"cHeader\">1</a>");
+	pageURL.setCaseSensitivity(Qt::CaseSensitive);
+	pageURL.setMinimal(true);
+
+	if(pageURL.indexIn(page, 0) != -1) {
+		m_UrlFirstPage = pageURL.cap(1);
+		m_UrlFirstPage.replace(amp, "&");
+//		qDebug() << "first page: "  << m_UrlFirstPage;
+	} else
+		m_UrlFirstPage = "";
+
+
+	pageURL = QRegExp("</b>&nbsp;&nbsp;<a href=\"(.+)\" class=\"cHeader\">[0-9]+</a></div><div class=\"pagepresuiv\">");
+	pageURL.setCaseSensitivity(Qt::CaseSensitive);
+	pageURL.setMinimal(true);
+
+	if(pageURL.indexIn(page, 0) != -1) {
+		m_UrlLastPage = pageURL.cap(1);
+		m_UrlLastPage.replace(amp, "&");
+//		qDebug() << "last page: "<< m_UrlLastPage;
+	} else
+		m_UrlLastPage = "";
+
+	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"(.+)\" class=\"cHeader\" accesskey=\"w\">Page Pr");
+	pageURL.setCaseSensitivity(Qt::CaseSensitive);
+	pageURL.setMinimal(true);
+
+	if(pageURL.indexIn(page, 0) != -1) {
+		m_UrlPrevPage = pageURL.cap(1);
+		m_UrlPrevPage.replace(amp, "&");
+//		qDebug() << "prev page: "<< m_UrlPrevPage;
+	} else
+		m_UrlPrevPage = "";
+
+	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"(.+)\" class=\"cHeader\" accesskey=\"x\">Page Suivante</a></div>");
+	pageURL.setCaseSensitivity(Qt::CaseSensitive);
+	pageURL.setMinimal(true);
+
+	if(pageURL.indexIn(page, 0) != -1) {
+		m_UrlNextPage = pageURL.cap(1);
+		m_UrlNextPage.replace(amp, "&");
+//		qDebug() << "next page: "<< m_UrlNextPage;
+	} else
+		m_UrlNextPage = "";
+
+
 
 	// ----------------------------------------------------------------------------------------------
 	// Parse posts
@@ -207,7 +259,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 
 	post = cleanPost;
-	qDebug() << post;
+	//qDebug() << post;
 
 
 }
@@ -246,7 +298,42 @@ void ShowThreadController::updateView() {
 		datas.push_back(m_Datas->at(i));
 	}
 
+	dataModel->clear();
 	dataModel->insertList(datas);
 
 }
 
+
+
+// -----------------------------------------------------------------------------------------------------
+// navigation within page
+
+void ShowThreadController::nextPage() {
+	if(!m_UrlNextPage.isEmpty())
+		showThread(m_UrlNextPage);
+	else
+		showThread(m_Url);
+}
+
+
+void ShowThreadController::prevPage() {
+	if(!m_UrlPrevPage.isEmpty())
+		showThread(m_UrlPrevPage);
+	else
+		showThread(m_Url);
+}
+
+
+void ShowThreadController::firstPage() {
+	if(!m_UrlFirstPage.isEmpty())
+		showThread(m_UrlFirstPage);
+	else
+		showThread(m_Url);
+}
+
+void ShowThreadController::lastPage() {
+	if(!m_UrlLastPage.isEmpty())
+		showThread(m_UrlLastPage);
+	else
+		showThread(m_Url);
+}

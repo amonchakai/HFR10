@@ -123,7 +123,7 @@ void ListFavoriteController::parse(const QString &page) {
 	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>")  	// topics' name
 						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
 						   + "([0-9]+)</a></td>"													// overall number of pages
-						   + ".*<td class=\"sujetCase5\"><a href=.+#t([0-9]+)\"><img src"			// index to last read post
+						   + ".*<td class=\"sujetCase5\"><a href=\"(.+)\"><img src"					// index to last read post
 						   + ".*p.([0-9]+)"										// last page read number
 						   + ".*<td class=\"sujetCase9.*class=\"Tableau\">(.+)" 					// time stamp
 						   + "<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type");	// last contributor
@@ -151,7 +151,12 @@ void ListFavoriteController::parse(const QString &page) {
 		s = regexp.cap(2); s.replace(andAmp, "&");  				// replace "&amp;"  by  "&"
 		topic["urlFirstPost"]  = s;
 		topic["pages"] = regexp.cap(5) + " / " + regexp.cap(3);
-		topic["indexLastPost"] = regexp.cap(4);
+
+		s = regexp.cap(4);
+		s.replace(andAmp, "&");
+		topic["indexLastPost"] = s;
+
+
 
 		s = regexp.cap(6);
 		if(s.mid(0,10).compare(today) == 0)

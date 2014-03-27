@@ -87,7 +87,7 @@ NavigationPane {
 	                var page = threadPage.createObject();
 	                
 	                // Set the url of the page to load and thread caption. 
-	                page.urlPage = chosenItem.urlFirstPost
+                    page.urlPage = chosenItem.indexLastPost
 	                page.caption   = chosenItem.caption
 	                	                
 	                nav.push(page);

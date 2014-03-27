@@ -23,6 +23,12 @@ class ShowThreadController : public QObject {
 		QList<PostDetailItem*>				*m_Datas;
 		mutable QReadWriteLock	 			 m_EditData;
 
+		QString								 m_UrlNextPage;
+		QString								 m_UrlPrevPage;
+		QString								 m_UrlFirstPage;
+		QString								 m_UrlLastPage;
+		QString								 m_Url;
+
 	// ----------------------------------------------------------------------------------------------
 	public:
 		ShowThreadController(QObject *parent = 0);
@@ -38,6 +44,10 @@ class ShowThreadController : public QObject {
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void checkReply();
 
+		void nextPage();
+		void prevPage();
+		void firstPage();
+		void lastPage();
 
 
 
