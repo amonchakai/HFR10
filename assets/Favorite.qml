@@ -112,8 +112,8 @@ NavigationPane {
 	            }
 	            
 	            onRefreshTriggered: {
-                    activityIndicator.start()
-                    listFavoriteController.getFavorite()
+                    activityIndicator.start();
+                    listFavoriteController.getFavorite();
                 }
 	            
 	         }
@@ -137,6 +137,8 @@ NavigationPane {
 	    onCreationCompleted: {
 	        
             listFavoriteController.setListView(listFav);
+            listFavoriteController.getFavorite();
+            activityIndicator.start();
         }
 	}
 }
