@@ -1,23 +1,23 @@
 <root>
-	<item title="Hardware" />
-	<item title="Hardware - Périphériques" />
-	<item title="Ordinateurs portables" />
-	<item title="Technologies Mobiles" />
-	<item title="Overclocking, Cooling &amp; Modding" />
-	<item title="Apple" />
-	<item title="Video &amp; Son" />
-	<item title="Photo numérique" />
-	<item title="Jeux Video" />
-	<item title="Windows &amp; Software" />
-	<item title="Réseaux grand public / SoHo" />
-	<item title="Systèmes &amp; Réseaux Pro" />
-	<item title="Linux et OS Alternatifs" />
-	<item title="Programmation" />
-	<item title="Graphisme" />
-	<item title="Achats &amp; Ventes" />
-	<item title="Emploi &amp; Etudes" />
-	<item title="Seti et projets distribués" />
-	<item title="Discussions" />
+	<item title="Hardware" url="http://forum.hardware.fr/hfr/Hardware/liste_sujet-1.htm" />
+	<item title="Hardware - Périphériques" url="http://forum.hardware.fr/hfr/HardwarePeripheriques/liste_sujet-1.htm" />
+	<item title="Ordinateurs portables" url="http://forum.hardware.fr/hfr/OrdinateursPortables/liste_sujet-1.htm" />
+	<item title="Technologies Mobiles" url="http://forum.hardware.fr/hfr/gsmgpspda/liste_sujet-1.htm" />
+	<item title="Overclocking, Cooling &amp; Modding" url="http://forum.hardware.fr/hfr/OverclockingCoolingModding/liste_sujet-1.htm" />
+	<item title="Apple" url="http://forum.hardware.fr/hfr/apple/liste_sujet-1.htm" />
+	<item title="Video &amp; Son" url="http://forum.hardware.fr/hfr/VideoSon/liste_sujet-1.htm" />
+	<item title="Photo numérique" url="http://forum.hardware.fr/hfr/Photonumerique/liste_sujet-1.htm" />
+	<item title="Jeux Video" url="http://forum.hardware.fr/hfr/JeuxVideo/liste_sujet-1.htm" />
+	<item title="Windows &amp; Software" url="http://forum.hardware.fr/hfr/WindowsSoftware/liste_sujet-1.htm" />
+	<item title="Réseaux grand public / SoHo" url="http://forum.hardware.fr/hfr/reseauxpersosoho/liste_sujet-1.htm" />
+	<item title="Systèmes &amp; Réseaux Pro" url="http://forum.hardware.fr/hfr/systemereseauxpro/liste_sujet-1.htm" />
+	<item title="Linux et OS Alternatifs" url="http://forum.hardware.fr/hfr/OSAlternatifs/liste_sujet-1.htm" />
+	<item title="Programmation" url="http://forum.hardware.fr/hfr/Programmation/liste_sujet-1.htm" />
+	<item title="Graphisme" url="http://forum.hardware.fr/hfr/Graphisme/liste_sujet-1.htm" />
+	<item title="Achats &amp; Ventes" url="http://forum.hardware.fr/hfr/AchatsVentes/Hardware/liste_sujet-1.htm" />
+	<item title="Emploi &amp; Etudes" url="http://forum.hardware.fr/hfr/EmploiEtudes/liste_sujet-1.htm" />
+	<item title="Seti et projets distribués" url="http://forum.hardware.fr/hfr/Setietprojetsdistribues/liste_sujet-1.htm" />
+	<item title="Discussions" url="http://forum.hardware.fr/hfr/Discussions/liste_sujet-1.htm" />
 </root>
 
 	

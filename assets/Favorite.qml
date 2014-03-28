@@ -7,16 +7,7 @@ NavigationPane {
     id: nav
     Page {
 	    Container {
-	        
-	        Button {
-	            text: "load"
-	            horizontalAlignment: HorizontalAlignment.Fill
-	            onClicked: {
-	                listFavoriteController.getFavorite()
-	                activityIndicator.start();
-	            }
-	        }
-	        
+	        	        
             ActivityIndicator {
                 id: activityIndicator
                 horizontalAlignment: HorizontalAlignment.Center
@@ -25,7 +16,34 @@ NavigationPane {
             }
 	        
 	        ListView {
-	            id: listFav
+                // ------------------------------------------------------------------
+                // Pull to refresh
+                signal refreshTriggered()
+                property bool loading: false
+                id: listFav
+                leadingVisualSnapThreshold: 2.0
+                leadingVisual: RefreshHeader {
+                    id: refreshHandler
+                    onRefreshTriggered: {
+                        listFav.refreshTriggered();
+                    }
+                }
+                onTouch: {
+                    refreshHandler.onListViewTouch(event);
+                }
+                onLoadingChanged: {
+                    refreshHandler.refreshing = refreshableList.loading;
+                    
+                    if(!refreshHandler.refreshing) {
+                        // If the refresh is done 
+                        // Force scroll to top to ensure that all items are visible
+                        scrollToPosition(ScrollPosition.Beginning, ScrollAnimation.None);
+                    }
+                }
+                
+                // ---------------------------------------------------------------------
+                // view
+
 	            objectName: "listFav"
 	            
 	            dataModel: GroupDataModel {
@@ -93,6 +111,11 @@ NavigationPane {
 	                nav.push(page);
 	            }
 	            
+	            onRefreshTriggered: {
+                    activityIndicator.start()
+                    listFavoriteController.getFavorite()
+                }
+	            
 	         }
 	        
 	         attachedObjects: [
@@ -112,6 +135,7 @@ NavigationPane {
 	    }
 	    
 	    onCreationCompleted: {
+	        
             listFavoriteController.setListView(listFav);
         }
 	}

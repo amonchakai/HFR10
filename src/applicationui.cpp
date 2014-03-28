@@ -28,6 +28,7 @@
 
 #include "LoginController.hpp"
 #include "ListFavoriteController.hpp"
+#include "ExploreCategoryController.hpp"
 #include "ShowThreadController.hpp"
 #include "Network/NetImageTracker.h"
 
@@ -62,6 +63,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // Register controllers to QML
     qmlRegisterType<LoginController>("Network.LoginController", 1, 0, "LoginController");
     qmlRegisterType<ListFavoriteController>("Network.ListFavoriteController", 1, 0, "ListFavoriteController");
+    qmlRegisterType<ExploreCategoryController>("Network.ExploreCategoryController", 1, 0, "ExploreCategoryController");
     qmlRegisterType<ShowThreadController>("Network.ShowThreadController", 1, 0, "ShowThreadController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
 

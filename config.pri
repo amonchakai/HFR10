@@ -3,7 +3,8 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Globals.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
+                 $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -15,6 +16,7 @@ device {
                  $$quote($$BASEDIR/src/main.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
@@ -27,7 +29,8 @@ device {
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Globals.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
+                 $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -39,6 +42,7 @@ device {
                  $$quote($$BASEDIR/src/main.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
@@ -53,7 +57,8 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Globals.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
+                 $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -65,6 +70,7 @@ simulator {
                  $$quote($$BASEDIR/src/main.cpp)
 
         HEADERS +=  $$quote($$BASEDIR/src/DataObjects.h) \
+                 $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \

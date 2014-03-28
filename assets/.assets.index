@@ -1,7 +1,8 @@
 1
-92
+94
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
+ExploreCategory.qml
 Favorite.qml
 Home.qml
 images/default_avatar.png
@@ -90,5 +91,6 @@ model/listCategories.xml
 model/sample-category-list.xml
 model/sample-topic-list.xml
 PostRenderer.qml
+RefreshHeader.qml
 Settings.qml
 ThreadPage.qml
