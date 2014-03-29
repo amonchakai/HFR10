@@ -172,6 +172,7 @@ void ShowThreadController::parse(const QString &page) {
 
 
 void ShowThreadController::parsePost(const QString &postIdex, const QString &author, const QString &post) {
+
 	QRegExp moodRegexp = QRegExp("<span class=\"MoodStatus\">(.+)</span>");
 	moodRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	moodRegexp.setMinimal(true);
@@ -226,6 +227,7 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	m_Datas->last()->setAuthor(author);
 	m_Datas->last()->setTimestamp(timestamp);
 	m_Datas->last()->setPost(postContent);
+	m_Datas->last()->setIndex(postIdex.toInt());
 
 }
 
@@ -301,8 +303,34 @@ void ShowThreadController::updateView() {
 	dataModel->clear();
 	dataModel->insertList(datas);
 
+	scrollToItem();
+
 }
 
+void ShowThreadController::scrollToItem() {
+	QRegExp goToPost("#t([0-9]+)");
+	if(goToPost.indexIn(m_Url, 0) != -1) {
+		int lookIdx = goToPost.cap(1).toInt();
+
+		int gotoItem = 0;
+		for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
+			if(lookIdx == m_Datas->at(i)->getIndex()) {
+				gotoItem = i;
+				break;
+			}
+		}
+
+		m_ListView->scrollToItem(QVariantList() << 0 << gotoItem);
+
+	} else {
+		QRegExp goToEnd("#bas");
+		if(goToEnd.indexIn(m_Url, 0) != -1) {
+			m_ListView->scrollToPosition(bb::cascades::ScrollPosition::End);
+		}
+	}
+
+
+}
 
 
 // -----------------------------------------------------------------------------------------------------

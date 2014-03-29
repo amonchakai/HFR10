@@ -186,6 +186,7 @@ class PostDetailItem : public QObject {
 	Q_PROPERTY( QString avatar		READ getAvatar      WRITE setAvatar		NOTIFY avatarChanged)
 	Q_PROPERTY( QString timestamp	READ getTimestamp	WRITE setTimestamp	NOTIFY timestampChanged)
 	Q_PROPERTY( QString post		READ getPost		WRITE setPost		NOTIFY postChanged)
+	Q_PROPERTY( int		index		READ getIndex		WRITE setIndex		NOTIFY indexChanged)
 
 	// ----------------------------------------------------------------------------------------------
 
@@ -194,6 +195,7 @@ private:
 	QString m_Avatar;
 	QString m_Timestamp;
 	QString m_Post;
+	int		m_Index;
 
 
 public:
@@ -214,6 +216,9 @@ public:
 	inline       QString &getPost()						{ return m_Post; }
 	inline void			  setPost(const QString &s)		{ m_Post = s; }
 
+	inline int			  getIndex() const				{ return m_Index; }
+	inline void			  setIndex(int i)				{ m_Index = i; }
+
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
@@ -221,6 +226,7 @@ public:
 		void avatarChanged();
 		void timestampChanged();
 		void postChanged();
+		void indexChanged();
 
 };
 

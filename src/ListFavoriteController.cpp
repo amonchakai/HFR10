@@ -190,7 +190,6 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 	lastReadAndPage.setMinimal(true);
 
 	if(lastReadAndPage.indexIn(threadListing, 0) != -1) {
-		qDebug() << lastReadAndPage.cap(2) << lastReadAndPage.cap(1);
 		QString s = lastReadAndPage.cap(1); s.replace(andAmp, "&");
 		item->setUrlLastPage(s);
 

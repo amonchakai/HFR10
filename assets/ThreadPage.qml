@@ -162,8 +162,7 @@ Page {
             }
         }
         
-    ]
-        
+    ]    
     
     onUrlPageChanged: {
         showThreadController.setListView(threadView);

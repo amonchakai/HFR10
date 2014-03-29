@@ -12,6 +12,7 @@ Container {
         		+ "</style>" 
         		+ "</head><body>" + ListItemData.post + "</body></html>"
         settings.textAutosizingEnabled: false
+
     }
     
     
