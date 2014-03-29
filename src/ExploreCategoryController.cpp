@@ -20,13 +20,11 @@
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
-
+#include  "DataObjects.h"
 
 
 ExploreCategoryController::ExploreCategoryController(QObject *parent)
-	: QObject(parent), m_ListView(NULL) {
-
-	qDebug() << "created!";
+	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()) {
 
 }
 
@@ -34,9 +32,6 @@ ExploreCategoryController::ExploreCategoryController(QObject *parent)
 
 void ExploreCategoryController::listTopics(const QString &url_string) {
 
-	qDebug() << "list called: " << url_string;
-
-	/*
 	// list green + yellow flags
 	const QUrl url(url_string);
 
@@ -47,7 +42,7 @@ void ExploreCategoryController::listTopics(const QString &url_string) {
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
 	Q_ASSERT(ok);
-	Q_UNUSED(ok);*/
+	Q_UNUSED(ok);
 
 }
 
@@ -77,7 +72,130 @@ void ExploreCategoryController::checkReply() {
 
 
 void ExploreCategoryController::parse(const QString &page) {
+	qDebug() << "start parsing";
 
+	m_Datas->clear();
+
+	QRegExp andAmp("&amp;");
+	QRegExp quote("&#034;");
+	QRegExp euro("&euro;");
+	QRegExp inf("&lt;");
+	QRegExp sup("&gt;");
+
+
+	// ----------------------------------------------------------------------------------------------
+	// Parse categories using regexp
+
+	// Get favorite topics
+	QRegExp regexp(QString("<a href=\".*\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
+
+
+	regexp.setCaseSensitivity(Qt::CaseSensitive);
+	regexp.setMinimal(true);
+
+
+	QString today = QDateTime::currentDateTime().toString("dd-MM-yyyy");
+
+	int pos = 0;
+	int lastPos = regexp.indexIn(page, pos);
+	QString caption;
+
+	if(lastPos != -1) {
+		caption = regexp.cap(1);
+		caption.replace(andAmp,"&");
+		caption.replace(quote,"\"");
+		caption.replace(euro, "e");
+		caption.replace(inf, "<");
+		caption.replace(sup, ">");
+	}
+
+	while((pos = regexp.indexIn(page, lastPos)) != -1) {
+		pos += regexp.matchedLength();
+
+		// parse each post individually
+		parseThreadListing(caption, page.mid(lastPos, pos-lastPos));
+
+
+		lastPos = pos;
+		caption = regexp.cap(1);
+		caption.replace(andAmp,"&");
+		caption.replace(quote,"\"");
+		caption.replace(euro, "e");
+		caption.replace(inf, "<");
+		caption.replace(sup, ">");
+	}
+	parseThreadListing(caption, page.mid(lastPos, pos-lastPos));
+
+
+	qDebug() << "end parsing";
+
+	updateView();
+	emit complete();
+
+}
+
+
+void ExploreCategoryController::parseThreadListing(const QString &caption, const QString &threadListing) {
+	ThreadListItem *item = new ThreadListItem();
+	QRegExp andAmp("&amp;");
+	QRegExp nbsp("&nbsp;");
+
+	item->setTitle(caption);
+
+	QRegExp firstPostUrlRegexp("<td class=\"sujetCase4\">.*<a href=\"(.+)\" class=\"cCatTopic\">([0-9]+)</a></td>");
+	firstPostUrlRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	firstPostUrlRegexp.setMinimal(true);
+
+	if(firstPostUrlRegexp.indexIn(threadListing, 0) != -1) {
+		QString s = firstPostUrlRegexp.cap(1);
+		s.replace(andAmp, "&");
+		item->setUrlFirstPage(s);
+
+		item->setPages(firstPostUrlRegexp.cap(2));
+	} else {
+		item->setPages("1");
+	}
+
+	QRegExp lastReadPost("<td class=\"sujetCase9 cBackCouleurTab[0-9] \"><a href=\"(.*)\" class=\"Tableau\">(.*)<br /><b>(.*)</b>");
+	lastReadPost.setCaseSensitivity(Qt::CaseSensitive);
+	lastReadPost.setMinimal(true);
+
+	if(lastReadPost.indexIn(threadListing, 0) != -1) {
+		QString s = lastReadPost.cap(2);
+		s.replace(nbsp, " ");
+		item->setTimestamp(s);
+
+		s = lastReadPost.cap(1);
+		s.replace(andAmp, "&");
+		item->setUrlFirstPage(s);
+
+		item->setLastAuthor(lastReadPost.cap(3));
+	}
+
+	QRegExp flagTypeRegexp("<img src=\"http://forum-images.hardware.fr/themes_static/images_forum/1/favoris.gif\"");
+	if(flagTypeRegexp.indexIn(threadListing, 0) != -1)
+		item->setFlagType(Flag::FAVORITE);
+
+	flagTypeRegexp = QRegExp("<img src=\"http://forum-images.hardware.fr/themes_static/images_forum/1/flag([0-1]).gif\"");
+	if(flagTypeRegexp.indexIn(threadListing, 0) != -1) {
+		switch(flagTypeRegexp.cap(1).toInt()) {
+			case 0:
+				item->setFlagType(Flag::READ);
+				break;
+
+			case 1:
+				item->setFlagType(Flag::PARTICIPATE);
+				break;
+		}
+	}
+
+
+	if(!item->getLastAuthor().isEmpty())
+		m_Datas->append(item);
+}
+
+
+void ExploreCategoryController::updateView() {
 
 	// ----------------------------------------------------------------------------------------------
 	// get the dataModel of the listview if not already available
@@ -94,97 +212,30 @@ void ExploreCategoryController::parse(const QString &page) {
 		dataModel->clear();
 	} else {
 		dataModel = new GroupDataModel(
-						QStringList() << "category"
-									  << "caption"
+						QStringList() << "title"
 									  << "timestamp"
 									  << "lastAuthor"
-									  << "urlFirstPost"
-									  << "indexLastPost"
+									  << "urlFirstPage"
+									  << "urlLastPage"
 									  << "pages"
+									  << "flagType"
 					);
 		m_ListView->setDataModel(dataModel);
 	}
 	dataModel->setGrouping(ItemGrouping::ByFullValue);
 
-
 	// ----------------------------------------------------------------------------------------------
-	// Parse categories using regexp
+	// push data to the view
 
-	// get categories name & position into the stream
-	QRegExp regexp("<th class=\"padding\".*class=\"cHeader\"?>(.+)</a></th>"); // match categories' name
-	regexp.setCaseSensitivity(Qt::CaseSensitive);
-	regexp.setMinimal(true);
-
-	QRegExp andAmp("&amp;");
-
-	QList<int> indexCategories;
-	QList<QString> categoriesLabels;
-
-	int pos = 0;
-	while((pos = regexp.indexIn(page, pos)) != -1) {
-		pos += regexp.matchedLength();
-		indexCategories.push_back(pos);					// Store position of each category into the stream
-
-		QString s(regexp.cap(1)); s.replace(andAmp, "&");
-		categoriesLabels.push_back(s);		// Store the matching label
+	QList<QObject*> datas;
+	for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
+		datas.push_back(m_Datas->at(i));
 	}
 
-
-	// Get favorite topics
-	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>")  	// topics' name
-						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
-						   + "([0-9]+)</a></td>"													// overall number of pages
-						   + ".*<td class=\"sujetCase5\"><a href=\"(.+)\"><img src"					// index to last read post
-						   + ".*p.([0-9]+)"										// last page read number
-						   + ".*<td class=\"sujetCase9.*class=\"Tableau\">(.+)" 					// time stamp
-						   + "<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type");	// last contributor
-
-	regexp.setCaseSensitivity(Qt::CaseSensitive);
-	regexp.setMinimal(true);
-
-
-	QString today = QDateTime::currentDateTime().toString("dd-MM-yyyy");
-	pos = 0;
-	while((pos = regexp.indexIn(page, pos)) != -1) {
-		pos += regexp.matchedLength();
-		int catIndex = 0;
-		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}	// use the position of the category into the stream to find the category's index
-
-		//qDebug() << regexp.cap(1) << " Cat Index: " << catIndex << " last post idx " << regexp.cap(3) << " time: " << regexp.cap(4) << " author: " << regexp.cap(5);
-
-		QString s = regexp.cap(1);
-		s.replace(andAmp, "&");			// replace "&amp;"  by  "&"
-
-		QVariantMap topic;
-		topic["category"] = categoriesLabels[catIndex-1];
-		topic["caption"] = s;
-
-		s = regexp.cap(2); s.replace(andAmp, "&");  				// replace "&amp;"  by  "&"
-		topic["urlFirstPost"]  = s;
-		topic["pages"] = regexp.cap(5) + " / " + regexp.cap(3);
-
-		s = regexp.cap(4);
-		s.replace(andAmp, "&");
-		topic["indexLastPost"] = s;
-
-
-
-		s = regexp.cap(6);
-		if(s.mid(0,10).compare(today) == 0)
-			topic["timestamp"] = s.mid(23,5);
-		else
-			topic["timestamp"] = s.mid(0,10);
-
-
-		topic["lastAuthor"] = regexp.cap(7);
-
-
-		dataModel->insert(topic);
-
-	}
-
-	emit complete();
+	dataModel->clear();
+	dataModel->insertList(datas);
 
 }
+
 
 

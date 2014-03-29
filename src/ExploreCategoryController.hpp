@@ -13,6 +13,7 @@
 #include <bb/cascades/ListView>
 #include <QString>
 
+class ThreadListItem;
 
 class ExploreCategoryController : public QObject {
 	Q_OBJECT;
@@ -20,6 +21,7 @@ class ExploreCategoryController : public QObject {
 	private:
 
 		bb::cascades::ListView   *m_ListView;
+		QList<ThreadListItem*>   *m_Datas;
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -48,6 +50,8 @@ class ExploreCategoryController : public QObject {
 	private:
 
 		void parse(const QString &page);
+		void parseThreadListing(const QString &caption, const QString &threadListing);
+		void updateView();
 
 };
 

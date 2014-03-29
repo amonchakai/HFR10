@@ -12,7 +12,7 @@ NavigationPane {
                 id: activityIndicator
                 horizontalAlignment: HorizontalAlignment.Center
                 verticalAlignment: VerticalAlignment.Center
-                preferredHeight: 200
+                preferredHeight: 60
             }
 	        
 	        ListView {
