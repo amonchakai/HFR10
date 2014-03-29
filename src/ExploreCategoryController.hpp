@@ -43,6 +43,9 @@ class ExploreCategoryController : public QObject {
 		void filterByFlag			(int flag);
 		void refresh				();
 
+		void firstPage();
+		void nextPage();
+		void prevPage();
 
 
 	// ----------------------------------------------------------------------------------------------

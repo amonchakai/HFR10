@@ -10,6 +10,24 @@
     </message>
 </context>
 <context>
+    <name>ExploreCategory</name>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="232"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="240"/>
+        <source>Prev page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="248"/>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ExploreCategoryController</name>
     <message>
         <location filename="../src/ExploreCategoryController.cpp" line="72"/>

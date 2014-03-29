@@ -300,8 +300,45 @@ void ExploreCategoryController::filterByFlag(int flag) {
 
 
 	}
+}
 
 
+void ExploreCategoryController::firstPage() {
+	QRegExp locatePage("page=([0-9]+)");
+	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	if(pos != -1) {
+		int length = pos+locatePage.matchedLength();
+
+		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=1" + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+
+		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+
+	}
+}
+
+
+void ExploreCategoryController::nextPage() {
+	QRegExp locatePage("page=([0-9]+)");
+	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	if(pos != -1) {
+		int length = pos+locatePage.matchedLength();
+
+		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(locatePage.cap(1).toInt()+1) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+
+		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+	}
+}
+
+void ExploreCategoryController::prevPage() {
+	QRegExp locatePage("page=([0-9]+)");
+	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	if(pos != -1) {
+		int length = pos+locatePage.matchedLength();
+
+		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(std::max(locatePage.cap(1).toInt()-1,1)) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+
+		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+	}
 }
 
 

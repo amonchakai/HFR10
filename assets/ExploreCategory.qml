@@ -17,22 +17,22 @@ Page {
         options: [
             Option {
 //                text: qsTr("All") + Retranslate.onLanguageChanged
-                imageSource: "asset:///images/icon_global.gif"
+                imageSource: "asset:///images/icon_global2.png"
                 value: ("all")
             },
             Option {
                 //                text: qsTr("Star") + Retranslate.onLanguageChanged
-                imageSource: "asset:///images/icon_favori.gif"
+                imageSource: "asset:///images/icon_favorite.png"
                 value: ("favorites")
             },
             Option {
 //                text: qsTr("Cyan") + Retranslate.onLanguageChanged
-                imageSource: "asset:///images/icon_drap_participe.gif"
+                imageSource: "asset:///images/icon_drap_participe.png"
                 value: ("participate")
             },
             Option {
  //               text: qsTr("Red") + Retranslate.onLanguageChanged
-                imageSource: "asset:///images/icon_drap_lecture.gif"
+                imageSource: "asset:///images/icon_drap_lecture.png"
                 value: ("read")
             }
         ]
@@ -226,6 +226,33 @@ Page {
             source: "ThreadPage.qml"
         }
     ] 
+    
+    actions: [
+        ActionItem {
+            title: qsTr("First page")
+            imageSource: "asset:///images/icon_prev_all.png"
+            onTriggered: {
+                exploreCategoryController.firstPage();
+                activityIndicator.start();
+            }
+        },
+        ActionItem {
+            title: qsTr("Prev page")
+            imageSource: "asset:///images/icon_prev.png"
+            onTriggered: {
+                exploreCategoryController.prevPage();
+                activityIndicator.start();
+            }
+        },
+        ActionItem {
+            title: qsTr("Next page")
+            imageSource: "asset:///images/icon_next.png"
+            onTriggered: {
+                exploreCategoryController.nextPage();
+                activityIndicator.start();
+            }
+        }
+    ]
     
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);
