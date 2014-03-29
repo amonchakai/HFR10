@@ -5,13 +5,6 @@ NavigationPane {
 	Page {
 	    Container {
             
-            ActivityIndicator {
-                id: activityIndicator
-                horizontalAlignment: HorizontalAlignment.Center
-                verticalAlignment: VerticalAlignment.Center
-                preferredHeight: 200
-            }
-            
 	        ListView {
 	            
 	            dataModel: XmlDataModel{

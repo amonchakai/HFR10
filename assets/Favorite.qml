@@ -67,7 +67,7 @@ NavigationPane {
 	                        }
 	                        verticalAlignment: VerticalAlignment.Top
 	                        Label {
-	                            text: ListItemData.caption
+	                            text: ListItemData.title
 	                        }
 	                        
 	                        Container {
@@ -105,8 +105,8 @@ NavigationPane {
 	                var page = threadPage.createObject();
 	                
 	                // Set the url of the page to load and thread caption. 
-                    page.urlPage = chosenItem.indexLastPost
-	                page.caption   = chosenItem.caption
+                    page.urlPage = chosenItem.urlLastPage
+	                page.caption   = chosenItem.title
 	                	                
 	                nav.push(page);
 	            }

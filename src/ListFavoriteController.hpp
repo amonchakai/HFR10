@@ -12,6 +12,7 @@
 #include <QtCore/QObject>
 #include <bb/cascades/ListView>
 
+class ThreadListItem;
 
 class ListFavoriteController : public QObject {
 	Q_OBJECT;
@@ -19,6 +20,7 @@ class ListFavoriteController : public QObject {
 	private:
 
 		bb::cascades::ListView   *m_ListView;
+		QList<ThreadListItem*>   *m_Datas;
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -47,6 +49,8 @@ class ListFavoriteController : public QObject {
 	private:
 
 		void parse(const QString &page);
+		void parseThreadListing(const QString &category, const QString &caption, const QString &threadListing, const QString &today);
+		void updateView();
 
 };
 

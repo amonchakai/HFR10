@@ -1,5 +1,5 @@
 1
-102
+103
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -99,6 +99,7 @@ model/listCategories.xml
 model/sample-category-list.xml
 model/sample-topic-list.xml
 PostRenderer.qml
+PrivateMessage.qml
 RefreshHeader.qml
 Settings.qml
 ThreadPage.qml

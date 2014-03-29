@@ -75,6 +75,14 @@
     </message>
 </context>
 <context>
+    <name>PrivateMessageController</name>
+    <message>
+        <location filename="../src/PrivateMessageController.cpp" line="59"/>
+        <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RefreshHeader</name>
     <message>
         <location filename="../assets/RefreshHeader.qml" line="28"/>
@@ -176,22 +184,27 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="25"/>
+        <location filename="../assets/main.qml" line="27"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="40"/>
+        <location filename="../assets/main.qml" line="43"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="55"/>
+        <location filename="../assets/main.qml" line="57"/>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="70"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="72"/>
+        <location filename="../assets/main.qml" line="86"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>

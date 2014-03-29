@@ -103,6 +103,94 @@ public:
 
 
 
+class PrivateMessageListItem : public QObject {
+	Q_OBJECT
+
+	Q_PROPERTY( QString title 		READ getTitle      	WRITE setTitle        NOTIFY titleChanged)
+	Q_PROPERTY( QString addressee 	READ getAddressee   WRITE setAddressee    NOTIFY addresseeChanged)
+	Q_PROPERTY( QString timestamp 	READ getTimestamp 	WRITE setTimestamp    NOTIFY timestampChanged)
+	Q_PROPERTY( QString lastAuthor  READ getLastAuthor  WRITE setLastAuthor   NOTIFY lastAuthorChanged)
+	Q_PROPERTY( QString pages		READ getPages       WRITE setPages   	  NOTIFY pagesChanged)
+	Q_PROPERTY( QString urlFirstPage READ getUrlFirstPage   WRITE setUrlFirstPage   NOTIFY urlFirstPageChanged)
+	Q_PROPERTY( QString urlLastPage  READ getUrlLastPage    WRITE setUrlLastPage    NOTIFY urlLastPageChanged)
+	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
+	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
+	Q_PROPERTY( bool 	addresseeRead	    READ isAddresseeRead		    WRITE setAddresseeRead	     NOTIFY addresseeReadChanged)
+
+	// ----------------------------------------------------------------------------------------------
+
+
+private:
+	QString m_Title;
+	QString m_Addressee;
+	QString m_Timestamp;
+	QString m_LastAuthor;
+	QString m_Pages;
+	QString m_UrlFirstPage;
+	QString m_UrlLastPost;
+	int 	m_FlagType;
+	bool 	m_Read;
+	bool	m_AddresseeRead;
+
+
+
+
+
+	// ----------------------------------------------------------------------------------------------
+
+public:
+	PrivateMessageListItem(QObject *parent = 0) : QObject(parent), m_FlagType(0), m_Read(false), m_AddresseeRead(false) {}
+	virtual ~PrivateMessageListItem() {}
+
+
+
+	inline const QString &getTitle() const					{ return m_Title; }
+	inline void			  setTitle(const QString &s)		{ m_Title = s; }
+
+	inline const QString &getAddressee() const				{ return m_Addressee; }
+	inline void			  setAddressee(const QString &c)	{ m_Addressee = c; }
+
+
+	inline const QString &getTimestamp() const				{ return m_Timestamp; }
+	inline void			  setTimestamp(const QString &c)	{ m_Timestamp = c; }
+
+	inline const QString &getLastAuthor() const				{ return m_LastAuthor; }
+	inline void			  setLastAuthor(const QString &c)	{ m_LastAuthor = c; }
+
+	inline const QString &getPages() const					{ return m_Pages; }
+	inline void			  setPages(const QString &c)		{ m_Pages = c; }
+
+	inline const QString &getUrlFirstPage() const			{ return m_UrlFirstPage; }
+	inline void			  setUrlFirstPage(const QString &c)	{ m_UrlFirstPage = c; }
+
+	inline const QString &getUrlLastPage() const			{ return m_UrlLastPost; }
+	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPost = c; }
+
+	inline int 			  getFlagType() const				{ return m_FlagType; }
+	inline void			  setFlagType(int f)				{ m_FlagType = f; }
+
+	inline bool 		  isRead() const					{ return m_Read; }
+	inline void 		  setRead(bool r)					{ m_Read = r; }
+
+	inline bool 		  isAddresseeRead() const			{ return m_AddresseeRead; }
+	inline void 		  setAddresseeRead(bool r)			{ m_AddresseeRead = r; }
+
+	// ----------------------------------------------------------------------------------------------
+	Q_SIGNALS:
+		void titleChanged();
+		void addresseeChanged();
+		void timestampChanged();
+		void lastAuthorChanged();
+		void pagesChanged();
+		void urlFirstPageChanged();
+		void urlLastPageChanged();
+		void flagTypeChanged();
+		void readChanged();
+		void addresseeReadChanged();
+
+};
+
+
 class PostDetailItem : public QObject {
 	Q_OBJECT;
 

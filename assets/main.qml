@@ -19,10 +19,13 @@ import bb.cascades 1.2
 TabbedPane {
     id: mainTab
     showTabsOnActionBar: true
+    activeTab: tabHome
 
     Tab { //First tab
         // Localized text with the dynamic translation and locale updates support
+        id: tabHome
         title: qsTr("Home") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_home.png"
 
         delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
@@ -38,6 +41,7 @@ TabbedPane {
     
     Tab { //Favorite tab
         title: qsTr("Favorite") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_favorites.png"
 
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
@@ -49,10 +53,22 @@ TabbedPane {
     } //End of favorite tab
     
     
+    Tab { //Setting tab
+        title: qsTr("Message") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.OnBar
+        imageSource: "asset:///images/icon_mp.png"
+        delegateActivationPolicy: TabDelegateActivationPolicy.Default
+        
+        delegate: Delegate {
+            source: "PrivateMessage.qml"
+        }
+    
+    } //End of Setting tab
     
     
     Tab { //Browse tab
         title: qsTr("Browse") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_browse.png"
         
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
@@ -66,11 +82,9 @@ TabbedPane {
     } //End of browse tab
     
     
-    
-    
     Tab { //Setting tab
         title: qsTr("Settings") + Retranslate.onLocaleOrLanguageChanged
-        
+        ActionBar.placement: ActionBarPlacement.InOverflow
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
         
         delegate: Delegate {
