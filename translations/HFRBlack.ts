@@ -75,6 +75,14 @@
     </message>
 </context>
 <context>
+    <name>PrivateMessage</name>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="74"/>
+        <source>[Not Read] </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PrivateMessageController</name>
     <message>
         <location filename="../src/PrivateMessageController.cpp" line="59"/>

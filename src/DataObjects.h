@@ -110,10 +110,8 @@ class PrivateMessageListItem : public QObject {
 	Q_PROPERTY( QString addressee 	READ getAddressee   WRITE setAddressee    NOTIFY addresseeChanged)
 	Q_PROPERTY( QString timestamp 	READ getTimestamp 	WRITE setTimestamp    NOTIFY timestampChanged)
 	Q_PROPERTY( QString lastAuthor  READ getLastAuthor  WRITE setLastAuthor   NOTIFY lastAuthorChanged)
-	Q_PROPERTY( QString pages		READ getPages       WRITE setPages   	  NOTIFY pagesChanged)
 	Q_PROPERTY( QString urlFirstPage READ getUrlFirstPage   WRITE setUrlFirstPage   NOTIFY urlFirstPageChanged)
 	Q_PROPERTY( QString urlLastPage  READ getUrlLastPage    WRITE setUrlLastPage    NOTIFY urlLastPageChanged)
-	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
 	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
 	Q_PROPERTY( bool 	addresseeRead	    READ isAddresseeRead		    WRITE setAddresseeRead	     NOTIFY addresseeReadChanged)
 
@@ -125,10 +123,8 @@ private:
 	QString m_Addressee;
 	QString m_Timestamp;
 	QString m_LastAuthor;
-	QString m_Pages;
 	QString m_UrlFirstPage;
 	QString m_UrlLastPost;
-	int 	m_FlagType;
 	bool 	m_Read;
 	bool	m_AddresseeRead;
 
@@ -139,7 +135,7 @@ private:
 	// ----------------------------------------------------------------------------------------------
 
 public:
-	PrivateMessageListItem(QObject *parent = 0) : QObject(parent), m_FlagType(0), m_Read(false), m_AddresseeRead(false) {}
+	PrivateMessageListItem(QObject *parent = 0) : QObject(parent), m_Read(false), m_AddresseeRead(false) {}
 	virtual ~PrivateMessageListItem() {}
 
 
@@ -157,17 +153,11 @@ public:
 	inline const QString &getLastAuthor() const				{ return m_LastAuthor; }
 	inline void			  setLastAuthor(const QString &c)	{ m_LastAuthor = c; }
 
-	inline const QString &getPages() const					{ return m_Pages; }
-	inline void			  setPages(const QString &c)		{ m_Pages = c; }
-
 	inline const QString &getUrlFirstPage() const			{ return m_UrlFirstPage; }
 	inline void			  setUrlFirstPage(const QString &c)	{ m_UrlFirstPage = c; }
 
 	inline const QString &getUrlLastPage() const			{ return m_UrlLastPost; }
 	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPost = c; }
-
-	inline int 			  getFlagType() const				{ return m_FlagType; }
-	inline void			  setFlagType(int f)				{ m_FlagType = f; }
 
 	inline bool 		  isRead() const					{ return m_Read; }
 	inline void 		  setRead(bool r)					{ m_Read = r; }
@@ -181,10 +171,8 @@ public:
 		void addresseeChanged();
 		void timestampChanged();
 		void lastAuthorChanged();
-		void pagesChanged();
 		void urlFirstPageChanged();
 		void urlLastPageChanged();
-		void flagTypeChanged();
 		void readChanged();
 		void addresseeReadChanged();
 
