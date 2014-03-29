@@ -1,5 +1,5 @@
 1
-94
+95
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -13,6 +13,7 @@ images/icon_drap_participe.gif
 images/icon_favori.gif
 images/icon_favorites.png
 images/icon_forum.png
+images/icon_global.gif
 images/icon_home.png
 images/icon_mp.png
 images/icon_next.png

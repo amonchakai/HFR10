@@ -31,6 +31,7 @@ class ThreadListItem : public QObject {
 	Q_PROPERTY( QString urlFirstPage READ getUrlFirstPage   WRITE setUrlFirstPage   NOTIFY urlFirstPageChanged)
 	Q_PROPERTY( QString urlLastPage  READ getUrlLastPage    WRITE setUrlLastPage    NOTIFY urlLastPageChanged)
 	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
+	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
 
 	// ----------------------------------------------------------------------------------------------
 
@@ -44,6 +45,7 @@ private:
 	QString m_UrlFirstPage;
 	QString m_UrlLastPost;
 	int 	m_FlagType;
+	bool 	m_Read;
 
 
 
@@ -52,7 +54,7 @@ private:
 	// ----------------------------------------------------------------------------------------------
 
 public:
-	ThreadListItem(QObject *parent = 0) : QObject(parent), m_FlagType(0) {}
+	ThreadListItem(QObject *parent = 0) : QObject(parent), m_FlagType(0), m_Read(false) {}
 	virtual ~ThreadListItem() {}
 
 
@@ -82,6 +84,9 @@ public:
 	inline int 			  getFlagType() const				{ return m_FlagType; }
 	inline void			  setFlagType(int f)				{ m_FlagType = f; }
 
+	inline bool 		  isRead() const					{ return m_Read; }
+	inline void 		  setRead(bool r)					{ m_Read = r; }
+
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
 		void titleChanged();
@@ -92,6 +97,7 @@ public:
 		void urlFirstPageChanged();
 		void urlLastPageChanged();
 		void flagTypeChanged();
+		void readChanged();
 
 };
 

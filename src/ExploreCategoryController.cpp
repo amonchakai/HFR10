@@ -29,11 +29,16 @@ ExploreCategoryController::ExploreCategoryController(QObject *parent)
 }
 
 
-
 void ExploreCategoryController::listTopics(const QString &url_string) {
+	m_Url = url_string;
+	showTopicList(url_string);
+}
+
+void ExploreCategoryController::showTopicList(const QString &url_string) {
 
 	// list green + yellow flags
 	const QUrl url(url_string);
+	m_LastLoadedUrl = url_string;
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -46,6 +51,9 @@ void ExploreCategoryController::listTopics(const QString &url_string) {
 
 }
 
+void ExploreCategoryController::refresh() {
+	showTopicList(m_LastLoadedUrl);
+}
 
 
 void ExploreCategoryController::checkReply() {
@@ -72,7 +80,6 @@ void ExploreCategoryController::checkReply() {
 
 
 void ExploreCategoryController::parse(const QString &page) {
-	qDebug() << "start parsing";
 
 	m_Datas->clear();
 
@@ -84,10 +91,40 @@ void ExploreCategoryController::parse(const QString &page) {
 
 
 	// ----------------------------------------------------------------------------------------------
+	// drap filter
+
+	// The URL for filtering topic by flags is highly similar:
+	// "/forum1.php?config=hfr.inc&cat=25&page=1&subcat=0&sondage=0&owntopic=1&trash=0&trash_post=0&moderation=0&new=0&nojs=0&subcatgroup=0" Blue
+	// "/forum1.php?config=hfr.inc&cat=25&page=1&subcat=0&sondage=0&owntopic=2&trash=0&trash_post=0&moderation=0&new=0&nojs=0&subcatgroup=0" Red
+	// "/forum1.php?config=hfr.inc&cat=25&page=1&subcat=0&sondage=0&owntopic=3&trash=0&trash_post=0&moderation=0&new=0&nojs=0&subcatgroup=0" Star
+
+	// Just "owntopic" changes...
+	// => retrieve one URL (using either blue or red flag), then we will be able to tune the URL depending on our needs.
+
+	QRegExp filterDrapRegexp("<a accesskey=\"b\" href=\"(.+)\" class=\"onglet\" id=\"onglet3\"");
+	filterDrapRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	filterDrapRegexp.setMinimal(true);
+
+	if(filterDrapRegexp.indexIn(page, 0) != -1) {		// can we catch the URL from blue flag
+		m_GeneralUrl = filterDrapRegexp.cap(1);
+		m_GeneralUrl.replace(andAmp, "&");
+	} else {											// if not, it means we were on the blue flag, then red one must be available.
+
+		filterDrapRegexp = QRegExp("<a accesskey=\"r\" href=\"(.+)\" class=\"onglet\" id=\"onglet4\"");
+		filterDrapRegexp.setCaseSensitivity(Qt::CaseSensitive);
+		filterDrapRegexp.setMinimal(true);
+
+		if(filterDrapRegexp.indexIn(page, 0) != -1) {
+			m_GeneralUrl = filterDrapRegexp.cap(1);
+			m_GeneralUrl.replace(andAmp, "&");
+		}
+	}
+
+	// ----------------------------------------------------------------------------------------------
 	// Parse categories using regexp
 
 	// Get favorite topics
-	QRegExp regexp(QString("<a href=\".*\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
+	QRegExp regexp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\".*\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
 
 
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -101,7 +138,7 @@ void ExploreCategoryController::parse(const QString &page) {
 	QString caption;
 
 	if(lastPos != -1) {
-		caption = regexp.cap(1);
+		caption = regexp.cap(2);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
@@ -113,21 +150,18 @@ void ExploreCategoryController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(caption, page.mid(lastPos, pos-lastPos));
-
+		parseThreadListing(caption, regexp.cap(1).compare("Off") == 0, page.mid(lastPos, pos-lastPos));
 
 		lastPos = pos;
-		caption = regexp.cap(1);
+		caption = regexp.cap(2);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
 	}
-	parseThreadListing(caption, page.mid(lastPos, pos-lastPos));
+	parseThreadListing(caption, regexp.cap(1).compare("Off") == 0, page.mid(lastPos, pos-lastPos));
 
-
-	qDebug() << "end parsing";
 
 	updateView();
 	emit complete();
@@ -135,12 +169,13 @@ void ExploreCategoryController::parse(const QString &page) {
 }
 
 
-void ExploreCategoryController::parseThreadListing(const QString &caption, const QString &threadListing) {
+void ExploreCategoryController::parseThreadListing(const QString &caption, bool read, const QString &threadListing) {
 	ThreadListItem *item = new ThreadListItem();
 	QRegExp andAmp("&amp;");
 	QRegExp nbsp("&nbsp;");
 
 	item->setTitle(caption);
+	item->setRead(read);
 
 	QRegExp firstPostUrlRegexp("<td class=\"sujetCase4\">.*<a href=\"(.+)\" class=\"cCatTopic\">([0-9]+)</a></td>");
 	firstPostUrlRegexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -167,7 +202,7 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 
 		s = lastReadPost.cap(1);
 		s.replace(andAmp, "&");
-		item->setUrlFirstPage(s);
+		item->setUrlLastPage(s);
 
 		item->setLastAuthor(lastReadPost.cap(3));
 	}
@@ -219,6 +254,7 @@ void ExploreCategoryController::updateView() {
 									  << "urlLastPage"
 									  << "pages"
 									  << "flagType"
+									  << "read"
 					);
 		m_ListView->setDataModel(dataModel);
 	}
@@ -237,5 +273,35 @@ void ExploreCategoryController::updateView() {
 
 }
 
+void ExploreCategoryController::filterByFlag(int flag) {
+	QRegExp locateFlagInURL("owntopic=([0-3])");
+
+	int pos = locateFlagInURL.indexIn(m_GeneralUrl, 0);
+	if(pos != -1) {
+		switch(flag) {
+			case Flag::NONE:
+				showTopicList(m_Url);
+				return;
+
+			case Flag::PARTICIPATE:
+				m_GeneralUrl[pos+9] = '1';
+				break;
+
+			case Flag::READ:
+				m_GeneralUrl[pos+9] = '2';
+				break;
+
+			case Flag::FAVORITE:
+				m_GeneralUrl[pos+9] = '3';
+				break;
+		}
+
+		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+
+
+	}
+
+
+}
 
 

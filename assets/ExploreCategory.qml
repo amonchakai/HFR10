@@ -5,7 +5,52 @@ Page {
     id: pageCat
     property string  urlPage
     property string  caption
-    
+    property int 	 flagType
+        
+    titleBar: TitleBar {
+        id: segmentedTitle
+        kind: TitleBarKind.Segmented
+        scrollBehavior: TitleBarScrollBehavior.Sticky
+        
+        // The segmented control decides which filter should be set on the
+        // dataModel used by the photo bucket list.
+        options: [
+            Option {
+//                text: qsTr("All") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_global.gif"
+                value: ("all")
+            },
+            Option {
+                //                text: qsTr("Star") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_favori.gif"
+                value: ("favorites")
+            },
+            Option {
+//                text: qsTr("Cyan") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_drap_participe.gif"
+                value: ("participate")
+            },
+            Option {
+ //               text: qsTr("Red") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_drap_lecture.gif"
+                value: ("read")
+            }
+        ]
+        
+        onSelectedValueChanged: {
+            if (selectedValue == "all")
+                flagType = 0;
+                
+            if(selectedValue == "participate")
+                flagType = 1;
+            	
+            if(selectedValue == "favorites")
+                flagType = 3;
+                
+            if(selectedValue == "read")
+                flagType = 2;
+        }
+    }
     
     Container {
         ActivityIndicator {
@@ -62,12 +107,21 @@ Page {
                     type: "item"
                     
                     Container {
+                        id: titleContainer
+                        function typeFromReadStatus(read) {
+                            if(read)
+                                return FontWeight.Bold;
+                            else 
+                                return FontWeight.Normal;
+                        }
+                        
                         layout: StackLayout {
                             orientation: LayoutOrientation.TopToBottom
                         }
                         verticalAlignment: VerticalAlignment.Top
                         Label {
                             text: ListItemData.title
+                            textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
                         }
                         
                         Container {
@@ -85,6 +139,10 @@ Page {
                             }
                             Container {
                                 id: pageNumContainter
+                                
+                                // ---------------------------------------------------------------
+                                // layout functions...
+                                
                                 function getFlag(flagCode) {
                                     switch(flagCode) {
                                         case 0:
@@ -101,7 +159,13 @@ Page {
                                             
                                     }
                                     return "";
+                                
                                 }
+                                
+                                
+                                // ---------------------------------------------------------------
+                                // list item itself...
+
                                 
                                 layout: StackLayout {
                                     orientation: LayoutOrientation.LeftToRight
@@ -124,12 +188,26 @@ Page {
                         }
                         Divider {}
                     }
+                    
                 }
             ]
             
+            onTriggered: {
+                var chosenItem = dataModel.data(indexPath);
+                
+                // Create the content page and push it on top to drill down to it.
+                var page = threadPage.createObject();
+                
+                // Set the url of the page to load and thread caption. 
+                page.urlPage = chosenItem.urlLastPage
+                page.caption   = chosenItem.title
+                
+                nav.push(page);
+            }
+            
             onRefreshTriggered: {
                 activityIndicator.start();
-                exploreCategoryController.listTopics(urlPage);
+                exploreCategoryController.refresh();
             }
         }
         
@@ -142,13 +220,21 @@ Page {
             onComplete: {
                 activityIndicator.stop()
             }
+        }, 
+        ComponentDefinition {
+            id: threadPage
+            source: "ThreadPage.qml"
         }
     ] 
-    
     
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);
         exploreCategoryController.listTopics(urlPage);
         activityIndicator.start();
+    }
+    
+    onFlagTypeChanged: {
+        activityIndicator.start();
+        exploreCategoryController.filterByFlag(flagType);
     }
 }

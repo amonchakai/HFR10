@@ -12,7 +12,7 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="64"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="72"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

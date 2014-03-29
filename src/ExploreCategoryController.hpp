@@ -23,6 +23,10 @@ class ExploreCategoryController : public QObject {
 		bb::cascades::ListView   *m_ListView;
 		QList<ThreadListItem*>   *m_Datas;
 
+		QString					  m_GeneralUrl;
+		QString					  m_Url;
+		QString					  m_LastLoadedUrl;
+
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -33,9 +37,11 @@ class ExploreCategoryController : public QObject {
 	// ----------------------------------------------------------------------------------------------
 
 	public Q_SLOTS:
-		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
-		void listTopics			   (const QString &url);
-		void checkReply();
+		inline void setListView	   	(QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
+		void listTopics			   	(const QString &url);
+		void checkReply				();
+		void filterByFlag			(int flag);
+		void refresh				();
 
 
 
@@ -49,8 +55,9 @@ class ExploreCategoryController : public QObject {
 	// ----------------------------------------------------------------------------------------------
 	private:
 
+		void showTopicList(const QString &url);
 		void parse(const QString &page);
-		void parseThreadListing(const QString &caption, const QString &threadListing);
+		void parseThreadListing(const QString &caption, bool read, const QString &threadListing);
 		void updateView();
 
 };
