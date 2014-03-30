@@ -62,10 +62,10 @@ NavigationPane {
 	                    Container {
 	                        id: titleContainer
 	                        function typeFromReadStatus(read) {
-	                            if(read)
-	                                return FontWeight.Bold;
-	                            else 
-	                                return FontWeight.Normal;
+	                            if(read) {
+	                                return FontWeight.Bold;}
+	                            else {
+	                                return FontWeight.Normal;}
 	                        }
 	                        function hasRead(read) {
 	                            if(read)

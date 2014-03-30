@@ -6,6 +6,7 @@ Page {
     id: pageThread
     property string  urlPage
     property string  caption
+    property bool 	 needUpdate
         
     Container {
         id: pageContainer
@@ -120,6 +121,11 @@ Page {
             onComplete: {
                 activityIndicator.stop();
             }
+        },
+        ComponentDefinition {
+            id: postPage
+            source: "PostMessage.qml"
+            
         }
     ]
     
@@ -128,6 +134,21 @@ Page {
             title: qsTr("Reply")
             imageSource: "asset:///images/icon_write.png"
             ActionBar.placement: ActionBarPlacement.OnBar
+            onTriggered: {
+                var page = postPage.createObject();
+                
+                page.hashCheck = showThreadController.hashCheck;
+                page.postID = showThreadController.postID;
+                page.page	= showThreadController.pages;
+                page.catID	= showThreadController.catID;
+                page.pseudo = showThreadController.pseudo;
+                page.threadTitle = showThreadController.title;
+                page.addSignature= showThreadController.sign;
+                                
+                nav.push(page);
+                
+                
+            }
         },
         ActionItem {
             title: qsTr("First page")
@@ -170,4 +191,12 @@ Page {
 
         activityIndicator.start();
     }
+    
+    onNeedUpdateChanged: {
+        if(needUpdate) {
+        	showThreadController.showThread(urlPage);
+        	activityIndicator.start();
+            needUpdate = false;
+        } 
+    } 
 }

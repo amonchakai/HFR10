@@ -17,6 +17,14 @@ struct PostDetailItem;
 class ShowThreadController : public QObject {
 	Q_OBJECT;
 
+	Q_PROPERTY( QString hashCheck 	READ getHashCheck   )
+	Q_PROPERTY( QString postID 		READ getPostID      )
+	Q_PROPERTY( QString catID  		READ getCatID   	)
+	Q_PROPERTY( QString pages 		READ getPage 		)
+	Q_PROPERTY( QString pseudo  	READ getPseudo		)
+	Q_PROPERTY( QString title  		READ getThreadTitle )
+	Q_PROPERTY( bool	sign		READ isAddSignature )
+
 	private:
 
 		bb::cascades::ListView 				*m_ListView;
@@ -28,6 +36,14 @@ class ShowThreadController : public QObject {
 		QString								 m_UrlFirstPage;
 		QString								 m_UrlLastPage;
 		QString								 m_Url;
+
+		QString								 m_PostID;
+		QString								 m_CatID;
+		QString								 m_Page;
+		QString								 m_Pseudo;
+		QString								 m_ThreadTitle;
+		QString								 m_HashCheck;
+		bool								 m_AddSignature;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -51,6 +67,14 @@ class ShowThreadController : public QObject {
 		void scrollToItem();
 
 
+		const QString &getHashCheck() 	const 	{ return m_HashCheck; }
+		const QString &getPostID() 		const 	{ return m_PostID; }
+		const QString &getCatID() 		const	{ return m_CatID; }
+		const QString &getPage() 		const	{ return m_Page; }
+		const QString &getPseudo() 		const	{ return m_Pseudo; }
+		const QString &getThreadTitle() const	{ return m_ThreadTitle; }
+		bool 		   isAddSignature()const	{ return m_AddSignature; }
+
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
@@ -63,6 +87,7 @@ class ShowThreadController : public QObject {
 
 		void parse(const QString &page);
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
+		void parseDataForReply(const QString &page);
 		void cleanupPost(QString &post);
 };
 

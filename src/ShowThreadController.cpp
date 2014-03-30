@@ -164,6 +164,8 @@ void ShowThreadController::parse(const QString &page) {
 
 	}
 	parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
+	parseDataForReply(page.mid(lastPos, pos-lastPos));
+
 
 	updateView();
 
@@ -231,11 +233,32 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 
 }
 
-void ShowThreadController::cleanupPost(QString &post) {
+void ShowThreadController::parseDataForReply(const QString &page) {
+	QRegExp postData(QString("<input type=\"hidden\" name=\"hash_check\" value=\"([0-9a-z]+)\" /><div class=\"s2Ext\" id=\"md_fast_search\">")
+						+ 	".*<input type=\"hidden\" name=\"post\" value=\"([0-9]+)\" />"
+						+ 	".*<input type=\"hidden\" name=\"cat\" value=\"([0-9a-z]+)\" />"
+						+	".*<input type=\"hidden\" name=\"page\" value=\"([0-9]+)\" />"
+						+ 	".*<input type=\"hidden\" name=\"pseudo\" value=\"(.+)\" />"
+						+	".*<input type=\"hidden\" name=\"sujet\" value=\"(.+)\" />"
+						+	".*<input type=\"hidden\" value=\"([0-1])\" name=\"signature\" />"
+			);
 
-//	post = "<p><strong>tototot</strong>fdhjfbsd</p>";
-//	return;
-//	post = post.mid(0,184);
+	postData.setCaseSensitivity(Qt::CaseSensitive);
+	postData.setMinimal(true);
+
+	if(postData.indexIn(page, 0) != -1) {
+		m_HashCheck = postData.cap(1);
+		m_PostID = postData.cap(2);
+		m_CatID = postData.cap(3);
+		m_Page = postData.cap(4);
+		m_Pseudo = postData.cap(5);
+		m_ThreadTitle = postData.cap(6);
+		m_AddSignature = postData.cap(7).length() >  0 && postData.cap(7).at(0) == '1';
+	}
+}
+
+
+void ShowThreadController::cleanupPost(QString &post) {
 
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "</p><div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\".+t([0-9]+)\" class=\"Topic\">")

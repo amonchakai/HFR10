@@ -82,7 +82,7 @@ void PrivateMessageController::parse(const QString &page) {
 	// ----------------------------------------------------------------------------------------------
 	// Parse unread MP using regexp
 
-	QRegExp regexp("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*"); // topic read?
+	QRegExp regexp("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>"); // topic read?
 
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
 	regexp.setMinimal(true);
@@ -93,7 +93,6 @@ void PrivateMessageController::parse(const QString &page) {
 
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
-
 		// parse each post individually
 		parseMessageListing(regexp.cap(1).compare("Off") != 0, page.mid(lastPos, pos-lastPos));
 
@@ -132,7 +131,6 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 	} else {
 		return;
 	}
-
 
 	QRegExp addresseeRead("<span class=\"red\" title");
 	addresseeRead.setCaseSensitivity(Qt::CaseSensitive);
@@ -181,7 +179,6 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 		item->setLastAuthor(lastPostInfo.cap(3));
 	}
-
 
 	m_Datas->append(item);
 
