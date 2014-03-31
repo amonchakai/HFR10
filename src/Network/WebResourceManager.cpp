@@ -63,7 +63,6 @@ void WebResourceManager::getImage(const QString& requestedURL) const {
 	if (imageFile.exists()) {
 		emit onImageReady(requestedURL, diskPath);
 	} else {
-
 		// check if the file is being downloaded, if so, skip it
 		m_EditQueue->lockForRead();
 		for(int i = 0 ; i < m_DownloadQueue->length() ; ++i)
@@ -107,9 +106,8 @@ void WebResourceManager::checkReply() {
 								+ QString::number(qHash(reply->url().path())) + ".JPG";
 
 				if (qImage.save(diskPath)) {
-						emit onImageReady(diskPath, reply->url().toString());
+						emit onImageReady(reply->url().toString(), diskPath);
 				}
-
 
 				// remove item from download queue
 				m_EditQueue->lockForWrite();

@@ -43,7 +43,7 @@ public slots:
      *
      * @param source in string with path to the source.
      */
-    void setSource(const QString source);
+    void setSource(const QString &source);
 
     /**
      * Getter for source
