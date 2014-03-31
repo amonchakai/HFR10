@@ -136,6 +136,7 @@ void ExploreCategoryController::parse(const QString &page) {
 	int pos = 0;
 	int lastPos = regexp.indexIn(page, pos);
 	QString caption;
+	bool read = regexp.cap(1).compare("On") == 0;
 
 	if(lastPos != -1) {
 		caption = regexp.cap(2);
@@ -150,7 +151,7 @@ void ExploreCategoryController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(caption, regexp.cap(1).compare("Off") == 0, page.mid(lastPos, pos-lastPos));
+		parseThreadListing(caption, read, page.mid(lastPos, pos-lastPos));
 
 		lastPos = pos;
 		caption = regexp.cap(2);
@@ -159,8 +160,11 @@ void ExploreCategoryController::parse(const QString &page) {
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
+
+		qDebug() << regexp.cap(1);
+		read = regexp.cap(1).compare("On") == 0;
 	}
-	parseThreadListing(caption, regexp.cap(1).compare("Off") == 0, page.mid(lastPos, pos-lastPos));
+	parseThreadListing(caption, read, page.mid(lastPos, pos-lastPos));
 
 
 	updateView();

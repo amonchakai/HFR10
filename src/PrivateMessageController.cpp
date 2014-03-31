@@ -90,17 +90,18 @@ void PrivateMessageController::parse(const QString &page) {
 
 	int pos = 0;
 	int lastPos = regexp.indexIn(page, pos);
+	bool read = regexp.cap(1).compare("On") == 0;
 
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
 		// parse each post individually
-		parseMessageListing(regexp.cap(1).compare("Off") != 0, page.mid(lastPos, pos-lastPos));
+		parseMessageListing(read, page.mid(lastPos, pos-lastPos));
 
 
-
+		read = regexp.cap(1).compare("On") == 0;
 		lastPos = pos;
 	}
-	parseMessageListing(regexp.cap(1).compare("On") == 0, page.mid(lastPos, pos-lastPos));
+	parseMessageListing(read, page.mid(lastPos, pos-lastPos));
 
 	qDebug() << "end parser";
 
