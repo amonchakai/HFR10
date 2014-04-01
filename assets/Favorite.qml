@@ -62,6 +62,8 @@ NavigationPane {
 	                    type: "item"
 	                    
 	                    Container {
+                            id: titleContainer
+                            
 	                        layout: StackLayout {
 	                            orientation: LayoutOrientation.TopToBottom
 	                        }
@@ -94,9 +96,48 @@ NavigationPane {
 	                            }
 	                        }
 	                        Divider {}
+	                        
+                            contextActions: [
+                                ActionSet {
+                                    title: qsTr("Navigation")
+                                    
+                                    ActionItem {
+                                        title: qsTr("First page")
+                                        imageSource: "asset:///images/icon_prev_all.png"
+                                        onTriggered: {
+                                            titleContainer.ListItem.view.gotoPage(ListItemData.urlFirstPage, ListItemData.title)
+                                        }
+                                    }
+                                    ActionItem {
+                                        title: qsTr("Last page")
+                                        imageSource: "asset:///images/icon_next_all.png"
+                                        onTriggered: {
+                                            titleContainer.ListItem.view.gotoPage(ListItemData.urlLastPage, ListItemData.title)
+                                        }
+                                    }
+                                    ActionItem {
+                                        title: qsTr("Last page read")
+                                        imageSource: "asset:///images/icon_next.png"
+                                        onTriggered: {
+                                            titleContainer.ListItem.view.gotoPage(ListItemData.urlLastPostRead, ListItemData.title)
+                                        }
+                                    }
+                                }
+                            ]
 	                    }
 	                }
 	            ]
+	            
+                function gotoPage(urlFirstPage, titleTopic) {
+                    console.log(urlFirstPage)
+                    var page = threadPage.createObject();
+                    
+                    // Set the url of the page to load and thread caption. 
+                    page.urlPage = urlFirstPage
+                    page.caption   = titleTopic
+                    
+                    nav.push(page);
+                }
 	            
 	            onTriggered: {
 	                var chosenItem = dataModel.data(indexPath);
@@ -105,7 +146,7 @@ NavigationPane {
 	                var page = threadPage.createObject();
 	                
 	                // Set the url of the page to load and thread caption. 
-                    page.urlPage = chosenItem.urlLastPage
+                    page.urlPage = chosenItem.urlLastPostRead
 	                page.caption   = chosenItem.title
 	                	                
 	                nav.push(page);

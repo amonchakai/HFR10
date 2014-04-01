@@ -60,7 +60,7 @@ class ExploreCategoryController : public QObject {
 
 		void showTopicList(const QString &url);
 		void parse(const QString &page);
-		void parseThreadListing(const QString &caption, bool read, const QString &threadListing);
+		void parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, const QString &threadListing);
 		void updateView();
 
 };

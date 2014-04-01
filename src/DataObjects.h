@@ -30,6 +30,7 @@ class ThreadListItem : public QObject {
 	Q_PROPERTY( QString pages		READ getPages       WRITE setPages   	  NOTIFY pagesChanged)
 	Q_PROPERTY( QString urlFirstPage READ getUrlFirstPage   WRITE setUrlFirstPage   NOTIFY urlFirstPageChanged)
 	Q_PROPERTY( QString urlLastPage  READ getUrlLastPage    WRITE setUrlLastPage    NOTIFY urlLastPageChanged)
+	Q_PROPERTY( QString urlLastPostRead  READ getUrlLastPostRead    WRITE setUrlLastPostRead    NOTIFY urlLastPostReadChanged)
 	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
 	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
 
@@ -43,7 +44,8 @@ private:
 	QString m_LastAuthor;
 	QString m_Pages;
 	QString m_UrlFirstPage;
-	QString m_UrlLastPost;
+	QString m_UrlLastPage;
+	QString m_UrlLastPostRead;
 	int 	m_FlagType;
 	bool 	m_Read;
 
@@ -78,8 +80,11 @@ public:
 	inline const QString &getUrlFirstPage() const			{ return m_UrlFirstPage; }
 	inline void			  setUrlFirstPage(const QString &c)	{ m_UrlFirstPage = c; }
 
-	inline const QString &getUrlLastPage() const			{ return m_UrlLastPost; }
-	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPost = c; }
+	inline const QString &getUrlLastPage() const			{ return m_UrlLastPage; }
+	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPage = c; }
+
+	inline const QString &getUrlLastPostRead() const			{ return m_UrlLastPostRead; }
+	inline void			  setUrlLastPostRead(const QString &c)	{ m_UrlLastPostRead = c; }
 
 	inline int 			  getFlagType() const				{ return m_FlagType; }
 	inline void			  setFlagType(int f)				{ m_FlagType = f; }
@@ -98,6 +103,7 @@ public:
 		void urlLastPageChanged();
 		void flagTypeChanged();
 		void readChanged();
+		void urlLastPostReadChanged();
 
 };
 

@@ -124,7 +124,7 @@ void ExploreCategoryController::parse(const QString &page) {
 	// Parse categories using regexp
 
 	// Get favorite topics
-	QRegExp regexp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\".*\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
+	QRegExp regexp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
 
 
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -136,35 +136,42 @@ void ExploreCategoryController::parse(const QString &page) {
 	int pos = 0;
 	int lastPos = regexp.indexIn(page, pos);
 	QString caption;
+	QString urlFirstPage;
 	bool read = regexp.cap(1).compare("On") == 0;
 
 	if(lastPos != -1) {
-		caption = regexp.cap(2);
+		caption = regexp.cap(3);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
+
+		urlFirstPage = regexp.cap(2);
+		urlFirstPage.replace(andAmp,"&");
+
 	}
 
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(caption, read, page.mid(lastPos, pos-lastPos));
+		parseThreadListing(caption, urlFirstPage, read, page.mid(lastPos, pos-lastPos));
 
 		lastPos = pos;
-		caption = regexp.cap(2);
+		caption = regexp.cap(3);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
 
-		qDebug() << regexp.cap(1);
+		urlFirstPage = regexp.cap(2);
+		urlFirstPage.replace(andAmp,"&");
+
 		read = regexp.cap(1).compare("On") == 0;
 	}
-	parseThreadListing(caption, read, page.mid(lastPos, pos-lastPos));
+	parseThreadListing(caption, urlFirstPage, read, page.mid(lastPos, pos-lastPos));
 
 
 	updateView();
@@ -173,13 +180,17 @@ void ExploreCategoryController::parse(const QString &page) {
 }
 
 
-void ExploreCategoryController::parseThreadListing(const QString &caption, bool read, const QString &threadListing) {
+void ExploreCategoryController::parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, const QString &threadListing) {
 	ThreadListItem *item = new ThreadListItem();
 	QRegExp andAmp("&amp;");
 	QRegExp nbsp("&nbsp;");
 
 	item->setTitle(caption);
 	item->setRead(read);
+	item->setUrlFirstPage(urlFirstPage);
+
+	qDebug()<<urlFirstPage;
+
 
 	QRegExp firstPostUrlRegexp("<td class=\"sujetCase4\">.*<a href=\"(.+)\" class=\"cCatTopic\">([0-9]+)</a></td>");
 	firstPostUrlRegexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -188,7 +199,7 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, bool 
 	if(firstPostUrlRegexp.indexIn(threadListing, 0) != -1) {
 		QString s = firstPostUrlRegexp.cap(1);
 		s.replace(andAmp, "&");
-		item->setUrlFirstPage(s);
+		item->setUrlLastPostRead(s);
 
 		item->setPages(firstPostUrlRegexp.cap(2));
 	} else {
@@ -256,6 +267,7 @@ void ExploreCategoryController::updateView() {
 									  << "lastAuthor"
 									  << "urlFirstPage"
 									  << "urlLastPage"
+									  << "urlLastPostRead"
 									  << "pages"
 									  << "flagType"
 									  << "read"

@@ -30,7 +30,6 @@ void NetImageTracker::onCreationCompleted()
 }
 
 void NetImageTracker::onImageReady(const QString imageName, const QString filePath) {
-	qDebug() << "request: " << imageName << filePath;
 	if (imageName.compare(mSource) == 0) {
 
         // Set the path to the image that is now downloaded and cached in the data folder on the device.

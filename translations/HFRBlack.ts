@@ -12,17 +12,33 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="232"/>
+        <location filename="../assets/ExploreCategory.qml" line="193"/>
+        <source>Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="196"/>
+        <location filename="../assets/ExploreCategory.qml" line="270"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="240"/>
+        <location filename="../assets/ExploreCategory.qml" line="203"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="210"/>
+        <source>Last page read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="278"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="248"/>
+        <location filename="../assets/ExploreCategory.qml" line="286"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -32,6 +48,29 @@
     <message>
         <location filename="../src/ExploreCategoryController.cpp" line="72"/>
         <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Favorite</name>
+    <message>
+        <location filename="../assets/Favorite.qml" line="102"/>
+        <source>Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="105"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="112"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="119"/>
+        <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -134,6 +173,21 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="74"/>
         <source>[Not Read] </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="113"/>
+        <source>Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="116"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="123"/>
+        <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -49,7 +49,7 @@ class ListFavoriteController : public QObject {
 	private:
 
 		void parse(const QString &page);
-		void parseThreadListing(const QString &category, const QString &caption, const QString &threadListing, const QString &today);
+		void parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today);
 		void updateView();
 
 };

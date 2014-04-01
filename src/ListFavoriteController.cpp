@@ -98,7 +98,7 @@ void ListFavoriteController::parse(const QString &page) {
 
 
 	// Get favorite topics
-	regexp = QRegExp(QString("<td.*class=\"sujetCase3\"?.*class=\"cCatTopic\".*>(.+)</a></td>"));  	// topics' name
+	regexp = QRegExp(QString("<td.*class=\"sujetCase3\".*><a href=\"(.+)\" class=\"cCatTopic\".*>(.+)</a></td>"));  	// topics' name
 
 
 
@@ -114,14 +114,18 @@ void ListFavoriteController::parse(const QString &page) {
 	int lastPos = regexp.indexIn(page, pos);
 	QString caption;
 	QString category;
+	QString urlFirstPage;
 
 	if(lastPos != -1) {
-		caption = regexp.cap(1);
+		caption = regexp.cap(2);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
+
+		urlFirstPage = regexp.cap(1);
+		urlFirstPage.replace(andAmp, "&");
 
 		lastPos += regexp.matchedLength();
 		for( ; catIndex < indexCategories.length() && lastPos > indexCategories[catIndex] ; ++catIndex) {}
@@ -133,21 +137,24 @@ void ListFavoriteController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(category, caption, page.mid(lastPos, pos-lastPos), today);
+		parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);
 
 		catIndex = 0;
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}
 		category = categoriesLabels[catIndex-1];
 
 		lastPos = pos;
-		caption = regexp.cap(1);
+		caption = regexp.cap(2);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
+
+		urlFirstPage = regexp.cap(1);
+		urlFirstPage.replace(andAmp, "&");
 	}
-	parseThreadListing(category, caption, page.mid(lastPos, pos-lastPos), today);
+	parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);
 
 
 	updateView();
@@ -155,7 +162,7 @@ void ListFavoriteController::parse(const QString &page) {
 
 }
 
-void ListFavoriteController::parseThreadListing(const QString &category, const QString &caption, const QString &threadListing, const QString &today) {
+void ListFavoriteController::parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today) {
 	//						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
 	//						   + "([0-9]+)</a></td>"													// overall number of pages
 	//						   + ".*<td class=\"sujetCase5\"><a href=\"(.+)\"><img src"					// index to last read post
@@ -169,18 +176,16 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 	ThreadListItem *item = new ThreadListItem();
 	item->setCategory(category);
 	item->setTitle(caption);
+	item->setUrlFirstPage(urlFirstPage);
 
-	QRegExp firstPostAndPage(QString("<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">")		// link to first post
+	QRegExp firstPostAndPage(QString("<td class=\"sujetCase4\"><a href=\".+\" class=\"cCatTopic\">")		// link to first post
 								 + "([0-9]+)</a></td>");													// overall number of pages
 
 	firstPostAndPage.setCaseSensitivity(Qt::CaseSensitive);
 	firstPostAndPage.setMinimal(true);
 
 	if(firstPostAndPage.indexIn(threadListing, 0) != -1) {
-		QString s = firstPostAndPage.cap(1); s.replace(andAmp, "&");
-		item->setUrlFirstPage(s);
-
-		item->setPages(firstPostAndPage.cap(2));
+		item->setPages(firstPostAndPage.cap(1));
 	}
 
 
@@ -191,25 +196,30 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 
 	if(lastReadAndPage.indexIn(threadListing, 0) != -1) {
 		QString s = lastReadAndPage.cap(1); s.replace(andAmp, "&");
-		item->setUrlLastPage(s);
+		item->setUrlLastPostRead(s);
 
 		item->setPages(lastReadAndPage.cap(2)  + "/" + item->getPages());
 	}
 
 
-	QRegExp lastContribution("<td class=\"sujetCase9.*class=\"Tableau\">(.+)<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type"); // timestamp + last contributor
+	QRegExp lastContribution("<td class=\"sujetCase9 cBackCouleurTab[0-9] \"><a href=\"(.+)\" class=\"Tableau\">(.+)<br /><b>(.+)</b></a></td><td class=\"sujetCase10\"><input type"); // timestamp + last contributor
 	lastContribution.setCaseSensitivity(Qt::CaseSensitive);
 	lastContribution.setMinimal(true);
 
 	if(lastContribution.indexIn(threadListing, 0) != -1) {
-		QString s = lastContribution.cap(1);
+		QString s = lastContribution.cap(2);
 		if(s.mid(0,10).compare(today) == 0)
 			item->setTimestamp(s.mid(23,5));
 		else
 			item->setTimestamp(s.mid(0,10));
 
 
-		item->setLastAuthor(lastContribution.cap(2));
+		item->setLastAuthor(lastContribution.cap(3));
+
+		s = lastContribution.cap(1);
+		s.replace(andAmp, "&");
+		item->setUrlLastPage(s);
+
 	}
 
 	m_Datas->append(item);
@@ -239,6 +249,7 @@ void ListFavoriteController::updateView() {
 							  << "lastAuthor"
 							  << "urlFirstPage"
 							  << "urlLastPage"
+							  << "urlLastPostRead"
 							  << "pages"
 							  << "flagType"
 							  << "read"

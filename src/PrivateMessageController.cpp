@@ -159,7 +159,7 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 		item->setTitle(s);
 
-		s = mpTitle.cap(2);
+		s = mpTitle.cap(1);
 		s.replace(andAmp, "&");
 		item->setUrlFirstPage(s);
 	}
