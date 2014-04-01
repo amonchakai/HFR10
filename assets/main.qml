@@ -67,7 +67,7 @@ TabbedPane {
     
     
     Tab { //Browse tab
-        title: qsTr("Browse") + Retranslate.onLocaleOrLanguageChanged
+        title: qsTr("Search") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_browse.png"
         

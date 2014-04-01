@@ -105,5 +105,32 @@ void CookieJar::loadFromDisk() {
 
 		this->setAllCookies(cookies);
 	}
-
 }
+
+bool CookieJar::areThereCookies() {
+	QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	if (!QFile::exists(directory)) {
+		return false;
+	}
+
+	QFile file(directory + "/SessionCookies.data");
+
+	if (file.open(QIODevice::ReadOnly)) {
+		return true;
+	}
+	return false;
+}
+
+
+void CookieJar::deleteCookies() {
+	QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	if (!QFile::exists(directory)) {
+		return ;
+	}
+
+	QFile file(directory + "/SessionCookies.data");
+	file.remove();
+
+	this->setAllCookies(QList<QNetworkCookie>());
+}
+

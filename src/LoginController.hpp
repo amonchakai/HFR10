@@ -13,8 +13,12 @@
 class LoginController : public QObject {
 	Q_OBJECT
 
+	Q_PROPERTY( QString savedlogin 	READ getUser   NOTIFY onUserChanged)
+
+
 private:
 
+	static QString 		m_User;
 
 
 public:
@@ -25,22 +29,29 @@ public:
 	virtual ~LoginController() {};
 
 
+	inline const QString &getUser()								{return m_User; }
 
 
 	// ----------------------------------------------------------------------------------------------
 public Q_SLOTS:
 	void login(const QString &login, const QString &password);
 	void checkReply();
-
-
-
+	bool isLogged();
+	void logOut();
 
 
 	// ----------------------------------------------------------------------------------------------
 
 Q_SIGNALS:
-	void complete(const QString &info);
+	void complete();
+	void onUserChanged();
 
+
+
+private:
+
+	void saveUserName();
+	void loadUserName();
 };
 
 

@@ -1,5 +1,5 @@
 1
-104
+105
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -92,6 +92,7 @@ images/smiley/vomi.gif
 images/smiley/wahoo.gif
 images/smiley/whistle.gif
 images/smiley/wink.gif
+LoginForm.qml
 main.qml
 MainWindowTabbedPane.qml
 model/feeds.xml

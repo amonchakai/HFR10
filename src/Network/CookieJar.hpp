@@ -23,6 +23,8 @@ public:
 
 	void saveToDisk();
 	void loadFromDisk();
+	bool areThereCookies();
+	void deleteCookies();
 
 
 private:

@@ -46,13 +46,37 @@
 <context>
     <name>LoginController</name>
     <message>
-        <location filename="../src/LoginController.cpp" line="57"/>
+        <location filename="../src/LoginController.cpp" line="67"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LoginController.cpp" line="65"/>
+        <location filename="../src/LoginController.cpp" line="75"/>
         <source>Login failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LoginForm</name>
+    <message>
+        <location filename="../assets/LoginForm.qml" line="7"/>
+        <location filename="../assets/LoginForm.qml" line="30"/>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/LoginForm.qml" line="10"/>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/LoginForm.qml" line="18"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/LoginForm.qml" line="41"/>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,18 +193,21 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../assets/Settings.qml" line="11"/>
-        <source>Login</source>
+        <location filename="../assets/Settings.qml" line="16"/>
+        <location filename="../assets/Settings.qml" line="44"/>
+        <location filename="../assets/Settings.qml" line="64"/>
+        <location filename="../assets/Settings.qml" line="74"/>
+        <source>User: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="21"/>
-        <source>Password</source>
+        <location filename="../assets/Settings.qml" line="23"/>
+        <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="38"/>
-        <source>OK</source>
+        <source>log out</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -239,7 +266,7 @@
     </message>
     <message>
         <location filename="../assets/main.qml" line="70"/>
-        <source>Browse</source>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

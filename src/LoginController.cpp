@@ -6,17 +6,25 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QUrl>
+#include <QFile>
+#include <QDir>
 
 #include "Globals.h"
 #include "CookieJar.hpp"
 #include "HFRNetworkAccessManager.hpp"
 
+QString LoginController::m_User = "";
+
 LoginController::LoginController(QObject *parent)
 	: QObject(parent) {
+
+	loadUserName();
 
 }
 
 void LoginController::login(const QString &login, const QString &password) {
+	m_User = login;
+
 	const QUrl url(DefineConsts::HARDWARE_FR_URL + "/membres/popupLogin.php");
 
 
@@ -52,6 +60,8 @@ void LoginController::checkReply() {
 
 				// save cookies on disk
 				CookieJar::get()->saveToDisk();
+				saveUserName();
+				emit complete();
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
@@ -65,10 +75,53 @@ void LoginController::checkReply() {
         response = tr("Login failed");
         qDebug() << response;
     }
+}
 
-	emit complete(response);
+bool LoginController::isLogged() {
+	return CookieJar::get()->areThereCookies();
+}
+
+void LoginController::logOut() {
+	CookieJar::get()->deleteCookies();
+
+	QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	if (!QFile::exists(directory)) {
+		return;
+	}
+
+	QFile file(directory + "/UserID.txt");
+	file.remove();
 }
 
 
+void LoginController::saveUserName() {
+	QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	if (!QFile::exists(directory)) {
+		return;
+	}
 
+	QFile file(directory + "/UserID.txt");
 
+	if (file.open(QIODevice::WriteOnly)) {
+		QDataStream stream(&file);
+		stream << m_User;
+
+		file.close();
+	}
+}
+
+void LoginController::loadUserName() {
+	QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	if (!QFile::exists(directory)) {
+		return;
+	}
+
+	QFile file(directory + "/UserID.txt");
+
+	if (file.open(QIODevice::ReadOnly)) {
+		QDataStream stream(&file);
+		stream >> m_User;
+
+		file.close();
+	}
+}
