@@ -29,7 +29,7 @@ public:
 	virtual ~LoginController() {};
 
 
-	inline const QString &getUser()								{return m_User; }
+	const QString &getUser()								{return m_User; }
 
 
 	// ----------------------------------------------------------------------------------------------

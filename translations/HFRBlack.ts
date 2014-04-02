@@ -18,7 +18,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="196"/>
-        <location filename="../assets/ExploreCategory.qml" line="270"/>
+        <location filename="../assets/ExploreCategory.qml" line="269"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,12 +33,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="278"/>
+        <location filename="../assets/ExploreCategory.qml" line="277"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="286"/>
+        <location filename="../assets/ExploreCategory.qml" line="285"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -140,17 +140,17 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/PostMessage.qml" line="16"/>
+        <location filename="../assets/PostMessage.qml" line="20"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="19"/>
+        <location filename="../assets/PostMessage.qml" line="23"/>
         <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="36"/>
+        <location filename="../assets/PostMessage.qml" line="44"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -158,12 +158,13 @@
 <context>
     <name>PostMessageController</name>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="72"/>
+        <location filename="../src/PostMessageController.cpp" line="74"/>
+        <location filename="../src/PostMessageController.cpp" line="117"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="80"/>
+        <location filename="../src/PostMessageController.cpp" line="82"/>
         <source>Post failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -276,27 +277,52 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="134"/>
-        <source>Reply</source>
+        <location filename="../assets/ThreadPage.qml" line="113"/>
+        <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="154"/>
-        <source>First page</source>
+        <location filename="../assets/ThreadPage.qml" line="116"/>
+        <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="162"/>
-        <source>Last page</source>
+        <location filename="../assets/ThreadPage.qml" line="123"/>
+        <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="170"/>
-        <source>Prev page</source>
+        <location filename="../assets/ThreadPage.qml" line="130"/>
+        <source>Add Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="138"/>
+        <source>Delete post</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="178"/>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="198"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="206"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="214"/>
+        <source>Prev page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="222"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>

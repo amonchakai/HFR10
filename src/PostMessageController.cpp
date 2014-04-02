@@ -13,9 +13,11 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QUrl>
+#include <QRegExp>
 
 #include "Globals.h"
 #include "HFRNetworkAccessManager.hpp"
+#include "LoginController.hpp"
 
 void PostMessageController::postMessage(const QString &hashCheck,
 										const QString &postID,
@@ -84,4 +86,119 @@ void PostMessageController::checkReply() {
 	emit complete();
 }
 
+
+void PostMessageController::getEditMessage(const QString &messageUrl) {
+	// list green + yellow flags
+	const QUrl url(DefineConsts::FORUM_URL + messageUrl);
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkGetMessageReply()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+}
+
+void PostMessageController::checkGetMessageReply() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+				parseEditMessage(response);
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			qDebug() << response;
+		}
+
+		reply->deleteLater();
+	}
+}
+
+
+void PostMessageController::parseEditMessage(const QString &editpage) {
+	QRegExp getMessageRegexp("<textarea cols=\"[0-9]+\" rows=\"[0-9]+\" class=\"contenu\" name=\"content_form\" id=\"content_form\" accesskey=\"c\">(.+)</textarea><input type=\"hidden\" name=\"wysiwyg\" value=\"0\" />");
+
+	QRegExp andAmp("&amp;");
+	QRegExp quote("&#034;");
+	QRegExp euro("&euro;");
+	QRegExp inf("&lt;");
+	QRegExp sup("&gt;");
+
+	QString message;
+	if(getMessageRegexp.indexIn(editpage, 0) != -1) {
+		message = getMessageRegexp.cap(1);
+
+		message.replace(andAmp, "&");
+		message.replace(quote, "\"");
+		message.replace(euro, "e");
+		message.replace(inf, "<");
+		message.replace(sup, ">");
+	}
+
+	QRegExp postData(QString("<input type=\"hidden\" name=\"hash_check\" value=\"([0-9a-z]+)\" />")
+							+ 	".*<input type=\"hidden\" name=\"parents\" value=\"([0-9]*)\" />"
+							+ 	".*<input type=\"hidden\" name=\"post\" value=\"([0-9]+)\" />"
+							+ 	".*<input type=\"hidden\" name=\"cat\" id=\"catid\" value=\"([0-9a-z]+)\" />"
+							+ 	".*<input type=\"hidden\" name=\"numreponse\" value=\"([0-9a-z]+)\" />"
+							+	".*<input type=\"hidden\" name=\"page\" value=\"([0-9]+)\" />"
+							+	".*<input type=\"hidden\" name=\"sujet\" value=\"(.+)\" />"
+							+	".*<input maxlength=\"[0-9]+\" accesskey=\"p\" size=\"[0-9]+\" name=\"pseudo\" value=\"(.+)\""
+	);
+
+
+	postData.setCaseSensitivity(Qt::CaseSensitive);
+	postData.setMinimal(true);
+
+	if(postData.indexIn(editpage, 0) != -1) {
+		m_HashCheck = postData.cap(1);
+		m_Parent = postData.cap(2);
+		m_PostID = postData.cap(3);
+		m_CatID = postData.cap(4);
+		m_ResponseID = postData.cap(5);
+		m_Page = postData.cap(6);
+		m_ThreadTitle = postData.cap(7);
+		m_AddSignature = false;
+		m_Pseudo = postData.cap(8);
+
+	}
+
+	emit messageLoaded(message);
+
+}
+
+
+void PostMessageController::postEdit(const QString &message) {
+	const QUrl url(DefineConsts::FORUM_URL + "/bdd.php?config=hfr.inc");
+
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+	QUrl params;
+	params.addQueryItem("hash_check", m_HashCheck);
+	params.addQueryItem("numreponse", m_ResponseID);
+	params.addQueryItem("post", m_PostID);
+	params.addQueryItem("cat", m_CatID);
+	params.addQueryItem("verifrequet", "1100");
+	params.addQueryItem("parents", m_Parent);
+	params.addQueryItem("pseudo", m_Pseudo);
+	params.addQueryItem("content_form", message);
+	params.addQueryItem("sujet", m_ThreadTitle);
+	params.addQueryItem("signature", "0");
+
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+}
 

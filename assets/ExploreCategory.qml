@@ -220,7 +220,6 @@ Page {
             ]
             
             function gotoPage(urlFirstPage, titleTopic) {
-                console.log(urlFirstPage)
                 var page = threadPage.createObject();
                 
                 // Set the url of the page to load and thread caption. 

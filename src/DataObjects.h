@@ -192,6 +192,7 @@ class PostDetailItem : public QObject {
 	Q_PROPERTY( QString avatar		READ getAvatar      WRITE setAvatar		NOTIFY avatarChanged)
 	Q_PROPERTY( QString timestamp	READ getTimestamp	WRITE setTimestamp	NOTIFY timestampChanged)
 	Q_PROPERTY( QString post		READ getPost		WRITE setPost		NOTIFY postChanged)
+	Q_PROPERTY( QString editUrl		READ getEditUrl		WRITE setEditUrl	NOTIFY editUrlChanged)
 	Q_PROPERTY( int		index		READ getIndex		WRITE setIndex		NOTIFY indexChanged)
 
 	// ----------------------------------------------------------------------------------------------
@@ -202,6 +203,7 @@ private:
 	QString m_Timestamp;
 	QString m_Post;
 	int		m_Index;
+	QString m_EditURL;
 
 
 public:
@@ -218,6 +220,9 @@ public:
 	inline const QString &getTimestamp() const			{ return m_Timestamp; }
 	inline void			  setTimestamp(const QString &s){ m_Timestamp = s; }
 
+	inline const QString &getEditUrl() const			{ return m_EditURL; }
+	inline void			  setEditUrl(const QString &s)	{ m_EditURL = s; }
+
 	inline const QString &getPost() const				{ return m_Post; }
 	inline       QString &getPost()						{ return m_Post; }
 	inline void			  setPost(const QString &s)		{ m_Post = s; }
@@ -233,6 +238,7 @@ public:
 		void timestampChanged();
 		void postChanged();
 		void indexChanged();
+		void editUrlChanged();
 
 };
 

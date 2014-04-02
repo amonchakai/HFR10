@@ -11,6 +11,10 @@ Page {
     property string  threadTitle
     property bool  	 addSignature
     
+    property bool 	 editMode
+    property string  editURL
+    
+    
     titleBar: TitleBar {
         id: pageTitleBar
         title: qsTr("Reply")
@@ -19,7 +23,8 @@ Page {
             title: qsTr ("Send")
             
             onTriggered: {
-                postMessageController.postMessage(	 hashCheck 
+                if(!editMode) {
+                	postMessageController.postMessage(	 hashCheck 
                     							   , postID
                     							   , catID
                     							   , page
@@ -27,7 +32,10 @@ Page {
                     							   , message.text
                     							   , threadTitle
                                                    , addSignature
-                )
+                    )
+                } else {
+                    postMessageController.postEdit(message.text);
+                }
                 
             }
         }
@@ -43,6 +51,13 @@ Page {
 
             
     Container {
+        ActivityIndicator {
+            id: activityIndicator
+            horizontalAlignment: HorizontalAlignment.Center
+            verticalAlignment: VerticalAlignment.Center
+            preferredHeight: 60
+        }
+        
         horizontalAlignment: HorizontalAlignment.Fill
         verticalAlignment: VerticalAlignment.Fill
         
@@ -62,6 +77,21 @@ Page {
                 nav.pop()
                 pageThread.needUpdate = true;
             }
+            
+            onMessageLoaded: {
+                message.text = message_loaded;
+                activityIndicator.stop();
+            }
         }
     ]
+    
+    onEditURLChanged: {
+        postMessageController.getEditMessage(editURL);
+        activityIndicator.start();
+        editMode = true;
+    }
+    
+    onCreationCompleted: {
+        editMode = false;
+    }
 }

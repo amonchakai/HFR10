@@ -107,10 +107,54 @@ Page {
                             
                             PostRenderer {
                             }
+                            
+                            contextActions: [
+                                ActionSet {
+                                    title: qsTr("Navigation")
+                                    
+                                    ActionItem {
+                                        title: qsTr("Edit")
+                                        imageSource: "asset:///images/icon_write.png"
+                                        onTriggered: {
+                                            headerContainer.ListItem.view.gotoEditMessage(ListItemData.editUrl);
+                                        }
+                                    }
+                                    ActionItem {
+                                        title: qsTr("Quote")
+                                        imageSource: "asset:///images/icon_check.png"
+                                        onTriggered: {
+
+                                        }
+                                    }
+                                    ActionItem {
+                                        title: qsTr("Add Favorite")
+                                        imageSource: "asset:///images/icon_favorites.png"
+                                        onTriggered: {
+
+                                        }
+                                    }
+                                    
+                                    DeleteActionItem {
+                                        title: qsTr("Delete post")
+                                    }
+                                }
+                            ]
                                                     
                         }                        
                 } 
             ]
+            
+            function gotoEditMessage(urlEditPage) {
+                if(urlEditPage == "")
+                	return;
+                	
+                var page = postPage.createObject();
+                
+                // Set the url of the page to load and thread caption. 
+                page.editURL = urlEditPage
+                
+                nav.push(page);
+            }
         }
     }
     

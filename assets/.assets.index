@@ -1,5 +1,5 @@
 1
-105
+106
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -8,6 +8,7 @@ Home.qml
 images/default_avatar.png
 images/icon_about.png
 images/icon_browse.png
+images/icon_check.png
 images/icon_drap_lecture.gif
 images/icon_drap_lecture.png
 images/icon_drap_lecture.svg

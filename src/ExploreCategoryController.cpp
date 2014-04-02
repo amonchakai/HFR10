@@ -189,8 +189,6 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 	item->setRead(read);
 	item->setUrlFirstPage(urlFirstPage);
 
-	qDebug()<<urlFirstPage;
-
 
 	QRegExp firstPostUrlRegexp("<td class=\"sujetCase4\">.*<a href=\"(.+)\" class=\"cCatTopic\">([0-9]+)</a></td>");
 	firstPostUrlRegexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -320,40 +318,64 @@ void ExploreCategoryController::filterByFlag(int flag) {
 
 
 void ExploreCategoryController::firstPage() {
-	QRegExp locatePage("page=([0-9]+)");
-	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
+	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		int length = pos+locatePage.matchedLength();
+		listTopics(m_Url.mid(0,pos) + "liste_sujet-1.htm");
 
-		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=1" + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+	} else {
+		QRegExp locatePage("page=([0-9]+)");
+		int pos = locatePage.indexIn(m_GeneralUrl, 0);
+		if(pos != -1) {
+			int length = pos+locatePage.matchedLength();
 
-		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+			m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=1" + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
 
+			showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+
+		}
 	}
 }
 
 
 void ExploreCategoryController::nextPage() {
-	QRegExp locatePage("page=([0-9]+)");
-	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
+	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		int length = pos+locatePage.matchedLength();
+		int length = pos+isFormListSujet.matchedLength();
+		listTopics(m_Url.mid(0,pos) + "liste_sujet-" + QString::number(isFormListSujet.cap(1).toInt()+1) + ".htm");
 
-		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(locatePage.cap(1).toInt()+1) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+	} else {
 
-		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+		QRegExp locatePage("page=([0-9]+)");
+		pos = locatePage.indexIn(m_GeneralUrl, 0);
+		if(pos != -1) {
+			int length = pos+locatePage.matchedLength();
+
+			m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(locatePage.cap(1).toInt()+1) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+
+			showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+		}
 	}
 }
 
 void ExploreCategoryController::prevPage() {
-	QRegExp locatePage("page=([0-9]+)");
-	int pos = locatePage.indexIn(m_GeneralUrl, 0);
+	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
+	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		int length = pos+locatePage.matchedLength();
+		int length = pos+isFormListSujet.matchedLength();
+		listTopics(m_Url.mid(0,pos) + "liste_sujet-" + QString::number(std::max(isFormListSujet.cap(1).toInt()-1,1)) + ".htm");
 
-		m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(std::max(locatePage.cap(1).toInt()-1,1)) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+	} else {
+		QRegExp locatePage("page=([0-9]+)");
+		int pos = locatePage.indexIn(m_GeneralUrl, 0);
+		if(pos != -1) {
+			int length = pos+locatePage.matchedLength();
 
-		showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+			m_GeneralUrl = m_GeneralUrl.mid(0,pos) + "page=" + QString::number(std::max(locatePage.cap(1).toInt()-1,1)) + m_GeneralUrl.mid(length,m_GeneralUrl.length()-length);
+
+			showTopicList(DefineConsts::FORUM_URL + m_GeneralUrl);
+		}
 	}
 }
 

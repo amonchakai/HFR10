@@ -175,6 +175,10 @@ void ShowThreadController::parse(const QString &page) {
 
 void ShowThreadController::parsePost(const QString &postIdex, const QString &author, const QString &post) {
 
+	QRegExp editURLRegexp("title=\"Editer le message\" alt=\"edit\" /></span><a rel=\"nofollow\" href=\"(.+#formulaire)\" onclick=");
+	editURLRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	editURLRegexp.setMinimal(true);
+
 	QRegExp moodRegexp = QRegExp("<span class=\"MoodStatus\">(.+)</span>");
 	moodRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	moodRegexp.setMinimal(true);
@@ -190,6 +194,12 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	QRegExp postContentRegexp = QRegExp(QString("</div></div><div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\">"));
 	postContentRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	postContentRegexp.setMinimal(true);
+
+	QString editURL = "";
+	if(editURLRegexp.indexIn(post, 0) != -1) {
+		editURL = editURLRegexp.cap(1);
+		editURL.replace(QRegExp("&amp;"), "&");
+	}
 
 	QString mood = "";
 	if(moodRegexp.indexIn(post, 0) != -1)
@@ -217,6 +227,7 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		return;
 
 	m_Datas->push_back(new PostDetailItem());
+	m_Datas->last()->setEditUrl(editURL);
 
 	if(avatar.isEmpty())
 		m_Datas->last()->setAvatar("asset:///images/default_avatar.png");
@@ -311,6 +322,7 @@ void ShowThreadController::updateView() {
 								  << "avatar"
 								  << "timestamp"
 								  << "post"
+								  << "editUrl"
 				);
 		m_ListView->setDataModel(dataModel);
 	}
