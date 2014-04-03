@@ -19,6 +19,18 @@
 #include "HFRNetworkAccessManager.hpp"
 #include "LoginController.hpp"
 
+
+void PostMessageController::postMessage(const QString &message) {
+	postMessage(m_HashCheck,
+				m_PostID,
+				m_CatID,
+				m_Page,
+				m_Pseudo,
+				message,
+				m_ThreadTitle,
+				m_AddSignature);
+}
+
 void PostMessageController::postMessage(const QString &hashCheck,
 										const QString &postID,
 										const QString &catID,
@@ -101,6 +113,68 @@ void PostMessageController::getEditMessage(const QString &messageUrl) {
 	Q_UNUSED(ok);
 }
 
+
+
+void PostMessageController::getQuotedMessages(const QString &url_str) {
+	m_Message = "";
+	m_NBMessages = 0;
+
+
+	QRegExp args("numrep=[0-9]+");
+	args.setCaseSensitivity(Qt::CaseSensitive);
+
+	int pos = 0;
+	while((pos = args.indexIn(url_str, pos)) != -1) {
+		pos += args.matchedLength();
+		++m_NBMessages;
+	}
+
+	// ---------------------------------------------------------
+	// get the messages
+
+	int lastPos = 0;
+	pos = 0;
+	while((pos = args.indexIn(url_str, lastPos)) != -1) {
+		qDebug() << url_str.mid(lastPos, pos+args.matchedLength());
+
+
+		const QUrl url(DefineConsts::FORUM_URL + "/message.php?config=hfr.inc" + url_str.mid(lastPos, pos+args.matchedLength()));
+
+		QNetworkRequest request(url);
+		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+		QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+		bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkQuoteMessageReply()));
+		Q_ASSERT(ok);
+		Q_UNUSED(ok);
+
+		lastPos = pos+args.matchedLength();
+	}
+
+}
+
+void PostMessageController::checkQuoteMessageReply() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+				parseQuotedMessage(response);
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			qDebug() << response;
+		}
+
+		reply->deleteLater();
+	}
+}
+
 void PostMessageController::checkGetMessageReply() {
 	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
 
@@ -171,6 +245,66 @@ void PostMessageController::parseEditMessage(const QString &editpage) {
 	}
 
 	emit messageLoaded(message);
+
+}
+
+void PostMessageController::parseQuotedMessage(const QString &editpage) {
+	QRegExp getMessageRegexp("<textarea cols=\"[0-9]+\" rows=\"[0-9]+\" class=\"contenu\" name=\"content_form\" id=\"content_form\" accesskey=\"c\">(.+)</textarea><input type=\"hidden\" name=\"wysiwyg\" value=\"0\" />");
+
+	QRegExp andAmp("&amp;");
+	QRegExp quote("&#034;");
+	QRegExp euro("&euro;");
+	QRegExp inf("&lt;");
+	QRegExp sup("&gt;");
+
+	QString message;
+	if(getMessageRegexp.indexIn(editpage, 0) != -1) {
+		message = getMessageRegexp.cap(1);
+
+		message.replace(andAmp, "&");
+		message.replace(quote, "\"");
+		message.replace(euro, "e");
+		message.replace(inf, "<");
+		message.replace(sup, ">");
+	}
+
+	QRegExp postData(QString("<input type=\"hidden\" name=\"hash_check\" value=\"([0-9a-z]+)\" />")
+							+ 	".*<input type=\"hidden\" name=\"parents\" value=\"([0-9]*)\" />"
+							+ 	".*<input type=\"hidden\" name=\"post\" value=\"([0-9]+)\" />"
+							+ 	".*<input type=\"hidden\" name=\"cat\" id=\"catid\" value=\"([0-9a-z]+)\" />"
+							+ 	".*<input type=\"hidden\" name=\"numrep\" value=\"([0-9a-z]+)\" />"
+							+	".*<input type=\"hidden\" name=\"page\" value=\"([0-9]+)\" />"
+							+	".*<input type=\"hidden\" name=\"sujet\" value=\"(.+)\" />"
+							+	".*<input maxlength=\"[0-9]+\" accesskey=\"p\" size=\"[0-9]+\" name=\"pseudo\" value=\"(.+)\""
+	);
+
+
+	postData.setCaseSensitivity(Qt::CaseSensitive);
+	postData.setMinimal(true);
+
+	m_MessageMutex.lockForWrite();
+
+	if(postData.indexIn(editpage, 0) != -1) {
+		m_HashCheck = postData.cap(1);
+		m_Parent = postData.cap(2);
+		m_PostID = postData.cap(3);
+		m_CatID = postData.cap(4);
+		m_ResponseID = postData.cap(5);
+		m_Page = postData.cap(6);
+		m_ThreadTitle = postData.cap(7);
+		m_AddSignature = false;
+		m_Pseudo = postData.cap(8);
+
+	}
+
+	m_Message += message +  "\n\n" ;
+	--m_NBMessages;
+
+	if(m_NBMessages == 0) {
+		emit messageLoaded(m_Message);
+	}
+
+	m_MessageMutex.unlock();
 
 }
 

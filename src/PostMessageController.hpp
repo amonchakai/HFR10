@@ -10,6 +10,7 @@
 
 #include <QtCore/QObject>
 #include <QString>
+#include <QReadWriteLock>
 
 class PostMessageController : public QObject {
 	Q_OBJECT;
@@ -28,10 +29,13 @@ private:
 	bool m_AddSignature;
 
 
+	QReadWriteLock m_MessageMutex;
+	int 	m_NBMessages;
+	QString m_Message;
 
 public:
 
-	PostMessageController(QObject *parent = 0) : QObject(parent) {}
+	PostMessageController(QObject *parent = 0) : QObject(parent), m_AddSignature(false), m_NBMessages(0) {}
 	virtual ~PostMessageController() {}
 
 
@@ -43,6 +47,7 @@ public Q_SLOTS:
 
 	void checkReply();
 	void checkGetMessageReply();
+	void checkQuoteMessageReply();
 
 	void postMessage(const QString &hashcheck,
 					 const QString &postID,
@@ -53,15 +58,23 @@ public Q_SLOTS:
 					 const QString &threadTitle,
 					 bool signature);
 
+	void postMessage(const QString &message);
+
 	void postEdit(const QString &message);
 
 
 	void getEditMessage(const QString &url);
 	void parseEditMessage(const QString &editpage);
 
+	void getQuotedMessages(const QString &url);
+	void parseQuotedMessage(const QString &editpage);
+
+
 Q_SIGNALS:
 	void complete();
 	void messageLoaded(const QString &message_loaded);
+
+
 };
 
 
