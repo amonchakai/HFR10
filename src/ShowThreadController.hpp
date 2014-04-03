@@ -59,6 +59,8 @@ class ShowThreadController : public QObject {
 		void showThread(const QString &url);
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void checkReply();
+		void addToFavorite(int responseID);
+		void checkSuccessAddAddFavorite();
 
 		void nextPage();
 		void prevPage();
@@ -74,7 +76,6 @@ class ShowThreadController : public QObject {
 		const QString &getPseudo() 		const	{ return m_Pseudo; }
 		const QString &getThreadTitle() const	{ return m_ThreadTitle; }
 		bool 		   isAddSignature()const	{ return m_AddSignature; }
-
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:

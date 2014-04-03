@@ -270,6 +270,7 @@
     <name>ShowThreadController</name>
     <message>
         <location filename="../src/ShowThreadController.cpp" line="70"/>
+        <location filename="../src/ShowThreadController.cpp" line="303"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -302,27 +303,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="178"/>
+        <location filename="../assets/ThreadPage.qml" line="182"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="198"/>
+        <location filename="../assets/ThreadPage.qml" line="202"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="206"/>
+        <location filename="../assets/ThreadPage.qml" line="210"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="214"/>
+        <location filename="../assets/ThreadPage.qml" line="218"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="222"/>
+        <location filename="../assets/ThreadPage.qml" line="226"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>

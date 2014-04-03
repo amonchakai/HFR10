@@ -79,6 +79,11 @@ void ShowThreadController::checkReply() {
 
 void ShowThreadController::parse(const QString &page) {
 
+
+	// ----------------------------------------------------------------------------------------------
+	// Navigation within the topic
+
+
 	QRegExp amp("&amp;");
 	QRegExp pageURL("</b>&nbsp;&nbsp;<a href=\"(.+)\" class=\"cHeader\">1</a>");
 	pageURL.setCaseSensitivity(Qt::CaseSensitive);
@@ -87,7 +92,6 @@ void ShowThreadController::parse(const QString &page) {
 	if(pageURL.indexIn(page, 0) != -1) {
 		m_UrlFirstPage = pageURL.cap(1);
 		m_UrlFirstPage.replace(amp, "&");
-//		qDebug() << "first page: "  << m_UrlFirstPage;
 	} else
 		m_UrlFirstPage = "";
 
@@ -99,7 +103,6 @@ void ShowThreadController::parse(const QString &page) {
 	if(pageURL.indexIn(page, 0) != -1) {
 		m_UrlLastPage = pageURL.cap(1);
 		m_UrlLastPage.replace(amp, "&");
-//		qDebug() << "last page: "<< m_UrlLastPage;
 	} else
 		m_UrlLastPage = "";
 
@@ -110,7 +113,6 @@ void ShowThreadController::parse(const QString &page) {
 	if(pageURL.indexIn(page, 0) != -1) {
 		m_UrlPrevPage = pageURL.cap(1);
 		m_UrlPrevPage.replace(amp, "&");
-//		qDebug() << "prev page: "<< m_UrlPrevPage;
 	} else
 		m_UrlPrevPage = "";
 
@@ -121,7 +123,6 @@ void ShowThreadController::parse(const QString &page) {
 	if(pageURL.indexIn(page, 0) != -1) {
 		m_UrlNextPage = pageURL.cap(1);
 		m_UrlNextPage.replace(amp, "&");
-//		qDebug() << "next page: "<< m_UrlNextPage;
 	} else
 		m_UrlNextPage = "";
 
@@ -268,6 +269,44 @@ void ShowThreadController::parseDataForReply(const QString &page) {
 	}
 }
 
+
+void ShowThreadController::addToFavorite(int responseID) {
+	const QUrl url(DefineConsts::FORUM_URL + "/user/addflag.php?config=hfr.inc&cat=" + m_CatID + "&post=" + m_PostID + "&numreponse=" + QString::number(responseID));
+
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+	qDebug() << url.toString();
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSuccessAddAddFavorite()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+
+}
+
+void ShowThreadController::checkSuccessAddAddFavorite() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+				qDebug() << response;
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			qDebug() << response;
+		}
+
+		reply->deleteLater();
+	}
+}
 
 void ShowThreadController::cleanupPost(QString &post) {
 

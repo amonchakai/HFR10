@@ -130,7 +130,7 @@ Page {
                                         title: qsTr("Add Favorite")
                                         imageSource: "asset:///images/icon_favorites.png"
                                         onTriggered: {
-
+                                            headerContainer.ListItem.view.addToFavorite(ListItemData.index);
                                         }
                                     }
                                     
@@ -154,6 +154,10 @@ Page {
                 page.editURL = urlEditPage
                 
                 nav.push(page);
+            }
+            
+            function addToFavorite(responseID) {
+                showThreadController.addToFavorite(responseID);
             }
         }
     }
