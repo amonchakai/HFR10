@@ -11,8 +11,10 @@ Page {
     property string  threadTitle
     property bool  	 addSignature
     
-    property bool 	 editMode
+    property int 	 mode
     property string  editURL
+    
+    property string quoteURL
     
     
     titleBar: TitleBar {
@@ -23,8 +25,9 @@ Page {
             title: qsTr ("Send")
             
             onTriggered: {
-                if(!editMode) {
-                	postMessageController.postMessage(	 hashCheck 
+                switch (mode) {
+                	case 1: 
+                		postMessageController.postMessage(	 hashCheck 
                     							   , postID
                     							   , catID
                     							   , page
@@ -32,11 +35,17 @@ Page {
                     							   , message.text
                     							   , threadTitle
                                                    , addSignature
-                    )
-                } else {
-                    postMessageController.postEdit(message.text);
+                        );
+                        break;
+                    
+                    case 2:
+                        postMessageController.postEdit(message.text);
+                        break;
+                    
+                    case 3:
+                        postMessageController.postMessage(message.text);
+                        break;
                 }
-                
             }
         }
         
@@ -88,10 +97,16 @@ Page {
     onEditURLChanged: {
         postMessageController.getEditMessage(editURL);
         activityIndicator.start();
-        editMode = true;
+        mode = 2;
+    }
+    
+    onQuoteURLChanged: {
+        postMessageController.getQuotedMessages(quoteURL);
+        activityIndicator.start();
+        mode = 3;
     }
     
     onCreationCompleted: {
-        editMode = false;
+        mode = 1;
     }
 }

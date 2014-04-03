@@ -26,13 +26,49 @@ Page {
                 id: modelPost
             }
             
+            
+            multiSelectHandler {
+                actions: [
+                    ActionItem {
+                        title: "Reply to quotes"
+                        imageSource: "asset:///images/icon_write.png"
+                        
+                        onTriggered: {
+                            var selection = threadView.selectionList()
+                            threadView.clearSelection();
+                            
+                            threadView.quoteSelection(selection);
+                        }
+                    }
+                ]
+                
+            }
+            
+            function quoteSelection(selection) {
+                var quoteURL = "";
+                for(var i = selection.length-1 ; i >= 0  ; --i) {
+                    quoteURL = quoteURL + "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + dataModel.data(selection[i]).index.toString();
+                }
+                
+                var page = postPage.createObject();                
+                page.quoteURL = quoteURL;
+                nav.push(page);
+                
+            }
             listItemComponents: [
                                 
                 ListItemComponent {
                     type: "item"
-                    
+                        
                         Container {
                             id: headerContainer
+                            
+                            ListItem.onSelectionChanged: {
+                                if(ListItem.selected)
+                                    lineContainer.background = Color.create("#B00000");
+                                else 
+                                    lineContainer.background = Color.create("#00A7DE");
+                            }
                             
                             function themeStyleToHeaderColor(style){
                                 switch (style) {
@@ -98,7 +134,8 @@ Page {
                                 
                             }
                             Container {
-                                background: Color.create("#00A7DE")
+                                id: lineContainer
+                                background: Color.create("#00A7DE") 
                                 minHeight: 4
                                 maxHeight: 4
                                 minWidth: 800
@@ -108,9 +145,10 @@ Page {
                             PostRenderer {
                             }
                             
+                            
                             contextActions: [
                                 ActionSet {
-                                    title: qsTr("Navigation")
+                                    title: qsTr("Actions")
                                     
                                     ActionItem {
                                         title: qsTr("Edit")
@@ -120,29 +158,42 @@ Page {
                                         }
                                     }
                                     ActionItem {
-                                        title: qsTr("Quote")
-                                        imageSource: "asset:///images/icon_check.png"
-                                        onTriggered: {
-
-                                        }
-                                    }
-                                    ActionItem {
                                         title: qsTr("Add Favorite")
                                         imageSource: "asset:///images/icon_favorites.png"
                                         onTriggered: {
                                             headerContainer.ListItem.view.addToFavorite(ListItemData.index);
                                         }
                                     }
-                                    
-                                    DeleteActionItem {
-                                        title: qsTr("Delete post")
+                                    ActionItem {
+                                        title: qsTr("Quote")
+                                        imageSource: "asset:///images/chickened.png"
+                                        onTriggered: {
+                                            headerContainer.ListItem.view.gotoSingleQuoteMessage(ListItemData.index);
+                                        }
                                     }
+                                    MultiSelectActionItem {
+                                        title: qsTr("Quote more")
+                                        onTriggered: {
+                                            headerContainer.ListItem.view.multiSelectHandler.active = true;
+                                        }
+                                    }
+//                                    DeleteActionItem {
+//                                        title: qsTr("Delete post")
+//                                    }
                                 }
-                            ]
-                                                    
-                        }                        
+                            ]                       
+                                
+                    }                
                 } 
             ]
+            
+            function gotoSingleQuoteMessage(messageID) {
+                var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString();
+        
+                var page = postPage.createObject();                
+                page.quoteURL = quoteURL;
+                nav.push(page);
+            }
             
             function gotoEditMessage(urlEditPage) {
                 if(urlEditPage == "")
