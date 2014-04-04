@@ -276,6 +276,7 @@ Page {
         ActionItem {
         	title: qsTr("Next page")
         	imageSource: "asset:///images/icon_next.png"
+            ActionBar.placement: ActionBarPlacement.OnBar
         	onTriggered: {
         		showThreadController.nextPage();
                 activityIndicator.start();
@@ -293,7 +294,7 @@ Page {
     
     onNeedUpdateChanged: {
         if(needUpdate) {
-        	showThreadController.showThread(urlPage);
+        	showThreadController.showThread(urlPage + "#bas");
         	activityIndicator.start();
             needUpdate = false;
         } 

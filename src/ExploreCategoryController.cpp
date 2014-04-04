@@ -81,6 +81,8 @@ void ExploreCategoryController::checkReply() {
 
 void ExploreCategoryController::parse(const QString &page) {
 
+	for(int i = 0 ; i < m_Datas->length() ; ++i)
+		(*m_Datas)[i]->deleteLater();
 	m_Datas->clear();
 
 	QRegExp andAmp("&amp;");
@@ -240,6 +242,8 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 
 	if(!item->getLastAuthor().isEmpty())
 		m_Datas->append(item);
+	else
+		item->deleteLater();
 }
 
 
@@ -342,7 +346,6 @@ void ExploreCategoryController::nextPage() {
 	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
 	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		int length = pos+isFormListSujet.matchedLength();
 		listTopics(m_Url.mid(0,pos) + "liste_sujet-" + QString::number(isFormListSujet.cap(1).toInt()+1) + ".htm");
 
 	} else {
@@ -363,7 +366,6 @@ void ExploreCategoryController::prevPage() {
 	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
 	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		int length = pos+isFormListSujet.matchedLength();
 		listTopics(m_Url.mid(0,pos) + "liste_sujet-" + QString::number(std::max(isFormListSujet.cap(1).toInt()-1,1)) + ".htm");
 
 	} else {

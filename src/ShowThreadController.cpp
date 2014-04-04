@@ -399,7 +399,7 @@ void ShowThreadController::scrollToItem() {
 	} else {
 		QRegExp goToEnd("#bas");
 		if(goToEnd.indexIn(m_Url, 0) != -1) {
-			m_ListView->scrollToPosition(bb::cascades::ScrollPosition::End);
+			m_ListView->scrollToItem(QVariantList() << 1 << m_Datas->length()-1);
 		}
 	}
 
@@ -413,8 +413,21 @@ void ShowThreadController::scrollToItem() {
 void ShowThreadController::nextPage() {
 	if(!m_UrlNextPage.isEmpty())
 		showThread(m_UrlNextPage);
-	else
-		showThread(m_Url);
+	else {
+		QRegExp goToPost("#t([0-9]+)");
+		int pos = 0;
+		if((pos = goToPost.indexIn(m_Url, 0)) != -1) {
+			showThread(m_Url.mid(0, pos) + "#bas");
+		} else {
+			QRegExp goToEnd("#bas");
+			if(goToEnd.indexIn(m_Url, 0) != -1) {
+				showThread(m_Url);
+				return;
+			}
+		}
+
+		showThread(m_Url + "#bas");
+	}
 }
 
 
@@ -436,6 +449,19 @@ void ShowThreadController::firstPage() {
 void ShowThreadController::lastPage() {
 	if(!m_UrlLastPage.isEmpty())
 		showThread(m_UrlLastPage);
-	else
-		showThread(m_Url);
+	else {
+		QRegExp goToPost("#t([0-9]+)");
+		int pos = 0;
+		if((pos = goToPost.indexIn(m_Url, 0)) != -1) {
+			showThread(m_Url.mid(0, pos) + "#bas");
+		} else {
+			QRegExp goToEnd("#bas");
+			if(goToEnd.indexIn(m_Url, 0) != -1) {
+				showThread(m_Url);
+				return;
+			}
+		}
+
+		showThread(m_Url + "#bas");
+	}
 }

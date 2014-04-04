@@ -236,7 +236,10 @@ Page {
                 var page = threadPage.createObject();
                 
                 // Set the url of the page to load and thread caption. 
-                page.urlPage = chosenItem.urlFirstPage
+                if(chosenItem.urlLastPostRead != "")
+                    page.urlPage = chosenItem.urlLastPostRead;
+                else
+                    page.urlPage = chosenItem.urlFirstPage;
                 page.caption   = chosenItem.title
                 
                 nav.push(page);

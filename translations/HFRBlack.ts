@@ -18,7 +18,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="196"/>
-        <location filename="../assets/ExploreCategory.qml" line="269"/>
+        <location filename="../assets/ExploreCategory.qml" line="272"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,12 +33,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="277"/>
+        <location filename="../assets/ExploreCategory.qml" line="280"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="285"/>
+        <location filename="../assets/ExploreCategory.qml" line="288"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>

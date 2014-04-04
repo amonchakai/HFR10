@@ -67,6 +67,8 @@ void ListFavoriteController::checkReply() {
 
 void ListFavoriteController::parse(const QString &page) {
 
+	for(int i = 0 ; i < m_Datas->length() ; ++i)
+		(*m_Datas)[i]->deleteLater();
 	m_Datas->clear();
 
 	QRegExp andAmp("&amp;");
@@ -98,7 +100,7 @@ void ListFavoriteController::parse(const QString &page) {
 
 
 	// Get favorite topics
-	regexp = QRegExp(QString("<td.*class=\"sujetCase3\".*><a href=\"(.+)\" class=\"cCatTopic\".*>(.+)</a></td>"));  	// topics' name
+	regexp = QRegExp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
 
 
 
@@ -117,14 +119,14 @@ void ListFavoriteController::parse(const QString &page) {
 	QString urlFirstPage;
 
 	if(lastPos != -1) {
-		caption = regexp.cap(2);
+		caption = regexp.cap(3);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
 
-		urlFirstPage = regexp.cap(1);
+		urlFirstPage = regexp.cap(2);
 		urlFirstPage.replace(andAmp, "&");
 
 		lastPos += regexp.matchedLength();
@@ -144,14 +146,14 @@ void ListFavoriteController::parse(const QString &page) {
 		category = categoriesLabels[catIndex-1];
 
 		lastPos = pos;
-		caption = regexp.cap(2);
+		caption = regexp.cap(3);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
 		caption.replace(euro, "e");
 		caption.replace(inf, "<");
 		caption.replace(sup, ">");
 
-		urlFirstPage = regexp.cap(1);
+		urlFirstPage = regexp.cap(2);
 		urlFirstPage.replace(andAmp, "&");
 	}
 	parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);

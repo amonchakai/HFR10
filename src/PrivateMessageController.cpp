@@ -68,6 +68,8 @@ void PrivateMessageController::checkReply() {
 
 void PrivateMessageController::parse(const QString &page) {
 
+	for(int i = 0 ; i < m_Datas->length() ; ++i)
+		(*m_Datas)[i]->deleteLater();
 	m_Datas->clear();
 
 	QRegExp andAmp("&amp;");
@@ -130,6 +132,7 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 	if(addresseeRegexp.indexIn(threadListing, 0) != -1) {
 		item->setAddressee(addresseeRegexp.cap(1));
 	} else {
+		item->deleteLater();
 		return;
 	}
 
