@@ -170,12 +170,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="134"/>
+        <location filename="../assets/PostMessage.qml" line="135"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="140"/>
+        <location filename="../assets/PostMessage.qml" line="142"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>

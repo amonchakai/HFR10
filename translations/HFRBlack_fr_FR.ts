@@ -170,12 +170,12 @@
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="134"/>
+        <location filename="../assets/PostMessage.qml" line="135"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="140"/>
+        <location filename="../assets/PostMessage.qml" line="142"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>

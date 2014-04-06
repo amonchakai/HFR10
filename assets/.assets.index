@@ -1,5 +1,5 @@
 1
-115
+120
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -8,6 +8,8 @@ Home.qml
 images/chickened.png
 images/default_avatar.png
 images/icon_about.png
+images/icon_bold.png
+images/icon_bold.svg
 images/icon_bottom.png
 images/icon_browse.png
 images/icon_code.png
@@ -27,6 +29,7 @@ images/icon_global.gif
 images/icon_global.svg
 images/icon_global2.png
 images/icon_home.png
+images/icon_italic.png
 images/icon_mp.png
 images/icon_next.png
 images/icon_next_all.png
@@ -38,6 +41,7 @@ images/icon_quote.svg
 images/icon_settings.png
 images/icon_top.png
 images/icon_top.svg
+images/icon_underline.png
 images/icon_write.png
 images/smiley/24.gif
 images/smiley/ange.gif
@@ -99,6 +103,7 @@ images/smiley/vomi.gif
 images/smiley/wahoo.gif
 images/smiley/whistle.gif
 images/smiley/wink.gif
+images/whiteFace - copie.png
 images/whiteFace.png
 images/whiteFace.svg
 images/whiteFace3.png

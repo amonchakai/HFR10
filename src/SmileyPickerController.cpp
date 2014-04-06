@@ -169,12 +169,18 @@ void SmileyPickerController::parse(const QString &page, int startingPosition) {
 
 
 void SmileyPickerController::getNextPage() {
+	if(m_IndexSubpagesInFile.length() == 0)
+		return;
+
 	m_lastId = std::min(m_lastId+1, m_IndexSubpagesInFile.length()-1);
 
 	parse(m_Page, m_IndexSubpagesInFile[m_lastId]);
 }
 
 void SmileyPickerController::getPrevPage() {
+	if(m_IndexSubpagesInFile.length() == 0)
+		return;
+
 	m_lastId = std::max(m_lastId-1, 0);
 
 	parse(m_Page, m_IndexSubpagesInFile[m_lastId]);

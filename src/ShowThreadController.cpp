@@ -309,11 +309,11 @@ void ShowThreadController::checkSuccessAddAddFavorite() {
 }
 
 void ShowThreadController::cleanupPost(QString &post) {
-
+	//qDebug() << post;
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "</p><div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\".+t([0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div><p>"		// message
+								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div>[&nbsp;]*<p>"		// message
 			);
 
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);

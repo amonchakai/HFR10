@@ -126,18 +126,21 @@ Page {
         },
         ActionItem {
             title: qsTr("Bold")
+            imageSource: "asset:///images/icon_bold.png"
             onTriggered: {
                 message.editor.insertPlainText("[b]" + message.editor.selectedText + "[/b]");
             }
         },
         ActionItem {
             title: qsTr("Italic")
+            imageSource: "asset:///images/icon_italic.png"
             onTriggered: {
                 message.editor.insertPlainText("[i]" + message.editor.selectedText + "[/i]");
             }
         },
         ActionItem {
             title: qsTr("Underline")
+            imageSource: "asset:///images/icon_underline.png"
             onTriggered: {
                 message.editor.insertPlainText("[u]" + message.editor.selectedText + "[/u]");
             }
