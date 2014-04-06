@@ -6,7 +6,7 @@
  */
 #include "SmileyPickerController.hpp"
 
- 
+
 
 #include <QDebug>
 #include <QNetworkAccessManager>
@@ -18,7 +18,10 @@
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
 
+#include <bb/cascades/Application>
 #include <bb/cascades/ThemeSupport>
+#include <bb/cascades/ColorTheme>
+#include <bb/cascades/Theme>
 
 
 static const QString defaultSmiley = QString("<table>")
@@ -185,9 +188,14 @@ void SmileyPickerController::updateView(const QString &webpage) {
 	}
 
 
+	QString colorHandling = "} ";
+	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+		colorHandling = "background-color:#000000; color:#FFFFFF; } ";
+	}
+
 	m_WebView->setHtml(QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
 				+ "table {table-layout:fixed; width: 800px; border-spacing: 30px; } th {text-align:left; text-decoration:underline;} td {width: 30px; overflow: hidden; }"	// render quotation table
-	            + "body {font-size:25px; } "  // switch webview color based on theme
+	            + "body {font-size:25px; " + colorHandling  // switch webview color based on theme
 	            + "p {font-size:25px;} "
 			+ "</style>"
 			+ "</head><body>" + webpage + "</body></html>", QUrl("local:///assets/images/smiley/"));

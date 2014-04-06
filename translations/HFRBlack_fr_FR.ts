@@ -274,22 +274,34 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../assets/Settings.qml" line="16"/>
-        <location filename="../assets/Settings.qml" line="44"/>
-        <location filename="../assets/Settings.qml" line="64"/>
-        <location filename="../assets/Settings.qml" line="74"/>
+        <location filename="../assets/Settings.qml" line="20"/>
+        <location filename="../assets/Settings.qml" line="45"/>
+        <location filename="../assets/Settings.qml" line="119"/>
+        <location filename="../assets/Settings.qml" line="129"/>
         <source>User: </source>
         <translation>Utilisateur: </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="23"/>
+        <location filename="../assets/Settings.qml" line="27"/>
         <source>Connect</source>
         <translation>Se connecter</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="38"/>
+        <location filename="../assets/Settings.qml" line="39"/>
         <source>log out</source>
         <translation>Se deconnecter</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="56"/>
+        <location filename="../assets/Settings.qml" line="69"/>
+        <source>Font size: </source>
+        <translation>Taille des polices</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="81"/>
+        <location filename="../assets/Settings.qml" line="94"/>
+        <source>Smiley size: </source>
+        <translation>Taille des smileys</translation>
     </message>
 </context>
 <context>
@@ -332,7 +344,7 @@
 <context>
     <name>SmileyPickerController</name>
     <message>
-        <location filename="../src/SmileyPickerController.cpp" line="105"/>
+        <location filename="../src/SmileyPickerController.cpp" line="108"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

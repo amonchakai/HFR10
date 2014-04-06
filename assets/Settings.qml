@@ -1,5 +1,6 @@
 import bb.cascades 1.2
 import Network.LoginController 1.0
+import conf.settings 1.0
 
 NavigationPane {
     id: nav
@@ -11,9 +12,12 @@ NavigationPane {
 	    Container {
 	        layout: StackLayout {}
 	        
+            // --------------------------------------------------------------------------
+            // Login settings
+            
 	        Label {
 	            id: userLabel
-                text: qsTr("User: ") + userName
+                text: qsTr("User: ") + settingPage.userName
             }
 
 	        
@@ -30,9 +34,6 @@ NavigationPane {
 	        }
 	        
 	        
-	        // --------------------------------------------------------------------------
-	        // log out
-	        
 	        Button {
 	            id: logOutButton
 	            text: qsTr("log out");
@@ -45,6 +46,57 @@ NavigationPane {
 	            }
 	            visible: loginController.isLogged()
 	        }
+	        
+	        
+            // --------------------------------------------------------------------------
+            // Font size settings
+                
+	        Label {
+	            id: setFontSizeLabel
+                text: qsTr("Font size: ") + appSettings.fontSize.toString() + "px"
+            }
+	            
+	        Slider {
+	            id: sliderFontSize
+	            fromValue: 15
+                toValue: 60
+                value: appSettings.fontSize
+	            horizontalAlignment: HorizontalAlignment.Fill
+	                
+	                
+	            onValueChanged: {
+	                appSettings.fontSize = value;
+	                setFontSizeLabel.text = qsTr("Font size: ") + appSettings.fontSize.toString() + "px"
+                    appSettings.saveSettings(); 
+	             }
+
+            }
+	        
+	        
+            // --------------------------------------------------------------------------
+            // smiley settings
+            
+            Label {
+                id: setSmileySizeLabel
+                text: qsTr("Smiley size: ") + (appSettings.smileySize*40).toString() + "%"
+            }
+            
+            Slider {
+                id: sliderSmileySize
+                fromValue: 2
+                toValue: 5
+                value: appSettings.smileySize
+                horizontalAlignment: HorizontalAlignment.Fill
+                
+                
+                onValueChanged: {
+                    appSettings.smileySize = value;
+                    setSmileySizeLabel.text = qsTr("Smiley size: ") + (appSettings.smileySize*40).toString() + "%"
+                    appSettings.saveSettings(); 
+                }
+            
+            }
+            
 	    }
 	    
 	    
@@ -56,6 +108,9 @@ NavigationPane {
                 id: loginPage
                 source: "LoginForm.qml"
             
+            },
+            Settings {
+                id: appSettings
             }
 	    ]
 	    
@@ -75,4 +130,5 @@ NavigationPane {
         loginButton.setVisible(!loginController.isLogged());
         logOutButton.setVisible(loginController.isLogged());
     }
+	
 }

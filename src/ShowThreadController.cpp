@@ -25,7 +25,7 @@
 #include  "HFRNetworkAccessManager.hpp"
 #include  "Network/WebResourceManager.h"
 #include  "DataObjects.h"
-
+#include  "Settings.hpp"
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
@@ -332,6 +332,18 @@ void ShowThreadController::cleanupPost(QString &post) {
 		lastPos = pos;
 	}
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+
+	if(Settings::smileySize() != 2) {
+		// resize smiley perso
+		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/images/");
+		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr/images/");
+
+		// resize default smileys
+		smileys = QRegExp("<img src=\"http://forum-images.hardware.fr");
+		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr");
+
+	}
+
 
 	post = cleanPost;
 	//qDebug() << post;
