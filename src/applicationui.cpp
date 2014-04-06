@@ -32,6 +32,7 @@
 #include "ShowThreadController.hpp"
 #include "PrivateMessageController.hpp"
 #include "PostMessageController.hpp"
+#include "SmileyPickerController.hpp"
 #include "Network/NetImageTracker.h"
 
 
@@ -69,6 +70,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<ShowThreadController>("Network.ShowThreadController", 1, 0, "ShowThreadController");
     qmlRegisterType<PrivateMessageController>("Network.PrivateMessageController", 1, 0, "PrivateMessageController");
     qmlRegisterType<PostMessageController>("Network.PostMessageController", 1, 0, "PostMessageController");
+    qmlRegisterType<SmileyPickerController>("Network.SmileyPickerController", 1, 0, "SmileyPickerController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
 
 

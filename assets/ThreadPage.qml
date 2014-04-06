@@ -135,7 +135,7 @@ Page {
                             }
                             Container {
                                 id: lineContainer
-                                background: Color.create("#00A7DE") 
+                                background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#0080FE") : Color.create("#00A7DE") 
                                 minHeight: 4
                                 maxHeight: 4
                                 minWidth: 800
@@ -280,6 +280,20 @@ Page {
         	onTriggered: {
         		showThreadController.nextPage();
                 activityIndicator.start();
+            }
+        },
+        ActionItem {
+            title: qsTr("To Top")
+            imageSource: "asset:///images/icon_top.png"
+            onTriggered: {
+                threadView.scrollToPosition(ScrollPosition.Beginning, ScrollAnimation.Default);
+            }
+        },
+        ActionItem {
+            title: qsTr("To Bottom")
+            imageSource: "asset:///images/icon_bottom.png"
+            onTriggered: {
+                threadView.scrollToPosition(ScrollPosition.End, ScrollAnimation.Default);
             }
         }
         

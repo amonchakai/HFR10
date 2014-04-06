@@ -1,5 +1,5 @@
 1
-107
+115
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -8,7 +8,10 @@ Home.qml
 images/chickened.png
 images/default_avatar.png
 images/icon_about.png
+images/icon_bottom.png
 images/icon_browse.png
+images/icon_code.png
+images/icon_code.svg
 images/icon_drap_lecture.gif
 images/icon_drap_lecture.png
 images/icon_drap_lecture.svg
@@ -30,7 +33,11 @@ images/icon_next_all.png
 images/icon_pen.png
 images/icon_prev.png
 images/icon_prev_all.png
+images/icon_quote.png
+images/icon_quote.svg
 images/icon_settings.png
+images/icon_top.png
+images/icon_top.svg
 images/icon_write.png
 images/smiley/24.gif
 images/smiley/ange.gif
@@ -87,17 +94,17 @@ images/smiley/spamafote.gif
 images/smiley/spookie.gif
 images/smiley/sum.gif
 images/smiley/sweat.gif
-images/smiley/Thumbs.db
 images/smiley/tongue.gif
 images/smiley/vomi.gif
 images/smiley/wahoo.gif
 images/smiley/whistle.gif
 images/smiley/wink.gif
-images/Thumbs.db
+images/whiteFace.png
+images/whiteFace.svg
+images/whiteFace3.png
 LoginForm.qml
 main.qml
 MainWindowTabbedPane.qml
-model/feeds.xml
 model/listCategories.xml
 model/sample-category-list.xml
 model/sample-topic-list.xml
@@ -106,4 +113,5 @@ PostRenderer.qml
 PrivateMessage.qml
 RefreshHeader.qml
 Settings.qml
+SmileyPicker.qml
 ThreadPage.qml

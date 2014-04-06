@@ -14,6 +14,7 @@ device {
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -29,6 +30,7 @@ device {
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 
@@ -44,6 +46,7 @@ device {
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -59,6 +62,7 @@ device {
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
@@ -76,6 +80,7 @@ simulator {
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
@@ -91,6 +96,7 @@ simulator {
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
+                 $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
@@ -108,11 +114,6 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../src/*.cc) \
              $$quote($$BASEDIR/../src/*.cpp) \
              $$quote($$BASEDIR/../src/*.cxx) \
-             $$quote($$BASEDIR/../src/Helper/*.c) \
-             $$quote($$BASEDIR/../src/Helper/*.c++) \
-             $$quote($$BASEDIR/../src/Helper/*.cc) \
-             $$quote($$BASEDIR/../src/Helper/*.cpp) \
-             $$quote($$BASEDIR/../src/Helper/*.cxx) \
              $$quote($$BASEDIR/../src/Network/*.c) \
              $$quote($$BASEDIR/../src/Network/*.c++) \
              $$quote($$BASEDIR/../src/Network/*.cc) \

@@ -192,34 +192,42 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 	item->setUrlFirstPage(urlFirstPage);
 
 
-	QRegExp firstPostUrlRegexp("<td class=\"sujetCase4\">.*<a href=\"(.+)\" class=\"cCatTopic\">([0-9]+)</a></td>");
-	firstPostUrlRegexp.setCaseSensitivity(Qt::CaseSensitive);
-	firstPostUrlRegexp.setMinimal(true);
+	QRegExp pageNumberRegExp("class=\"cCatTopic\">([0-9]+)</a></td><td class=\"sujetCase5\">");
+	pageNumberRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	pageNumberRegExp.setMinimal(true);
 
-	if(firstPostUrlRegexp.indexIn(threadListing, 0) != -1) {
-		QString s = firstPostUrlRegexp.cap(1);
-		s.replace(andAmp, "&");
-		item->setUrlLastPostRead(s);
-
-		item->setPages(firstPostUrlRegexp.cap(2));
+	if(pageNumberRegExp.indexIn(threadListing, 0) != -1) {
+		item->setPages(pageNumberRegExp.cap(1));
+		qDebug() << "page number: " << pageNumberRegExp.cap(1);
 	} else {
 		item->setPages("1");
 	}
 
-	QRegExp lastReadPost("<td class=\"sujetCase9 cBackCouleurTab[0-9] \"><a href=\"(.*)\" class=\"Tableau\">(.*)<br /><b>(.*)</b>");
-	lastReadPost.setCaseSensitivity(Qt::CaseSensitive);
-	lastReadPost.setMinimal(true);
+	QRegExp lastPostReadRegexp("</td><td class=\"sujetCase5\"><a href=\"(.*#t[0-9bas]+)\"><img src=");
+	lastPostReadRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	lastPostReadRegexp.setMinimal(true);
 
-	if(lastReadPost.indexIn(threadListing, 0) != -1) {
-		QString s = lastReadPost.cap(2);
+	if(lastPostReadRegexp.indexIn(threadListing, 0) != -1) {
+		QString s = lastPostReadRegexp.cap(1);
+		s.replace(andAmp, "&");
+		qDebug() << "lastPostReadRegexp: " << s;
+		item->setUrlLastPostRead(s);
+	}
+
+	QRegExp lastPageRegExp("<td class=\"sujetCase9 cBackCouleurTab[0-9] \"><a href=\"(.*)\" class=\"Tableau\">(.*)<br /><b>(.*)</b>");
+	lastPageRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	lastPageRegExp.setMinimal(true);
+
+	if(lastPageRegExp.indexIn(threadListing, 0) != -1) {
+		QString s = lastPageRegExp.cap(2);
 		s.replace(nbsp, " ");
 		item->setTimestamp(s);
 
-		s = lastReadPost.cap(1);
+		s = lastPageRegExp.cap(1);
 		s.replace(andAmp, "&");
 		item->setUrlLastPage(s);
 
-		item->setLastAuthor(lastReadPost.cap(3));
+		item->setLastAuthor(lastPageRegExp.cap(3));
 	}
 
 	QRegExp flagTypeRegexp("<img src=\"http://forum-images.hardware.fr/themes_static/images_forum/1/favoris.gif\"");

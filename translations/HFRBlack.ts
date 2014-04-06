@@ -140,18 +140,43 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/PostMessage.qml" line="22"/>
+        <location filename="../assets/PostMessage.qml" line="25"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="25"/>
+        <location filename="../assets/PostMessage.qml" line="28"/>
         <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="53"/>
+        <location filename="../assets/PostMessage.qml" line="56"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="114"/>
+        <source>Quote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="121"/>
+        <source>Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="128"/>
+        <source>Bold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="134"/>
+        <source>Italic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="140"/>
+        <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -277,6 +302,42 @@
     </message>
 </context>
 <context>
+    <name>SmileyPicker</name>
+    <message>
+        <location filename="../assets/SmileyPicker.qml" line="33"/>
+        <source>smiley</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SmileyPicker.qml" line="40"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SmileyPicker.qml" line="48"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SmileyPicker.qml" line="56"/>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SmileyPicker.qml" line="64"/>
+        <source>Previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SmileyPickerController</name>
+    <message>
+        <location filename="../src/SmileyPickerController.cpp" line="105"/>
+        <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ThreadPage</name>
     <message>
         <location filename="../assets/ThreadPage.qml" line="154"/>
@@ -326,6 +387,16 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="277"/>
         <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="286"/>
+        <source>To Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="293"/>
+        <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

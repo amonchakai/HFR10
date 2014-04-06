@@ -16,6 +16,9 @@ Page {
     
     property string quoteURL
     
+    property string smileyToAdd
+    
+    actionBarVisibility: ChromeVisibility.Visible
     
     titleBar: TitleBar {
         id: pageTitleBar
@@ -91,6 +94,53 @@ Page {
                 message.text = message_loaded;
                 activityIndicator.stop();
             }
+        },
+        ComponentDefinition {
+            id: smileyPicker
+            source: "SmileyPicker.qml"
+        }
+    ]
+    
+    actions: [
+        ActionItem {
+            title: "Smiley"
+            imageSource: "asset:///images/whiteFace.png"
+            onTriggered: {
+                var page = smileyPicker.createObject(0);
+                nav.push(page);
+            }
+        },
+        ActionItem {
+            title: qsTr("Quote")
+            imageSource: "asset:///images/icon_quote.png"
+            onTriggered: {
+                message.editor.insertPlainText("[quote]" + message.editor.selectedText + "[/quote]");
+            }
+        },
+        ActionItem {
+            title: qsTr("Code")
+            imageSource: "asset:///images/icon_code.png"
+            onTriggered: {
+                message.editor.insertPlainText("[cpp]" + message.editor.selectedText + "[/cpp]");
+            }
+        },
+        ActionItem {
+            title: qsTr("Bold")
+            onTriggered: {
+                message.editor.insertPlainText("[b]" + message.editor.selectedText + "[/b]");
+            }
+        },
+        ActionItem {
+            title: qsTr("Italic")
+            onTriggered: {
+                message.editor.insertPlainText("[i]" + message.editor.selectedText + "[/i]");
+            }
+        },
+        ActionItem {
+            title: qsTr("Underline")
+            onTriggered: {
+                message.editor.insertPlainText("[u]" + message.editor.selectedText + "[/u]");
+            }
         }
     ]
     
@@ -108,5 +158,13 @@ Page {
     
     onCreationCompleted: {
         mode = 1;
+    }
+    
+    onSmileyToAddChanged: {
+        if(smileyToAdd == "")
+        	return;
+        	
+        message.editor.insertPlainText(smileyToAdd);
+        
     }
 }
