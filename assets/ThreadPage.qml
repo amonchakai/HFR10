@@ -1,12 +1,14 @@
 import bb.cascades 1.2
 import Network.ShowThreadController 1.0
 import com.netimage 1.0
+import bb.system 1.2
 
 Page {
     id: pageThread
     property string  urlPage
     property string  caption
     property bool 	 needUpdate
+    property string  tentativeNewURL
         
     Container {
         id: pageContainer
@@ -210,6 +212,11 @@ Page {
             function addToFavorite(responseID) {
                 showThreadController.addToFavorite(responseID);
             }
+            
+            function invokeWebBrowser(urlPage) {
+                tentativeNewURL = urlPage;
+                leaveAppDialog.show();
+            }
         }
     }
     
@@ -225,6 +232,29 @@ Page {
             id: postPage
             source: "PostMessage.qml"
             
+        },
+        Invocation {
+            id: linkInvocation
+            
+            query {
+                onUriChanged: {
+                    linkInvocation.query.updateQuery();
+                }
+            }
+            
+            onArmed: {
+                trigger("bb.action.OPEN");
+                Application.quit();
+            }
+        },
+        SystemDialog {
+            id: leaveAppDialog
+            title: qsTr("Friendly warning")
+            body: qsTr("You are going to leave the application, do you want to continue?")
+            onFinished: {
+                if(result == SystemUiResult.ConfirmButtonSelection)
+                	linkInvocation.query.uri = tentativeNewURL;
+            }
         }
     ]
     

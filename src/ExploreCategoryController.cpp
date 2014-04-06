@@ -198,7 +198,6 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 
 	if(pageNumberRegExp.indexIn(threadListing, 0) != -1) {
 		item->setPages(pageNumberRegExp.cap(1));
-		qDebug() << "page number: " << pageNumberRegExp.cap(1);
 	} else {
 		item->setPages("1");
 	}
@@ -210,7 +209,6 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 	if(lastPostReadRegexp.indexIn(threadListing, 0) != -1) {
 		QString s = lastPostReadRegexp.cap(1);
 		s.replace(andAmp, "&");
-		qDebug() << "lastPostReadRegexp: " << s;
 		item->setUrlLastPostRead(s);
 	}
 

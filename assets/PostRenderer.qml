@@ -21,6 +21,14 @@ Container {
         		+ "</head><body>" + ListItemData.post + "</body></html>"
         settings.textAutosizingEnabled: false
 
+		onNavigationRequested: {
+    		if(request.navigationType != WebNavigationType.Other) {
+    		    request.action = WebNavigationRequestAction.Ignore;
+                headerContainer.ListItem.view.invokeWebBrowser(request.url);
+    		} else { 
+    			request.action = WebNavigationRequestAction.Accept;
+    		}
+    	}
     }
     
     
