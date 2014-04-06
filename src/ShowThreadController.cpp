@@ -458,10 +458,25 @@ void ShowThreadController::firstPage() {
 		showThread(m_Url);
 }
 
-void ShowThreadController::lastPage() {
-	if(!m_UrlLastPage.isEmpty())
-		showThread(m_UrlLastPage);
-	else {
+void ShowThreadController::lastPage(bool bas) {
+	if(!m_UrlLastPage.isEmpty()) {
+		if(!bas)
+			showThread(m_UrlLastPage);
+		else {
+			QRegExp goToPost("#t([0-9]+)");
+			int pos = 0;
+			if((pos = goToPost.indexIn(m_UrlLastPage, 0)) != -1) {
+					showThread(m_UrlLastPage.mid(0, pos) + "#bas");
+			} else {
+				QRegExp goToEnd("#bas");
+				if(goToEnd.indexIn(m_UrlLastPage, 0) != -1) {
+					showThread(m_UrlLastPage);
+					return;
+				}
+			}
+			showThread(m_UrlLastPage + "#bas");
+		}
+	} else {
 		QRegExp goToPost("#t([0-9]+)");
 		int pos = 0;
 		if((pos = goToPost.indexIn(m_Url, 0)) != -1) {

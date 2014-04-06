@@ -191,17 +191,6 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 	item->setRead(read);
 	item->setUrlFirstPage(urlFirstPage);
 
-
-	QRegExp pageNumberRegExp("class=\"cCatTopic\">([0-9]+)</a></td><td class=\"sujetCase5\">");
-	pageNumberRegExp.setCaseSensitivity(Qt::CaseSensitive);
-	pageNumberRegExp.setMinimal(true);
-
-	if(pageNumberRegExp.indexIn(threadListing, 0) != -1) {
-		item->setPages(pageNumberRegExp.cap(1));
-	} else {
-		item->setPages("1");
-	}
-
 	QRegExp lastPostReadRegexp("</td><td class=\"sujetCase5\"><a href=\"(.*#t[0-9bas]+)\"><img src=");
 	lastPostReadRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	lastPostReadRegexp.setMinimal(true);
@@ -210,6 +199,22 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 		QString s = lastPostReadRegexp.cap(1);
 		s.replace(andAmp, "&");
 		item->setUrlLastPostRead(s);
+	}
+
+	QRegExp pageNumberRegExp("<td class=\"sujetCase4\"><a href=\"(.*)\" class=\"cCatTopic\">([0-9]+)</a></td><td class=\"sujetCase5\">");
+	pageNumberRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	pageNumberRegExp.setMinimal(true);
+
+	if(pageNumberRegExp.indexIn(threadListing, 0) != -1) {
+		item->setPages(pageNumberRegExp.cap(2));
+
+		if(item->getUrlLastPostRead() == "") {
+			QString s = pageNumberRegExp.cap(1);
+			s.replace(andAmp, "&");
+			item->setUrlLastPostRead(s);
+		}
+	} else {
+		item->setPages("1");
 	}
 
 	QRegExp lastPageRegExp("<td class=\"sujetCase9 cBackCouleurTab[0-9] \"><a href=\"(.*)\" class=\"Tableau\">(.*)<br /><b>(.*)</b>");

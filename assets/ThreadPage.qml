@@ -338,7 +338,7 @@ Page {
     
     onNeedUpdateChanged: {
         if(needUpdate) {
-        	showThreadController.showThread(urlPage + "#bas");
+        	showThreadController.lastPage(true);
         	activityIndicator.start();
             needUpdate = false;
         } 

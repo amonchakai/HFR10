@@ -65,7 +65,7 @@ class ShowThreadController : public QObject {
 		void nextPage();
 		void prevPage();
 		void firstPage();
-		void lastPage();
+		void lastPage(bool bas = false);
 		void scrollToItem();
 
 
