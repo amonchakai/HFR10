@@ -72,7 +72,7 @@ void WebResourceManager::getImage(const QString& requestedURL) const {
 			}
 		m_EditQueue->unlock();
 
-		emit onImageReady("loading","loading");
+		emit onImageReady(requestedURL,"loading");
 
 		// otherwise let's download the file
 		QNetworkRequest request(url);

@@ -5,11 +5,14 @@ import bb.system 1.2
 
 Page {
     id: pageThread
+    property variant tpage
+    
     property string  urlPage
     property string  caption
     property bool 	 needUpdate
     property string  tentativeNewURL
             
+    
     Container {
         id: pageContainer
 
@@ -52,9 +55,10 @@ Page {
                     quoteURL = quoteURL + "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + dataModel.data(selection[i]).index.toString();
                 }
                 
-                var page = postPage.createObject();                
-                page.quoteURL = quoteURL;
-                nav.push(page);
+                if(!tpage)
+                	tpage = postPage.createObject();                
+                tpage.quoteURL = quoteURL;
+                nav.push(tpage);
                 
             }
             listItemComponents: [
@@ -192,21 +196,23 @@ Page {
             function gotoSingleQuoteMessage(messageID) {
                 var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString();
         
-                var page = postPage.createObject();                
-                page.quoteURL = quoteURL;
-                nav.push(page);
+                if(!tpage)
+                	tpage = postPage.createObject();                
+                tpage.quoteURL = quoteURL;
+                nav.push(tpage);
             }
             
             function gotoEditMessage(urlEditPage) {
                 if(urlEditPage == "")
                 	return;
                 	
-                var page = postPage.createObject();
+                if(!tpage)
+                	tpage = postPage.createObject();
                 
                 // Set the url of the page to load and thread caption. 
-                page.editURL = urlEditPage
+                tpage.editURL = urlEditPage
                 
-                nav.push(page);
+                nav.push(tpage);
             }
             
             function addToFavorite(responseID) {
@@ -221,6 +227,10 @@ Page {
             function notifyWebViewLoaded() {
                 showThreadController.notifyItemLoaded();
             }
+            
+            function redirectWithinApp(newUrl) {
+                urlPage = newUrl;
+            }
         }
     }
     
@@ -230,6 +240,13 @@ Page {
             
             onComplete: {
                 activityIndicator.stop();
+                if(showThreadController.isLastPage()) {
+                    nextPageAction.title = qsTr("Refresh");
+                    nextPageAction.imageSource = "asset:///images/icon_refresh.png"
+                } else {
+                    nextPageAction.title = qsTr("Next page");
+                    nextPageAction.imageSource = "asset:///images/icon_next.png"
+                }
             }
         },
         ComponentDefinition {
@@ -268,17 +285,18 @@ Page {
             imageSource: "asset:///images/icon_write.png"
             ActionBar.placement: ActionBarPlacement.OnBar
             onTriggered: {
-                var page = postPage.createObject();
+                if(!tpage)
+                    tpage = postPage.createObject();
                 
-                page.hashCheck = showThreadController.hashCheck;
-                page.postID = showThreadController.postID;
-                page.page	= showThreadController.pages;
-                page.catID	= showThreadController.catID;
-                page.pseudo = showThreadController.pseudo;
-                page.threadTitle = showThreadController.title;
-                page.addSignature= showThreadController.sign;
+                tpage.hashCheck = showThreadController.hashCheck;
+                tpage.postID = showThreadController.postID;
+                tpage.page	= showThreadController.pages;
+                tpage.catID	= showThreadController.catID;
+                tpage.pseudo = showThreadController.pseudo;
+                tpage.threadTitle = showThreadController.title;
+                tpage.addSignature= showThreadController.sign;
                                 
-                nav.push(page);
+                nav.push(tpage);
                 
                 
             }
@@ -308,6 +326,7 @@ Page {
             }
         },
         ActionItem {
+            id: nextPageAction
         	title: qsTr("Next page")
         	imageSource: "asset:///images/icon_next.png"
             ActionBar.placement: ActionBarPlacement.OnBar

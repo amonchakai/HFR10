@@ -24,8 +24,14 @@ Container {
 
 		onNavigationRequested: {
     		if(request.navigationType != WebNavigationType.Other) {
-    		    request.action = WebNavigationRequestAction.Ignore;
-                headerContainer.ListItem.view.invokeWebBrowser(request.url);
+                request.action = WebNavigationRequestAction.Ignore;
+                
+    		    if(request.url.toString().substr(0,31) == "http://forum.hardware.fr/forum2") {
+                    headerContainer.ListItem.view.redirectWithinApp(request.url.toString().substring(24));
+                } else {
+                    headerContainer.ListItem.view.invokeWebBrowser(request.url);
+                }
+
     		} else { 
     			request.action = WebNavigationRequestAction.Accept;
     		}

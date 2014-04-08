@@ -2,6 +2,8 @@ import bb.cascades 1.2
 
 NavigationPane {
     id: nav
+    property variant tpage
+    
 	Page {
 	    Container {
             
@@ -45,13 +47,14 @@ NavigationPane {
                     var chosenItem = dataModel.data(indexPath);
                     
                     // Create the content page and push it on top to drill down to it.
-                    var page = categoryPage.createObject();
+                    if(!tpage)
+                        tpage = categoryPage.createObject();
                     
                     // Set the url of the page to load and thread caption. 
-                    page.urlPage = chosenItem.url
-                    page.caption   = chosenItem.title
+                    tpage.urlPage = chosenItem.url
+                    tpage.caption   = chosenItem.title
                     
-                    nav.push(page);
+                    nav.push(tpage);
                 }
                 
                 

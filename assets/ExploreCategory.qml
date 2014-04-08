@@ -6,6 +6,7 @@ Page {
     property string  urlPage
     property string  caption
     property int 	 flagType
+    property variant tpage
         
     titleBar: TitleBar {
         id: segmentedTitle
@@ -36,6 +37,8 @@ Page {
                 value: ("read")
             }
         ]
+        
+        
         
         onSelectedValueChanged: {
             if (selectedValue == "all")
@@ -220,35 +223,39 @@ Page {
             ]
             
             function gotoPage(urlFirstPage, titleTopic) {
-                var page = threadPage.createObject();
-                
+                if(!tpage) {
+                    tpage = threadPage.createObject();
+                }
                 // Set the url of the page to load and thread caption. 
-                page.urlPage = urlFirstPage
-                page.caption   = titleTopic
+                tpage.urlPage = urlFirstPage
+                tpage.caption   = titleTopic
                 
-                nav.push(page);
+                nav.push(tpage);
             }
             
             onTriggered: {
                 var chosenItem = dataModel.data(indexPath);
                 
                 // Create the content page and push it on top to drill down to it.
-                var page = threadPage.createObject();
+                if(!tpage) {
+                    tpage = threadPage.createObject();
+                }
                 
                 // Set the url of the page to load and thread caption. 
                 if(chosenItem.urlLastPostRead != "")
-                    page.urlPage = chosenItem.urlLastPostRead;
+                    tpage.urlPage = chosenItem.urlLastPostRead;
                 else
-                    page.urlPage = chosenItem.urlFirstPage;
-                page.caption   = chosenItem.title
+                    tpage.urlPage = chosenItem.urlFirstPage;
+                tpage.caption   = chosenItem.title
                 
-                nav.push(page);
+                nav.push(tpage);
             }
             
             onRefreshTriggered: {
                 activityIndicator.start();
                 exploreCategoryController.refresh();
             }
+            
         }
         
     }

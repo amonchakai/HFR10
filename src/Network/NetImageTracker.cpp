@@ -32,14 +32,14 @@ void NetImageTracker::onCreationCompleted()
 void NetImageTracker::onImageReady(const QString imageName, const QString filePath) {
 	if (imageName.compare(mSource) == 0) {
 
-        // Set the path to the image that is now downloaded and cached in the data folder on the device.
-        QUrl url = QUrl(filePath);
-        setImageSource(url);
-    } else if (imageName.compare("loading") == 0) {
-
-        // If we don't have an image to display, let's display a loading image
-        QUrl url = QUrl("asset:///images/default_avatar.png");
-        setImageSource(url);
+		if(filePath == "loading") {
+			QUrl url = QUrl("asset:///images/default_avatar.png");
+			setImageSource(url);
+		} else {
+			// Set the path to the image that is now downloaded and cached in the data folder on the device.
+			QUrl url = QUrl(filePath);
+        	setImageSource(url);
+		}
     }
 }
 

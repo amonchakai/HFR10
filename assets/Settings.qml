@@ -4,6 +4,7 @@ import conf.settings 1.0
 
 NavigationPane {
     id: nav
+    property variant tpage
     
 	Page {
         id: settingPage
@@ -27,8 +28,9 @@ NavigationPane {
 	            text: qsTr("Connect")
 	            horizontalAlignment: HorizontalAlignment.Fill
 	            onClicked: {
-                    var page = loginPage.createObject();
-                    nav.push(page);
+	                if(!tapge)
+                    	tpage = loginPage.createObject();
+                    nav.push(tpage);
 	            }
 	            visible: !loginController.isLogged()
 	        }

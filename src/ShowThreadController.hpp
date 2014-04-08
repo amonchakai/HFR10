@@ -80,6 +80,8 @@ class ShowThreadController : public QObject {
 		const QString &getThreadTitle() const	{ return m_ThreadTitle; }
 		bool 		   isAddSignature()const	{ return m_AddSignature; }
 
+		bool		   isLastPage() const		{ return m_UrlLastPage == ""; }
+
 		void  notifyItemLoaded();
 
 	// ----------------------------------------------------------------------------------------------

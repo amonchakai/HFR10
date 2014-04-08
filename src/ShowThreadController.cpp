@@ -396,7 +396,6 @@ void ShowThreadController::updateView() {
 void ShowThreadController::notifyItemLoaded() {
 	++m_NbWebviewLoaded;
 	if(m_NbWebviewLoaded > 3 && !m_ScrollAtLocation) {
-		qDebug() << "call scroll!";
 		scrollToItem();
 	}
 }

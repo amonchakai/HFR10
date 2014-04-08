@@ -3,6 +3,7 @@ import Network.PrivateMessageController 1.0
 
 NavigationPane {
     id: nav
+    property variant tpage
     
 	Page {
 	    Container {
@@ -134,27 +135,28 @@ NavigationPane {
 	            ]
 	            
                 function gotoPage(urlFirstPage, titleTopic) {
-                    console.log(urlFirstPage)
-                    var page = threadPage.createObject();
+                    if(!tpage)
+                    	tpage = threadPage.createObject();
                     
                     // Set the url of the page to load and thread caption. 
-                    page.urlPage = urlFirstPage
-                    page.caption   = titleTopic
+                    tpage.urlPage = urlFirstPage
+                    tpage.caption   = titleTopic
                     
-                    nav.push(page);
+                    nav.push(tpage);
                 }
 	            
 	            onTriggered: {
 	                var chosenItem = dataModel.data(indexPath);
 	                
 	                // Create the content page and push it on top to drill down to it.
-	                var page = threadPage.createObject();
+                    if(!tpage)
+	                   tpage = threadPage.createObject();
 	                
 	                // Set the url of the page to load and thread caption. 
-	                page.urlPage = chosenItem.urlLastPage
-	                page.caption   = chosenItem.title
+                   tpage.urlPage = chosenItem.urlLastPage
+                   tpage.caption   = chosenItem.title
 	                
-	                nav.push(page);
+                   nav.push(tpage);
 	            }
 	            
 	            onRefreshTriggered: {

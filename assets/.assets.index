@@ -1,5 +1,5 @@
 1
-120
+122
 DisplayCategoryListPage.qml
 DisplayTopicListPage.qml
 ExploreCategory.qml
@@ -38,6 +38,8 @@ images/icon_prev.png
 images/icon_prev_all.png
 images/icon_quote.png
 images/icon_quote.svg
+images/icon_refresh - copie.png
+images/icon_refresh.png
 images/icon_settings.png
 images/icon_top.png
 images/icon_top.svg

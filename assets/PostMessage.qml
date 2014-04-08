@@ -3,6 +3,8 @@ import Network.PostMessageController 1.0
 
 Page {
     id: postMesssage
+    property variant tpage
+    
     property string  hashCheck
     property string  postID
     property string  catID
@@ -106,8 +108,9 @@ Page {
             title: "Smiley"
             imageSource: "asset:///images/whiteFace.png"
             onTriggered: {
-                var page = smileyPicker.createObject(0);
-                nav.push(page);
+                if(!tpage)
+                    tpage = smileyPicker.createObject(0);
+                nav.push(tpage);
             }
         },
         ActionItem {
