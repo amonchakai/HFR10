@@ -307,8 +307,8 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="70"/>
-        <location filename="../src/ShowThreadController.cpp" line="303"/>
+        <location filename="../src/ShowThreadController.cpp" line="72"/>
+        <location filename="../src/ShowThreadController.cpp" line="305"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -377,47 +377,47 @@
         <translation>Ajouter aux favoris</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="252"/>
+        <location filename="../assets/ThreadPage.qml" line="256"/>
         <source>Friendly warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="253"/>
+        <location filename="../assets/ThreadPage.qml" line="257"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation>Vous êtes sur le pont de quitter l&apos;application, êtes vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="263"/>
+        <location filename="../assets/ThreadPage.qml" line="267"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="283"/>
+        <location filename="../assets/ThreadPage.qml" line="287"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="291"/>
+        <location filename="../assets/ThreadPage.qml" line="295"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="299"/>
+        <location filename="../assets/ThreadPage.qml" line="303"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="307"/>
+        <location filename="../assets/ThreadPage.qml" line="311"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="316"/>
+        <location filename="../assets/ThreadPage.qml" line="320"/>
         <source>To Top</source>
         <translation>Haut de page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="323"/>
+        <location filename="../assets/ThreadPage.qml" line="327"/>
         <source>To Bottom</source>
         <translation>Bas de page</translation>
     </message>

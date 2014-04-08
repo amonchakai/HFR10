@@ -45,6 +45,9 @@ class ShowThreadController : public QObject {
 		QString								 m_HashCheck;
 		bool								 m_AddSignature;
 
+		bool 								 m_ScrollAtLocation;
+		int									 m_NbWebviewLoaded;
+
 	// ----------------------------------------------------------------------------------------------
 	public:
 		ShowThreadController(QObject *parent = 0);
@@ -76,6 +79,8 @@ class ShowThreadController : public QObject {
 		const QString &getPseudo() 		const	{ return m_Pseudo; }
 		const QString &getThreadTitle() const	{ return m_ThreadTitle; }
 		bool 		   isAddSignature()const	{ return m_AddSignature; }
+
+		void  notifyItemLoaded();
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:

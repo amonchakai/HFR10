@@ -208,7 +208,7 @@ private:
 
 public:
 
-	PostDetailItem(QObject *parent = 0) : QObject(parent) {};
+	PostDetailItem(QObject *parent = 0) : QObject(parent), m_Index(0) {};
 	virtual ~PostDetailItem() {}
 
 	inline const QString &getAuthor() const				{ return m_Author; }

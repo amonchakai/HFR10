@@ -211,7 +211,7 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 		if(item->getUrlLastPostRead() == "") {
 			QString s = pageNumberRegExp.cap(1);
 			s.replace(andAmp, "&");
-			item->setUrlLastPostRead(s);
+			item->setUrlLastPostRead(s+"#bas");
 		}
 	} else {
 		item->setPages("1");

@@ -29,7 +29,7 @@
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>) {
+	: QObject(parent), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0) {
 }
 
 
@@ -39,6 +39,8 @@ void ShowThreadController::showThread(const QString &url) {
 	// -----------------------------------------------------------------------------------------
 	// request page
 	m_Url = url;
+	m_ScrollAtLocation = false;
+	m_NbWebviewLoaded = 0;
 
 	QNetworkRequest request(DefineConsts::FORUM_URL+url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -389,11 +391,19 @@ void ShowThreadController::updateView() {
 	dataModel->clear();
 	dataModel->insertList(datas);
 
-	scrollToItem();
+}
 
+void ShowThreadController::notifyItemLoaded() {
+	++m_NbWebviewLoaded;
+	if(m_NbWebviewLoaded > 3 && !m_ScrollAtLocation) {
+		qDebug() << "call scroll!";
+		scrollToItem();
+	}
 }
 
 void ShowThreadController::scrollToItem() {
+	m_ScrollAtLocation = true;
+
 	QRegExp goToPost("#t([0-9]+)");
 	if(goToPost.indexIn(m_Url, 0) != -1) {
 		int lookIdx = goToPost.cap(1).toInt();
@@ -411,7 +421,7 @@ void ShowThreadController::scrollToItem() {
 	} else {
 		QRegExp goToEnd("#bas");
 		if(goToEnd.indexIn(m_Url, 0) != -1) {
-			m_ListView->scrollToItem(QVariantList() << 1 << m_Datas->length()-1);
+			m_ListView->scrollToItem(QVariantList() << 0 << m_Datas->length()-1);
 		}
 	}
 

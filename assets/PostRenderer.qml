@@ -2,6 +2,7 @@ import bb.cascades 1.2
 import conf.settings 1.0
 
 Container {
+    
     id: postRenderContainer
     function adjustBackGroundAndcolor(style) {
         if(style == VisualStyle.Bright) {
@@ -29,6 +30,11 @@ Container {
     			request.action = WebNavigationRequestAction.Accept;
     		}
     	}
+		
+		onLoadingChanged: {
+            if(loadRequest.status == WebLoadStatus.Succeeded)
+                headerContainer.ListItem.view.notifyWebViewLoaded();
+		}
     }
     
     attachedObjects: [

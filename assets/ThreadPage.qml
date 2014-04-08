@@ -9,7 +9,7 @@ Page {
     property string  caption
     property bool 	 needUpdate
     property string  tentativeNewURL
-        
+            
     Container {
         id: pageContainer
 
@@ -217,6 +217,10 @@ Page {
                 tentativeNewURL = urlPage;
                 leaveAppDialog.show();
             }
+            
+            function notifyWebViewLoaded() {
+                showThreadController.notifyItemLoaded();
+            }
         }
     }
     
@@ -326,7 +330,6 @@ Page {
                 threadView.scrollToPosition(ScrollPosition.End, ScrollAnimation.Default);
             }
         }
-        
     ]    
     
     onUrlPageChanged: {
