@@ -51,6 +51,13 @@ void ShowThreadController::showThread(const QString &url) {
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
 
+	if(m_ListView != NULL) {
+		bb::cascades::GroupDataModel* dataModel = dynamic_cast<bb::cascades::GroupDataModel*>(m_ListView->dataModel());
+		if (dataModel) {
+			dataModel->clear();
+		}
+	}
+
 }
 
 

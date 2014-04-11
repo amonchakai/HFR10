@@ -1,10 +1,12 @@
 import bb.cascades 1.2
 import Network.ExploreCategoryController 1.0
+import bb.system 1.2
 
 Page {
     id: pageCat
     property string  urlPage
     property string  caption
+    property string  subCatXml
     property int 	 flagType
     property variant tpage
         
@@ -271,10 +273,30 @@ Page {
         ComponentDefinition {
             id: threadPage
             source: "ThreadPage.qml"
+        },
+        SystemListDialog {
+            title: qsTr("Choose a sub-category")
+            id: pickSubCat
+            
+            onFinished: {
+                if(result == SystemUiResult.ConfirmButtonSelection) {
+                    exploreCategoryController.listSubCat(pickSubCat.selectedIndices);
+                    segmentedTitle.setSelectedIndex(0);
+                    activityIndicator.start();
+                }
+                	
+            }
         }
     ] 
     
     actions: [
+        ActionItem {
+            title: qsTr("Sub-Category")
+            imageSource: "asset:///images/icon_category.png"
+            onTriggered: {
+                pickSubCat.show();
+            }
+        },
         ActionItem {
             title: qsTr("First page")
             imageSource: "asset:///images/icon_prev_all.png"
@@ -300,10 +322,13 @@ Page {
             }
         }
     ]
-    
+    onCreationCompleted: {
+        exploreCategoryController.setListDialog(pickSubCat);
+    }
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);
         exploreCategoryController.listTopics(urlPage);
+        exploreCategoryController.loadSubCats(subCatXml);
         activityIndicator.start();
     }
     

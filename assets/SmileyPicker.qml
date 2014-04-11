@@ -10,12 +10,6 @@ Page {
         
         WebView {
             id: smileyList
-            html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
-            + "table {border-left:5px solid lightgray; } th {text-align:left; text-decoration:underline;} "	// render quotation table
-            + "body {font-size:25px; } "  // switch webview color based on theme
-            + "p {font-size:25px;} "
-            + "</style>" 
-            + "</head><body>" + "totooooooo" + "</body></html>"
             settings.textAutosizingEnabled: false
             layoutProperties: StackLayoutProperties {
                 spaceQuota: 1
@@ -23,6 +17,7 @@ Page {
             
             onMessageReceived: {
                 postMesssage.smileyToAdd = message.data;
+                console.log("smileyPicker")
                 nav.pop();
             }
         }

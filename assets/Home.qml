@@ -9,7 +9,7 @@ NavigationPane {
             
 	        ListView {
 	            
-	            dataModel: XmlDataModel{
+	            dataModel: XmlDataModel {
 	                source: "model/listCategories.xml"
 	            }
 	            
@@ -45,12 +45,13 @@ NavigationPane {
 	            
                 onTriggered: {
                     var chosenItem = dataModel.data(indexPath);
-                    
+                                        
                     // Create the content page and push it on top to drill down to it.
                     if(!tpage)
                         tpage = categoryPage.createObject();
                     
                     // Set the url of the page to load and thread caption. 
+                    tpage.subCatXml = chosenItem.xml
                     tpage.urlPage = chosenItem.url
                     tpage.caption   = chosenItem.title
                     

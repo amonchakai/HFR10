@@ -65,6 +65,7 @@ Page {
 
             
     Container {
+        id: formContainer
         ActivityIndicator {
             id: activityIndicator
             horizontalAlignment: HorizontalAlignment.Center
@@ -75,11 +76,62 @@ Page {
         horizontalAlignment: HorizontalAlignment.Fill
         verticalAlignment: VerticalAlignment.Fill
         
+        WebView {
+            id: webviewActionBar
+            html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
+            + "table { table-layout:fixed; width: 800px; border-spacing: 30px 0px; } th {text-align:left; text-decoration:underline;} "	// render quotation table
+            + "body {font-size:25px; } "  // switch webview color based on theme
+            + "p {font-size:25px;} "
+            + "</style>" 
+            + "</head><body>" + "<table><tr>" 
+            		    + "<td><img src=\"local:///assets/images/blackFace.png\" alt=\"smiley\" title=\"smiley\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_bold_black.png\" alt=\"bold\" title=\"bold\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_italic_black.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_underline_black.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_code_black.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_quote_black.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+            + "</tr></table>" + "</body></html>"
+            preferredHeight: 60
+            
+            onMessageReceived: {
+                if(message.data == "smiley") {
+                    if(!tpage)
+                        tpage = smileyPicker.createObject(0);
+                    nav.push(tpage);
+                } else {
+                    if(message.data == "bold") {
+                        formContainer.insertTag("b");
+                    } else { 
+                        if (message.data == "italic") {
+                        	formContainer.insertTag("i");
+                        } else { 
+                            if(message.data == "underline") {
+                            	formContainer.insertTag("u");
+                            } else { 
+                                if(message.data == "code") {
+                                	formContainer.insertTag("cpp");
+                                } else {
+                                    if(message.data == "quote") {
+                                        formContainer.insertTag("quote");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        function insertTag(tag) {
+            message.editor.insertPlainText("[" + tag + "]" + message.editor.selectedText + "[/" + tag + "]" );
+        }
+        
         TextArea {
             id: message
             layoutProperties: StackLayoutProperties {
                 spaceQuota: 1
             }
+            
         }
     }
     

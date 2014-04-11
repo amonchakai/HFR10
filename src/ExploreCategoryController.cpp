@@ -14,7 +14,7 @@
 #include <QUrl>
 #include <QRegExp>
 #include <QDateTime>
-
+#include <QFile>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
 
@@ -24,10 +24,49 @@
 
 
 ExploreCategoryController::ExploreCategoryController(QObject *parent)
-	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()) {
+	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SystemListDialog(NULL), m_SelectedSubCat(0) {
 
 }
 
+void ExploreCategoryController::listSubCat(int subcat) {
+	if(subcat < m_SubCatURL.length()) {
+		m_SelectedSubCat = subcat;
+		qDebug() << m_SubCatURL[subcat];
+		showTopicList(m_SubCatURL[subcat]);
+	}
+}
+
+void ExploreCategoryController::loadSubCats(const QString &xmlFile) {
+	QFile file(QDir::currentPath() + "/app/native/assets/model/" + xmlFile);
+
+	if (file.open(QIODevice::ReadOnly)) {
+		QString content = QString::fromUtf8(file.readAll());
+
+		QRegExp catRegExp("<item title=\"(.+)\" url=\"(.+)\"");
+		catRegExp.setCaseSensitivity(Qt::CaseSensitive);
+		catRegExp.setMinimal(true);
+
+		if(m_SystemListDialog != NULL) {
+			QRegExp andAmp("&amp;");
+			int pos = 0;
+			m_SystemListDialog->clearList();
+			m_SubCatURL.clear();
+
+			while((pos = catRegExp.indexIn(content, pos)) != -1) {
+				QString s = catRegExp.cap(1);
+				s.replace(andAmp, "&");
+
+				m_SystemListDialog->appendItem(s);
+
+				s = catRegExp.cap(2); s.replace(andAmp, "&");
+				m_SubCatURL.append(s);
+
+				pos += catRegExp.matchedLength();
+			}
+		}
+	}
+
+}
 
 void ExploreCategoryController::listTopics(const QString &url_string) {
 	m_Url = url_string;
@@ -121,6 +160,36 @@ void ExploreCategoryController::parse(const QString &page) {
 			m_GeneralUrl.replace(andAmp, "&");
 		}
 	}
+
+	// ----------------------------------------------------------------------------------------------
+	// cat' filter
+
+	/*
+	QRegExp catRegExp("<a href=\"(/hfr/[a-zA-Z/\-0-9]+liste_sujet-1.htm)\" class=\"cHeader\">(.*)</a>");
+	catRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	catRegExp.setMinimal(true);
+
+	if(m_SystemListDialog != NULL) {
+		int pos = 0;
+		m_SystemListDialog->clearList();
+		m_SubCatURL.clear();
+
+		m_SystemListDialog->appendItem(tr("All"));
+		m_SubCatURL.append(m_Url);
+		while((pos = catRegExp.indexIn(page, pos)) != -1) {
+			QString s = catRegExp.cap(2);
+			s.replace(andAmp, "&");
+
+			m_SystemListDialog->appendItem(s);
+
+			s = catRegExp.cap(1); s.replace(andAmp, "&");
+			m_SubCatURL.append(s);
+			qDebug() << catRegExp.cap(2) << s;
+
+			pos += catRegExp.matchedLength();
+		}
+	}
+	*/
 
 	// ----------------------------------------------------------------------------------------------
 	// Parse categories using regexp
@@ -309,7 +378,7 @@ void ExploreCategoryController::filterByFlag(int flag) {
 	if(pos != -1) {
 		switch(flag) {
 			case Flag::NONE:
-				showTopicList(m_Url);
+				showTopicList(m_SubCatURL[m_SelectedSubCat]);
 				return;
 
 			case Flag::PARTICIPATE:
@@ -336,7 +405,7 @@ void ExploreCategoryController::firstPage() {
 	QRegExp isFormListSujet("liste_sujet-([0-9]+).htm");
 	int pos = isFormListSujet.indexIn(m_Url, 0);
 	if(pos != -1) {
-		listTopics(m_Url.mid(0,pos) + "liste_sujet-1.htm");
+		m_Url = m_SubCatURL[m_SelectedSubCat];
 
 	} else {
 		QRegExp locatePage("page=([0-9]+)");

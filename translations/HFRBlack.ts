@@ -2,43 +2,45 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
-    <name>DisplayCategoryListPage</name>
-    <message>
-        <location filename="../assets/DisplayCategoryListPage.qml" line="13"/>
-        <source>HFR 4 BB</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="196"/>
+        <location filename="../assets/ExploreCategory.qml" line="198"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="199"/>
-        <location filename="../assets/ExploreCategory.qml" line="279"/>
+        <location filename="../assets/ExploreCategory.qml" line="201"/>
+        <location filename="../assets/ExploreCategory.qml" line="301"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="206"/>
+        <location filename="../assets/ExploreCategory.qml" line="208"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="213"/>
+        <location filename="../assets/ExploreCategory.qml" line="215"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="287"/>
+        <location filename="../assets/ExploreCategory.qml" line="278"/>
+        <source>Choose a sub-category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="294"/>
+        <source>Sub-Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="309"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="295"/>
+        <location filename="../assets/ExploreCategory.qml" line="317"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -46,7 +48,7 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="72"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="111"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -155,27 +157,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="117"/>
+        <location filename="../assets/PostMessage.qml" line="169"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="124"/>
+        <location filename="../assets/PostMessage.qml" line="176"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="131"/>
+        <location filename="../assets/PostMessage.qml" line="183"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="138"/>
+        <location filename="../assets/PostMessage.qml" line="190"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="145"/>
+        <location filename="../assets/PostMessage.qml" line="197"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -307,8 +309,8 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="72"/>
-        <location filename="../src/ShowThreadController.cpp" line="305"/>
+        <location filename="../src/ShowThreadController.cpp" line="79"/>
+        <location filename="../src/ShowThreadController.cpp" line="312"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -316,27 +318,27 @@
 <context>
     <name>SmileyPicker</name>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="33"/>
+        <location filename="../assets/SmileyPicker.qml" line="28"/>
         <source>smiley</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="40"/>
+        <location filename="../assets/SmileyPicker.qml" line="35"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="48"/>
+        <location filename="../assets/SmileyPicker.qml" line="43"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="56"/>
+        <location filename="../assets/SmileyPicker.qml" line="51"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="64"/>
+        <location filename="../assets/SmileyPicker.qml" line="59"/>
         <source>Previous page</source>
         <translation type="unfinished"></translation>
     </message>
