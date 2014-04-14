@@ -6,6 +6,7 @@ import bb.system 1.2
 Page {
     id: pageThread
     property variant tpage
+    property variant recursivePage
     
     property string  urlPage
     property string  caption
@@ -215,6 +216,14 @@ Page {
                 nav.push(tpage);
             }
             
+            function pushNewUrl(urlPage) {
+                if(!recursivePage)
+                    recursivePage = recPageDef.createObject();
+                                    
+                recursivePage.urlPage = urlPage
+                nav.push(recursivePage);
+            }
+            
             function addToFavorite(responseID) {
                 showThreadController.addToFavorite(responseID);
             }
@@ -254,6 +263,10 @@ Page {
             source: "PostMessage.qml"
             
         },
+        ComponentDefinition {
+            id: recPageDef
+            source: "ThreadPage.qml"
+        },
         Invocation {
             id: linkInvocation
             
@@ -265,7 +278,6 @@ Page {
             
             onArmed: {
                 trigger("bb.action.OPEN");
-                Application.quit();
             }
         },
         SystemDialog {

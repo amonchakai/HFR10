@@ -28,7 +28,7 @@ NavigationPane {
 	            text: qsTr("Connect")
 	            horizontalAlignment: HorizontalAlignment.Fill
 	            onClicked: {
-	                if(!tapge)
+                    if(!tpage)
                     	tpage = loginPage.createObject();
                     nav.push(tpage);
 	            }
@@ -85,15 +85,15 @@ NavigationPane {
             
             Slider {
                 id: sliderSmileySize
-                fromValue: 2
-                toValue: 5
+                fromValue: 1
+                toValue: 10
                 value: appSettings.smileySize
                 horizontalAlignment: HorizontalAlignment.Fill
                 
                 
                 onValueChanged: {
                     appSettings.smileySize = value;
-                    setSmileySizeLabel.text = qsTr("Smiley size: ") + (appSettings.smileySize*40).toString() + "%"
+                    setSmileySizeLabel.text = qsTr("Smiley size: ") + (appSettings.smileySize*20).toString() + "%"
                     appSettings.saveSettings(); 
                 }
             

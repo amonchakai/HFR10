@@ -17,7 +17,6 @@ Page {
             
             onMessageReceived: {
                 postMesssage.smileyToAdd = message.data;
-                console.log("smileyPicker")
                 nav.pop();
             }
         }

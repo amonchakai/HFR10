@@ -19,7 +19,10 @@
 #include <bb/cascades/ListView>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
-
+#include <bb/cascades/Application>
+#include <bb/cascades/ThemeSupport>
+#include <bb/cascades/ColorTheme>
+#include <bb/cascades/Theme>
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
@@ -87,7 +90,6 @@ void ShowThreadController::checkReply() {
 
 
 void ShowThreadController::parse(const QString &page) {
-
 
 	// ----------------------------------------------------------------------------------------------
 	// Navigation within the topic
@@ -173,6 +175,7 @@ void ShowThreadController::parse(const QString &page) {
 		lastPseudo = regexp.cap(2);
 
 	}
+
 	parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
 	parseDataForReply(page.mid(lastPos, pos-lastPos));
 
@@ -201,9 +204,14 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	timestampRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	timestampRegexp.setMinimal(true);
 
-	QRegExp postContentRegexp = QRegExp(QString("</div></div><div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\">"));
+	QRegExp postContentRegexp = QRegExp(QString("<div id=\"para[0-9]+\"><p>(.*)<div style=\"clear: both;\">"));
 	postContentRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	postContentRegexp.setMinimal(true);
+
+	QRegExp quoteUrl("<div class=\"edited\"><a href=\"(.*)\" class=\"cLink\" rel=\"nofollow\">Message.*([0-9]+) fois");
+	quoteUrl.setCaseSensitivity(Qt::CaseSensitive);
+	quoteUrl.setMinimal(true);
+
 
 	QString editURL = "";
 	if(editURLRegexp.indexIn(post, 0) != -1) {
@@ -243,6 +251,19 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		m_Datas->last()->setAvatar("asset:///images/default_avatar.png");
 	else
 		m_Datas->last()->setAvatar(avatar);
+
+	// add information about number of quotes
+	if(quoteUrl.indexIn(post, 0) != -1) {
+		QString s = quoteUrl.cap(1);
+		s.replace(QRegExp("&amp;"), "&");
+
+		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted_white.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'" + s + "\')\" style=\"text-align:center; color:black; margin-top:0px \" >" + quoteUrl.cap(2) +"</p></div>";
+		} else {
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'" + s + "\')\" style=\"text-align:center; color:white; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
+		}
+
+	}
 
 	// parse the post so it can be rendered in HTML within a listitem
 	cleanupPost(postContent);
@@ -320,9 +341,9 @@ void ShowThreadController::checkSuccessAddAddFavorite() {
 void ShowThreadController::cleanupPost(QString &post) {
 	//qDebug() << post;
 	QString cleanPost;
-	QRegExp quoteRegexp(QString( "</p><div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\".+t([0-9]+)\" class=\"Topic\">")
+	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div>[&nbsp;]*<p>"		// message
+								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div>[&nbsp;]*"		// message
 			);
 
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -333,31 +354,21 @@ void ShowThreadController::cleanupPost(QString &post) {
 	while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
 		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
 
-		cleanPost += "<table class=\"citation\" post=\"" + quoteRegexp.cap(1) + "\"><tr><th>" + quoteRegexp.cap(2) + "</th></tr><tr><td>" + quoteRegexp.cap(3) + "</td></tr></table>";
-		//qDebug() << quoteRegexp.cap(1) << quoteRegexp.cap(2) << quoteRegexp.cap(3);
-
+		cleanPost += "<div class=\"quote\"><div class=\"header\" onclick=\"sendURL(\'" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</div>" + quoteRegexp.cap(3) + "</div>";
 		pos += quoteRegexp.matchedLength();
-		//qDebug() << quoteRegexp.matchedLength();
 		lastPos = pos;
 	}
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 
 	if(Settings::smileySize() != 2) {
-		// resize smiley perso
-		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/images/");
-		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr/images/");
 
 		// resize default smileys
-		smileys = QRegExp("<img src=\"http://forum-images.hardware.fr");
-		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr");
+		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
+		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr/icones/");
 
 	}
 
-
 	post = cleanPost;
-	//qDebug() << post;
-
-
 }
 
 void ShowThreadController::updateView() {
@@ -402,7 +413,7 @@ void ShowThreadController::updateView() {
 
 void ShowThreadController::notifyItemLoaded() {
 	++m_NbWebviewLoaded;
-	if(m_NbWebviewLoaded > 3 && !m_ScrollAtLocation) {
+	if(m_NbWebviewLoaded > m_Datas->length()*.2 && !m_ScrollAtLocation) {
 		scrollToItem();
 	}
 }
@@ -422,12 +433,12 @@ void ShowThreadController::scrollToItem() {
 			}
 		}
 
-		m_ListView->scrollToItem(QVariantList() << 0 << gotoItem);
+		m_ListView->scrollToItem(QVariantList() << 0 << gotoItem, bb::cascades::ScrollAnimation::None);
 
 	} else {
 		QRegExp goToEnd("#bas");
 		if(goToEnd.indexIn(m_Url, 0) != -1) {
-			m_ListView->scrollToItem(QVariantList() << 0 << m_Datas->length()-1);
+			m_ListView->scrollToItem(QVariantList() << 0 << m_Datas->length()-1, bb::cascades::ScrollAnimation::None);
 		}
 	}
 

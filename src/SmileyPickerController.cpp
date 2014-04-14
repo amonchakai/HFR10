@@ -204,7 +204,7 @@ void SmileyPickerController::updateView(const QString &webpage) {
 	            + "body {font-size:25px; " + colorHandling  // switch webview color based on theme
 	            + "p {font-size:25px;} "
 			+ "</style>"
-			+ "</head><body>" + webpage + "</body></html>", QUrl("local:///assets/images/smiley/"));
+			+ "</head><body><center>" + webpage + "</center></body></html>", QUrl("local:///assets/images/smiley/"));
 }
 
 

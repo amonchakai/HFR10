@@ -15,10 +15,10 @@ Container {
     WebView {
         id: post
         html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
-        			+ "table {border-left:5px solid lightgray; } th {text-align:left; text-decoration:underline;} "	// render quotation table
+        	        + "div.quote { border-left:5px solid lightgray; padding-left:5px; } div.header { font-weight:bold;  text-decoration:underline } "	// render quotation table
                     + "body {font-size:" + appSettings.fontSize.toString()  + "px; " + postRenderContainer.adjustBackGroundAndcolor(Application.themeSupport.theme.colorTheme.style) // switch webview color based on theme
                     + "p {font-size:" + appSettings.fontSize.toString() + "px;} "
-        		+ "</style>" 
+                    + "</style><script>function sendURL(url) { navigator.cascades.postMessage(url); }</script>" 
         		+ "</head><body>" + ListItemData.post + "</body></html>"
         settings.textAutosizingEnabled: false
 
@@ -36,6 +36,9 @@ Container {
     			request.action = WebNavigationRequestAction.Accept;
     		}
     	}
+		onMessageReceived: {
+            headerContainer.ListItem.view.pushNewUrl(message.data)
+      	}
 		
 		onLoadingChanged: {
             if(loadRequest.status == WebLoadStatus.Succeeded)

@@ -1,5 +1,5 @@
 1
-143
+144
 ExploreCategory.qml
 Favorite.qml
 Home.qml
@@ -42,6 +42,8 @@ images/icon_prev_all.png
 images/icon_quote.png
 images/icon_quote.svg
 images/icon_quote_black.png
+images/icon_quoted.png
+images/icon_quoted_white.png
 images/icon_refresh - copie.png
 images/icon_refresh.png
 images/icon_settings.png
@@ -115,7 +117,6 @@ images/whiteFace.svg
 images/whiteFace3.png
 LoginForm.qml
 main.qml
-MainWindowTabbedPane.qml
 model/AchatsVentes.xml
 model/Apple.xml
 model/Discussions.xml
