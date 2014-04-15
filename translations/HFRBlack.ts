@@ -256,6 +256,246 @@
     </message>
 </context>
 <context>
+    <name>Search</name>
+    <message>
+        <location filename="../assets/Search.qml" line="18"/>
+        <location filename="../assets/Search.qml" line="22"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="28"/>
+        <source>Every words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="32"/>
+        <source>At least one word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="37"/>
+        <source>Advanced research</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="40"/>
+        <source>Type of search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="45"/>
+        <source>From author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="49"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="54"/>
+        <source>Search settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="59"/>
+        <source>Hardware</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="63"/>
+        <source>Hardware - Périphériques</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="67"/>
+        <source>Ordinateurs portables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="71"/>
+        <source>Technologies Mobiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="75"/>
+        <source>Overclocking, Cooling &amp; Modding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="79"/>
+        <source>Apple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="83"/>
+        <source>Video &amp; Son</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="87"/>
+        <source>Photo numérique</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="92"/>
+        <source>Jeux Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="96"/>
+        <source>Windows &amp; Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="100"/>
+        <source>Réseaux grand public / SoHo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="104"/>
+        <source>Systèmes &amp; Réseaux Pro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="108"/>
+        <source>Linux et OS Alternatifs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="112"/>
+        <source>Programmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="116"/>
+        <source>Graphisme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="120"/>
+        <source>Achats &amp; Ventes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="124"/>
+        <source>Emploi &amp; Etudes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="128"/>
+        <source>Seti et projets distribués</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="132"/>
+        <source>Discussions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="135"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="141"/>
+        <source>Subject title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="146"/>
+        <source>Subject title and post content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="150"/>
+        <source>Post content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="153"/>
+        <source>Search in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="159"/>
+        <source>20 first results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="164"/>
+        <source>50 first results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="168"/>
+        <source>100 first results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="172"/>
+        <source>200 first results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="175"/>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="181"/>
+        <source>Timestamp last post</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="186"/>
+        <source>Timestamp last matching post</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="189"/>
+        <source>Sort by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="197"/>
+        <source>Submit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchController</name>
+    <message>
+        <location filename="../src/SearchController.cpp" line="84"/>
+        <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchResult</name>
+    <message>
+        <location filename="../assets/SearchResult.qml" line="128"/>
+        <source>Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SearchResult.qml" line="131"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SearchResult.qml" line="138"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/SearchResult.qml" line="145"/>
+        <source>Last page read</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Settings</name>
     <message>
         <location filename="../assets/Settings.qml" line="21"/>
@@ -435,7 +675,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="86"/>
+        <location filename="../assets/main.qml" line="83"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>

@@ -161,35 +161,6 @@ void ExploreCategoryController::parse(const QString &page) {
 		}
 	}
 
-	// ----------------------------------------------------------------------------------------------
-	// cat' filter
-
-	/*
-	QRegExp catRegExp("<a href=\"(/hfr/[a-zA-Z/\-0-9]+liste_sujet-1.htm)\" class=\"cHeader\">(.*)</a>");
-	catRegExp.setCaseSensitivity(Qt::CaseSensitive);
-	catRegExp.setMinimal(true);
-
-	if(m_SystemListDialog != NULL) {
-		int pos = 0;
-		m_SystemListDialog->clearList();
-		m_SubCatURL.clear();
-
-		m_SystemListDialog->appendItem(tr("All"));
-		m_SubCatURL.append(m_Url);
-		while((pos = catRegExp.indexIn(page, pos)) != -1) {
-			QString s = catRegExp.cap(2);
-			s.replace(andAmp, "&");
-
-			m_SystemListDialog->appendItem(s);
-
-			s = catRegExp.cap(1); s.replace(andAmp, "&");
-			m_SubCatURL.append(s);
-			qDebug() << catRegExp.cap(2) << s;
-
-			pos += catRegExp.matchedLength();
-		}
-	}
-	*/
 
 	// ----------------------------------------------------------------------------------------------
 	// Parse categories using regexp

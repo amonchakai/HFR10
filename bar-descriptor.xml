@@ -30,7 +30,10 @@
 
     <!-- The name that is displayed in the BlackBerry 10 application installer.
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
-    <name>HFRBlack</name>
+    <name>
+       HFR4BB
+       <text xml:lang="fr-FR">HFR4BB</text>
+    </name>
 
     <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
          Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
@@ -47,13 +50,16 @@
 
     <!-- Description, displayed in the BlackBerry 10 application installer.
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
-    <description>The HFRBlack application</description>
 
     <!-- Copyright information. Optional. -->
     <!-- <copyright></copyright> -->
 
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
     <author>Example Inc.</author>
+    <description>
+       BlackBerry application for forum.hardware.fr (HFR)
+       <text xml:lang="fr-FR">Application pour se rendre sur forum.hardware.fr (HFR) depuis sont BlackBerry</text>
+    </description>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/HFRBlack" entry="true" type="Qnx/Elf">HFRBlack</asset>

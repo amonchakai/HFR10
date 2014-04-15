@@ -25,7 +25,6 @@ void Settings::loadSettings() {
 	QFile file(directory + "/Settings.txt");
 
 	if (file.open(QIODevice::ReadOnly)) {
-		qDebug() << "loadSettings";
 		QDataStream stream(&file);
 		stream >> m_FontSize;
 		stream >> m_SmileySize;
@@ -44,7 +43,6 @@ void Settings::saveSettings() const {
 	QFile file(directory + "/Settings.txt");
 
 	if (file.open(QIODevice::WriteOnly)) {
-		qDebug() << "writeSettings";
 		QDataStream stream(&file);
 		stream << m_FontSize;
 		stream << m_SmileySize;

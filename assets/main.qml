@@ -73,11 +73,8 @@ TabbedPane {
         
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
         
-        NavigationPane {
-            Page {
-            
-            }
-        
+        delegate: Delegate {
+            source: "Search.qml"
         }
     } //End of browse tab
     

@@ -1,5 +1,5 @@
 1
-144
+146
 ExploreCategory.qml
 Favorite.qml
 Home.qml
@@ -141,6 +141,8 @@ PostMessage.qml
 PostRenderer.qml
 PrivateMessage.qml
 RefreshHeader.qml
+Search.qml
+SearchResult.qml
 Settings.qml
 SmileyPicker.qml
 ThreadPage.qml

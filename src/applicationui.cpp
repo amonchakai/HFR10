@@ -33,6 +33,7 @@
 #include "PrivateMessageController.hpp"
 #include "PostMessageController.hpp"
 #include "SmileyPickerController.hpp"
+#include "SearchController.hpp"
 #include "Network/NetImageTracker.h"
 #include "Settings.hpp"
 
@@ -74,6 +75,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<PrivateMessageController>("Network.PrivateMessageController", 1, 0, "PrivateMessageController");
     qmlRegisterType<PostMessageController>("Network.PostMessageController", 1, 0, "PostMessageController");
     qmlRegisterType<SmileyPickerController>("Network.SmileyPickerController", 1, 0, "SmileyPickerController");
+    qmlRegisterType<SearchController>("Network.SearchController", 1, 0, "SearchController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "Settings");
 

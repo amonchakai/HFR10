@@ -13,6 +13,7 @@ device {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.cpp) \
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
+                 $$quote($$BASEDIR/src/SearchController.cpp) \
                  $$quote($$BASEDIR/src/Settings.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
@@ -30,6 +31,7 @@ device {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.h) \
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
+                 $$quote($$BASEDIR/src/SearchController.hpp) \
                  $$quote($$BASEDIR/src/Settings.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
@@ -47,6 +49,7 @@ device {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.cpp) \
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
+                 $$quote($$BASEDIR/src/SearchController.cpp) \
                  $$quote($$BASEDIR/src/Settings.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
@@ -64,6 +67,7 @@ device {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.h) \
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
+                 $$quote($$BASEDIR/src/SearchController.hpp) \
                  $$quote($$BASEDIR/src/Settings.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
@@ -83,6 +87,7 @@ simulator {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.cpp) \
                  $$quote($$BASEDIR/src/PostMessageController.cpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.cpp) \
+                 $$quote($$BASEDIR/src/SearchController.cpp) \
                  $$quote($$BASEDIR/src/Settings.cpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.cpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.cpp) \
@@ -100,6 +105,7 @@ simulator {
                  $$quote($$BASEDIR/src/Network/WebResourceManager.h) \
                  $$quote($$BASEDIR/src/PostMessageController.hpp) \
                  $$quote($$BASEDIR/src/PrivateMessageController.hpp) \
+                 $$quote($$BASEDIR/src/SearchController.hpp) \
                  $$quote($$BASEDIR/src/Settings.hpp) \
                  $$quote($$BASEDIR/src/ShowThreadController.hpp) \
                  $$quote($$BASEDIR/src/SmileyPickerController.hpp) \
