@@ -4,6 +4,7 @@ import Network.SearchController 1.0
 Page {
     property string search
     property string author
+    property string hashKey
     property int 	searchType
     property int 	categoryType
     property int 	searchIn
@@ -209,6 +210,7 @@ Page {
 	        activityIndicator.start();
 	        searchController.search(search, 
 	            					author, 
+                                    hashKey,
 	            					searchType,
 	            					categoryType,
 	            					searchIn,

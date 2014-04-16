@@ -27,30 +27,29 @@
 
 SearchController::SearchController(QObject *parent)
 	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()) {
-
 }
-
 
 
 void SearchController::search(const QString &search,
 							  const QString &author,
+							  const QString &hashKey,
 							  int searchType,
 							  int categoryType,
 							  int searchIn,
 							  int numberOfMessages,
 							  int sortBy) {
 
-	// list green + yellow flags
 	const QUrl url(DefineConsts::FORUM_URL + "/search.php?config=hfr.inc");
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 	QUrl params;
-	params.addQueryItem("hash_check", "867ea14e7a8080bb5a9b490844ea2b20");
+	params.addQueryItem("hash_check", hashKey);
 	params.addQueryItem("cat", QString::number(categoryType));
 	params.addQueryItem("titre", QString::number(searchIn));
 	params.addQueryItem("search", search);
+	params.addQueryItem("searchtype", QString::number(searchType));
 	params.addQueryItem("pseud", author);
 	params.addQueryItem("resSearch", QString::number(numberOfMessages));
 	params.addQueryItem("orderSearch", QString::number(sortBy));

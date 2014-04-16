@@ -35,6 +35,7 @@ class SearchController : public QObject {
 		void checkReply();
 		void search(const QString &search,
 					const QString &author,
+					const QString &hashKey,
 					int searchType,
 					int categoryType,
 					int searchIn,

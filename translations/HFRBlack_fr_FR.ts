@@ -273,208 +273,208 @@
 <context>
     <name>Search</name>
     <message>
-        <location filename="../assets/Search.qml" line="18"/>
-        <location filename="../assets/Search.qml" line="22"/>
+        <location filename="../assets/Search.qml" line="19"/>
+        <location filename="../assets/Search.qml" line="23"/>
         <source>Search</source>
         <translation>Recherche</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="28"/>
+        <location filename="../assets/Search.qml" line="29"/>
         <source>Every words</source>
         <translation>Tous les mots</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="32"/>
+        <location filename="../assets/Search.qml" line="33"/>
         <source>At least one word</source>
         <translation>Au moins un mot</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="37"/>
+        <location filename="../assets/Search.qml" line="38"/>
         <source>Advanced research</source>
         <translation>Recherche avancée</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="40"/>
+        <location filename="../assets/Search.qml" line="41"/>
         <source>Type of search</source>
         <translation>Type de recherche</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="45"/>
+        <location filename="../assets/Search.qml" line="46"/>
         <source>From author</source>
         <translation>Auteur des messages</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="49"/>
+        <location filename="../assets/Search.qml" line="50"/>
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="54"/>
+        <location filename="../assets/Search.qml" line="55"/>
         <source>Search settings</source>
         <translation>Paramètrage de la recherche</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="59"/>
+        <location filename="../assets/Search.qml" line="60"/>
         <source>Hardware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="63"/>
+        <location filename="../assets/Search.qml" line="64"/>
         <source>Hardware - Périphériques</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="67"/>
+        <location filename="../assets/Search.qml" line="68"/>
         <source>Ordinateurs portables</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="71"/>
+        <location filename="../assets/Search.qml" line="72"/>
         <source>Technologies Mobiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="75"/>
+        <location filename="../assets/Search.qml" line="76"/>
         <source>Overclocking, Cooling &amp; Modding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="79"/>
+        <location filename="../assets/Search.qml" line="80"/>
         <source>Apple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="83"/>
+        <location filename="../assets/Search.qml" line="84"/>
         <source>Video &amp; Son</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="87"/>
+        <location filename="../assets/Search.qml" line="88"/>
         <source>Photo numérique</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="92"/>
+        <location filename="../assets/Search.qml" line="93"/>
         <source>Jeux Video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="96"/>
+        <location filename="../assets/Search.qml" line="97"/>
         <source>Windows &amp; Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="100"/>
+        <location filename="../assets/Search.qml" line="101"/>
         <source>Réseaux grand public / SoHo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="104"/>
+        <location filename="../assets/Search.qml" line="105"/>
         <source>Systèmes &amp; Réseaux Pro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="108"/>
+        <location filename="../assets/Search.qml" line="109"/>
         <source>Linux et OS Alternatifs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="112"/>
+        <location filename="../assets/Search.qml" line="113"/>
         <source>Programmation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="116"/>
+        <location filename="../assets/Search.qml" line="117"/>
         <source>Graphisme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="120"/>
+        <location filename="../assets/Search.qml" line="121"/>
         <source>Achats &amp; Ventes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="124"/>
+        <location filename="../assets/Search.qml" line="125"/>
         <source>Emploi &amp; Etudes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="128"/>
+        <location filename="../assets/Search.qml" line="129"/>
         <source>Seti et projets distribués</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="132"/>
+        <location filename="../assets/Search.qml" line="133"/>
         <source>Discussions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="135"/>
+        <location filename="../assets/Search.qml" line="136"/>
         <source>Category</source>
         <translation>Catégorie</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="141"/>
+        <location filename="../assets/Search.qml" line="142"/>
         <source>Subject title</source>
         <translation>Les titres des sujets</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="146"/>
+        <location filename="../assets/Search.qml" line="147"/>
         <source>Subject title and post content</source>
         <translation>Les titres des sujets et contenu des messages</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="150"/>
+        <location filename="../assets/Search.qml" line="151"/>
         <source>Post content</source>
         <translation>Le contenu des messages</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="153"/>
+        <location filename="../assets/Search.qml" line="154"/>
         <source>Search in</source>
         <translation>Recherche dans</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="159"/>
+        <location filename="../assets/Search.qml" line="160"/>
         <source>20 first results</source>
         <translation>20 premiers résultats</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="164"/>
+        <location filename="../assets/Search.qml" line="165"/>
         <source>50 first results</source>
         <translation>50 premiers résultats</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="168"/>
+        <location filename="../assets/Search.qml" line="169"/>
         <source>100 first results</source>
         <translation>100 premiers résultats</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="172"/>
+        <location filename="../assets/Search.qml" line="173"/>
         <source>200 first results</source>
         <translation>200 premiers résultats</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="175"/>
+        <location filename="../assets/Search.qml" line="176"/>
         <source>Display</source>
         <translation>Affichage</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="181"/>
+        <location filename="../assets/Search.qml" line="182"/>
         <source>Timestamp last post</source>
         <translation>Selon la date du dernier posts</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="186"/>
+        <location filename="../assets/Search.qml" line="187"/>
         <source>Timestamp last matching post</source>
         <translation>Selon la date des messages trouvés</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="189"/>
+        <location filename="../assets/Search.qml" line="190"/>
         <source>Sort by</source>
         <translation>Trier par</translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="197"/>
+        <location filename="../assets/Search.qml" line="198"/>
         <source>Submit</source>
         <translation>Chercher</translation>
     </message>
@@ -482,7 +482,15 @@
 <context>
     <name>SearchController</name>
     <message>
-        <location filename="../src/SearchController.cpp" line="84"/>
+        <location filename="../src/SearchController.cpp" line="83"/>
+        <source>Error: %1 status: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchKeyRetriever</name>
+    <message>
+        <location filename="../src/SearchKeyRetriever.cpp" line="54"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -490,22 +498,22 @@
 <context>
     <name>SearchResult</name>
     <message>
-        <location filename="../assets/SearchResult.qml" line="128"/>
+        <location filename="../assets/SearchResult.qml" line="129"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="131"/>
+        <location filename="../assets/SearchResult.qml" line="132"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="138"/>
+        <location filename="../assets/SearchResult.qml" line="139"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="145"/>
+        <location filename="../assets/SearchResult.qml" line="146"/>
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>

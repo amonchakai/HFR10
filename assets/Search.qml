@@ -1,4 +1,5 @@
 import bb.cascades 1.2
+import Network.SearchKeyRetriever 1.0
 
 NavigationPane {
     id: nav
@@ -211,6 +212,7 @@ NavigationPane {
                 tpage.numberOfMessages = numberOfMessages.selectedValue;
                 tpage.sortBy = sortBy.selectedValue;
                 tpage.search = searchField.text;
+                tpage.hashKey = searchKeyRetriever.haskKey;
                 tpage.refresh = true;
                 
                 nav.push(tpage);
@@ -224,7 +226,15 @@ NavigationPane {
             ComponentDefinition {
                 id: searchResult
                 source: "SearchResult.qml"
+            },
+            SearchKeyRetriever {
+                id: searchKeyRetriever
             }
         ]
+        
+        
+        onCreationCompleted: {
+            searchKeyRetriever.getKey();
+        }
 	}
 }
