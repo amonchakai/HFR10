@@ -475,7 +475,7 @@
 <context>
     <name>SearchKeyRetriever</name>
     <message>
-        <location filename="../src/SearchKeyRetriever.cpp" line="54"/>
+        <location filename="../src/SearchKeyRetriever.cpp" line="53"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -508,8 +508,8 @@
     <message>
         <location filename="../assets/Settings.qml" line="21"/>
         <location filename="../assets/Settings.qml" line="47"/>
-        <location filename="../assets/Settings.qml" line="121"/>
-        <location filename="../assets/Settings.qml" line="131"/>
+        <location filename="../assets/Settings.qml" line="132"/>
+        <location filename="../assets/Settings.qml" line="142"/>
         <source>User: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -533,6 +533,11 @@
         <location filename="../assets/Settings.qml" line="83"/>
         <location filename="../assets/Settings.qml" line="96"/>
         <source>Smiley size: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="106"/>
+        <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

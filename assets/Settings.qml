@@ -99,6 +99,17 @@ NavigationPane {
             
             }
             
+            // --------------------------------------------------------------------------
+            // cache settings
+            
+            Button {
+                text: qsTr("Clear image cache")
+                horizontalAlignment: HorizontalAlignment.Fill
+                onClicked: {
+                    loginController.clearImageCache();
+                }
+            }
+            
 	    }
 	    
 	    

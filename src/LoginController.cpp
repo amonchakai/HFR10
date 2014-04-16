@@ -125,3 +125,15 @@ void LoginController::loadUserName() {
 		file.close();
 	}
 }
+
+void LoginController::clearImageCache() {
+	QString directory = QDir::homePath() + "/Cache/";
+	if (QFile::exists(directory)) {
+		QDir dir(directory);
+		dir.setNameFilters(QStringList() << "*.*");
+		dir.setFilter(QDir::Files);
+		foreach(QString dirFile, dir.entryList()) {
+		    dir.remove(dirFile);
+		}
+	}
+}

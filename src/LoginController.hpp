@@ -39,6 +39,7 @@ public Q_SLOTS:
 	bool isLogged();
 	void logOut();
 
+	void clearImageCache();
 
 	// ----------------------------------------------------------------------------------------------
 
