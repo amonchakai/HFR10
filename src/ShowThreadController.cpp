@@ -343,11 +343,14 @@ void ShowThreadController::cleanupPost(QString &post) {
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div>[&nbsp;]*"		// message
+								+"</a></b><br /><br /><p>(.+)</p></td></tr></table></div>"	// message
 			);
-
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);
+
+	QRegExp spoilerRegExp("<div class=\"container\"><table class=\"spoiler\".*class=\"s1Topic\">Spoiler :</b><br /><br /><div class=\"Topic masque\"><p>(.*)</p></div></td></tr></table></div>");
+	spoilerRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	spoilerRegExp.setMinimal(true);
 
 	int lastPos = 0;
 	int pos = 0;
@@ -368,6 +371,20 @@ void ShowThreadController::cleanupPost(QString &post) {
 
 	}
 
+	post = cleanPost;
+
+
+	cleanPost = "";
+	lastPos = 0;
+	pos = 0;
+	while((pos = spoilerRegExp.indexIn(post, pos)) != -1) {
+		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+
+		cleanPost += "<div class=\"c1\" style=\"border:1px solid; border-color:gray;\" onclick=\"javascript:montrer_spoiler(\'spoiler" + QString::number(pos) + "\')\"><u><strong>Spoiler :</strong></u><script type=\"text/javascript\"> function montrer_spoiler(value){var actual=document.getElementById(value).style.visibility;if (actual==\'visible\'){document.getElementById(value).style.visibility=\'hidden\';}else{document.getElementById(value).style.visibility=\'visible\';}} </script><dl style=\"visibility: hidden;\" id=\"spoiler" + QString::number(pos) + "\"><dd>" + spoilerRegExp.cap(1) + "</dd></dl></div>";
+		pos += spoilerRegExp.matchedLength();
+		lastPos = pos;
+	}
+	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 	post = cleanPost;
 }
 

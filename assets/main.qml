@@ -20,6 +20,26 @@ TabbedPane {
     id: mainTab
     showTabsOnActionBar: true
     activeTab: tabHome
+    
+    Menu.definition: MenuDefinition {
+        actions: [
+            ActionItem {
+                title: qsTr("About")
+                imageSource: "asset:///images/icon_about.png"
+                onTriggered: {
+                    mainTab.activeTab = tabHelp;
+                }
+            },
+            ActionItem {
+                title: qsTr("Settings")
+                imageSource: "asset:///images/icon_settings.png"
+                onTriggered: {
+                    mainTab.activeTab = tabSettings;
+                }
+            }
+        ]
+    }
+    
 
     Tab { //First tab
         // Localized text with the dynamic translation and locale updates support
@@ -80,6 +100,7 @@ TabbedPane {
     
     
     Tab { //Setting tab
+        id: tabSettings
         title: qsTr("Settings") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.InOverflow
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
@@ -88,6 +109,20 @@ TabbedPane {
             source: "Settings.qml"
         }
         
+    } //End of Setting tab
+    
+    
+    Tab { //Setting tab
+        id: tabHelp
+        title: qsTr("About") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.InOverflow
+        imageSource: "asset:///images/icon_about.png"
+        delegateActivationPolicy: TabDelegateActivationPolicy.Default
+        
+        delegate: Delegate {
+            source: "Help.qml"
+        }
+    
     } //End of Setting tab
 
 }
