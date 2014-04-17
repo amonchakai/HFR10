@@ -339,7 +339,9 @@ void ShowThreadController::checkSuccessAddAddFavorite() {
 }
 
 void ShowThreadController::cleanupPost(QString &post) {
-	//qDebug() << post;
+	// ----------------------------------------------------
+	// declare regexp used to clean the posts
+
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
@@ -352,6 +354,17 @@ void ShowThreadController::cleanupPost(QString &post) {
 	spoilerRegExp.setCaseSensitivity(Qt::CaseSensitive);
 	spoilerRegExp.setMinimal(true);
 
+	QRegExp simpleQuoteRegexp("<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b><br /><br /><p>(.*)</p></td></tr></table></div>");
+	simpleQuoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	simpleQuoteRegexp.setMinimal(true);
+
+	QRegExp codeRegexp("<table class=\"code\"><tr class=\"none\"><td><b class=\"s1\" style=\"font-family: Verdana, Helvetica, Arial, Sans-serif;\">Code :</b><br />(.*)</td></tr></table>");
+	codeRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	codeRegexp.setMinimal(true);
+
+	// ----------------------------------------------------
+	// replace quotes
+
 	int lastPos = 0;
 	int pos = 0;
 	while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
@@ -363,6 +376,11 @@ void ShowThreadController::cleanupPost(QString &post) {
 	}
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 
+
+
+	// ----------------------------------------------------
+	// resize images if needed
+
 	if(Settings::smileySize() != 2) {
 
 		// resize default smileys
@@ -372,6 +390,11 @@ void ShowThreadController::cleanupPost(QString &post) {
 	}
 
 	post = cleanPost;
+
+
+
+	// ----------------------------------------------------
+	// handle spoilers
 
 	cleanPost = "";
 	lastPos = 0;
@@ -385,6 +408,41 @@ void ShowThreadController::cleanupPost(QString &post) {
 	}
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 	post = cleanPost;
+
+
+	// ----------------------------------------------------
+	// handle [quote][/quote]
+
+	cleanPost = "";
+	lastPos = 0;
+	pos = 0;
+	while((pos = codeRegexp.indexIn(post, pos)) != -1) {
+		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+
+		cleanPost += "<div class=\"quote\"><div class=\"header\" >Code :</div>" + codeRegexp.cap(1) + "</div>";
+		pos += codeRegexp.matchedLength();
+		lastPos = pos;
+	}
+	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+	post = cleanPost;
+
+
+	// ----------------------------------------------------
+	// handle [cpp][/cpp]
+
+	cleanPost = "";
+	lastPos = 0;
+	pos = 0;
+	while((pos = simpleQuoteRegexp.indexIn(post, pos)) != -1) {
+		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+
+		cleanPost += "<div class=\"quote\"><div class=\"header\" >Citation :</div>" + simpleQuoteRegexp.cap(1) + "</div>";
+		pos += simpleQuoteRegexp.matchedLength();
+		lastPos = pos;
+	}
+	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+	post = cleanPost;
+
 }
 
 void ShowThreadController::updateView() {
