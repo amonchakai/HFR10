@@ -157,6 +157,8 @@ void ShowThreadController::parse(const QString &page) {
 	if(lastPos != -1) {
 		lastPostIndex = regexp.cap(1);
 		lastPseudo = regexp.cap(2);
+
+		parseSurvey(page.mid(0, lastPos));
 	}
 
 
@@ -299,6 +301,94 @@ void ShowThreadController::parseDataForReply(const QString &page) {
 	}
 }
 
+void ShowThreadController::parseSurvey(const QString &page) {
+	QRegExp question("<div class=\"sondage\"><b class=\"s2\">(.*)</b><br />");
+	question.setCaseSensitivity(Qt::CaseSensitive);
+	question.setMinimal(true);
+
+	int pos = 0;
+	if((pos = question.indexIn(page, 0)) != -1) {
+
+		pos += question.matchedLength();
+
+		QRegExp answers("<div class=\"barre\" style=\"width:[0-9.]+%\">&nbsp;</div><div style=\"position:absolute;left:0px\" class=\"sondageTop\">[0-9.]+&nbsp;%</div><div class=\"sondageTop\">[&nbsp;]+([0-9]+) vote[s]*</div></div><div class=\"sondageRight\">(.+)</div>");
+		answers.setCaseSensitivity(Qt::CaseSensitive);
+		answers.setMinimal(true);
+
+		QString colorHandling = "} ";
+		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+			colorHandling = "background-color:#000000; color:#FFFFFF; } ";
+		}
+
+		m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
+							 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
+							 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
+							 + "#parent { overflow: hidden; } .right { float:right; width:400px; background-color: steelblue; text-align: right; padding: 3px; margin: 1px; color: white; } .left { overflow: hidden; } </style></head><body><div class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">"
+							 + question.cap(1) + "</p>";
+
+		QList<QString> options;
+		QList<int> nbVotes;
+
+		int overallVoteNumber = 0;
+		while((pos = answers.indexIn(page, pos)) != -1) {
+			options.push_back(answers.cap(2));
+			nbVotes.push_back(answers.cap(1).toInt());
+
+			overallVoteNumber += nbVotes.last();
+			pos += answers.matchedLength();
+		}
+
+		for(int i = 0 ; i < options.length() ; ++i) {
+			m_Survey += "<div id=\"parent\"><div class=\"right\" style=\"width: " + QString::number(static_cast<int>(nbVotes[i]*600/overallVoteNumber)) + "px;\">" + QString::number(nbVotes[i]) + "</div><div class=\"left\">" + options[i] + "</div></div>";
+		}
+
+		m_Survey += "</body></html>";
+
+	} else {
+		pos = 0;
+		QRegExp newQuestion("<input type=\"hidden\" name=\"numeropost\" value=\"([0-9]+)\" /><input type=\"hidden\" name=\"hash_check\" value=\"[a-zA-Z0-9]+\" /><b class=\"s2\">(.*)</b>");
+		newQuestion.setCaseSensitivity(Qt::CaseSensitive);
+		newQuestion.setMinimal(true);
+
+		QString colorHandling = "} ";
+		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+			colorHandling = "background-color:#000000; color:#FFFFFF; } ";
+		}
+
+		if((pos = newQuestion.indexIn(page, pos)) != -1) {
+			m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
+										 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
+										 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
+										 + "</style></head><body><div class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">"
+										 + newQuestion.cap(2) + "</p><ol type=\"1\">";
+
+			//<input class="checkbox" type="checkbox" value="1" id="sond1" name="reponse1" /><label for="sond1">option 1</label>
+			QRegExp answers("type=\"([radiochekbx]+)\" value=\"[0-9]+\" id=\"sond[0-9]+\" name=\"reponse[0-9]*\" /><label for=\"sond[0-9]+\">(.+)</label>");
+			answers.setCaseSensitivity(Qt::CaseSensitive);
+			answers.setMinimal(true);
+
+			int respIDX = 1;
+			bool dataType;
+			QString listSelectedItemsFunctor("function getSelectedItems() { var ret=0; ");
+			while((pos = answers.indexIn(page, pos)) != -1) {
+				dataType = answers.cap(1).at(0) == 'r';
+				qDebug() << answers.cap(1) <<  answers.cap(2);
+				m_Survey += "<li><input type=\"" + answers.cap(1) + "\" value=\"" + QString::number(respIDX) + "\" id=\"sond" + QString::number(respIDX) + "\" name=\"reponse\" />" + answers.cap(2) + "</li>";
+				listSelectedItemsFunctor += "if(document.getElementById(\"sond" + QString::number(respIDX) + "\").checked) { ret += Math.pow(2," + QString::number(respIDX-1) +"); } ";
+				pos += answers.matchedLength();
+				++respIDX;
+			}
+			listSelectedItemsFunctor += " return ret; }";
+			m_Survey += QString("</ol><br /><input type=\"submit\" onclick=\"navigator.cascades.postMessage(\'") + (dataType ? "1" : "0") + "\' + getSelectedItems().toString())\" name=\"sondage_submit\" value=\"" + tr("Vote") + "\" /><script>"+ listSelectedItemsFunctor +"</script></body></html>";
+
+		} else {
+			m_Survey = "";
+		}
+	}
+
+
+	emit surveyUpdated();
+}
 
 void ShowThreadController::addToFavorite(int responseID) {
 	const QUrl url(DefineConsts::FORUM_URL + "/user/addflag.php?config=hfr.inc&cat=" + m_CatID + "&post=" + m_PostID + "&numreponse=" + QString::number(responseID));
@@ -593,3 +683,87 @@ void ShowThreadController::lastPage(bool bas) {
 		showThread(m_Url + "#bas");
 	}
 }
+
+
+
+void ShowThreadController::vote(const QString &vote) {
+
+	const QUrl url(DefineConsts::FORUM_URL + "/user/vote.php?config=hfr.inc");
+
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+	// <form method="post" action="/user/vote.php?config=hfr.inc"><input type="hidden" name="hash_check" value="867ea14e7a8080bb5a9b490844ea2b20" />
+	// <div class="sondage"><input type="hidden" name="cat" value="23" /><input type="hidden" name="p" value="1" />
+	// <input type="hidden" name="page" value="1" /><input type="hidden" name="sondage" value="1" /><input type="hidden" name="owntopic" value="1" />
+	// <input type="hidden" name="subcat" value="529" /><input type="hidden" name="numeropost" value="27709" />
+
+	QUrl params;
+	params.addQueryItem("hash_check", m_HashCheck);
+	params.addQueryItem("p", "1");
+	params.addQueryItem("cat", m_CatID);
+	params.addQueryItem("sondage", "1");
+	params.addQueryItem("page", "1");
+	params.addQueryItem("owntopic", "1");
+	params.addQueryItem("numeropost", m_PostID);
+
+
+	if(vote[0] == '1') {
+		int selected = 0;
+		int value = vote.mid(1).toInt();
+		while(value != 0) {
+			value /= 2;
+			selected++;
+		}
+
+		params.addQueryItem("reponse", QString::number(selected));
+	} else {
+		int value = vote.mid(1).toInt();
+		int i = 1;
+		while(value != 0) {
+			if(value % 2) {
+				params.addQueryItem("reponse"+ QString::number(i), "1");
+			}
+			value /= 2;
+			++i;
+		}
+	}
+
+
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSurveyReply()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+
+}
+
+
+void ShowThreadController::checkSurveyReply() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+
+				showThread(m_Url);
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			qDebug() << response;
+		}
+
+		reply->deleteLater();
+	}
+}
+
+
+
+

@@ -1,5 +1,5 @@
 1
-148
+149
 ExploreCategory.qml
 Favorite.qml
 help/about_fr.html
@@ -147,4 +147,5 @@ Search.qml
 SearchResult.qml
 Settings.qml
 SmileyPicker.qml
+SurveyHeader.qml
 ThreadPage.qml

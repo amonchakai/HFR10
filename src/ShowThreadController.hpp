@@ -25,6 +25,8 @@ class ShowThreadController : public QObject {
 	Q_PROPERTY( QString title  		READ getThreadTitle )
 	Q_PROPERTY( bool	sign		READ isAddSignature )
 
+	Q_PROPERTY( QString survey 		READ getSurvey   )
+
 	private:
 
 		bb::cascades::ListView 				*m_ListView;
@@ -48,6 +50,8 @@ class ShowThreadController : public QObject {
 		bool 								 m_ScrollAtLocation;
 		int									 m_NbWebviewLoaded;
 
+		QString								 m_Survey;
+
 	// ----------------------------------------------------------------------------------------------
 	public:
 		ShowThreadController(QObject *parent = 0);
@@ -62,8 +66,10 @@ class ShowThreadController : public QObject {
 		void showThread(const QString &url);
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void checkReply();
+		void checkSurveyReply();
 		void addToFavorite(int responseID);
 		void checkSuccessAddAddFavorite();
+		void vote(const QString &choices);
 
 		void nextPage();
 		void prevPage();
@@ -78,6 +84,7 @@ class ShowThreadController : public QObject {
 		const QString &getPage() 		const	{ return m_Page; }
 		const QString &getPseudo() 		const	{ return m_Pseudo; }
 		const QString &getThreadTitle() const	{ return m_ThreadTitle; }
+		const QString &getSurvey()		const 	{ return m_Survey; }
 		bool 		   isAddSignature()const	{ return m_AddSignature; }
 
 		bool		   isLastPage() const		{ return m_UrlLastPage == ""; }
@@ -87,6 +94,7 @@ class ShowThreadController : public QObject {
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
 		void complete();
+		void surveyUpdated();
 
 
 
@@ -94,6 +102,7 @@ class ShowThreadController : public QObject {
 	private:
 
 		void parse(const QString &page);
+		void parseSurvey(const QString &page);
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
 		void parseDataForReply(const QString &page);
 		void cleanupPost(QString &post);

@@ -35,6 +35,7 @@ public:
 	inline void setSmileySize(int s) 					{ m_SmileySize = s; }
 	inline int  getSmileySize() const					{ return m_SmileySize; }
 	static int  smileySize() 							{ return m_SmileySize; }
+	static int  fontSize()								{ return m_FontSize; }
 
 
 	static void	loadSettings();

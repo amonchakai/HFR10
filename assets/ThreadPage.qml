@@ -32,6 +32,12 @@ Page {
                 id: modelPost
             }
             
+            property bool surveyVisible
+            leadingVisualSnapThreshold: 2.0
+            leadingVisual: SurveyHeader {
+                id: surveyHeader
+            }
+            
             
             multiSelectHandler {
                 actions: [
@@ -280,6 +286,10 @@ Page {
                     nextPageAction.title = qsTr("Next page");
                     nextPageAction.imageSource = "asset:///images/icon_next.png"
                 }
+            }
+            
+            onSurveyUpdated: {
+                surveyHeader.setSurvey(showThreadController.survey);
             }
         },
         ComponentDefinition {
