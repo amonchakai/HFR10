@@ -122,21 +122,6 @@
     </message>
 </context>
 <context>
-    <name>MainWindowTabbedPane</name>
-    <message>
-        <source>Forum</source>
-        <translation type="obsolete">Forum</translation>
-    </message>
-    <message>
-        <source>MP</source>
-        <translation type="obsolete">MP</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="obsolete">Options</translation>
-    </message>
-</context>
-<context>
     <name>PostMessage</name>
     <message>
         <location filename="../assets/PostMessage.qml" line="27"/>
@@ -156,7 +141,7 @@
     <message>
         <location filename="../assets/PostMessage.qml" line="146"/>
         <source>New MP to: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau MP à: </translation>
     </message>
     <message>
         <location filename="../assets/PostMessage.qml" line="191"/>
@@ -636,7 +621,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="175"/>
         <source>Send PM</source>
-        <translation type="unfinished"></translation>
+        <translation>Enoyer un MP</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="309"/>
@@ -716,7 +701,7 @@
     <message>
         <location filename="../assets/main.qml" line="90"/>
         <source>Search</source>
-        <translation type="unfinished">Rechercher</translation>
+        <translation>Rechercher</translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="34"/>
