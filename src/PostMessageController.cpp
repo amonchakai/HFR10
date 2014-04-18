@@ -68,6 +68,36 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	Q_UNUSED(ok);
 }
 
+void PostMessageController::postNewPrivateMessage(const QString &hashCheck
+												, const QString &pseudo
+												, bool			signature
+												, const QString &caption
+												, const QString &dest
+												, const QString &message) {
+	const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
+
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+	QUrl params;
+	params.addQueryItem("hash_check", hashCheck);
+	params.addQueryItem("cat", "prive");
+	params.addQueryItem("verifrequet", "1100");
+	params.addQueryItem("MsgIcon", "20");
+	params.addQueryItem("pseudo", pseudo);
+	params.addQueryItem("content_form", message);
+	params.addQueryItem("dest", dest);
+	params.addQueryItem("sujet", caption);
+	params.addQueryItem("signature", signature ? "1" : "0");
+
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+}
 
 void PostMessageController::checkReply() {
 	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
@@ -84,7 +114,6 @@ void PostMessageController::checkReply() {
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
 		}
 
 	    reply->deleteLater();
@@ -92,7 +121,6 @@ void PostMessageController::checkReply() {
 
 	if (response.trimmed().isEmpty()) {
         response = tr("Post failed");
-        qDebug() << response;
     }
 
 	emit complete();

@@ -172,6 +172,13 @@ Page {
                                         }
                                     }
                                     ActionItem {
+                                        title: qsTr("Send PM")
+                                        imageSource: "asset:///images/icon_mp.png"
+                                        onTriggered: {
+                                            headerContainer.ListItem.view.sendPrivateMessage(ListItemData.author);
+                                        }
+                                    }
+                                    ActionItem {
                                         title: qsTr("Quote")
                                         imageSource: "asset:///images/chickened.png"
                                         onTriggered: {
@@ -212,6 +219,23 @@ Page {
                 
                 // Set the url of the page to load and thread caption. 
                 tpage.editURL = urlEditPage
+                
+                nav.push(tpage);
+            }
+            
+            function sendPrivateMessage(dest) {
+                if(dest == "")
+                    return;
+                
+                if(!tpage)
+                    tpage = postPage.createObject();
+                
+                // Set the url of the page to load and thread caption. 
+                tpage.recipient = dest;
+                tpage.pseudo = showThreadController.pseudo;
+                tpage.addSignature= showThreadController.sign;
+                tpage.hashCheck = showThreadController.hashCheck 
+                tpage.mode = 4;
                 
                 nav.push(tpage);
             }

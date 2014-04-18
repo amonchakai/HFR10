@@ -62,6 +62,13 @@ public Q_SLOTS:
 
 	void postEdit(const QString &message);
 
+	void postNewPrivateMessage(const QString &hashCheck
+							 , const QString &pseudo
+							 , bool			signature
+							 , const QString &caption
+							 , const QString &dest
+							 , const QString &message);
+
 
 	void getEditMessage(const QString &url);
 	void parseEditMessage(const QString &editpage);

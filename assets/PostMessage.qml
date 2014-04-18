@@ -15,8 +15,8 @@ Page {
     
     property int 	 mode
     property string  editURL
-    
-    property string quoteURL
+    property string  recipient
+    property string  quoteURL
     
     property string smileyToAdd
     
@@ -45,10 +45,23 @@ Page {
                     
                     case 2:
                         postMessageController.postEdit(message.text);
+                        mode = 1;
                         break;
                     
                     case 3:
                         postMessageController.postMessage(message.text);
+                        mode = 1;
+                        break;
+                    
+                    case 4:
+                        postMessageController.postNewPrivateMessage(hashCheck
+                            									  , pseudo
+                            									  , addSignature
+                            									  , newMessageCaption.text
+                            									  , recipient
+                            									  , message.text
+                        );
+                        mode = 1;
                         break;
                 }
             }
@@ -58,6 +71,7 @@ Page {
             title: qsTr ("Cancel")
             
             onTriggered: {
+                mode = 1;
                 nav.pop()
             }
         }
@@ -126,6 +140,11 @@ Page {
             message.editor.insertPlainText("[" + tag + "]" + message.editor.selectedText + "[/" + tag + "]" );
         }
         
+        TextField {
+            id: newMessageCaption
+            visible: false
+            hintText: qsTr("New MP to: ") + recipient
+        }
         TextArea {
             id: message
             layoutProperties: StackLayoutProperties {
@@ -141,6 +160,9 @@ Page {
             
             onComplete: {
                 nav.pop()
+                message.text = "";
+                mode = 1;
+                newMessageCaption.text = "";
                 pageThread.needUpdate = true;
             }
             
@@ -224,5 +246,12 @@ Page {
         	
         message.editor.insertPlainText(smileyToAdd);
         
+    }
+    
+    onModeChanged: {
+        if(mode == 4)
+        	newMessageCaption.visible = true;
+        else 
+            newMessageCaption.visible = false;
     }
 }
