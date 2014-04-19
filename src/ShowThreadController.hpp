@@ -67,6 +67,9 @@ class ShowThreadController : public QObject {
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void checkReply();
 		void checkSurveyReply();
+		void refreshSurvey();
+		void checkSurvey();
+
 		void addToFavorite(int responseID);
 		void checkSuccessAddAddFavorite();
 		void vote(const QString &choices);

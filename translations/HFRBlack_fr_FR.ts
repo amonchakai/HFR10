@@ -552,6 +552,7 @@
         <location filename="../src/ShowThreadController.cpp" line="82"/>
         <location filename="../src/ShowThreadController.cpp" line="423"/>
         <location filename="../src/ShowThreadController.cpp" line="759"/>
+        <location filename="../src/ShowThreadController.cpp" line="798"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

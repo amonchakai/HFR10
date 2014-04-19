@@ -753,7 +753,7 @@ void ShowThreadController::checkSurveyReply() {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
 
-				showThread(m_Url);
+				refreshSurvey();
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
@@ -765,5 +765,40 @@ void ShowThreadController::checkSurveyReply() {
 }
 
 
+void ShowThreadController::refreshSurvey() {
+	m_ScrollAtLocation = false;
+	m_NbWebviewLoaded = 0;
+
+	QNetworkRequest request(DefineConsts::FORUM_URL+m_Url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSurvey()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+}
+
+
+void ShowThreadController::checkSurvey() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+
+				parseSurvey(response);
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			qDebug() << response;
+		}
+
+		reply->deleteLater();
+	}
+}
