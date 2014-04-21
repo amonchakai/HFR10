@@ -15,25 +15,6 @@ Container {
     Container {
         id: refreshStatusContainer
         horizontalAlignment: HorizontalAlignment.Fill
-        ImageView {
-            id: refreshImage
-            imageSource: "asset:///images/refresh.png"
-            verticalAlignment: VerticalAlignment.Center
-            horizontalAlignment: HorizontalAlignment.Center
-            preferredHeight: 75.0
-            preferredWidth: 75.0
-        }
-        Label {
-            id: refreshStatus
-            text: qsTr("Pull to refresh")
-            verticalAlignment: VerticalAlignment.Center
-            textStyle.textAlign: TextAlign.Center
-            leftPadding: 0.0
-            topPadding: 10.0
-            bottomPadding: 10.0
-            textStyle.color: Color.create("#ffffff")
-            horizontalAlignment: HorizontalAlignment.Fill
-        }
     }
     Container {
         horizontalAlignment: HorizontalAlignment.Fill
@@ -58,24 +39,14 @@ Container {
                 readyForRefresh = false;
 
                 if (layoutFrame.y >= 0) {
-                    refreshImage.rotationZ = layoutFrame.y*2;
                     if (layoutFrame.y >= refresh_threshold) {
                         if (! refreshing) {
                             readyForRefresh = true;
                         }
-                        refreshStatus.text = qsTr("Release to refresh")
                     }
                 } else if (layoutFrame.y >= -100) {
                     refreshStatusContainer.visible = true;
-                    if (refreshContainer.refreshedAt == "") {
-                        refreshStatus.text = qsTr("Pull to refresh")
-                    } else {
-                        refreshStatus.text = qsTr("Pull to refresh. Last refreshed ") + timeSince(refreshContainer.refreshedAt);
-                    }
-                    refreshImage.rotationZ = 0;
                 } else {
-                    //don't refresh
-                    refreshImage.rotationZ = 0;
                 }
             }
         }

@@ -20,6 +20,7 @@ Container {
         WebView {
             id: survey
             html: "" 
+            settings.textAutosizingEnabled: false
             
             onMessageReceived: {
                 showThreadController.vote(message.data)

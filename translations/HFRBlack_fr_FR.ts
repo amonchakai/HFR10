@@ -218,44 +218,28 @@
 <context>
     <name>RefreshHeader</name>
     <message>
-        <location filename="../assets/RefreshHeader.qml" line="28"/>
-        <location filename="../assets/RefreshHeader.qml" line="71"/>
-        <source>Pull to refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/RefreshHeader.qml" line="66"/>
-        <source>Release to refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/RefreshHeader.qml" line="73"/>
-        <source>Pull to refresh. Last refreshed </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/RefreshHeader.qml" line="107"/>
+        <location filename="../assets/RefreshHeader.qml" line="78"/>
         <source>%L1y ago</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/RefreshHeader.qml" line="109"/>
-        <location filename="../assets/RefreshHeader.qml" line="115"/>
+        <location filename="../assets/RefreshHeader.qml" line="80"/>
+        <location filename="../assets/RefreshHeader.qml" line="86"/>
         <source>%L1m ago</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/RefreshHeader.qml" line="111"/>
+        <location filename="../assets/RefreshHeader.qml" line="82"/>
         <source>%L1d ago</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/RefreshHeader.qml" line="113"/>
+        <location filename="../assets/RefreshHeader.qml" line="84"/>
         <source>%L1h ago</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/RefreshHeader.qml" line="116"/>
+        <location filename="../assets/RefreshHeader.qml" line="87"/>
         <source>just now</source>
         <translation type="unfinished"></translation>
     </message>
