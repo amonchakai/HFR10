@@ -33,9 +33,11 @@ private:
 	int 	m_NBMessages;
 	QString m_Message;
 
+	bool    m_MessageBeingPosted;
+
 public:
 
-	PostMessageController(QObject *parent = 0) : QObject(parent), m_AddSignature(false), m_NBMessages(0) {}
+	PostMessageController(QObject *parent = 0) : QObject(parent), m_AddSignature(false), m_NBMessages(0), m_MessageBeingPosted(false) {}
 	virtual ~PostMessageController() {}
 
 

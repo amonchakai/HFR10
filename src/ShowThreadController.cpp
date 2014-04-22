@@ -382,7 +382,15 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			m_Survey += QString("</ol><br /><input type=\"submit\" onclick=\"navigator.cascades.postMessage(\'") + (dataType ? "1" : "0") + "\' + getSelectedItems().toString())\" name=\"sondage_submit\" value=\"" + tr("Vote") + "\" /><script>"+ listSelectedItemsFunctor +"</script></body></html>";
 
 		} else {
-			m_Survey = "";
+			QString colorHandling = "} ";
+			if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+				colorHandling = "background-color:#000000; color:#FFFFFF; } ";
+			}
+
+			m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
+							 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
+							 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
+							 + "#parent { overflow: hidden; } .right { float:right; width:400px; background-color: steelblue; text-align: right; padding: 3px; margin: 1px; color: white; } .left { overflow: hidden; } </style></head><body></body></html>";
 		}
 	}
 
@@ -421,12 +429,58 @@ void ShowThreadController::checkSuccessAddAddFavorite() {
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+		}
+
+		reply->deleteLater();
+	}
+}
+
+void ShowThreadController::deletePost(int messageID) {
+	const QUrl url(DefineConsts::FORUM_URL + "/bdd.php?config=hfr.inc");
+
+
+	QNetworkRequest request(url);
+	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+
+
+	QUrl params;
+	params.addQueryItem("hash_check", m_HashCheck);
+	params.addQueryItem("post", m_PostID);
+	params.addQueryItem("numreponse", QString::number(messageID));
+	params.addQueryItem("cat", m_CatID);
+	params.addQueryItem("pseudo", m_Pseudo);
+	params.addQueryItem("delete", "1");
+
+	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSuccessDeletePost()));
+	Q_ASSERT(ok);
+	Q_UNUSED(ok);
+}
+
+void ShowThreadController::checkSuccessDeletePost() {
+	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+	QString response;
+	if (reply) {
+		if (reply->error() == QNetworkReply::NoError) {
+			const int available = reply->bytesAvailable();
+			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
+			if (available > 0) {
+				const QByteArray buffer(reply->readAll());
+				response = QString::fromUtf8(buffer);
+				showThread(m_Url);
+			}
+		} else {
+			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
 			qDebug() << response;
 		}
 
 		reply->deleteLater();
 	}
 }
+
 
 void ShowThreadController::cleanupPost(QString &post) {
 	// ----------------------------------------------------

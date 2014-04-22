@@ -40,6 +40,9 @@ void PostMessageController::postMessage(const QString &hashCheck,
 										const QString &threadTitle,
 										bool signature) {
 
+	if(m_MessageBeingPosted)
+		return;
+
 	const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
 
 
@@ -61,7 +64,7 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	params.addQueryItem("sujet", threadTitle);
 	params.addQueryItem("signature", signature ? "1" : "0");
 
-
+	m_MessageBeingPosted = true;
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
 	Q_ASSERT(ok);
@@ -123,6 +126,7 @@ void PostMessageController::checkReply() {
         response = tr("Post failed");
     }
 
+	m_MessageBeingPosted = false;
 	emit complete();
 }
 

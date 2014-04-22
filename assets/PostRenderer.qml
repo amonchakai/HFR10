@@ -8,10 +8,10 @@ Container {
         if(style == VisualStyle.Bright) {
         	return "} ";
         } else {
-            return "background-color:#000000; color:#FFFFFF; } ";
+            return "background-color:#000000; color:#DDDDDD; } a:link {color:#3cb1f4; } a:visited {color:#3cb1f4; }  ";
         }   
     }
- 
+    
     WebView {
         id: post
         html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
@@ -19,7 +19,8 @@ Container {
                     + "body {font-size:" + appSettings.fontSize.toString()  + "px; " + postRenderContainer.adjustBackGroundAndcolor(Application.themeSupport.theme.colorTheme.style) // switch webview color based on theme
                     + "p {font-size:" + appSettings.fontSize.toString() + "px;} "
                     + "</style><script>function sendURL(url) { navigator.cascades.postMessage(url); }</script>" 
-        		+ "</head><body>" + ListItemData.post + "</body></html>"
+                    	+ "</head><body>" + ListItemData.post 
+        		+ "</body></html>"
         settings.textAutosizingEnabled: false
 
 		onNavigationRequested: {

@@ -139,7 +139,7 @@ Page {
                                 horizontalAlignment: HorizontalAlignment.Right
                                 textStyle {
                                     base: SystemDefaults.TextStyles.SmallText
-                                    color: Color.Blue
+                                    color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.Cyan : Color.Blue
                                 }
                             }
                             Container {

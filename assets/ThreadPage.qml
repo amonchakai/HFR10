@@ -88,7 +88,7 @@ Page {
                                     case VisualStyle.Bright:
                                         return Color.create(0.96,0.96,0.96);
                                     case VisualStyle.Dark: 
-                                        return Color.create(0.01,0.01,0.01);
+                                        return Color.create(0.15,0.15,0.15);
                                     default :
                                         return Color.create(0.96,0.96,0.96);    
                                 }
@@ -148,7 +148,7 @@ Page {
                             }
                             Container {
                                 id: lineContainer
-                                background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#0080FE") : Color.create("#00A7DE") 
+                                background: Color.create("#00A7DE") 
                                 minHeight: 4
                                 maxHeight: 4
                                 minWidth: 800
@@ -157,7 +157,6 @@ Page {
                             
                             PostRenderer {
                             }
-                            
                             
                             contextActions: [
                                 ActionSet {
@@ -197,9 +196,12 @@ Page {
                                             headerContainer.ListItem.view.multiSelectHandler.active = true;
                                         }
                                     }
-//                                    DeleteActionItem {
-//                                        title: qsTr("Delete post")
-//                                    }
+                                    DeleteActionItem {
+                                        title: qsTr("Delete post")
+                                        onTriggered: {
+                                            headerContainer.ListItem.view.deletePost(ListItemData.index, ListItemData.author);
+                                        }
+                                    }
                                 }
                             ]                       
                                 
@@ -214,6 +216,11 @@ Page {
                 	tpage = postPage.createObject();                
                 tpage.quoteURL = quoteURL;
                 nav.push(tpage);
+            }
+            
+            function deletePost(messageID, author) {
+                if(author == showThreadController.pseudo)
+                    showThreadController.deletePost(messageID);
             }
             
             function gotoEditMessage(urlEditPage) {

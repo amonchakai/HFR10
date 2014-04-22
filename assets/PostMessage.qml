@@ -90,20 +90,41 @@ Page {
         horizontalAlignment: HorizontalAlignment.Fill
         verticalAlignment: VerticalAlignment.Fill
         
+        function adjustBackGroundAndcolor(style) {
+            if(style == VisualStyle.Bright) {
+                return "} ";
+            } else {
+                return "background-color:#000000; color:#DDDDDD; } ";
+            }   
+        }
+        
+        function chooseIconSet(style) {
+            if(style == VisualStyle.Bright) {
+                return    "<td><img src=\"local:///assets/images/blackFace.png\" alt=\"smiley\" title=\"smiley\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_bold_black.png\" alt=\"bold\" title=\"bold\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_italic_black.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_underline_black.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_code_black.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_quote_black.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ;
+            } else {
+                return    "<td><img src=\"local:///assets/images/whiteFace.png\" alt=\"smiley\" title=\"smiley\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_bold.png\" alt=\"bold\" title=\"bold\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_italic.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_underline.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_code.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+		                + "<td><img src=\"local:///assets/images/icon_quote.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ; 
+            }
+        }
+        
         WebView {
             id: webviewActionBar
             html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
             + "table { table-layout:fixed; width: 800px; border-spacing: 30px 0px; } th {text-align:left; text-decoration:underline;} "	// render quotation table
-            + "body {font-size:25px; } "  // switch webview color based on theme
+            + "body {font-size:25px; " + formContainer.adjustBackGroundAndcolor(Application.themeSupport.theme.colorTheme.style)  // switch webview color based on theme
             + "p {font-size:25px;} "
             + "</style>" 
             + "</head><body>" + "<table><tr>" 
-            		    + "<td><img src=\"local:///assets/images/blackFace.png\" alt=\"smiley\" title=\"smiley\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-                        + "<td><img src=\"local:///assets/images/icon_bold_black.png\" alt=\"bold\" title=\"bold\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-                        + "<td><img src=\"local:///assets/images/icon_italic_black.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-                        + "<td><img src=\"local:///assets/images/icon_underline_black.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-                        + "<td><img src=\"local:///assets/images/icon_code_black.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-                        + "<td><img src=\"local:///assets/images/icon_quote_black.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+            + formContainer.chooseIconSet(Application.themeSupport.theme.colorTheme.style)
             + "</tr></table>" + "</body></html>"
             preferredHeight: 60
             

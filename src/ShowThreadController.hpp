@@ -71,7 +71,9 @@ class ShowThreadController : public QObject {
 		void checkSurvey();
 
 		void addToFavorite(int responseID);
+		void deletePost(int messageID);
 		void checkSuccessAddAddFavorite();
+		void checkSuccessDeletePost();
 		void vote(const QString &choices);
 
 		void nextPage();
