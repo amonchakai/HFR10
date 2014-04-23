@@ -96,7 +96,7 @@ void ShowThreadController::parse(const QString &page) {
 
 
 	QRegExp amp("&amp;");
-	QRegExp pageURL("</b>&nbsp;&nbsp;<a href=\"(.+)\" class=\"cHeader\">1</a>");
+	QRegExp pageURL("<a href=\"([^\"]+)\" class=\"cHeader\">1</a>");
 	pageURL.setCaseSensitivity(Qt::CaseSensitive);
 	pageURL.setMinimal(true);
 
@@ -107,17 +107,20 @@ void ShowThreadController::parse(const QString &page) {
 		m_UrlFirstPage = "";
 
 
-	pageURL = QRegExp("</b>&nbsp;&nbsp;<a href=\"(.+)\" class=\"cHeader\">[0-9]+</a></div><div class=\"pagepresuiv\">");
+	pageURL = QRegExp("<a href=\"([^\"]+)\" class=\"cHeader\">([0-9]+)</a></div><div class=\"pagepresuiv\">");
 	pageURL.setCaseSensitivity(Qt::CaseSensitive);
 	pageURL.setMinimal(true);
 
+	QString lastPageNumber;
 	if(pageURL.indexIn(page, 0) != -1) {
 		m_UrlLastPage = pageURL.cap(1);
 		m_UrlLastPage.replace(amp, "&");
+
+		lastPageNumber = pageURL.cap(2);
 	} else
 		m_UrlLastPage = "";
 
-	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"(.+)\" class=\"cHeader\" accesskey=\"w\">Page Pr");
+	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"([^\"]+)\" class=\"cHeader\" accesskey=\"w\">Page Pr");
 	pageURL.setCaseSensitivity(Qt::CaseSensitive);
 	pageURL.setMinimal(true);
 
@@ -127,7 +130,7 @@ void ShowThreadController::parse(const QString &page) {
 	} else
 		m_UrlPrevPage = "";
 
-	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"(.+)\" class=\"cHeader\" accesskey=\"x\">Page Suivante</a></div>");
+	pageURL = QRegExp("<div class=\"pagepresuiv\"><a href=\"([^\"]+)\" class=\"cHeader\" accesskey=\"x\">Page Suivante</a></div>");
 	pageURL.setCaseSensitivity(Qt::CaseSensitive);
 	pageURL.setMinimal(true);
 
@@ -137,6 +140,38 @@ void ShowThreadController::parse(const QString &page) {
 	} else
 		m_UrlNextPage = "";
 
+/*
+	qDebug() << m_UrlFirstPage;
+	qDebug() << m_UrlLastPage;
+	qDebug() << m_UrlPrevPage;
+	qDebug() << m_UrlNextPage;
+	qDebug() << m_Url;
+*/
+
+	// ----------------------------------------------------------------------------------------------
+	QString currentPageNumber;
+	{	// get information about current page number & last page number
+
+		QRegExp pageNumber("page=([0-9]+)");
+		pageNumber.setCaseSensitivity(Qt::CaseSensitive);
+
+		QRegExp pageNumberCleanUrl("([0-9]+).htm");
+		pageNumberCleanUrl.setCaseSensitivity(Qt::CaseSensitive);
+
+		if(pageNumber.indexIn(m_Url, 0) != -1) {
+			currentPageNumber = pageNumber.cap(1);
+		} else {
+			if(pageNumberCleanUrl.indexIn(m_Url, 0) != -1) {
+				currentPageNumber = pageNumberCleanUrl.cap(1);
+			} else {
+				currentPageNumber = "1";
+			}
+		}
+
+		if(lastPageNumber == "")
+			lastPageNumber = currentPageNumber;
+
+	}
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -181,6 +216,13 @@ void ShowThreadController::parse(const QString &page) {
 	parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
 	parseDataForReply(page.mid(lastPos, pos-lastPos));
 
+	PostDetailItem *item = m_Datas->last();
+
+	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+		item->getPost() += "<br /><br /><div style=\"background-color:#262626; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</div>";
+	} else {
+		item->getPost() += "<br /><br /><div style=\"background-color:#f5f5f5; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</div>";
+	}
 
 	updateView();
 
@@ -368,7 +410,7 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			answers.setMinimal(true);
 
 			int respIDX = 1;
-			bool dataType;
+			bool dataType = false;
 			QString listSelectedItemsFunctor("function getSelectedItems() { var ret=0; ");
 			while((pos = answers.indexIn(page, pos)) != -1) {
 				dataType = answers.cap(1).at(0) == 'r';
@@ -489,7 +531,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br />[&nbsp;]*<p>(.+)</p></td></tr></table></div>"	// message
+								+"</a></b><br /><br />[&nbsp;]*[<p>]*(.+)[<p>]*</td></tr></table></div>"	// message
 			);
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);

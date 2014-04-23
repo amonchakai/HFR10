@@ -534,15 +534,15 @@
     <name>ShowThreadController</name>
     <message>
         <location filename="../src/ShowThreadController.cpp" line="82"/>
-        <location filename="../src/ShowThreadController.cpp" line="431"/>
-        <location filename="../src/ShowThreadController.cpp" line="476"/>
-        <location filename="../src/ShowThreadController.cpp" line="813"/>
-        <location filename="../src/ShowThreadController.cpp" line="852"/>
+        <location filename="../src/ShowThreadController.cpp" line="473"/>
+        <location filename="../src/ShowThreadController.cpp" line="518"/>
+        <location filename="../src/ShowThreadController.cpp" line="855"/>
+        <location filename="../src/ShowThreadController.cpp" line="894"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="382"/>
+        <location filename="../src/ShowThreadController.cpp" line="424"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
