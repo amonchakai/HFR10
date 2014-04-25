@@ -1,6 +1,6 @@
 APP_NAME = HFRBlack
 
-CONFIG += qt warn_on cascades10
+CONFIG += qt warn_on cascades10 
 QT += network xml
 LIBS += -lbbsystem
 

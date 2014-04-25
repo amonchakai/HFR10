@@ -293,6 +293,7 @@ Page {
         ActionItem {
             title: qsTr("Sub-Category")
             imageSource: "asset:///images/icon_category.png"
+            ActionBar.placement: ActionBarPlacement.OnBar
             onTriggered: {
                 pickSubCat.show();
             }

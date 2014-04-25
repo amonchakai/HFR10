@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="201"/>
-        <location filename="../assets/ExploreCategory.qml" line="301"/>
+        <location filename="../assets/ExploreCategory.qml" line="302"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
@@ -35,12 +35,12 @@
         <translation>Sous-catégorie</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="309"/>
+        <location filename="../assets/ExploreCategory.qml" line="310"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="317"/>
+        <location filename="../assets/ExploreCategory.qml" line="318"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
@@ -618,7 +618,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="200"/>
         <source>Delete post</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer post</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="326"/>

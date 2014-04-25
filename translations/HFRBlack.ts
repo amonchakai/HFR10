@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="201"/>
-        <location filename="../assets/ExploreCategory.qml" line="301"/>
+        <location filename="../assets/ExploreCategory.qml" line="302"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,12 +35,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="309"/>
+        <location filename="../assets/ExploreCategory.qml" line="310"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="317"/>
+        <location filename="../assets/ExploreCategory.qml" line="318"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>

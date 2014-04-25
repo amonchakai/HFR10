@@ -531,7 +531,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br />[&nbsp;]*[<p>]*(.+)[<p>]*</td></tr></table></div>"	// message
+								+"</a></b><br /><br />[&nbsp;]*<p>(.+)</p></td></tr></table></div>"	// message
 			);
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);

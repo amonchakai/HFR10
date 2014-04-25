@@ -41,6 +41,7 @@
 
 #include "CookieJar.hpp"
 #include "DataObjects.h"
+#include "HubIntegration.h"
 
 using namespace bb::cascades;
 
@@ -65,6 +66,8 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 
     // initial load
     onSystemLanguageChanged();
+
+//    initHub();
 
 
     // -------------------------------------------------------------------------------------------------------
