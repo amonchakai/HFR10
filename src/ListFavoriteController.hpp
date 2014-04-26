@@ -52,6 +52,9 @@ class ListFavoriteController : public QObject {
 		void parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today);
 		void updateView();
 
+		void checkErrorMessage(const QString &page);
+		void connectionTimedOut();
+
 };
 
 

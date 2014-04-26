@@ -111,6 +111,7 @@ class ShowThreadController : public QObject {
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
 		void parseDataForReply(const QString &page);
 		void cleanupPost(QString &post);
+		void connectionTimedOut();
 };
 
 

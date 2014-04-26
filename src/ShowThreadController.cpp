@@ -23,6 +23,7 @@
 #include <bb/cascades/ThemeSupport>
 #include <bb/cascades/ColorTheme>
 #include <bb/cascades/Theme>
+#include <bb/system/SystemToast>
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
@@ -79,14 +80,23 @@ void ShowThreadController::checkReply() {
 				parse(response);
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
+			connectionTimedOut();
 		}
 
 		reply->deleteLater();
 	}
 }
 
+void ShowThreadController::connectionTimedOut() {
+
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(tr("Connection timed out"));
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+
+	emit complete();
+}
 
 
 void ShowThreadController::parse(const QString &page) {

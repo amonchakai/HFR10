@@ -13,6 +13,8 @@
 #include "CookieJar.hpp"
 #include "HFRNetworkAccessManager.hpp"
 
+#include <bb/system/SystemToast>
+
 QString LoginController::m_User = "";
 
 LoginController::LoginController(QObject *parent)
@@ -56,25 +58,37 @@ void LoginController::checkReply() {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
 
-				qDebug() << "Login OK";
-
 				// save cookies on disk
 				CookieJar::get()->saveToDisk();
 				saveUserName();
 				emit complete();
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
+			connectionTimedOut();
 		}
 
 	    reply->deleteLater();
 	}
 
 	if (response.trimmed().isEmpty()) {
-        response = tr("Login failed");
-        qDebug() << response;
+		errorMessage();
     }
+}
+
+void LoginController::errorMessage() {
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(tr("Login failed, please check if your user name and password are correct"));
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+}
+
+void LoginController::connectionTimedOut() {
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(tr("Connection timed out"));
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
 }
 
 bool LoginController::isLogged() {

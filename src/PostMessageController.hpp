@@ -84,6 +84,11 @@ Q_SIGNALS:
 	void messageLoaded(const QString &message_loaded);
 
 
+private:
+	void errorMessage(const QString &page) ;
+	void connectionTimedOut();
+
+
 };
 
 

@@ -53,6 +53,9 @@ private:
 
 	void saveUserName();
 	void loadUserName();
+
+	void errorMessage() ;
+	void connectionTimedOut();
 };
 
 

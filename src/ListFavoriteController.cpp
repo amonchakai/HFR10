@@ -11,6 +11,7 @@
 
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
+#include <bb/system/SystemToast>
 
 #include  "Globals.h"
 #include  "HFRNetworkAccessManager.hpp"
@@ -40,7 +41,27 @@ void ListFavoriteController::getFavorite() {
 
 }
 
+void ListFavoriteController::checkErrorMessage(const QString &page) {
 
+	QRegExp message("Aucun sujet que vous avez lu");
+	message.setCaseSensitivity(Qt::CaseSensitive);
+	message.setMinimal(true);
+
+	QString error;
+
+	if(message.indexIn(page, 0) != -1) {
+		error = QString(tr("You are not logged in."));
+	}
+
+	if(error == "")
+		return;
+
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(error);
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+}
 
 void ListFavoriteController::checkReply() {
 	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
@@ -52,17 +73,27 @@ void ListFavoriteController::checkReply() {
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
+				checkErrorMessage(response);
 				parse(response);
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
+			connectionTimedOut();
 		}
 
 		reply->deleteLater();
 	}
 }
 
+void ListFavoriteController::connectionTimedOut() {
+
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(tr("Connection timed out"));
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+
+	emit complete();
+}
 
 
 void ListFavoriteController::parse(const QString &page) {

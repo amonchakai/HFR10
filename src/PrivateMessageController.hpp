@@ -52,6 +52,8 @@ class PrivateMessageController : public QObject {
 		void parseMessageListing(bool read, const QString &threadListing);
 		void updateView();
 
+		void checkErrorMessage(const QString &page);
+		void connectionTimedOut();
 };
 
 

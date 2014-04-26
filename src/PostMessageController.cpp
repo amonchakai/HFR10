@@ -14,6 +14,7 @@
 #include <QNetworkRequest>
 #include <QUrl>
 #include <QRegExp>
+#include <bb/system/SystemToast>
 
 #include "Globals.h"
 #include "HFRNetworkAccessManager.hpp"
@@ -40,8 +41,9 @@ void PostMessageController::postMessage(const QString &hashCheck,
 										const QString &threadTitle,
 										bool signature) {
 
-	if(m_MessageBeingPosted)
+	if(m_MessageBeingPosted) {
 		return;
+	}
 
 	const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
 
@@ -113,21 +115,44 @@ void PostMessageController::checkReply() {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
 
-				qDebug() << response;
+				errorMessage(response);
+
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+			connectionTimedOut();
 		}
 
 	    reply->deleteLater();
 	}
 
 	if (response.trimmed().isEmpty()) {
-        response = tr("Post failed");
+		connectionTimedOut();
     }
 
 	m_MessageBeingPosted = false;
 	emit complete();
+}
+
+void PostMessageController::errorMessage(const QString &page) {
+	QRegExp message("Afin de prevenir les tentatives de flood");
+	message.setCaseSensitivity(Qt::CaseSensitive);
+	message.setMinimal(true);
+
+	QString error;
+
+	if(message.indexIn(page, 0) != -1) {
+		error = QString(tr("Too many consecutive replies, please wait 10 minutes"));
+	}
+
+	if(error == "")
+		return;
+
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(error);
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+
 }
 
 
@@ -199,8 +224,7 @@ void PostMessageController::checkQuoteMessageReply() {
 				parseQuotedMessage(response);
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
+			connectionTimedOut();
 		}
 
 		reply->deleteLater();
@@ -220,8 +244,7 @@ void PostMessageController::checkGetMessageReply() {
 				parseEditMessage(response);
 			}
 		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
+			connectionTimedOut();
 		}
 
 		reply->deleteLater();
@@ -368,3 +391,11 @@ void PostMessageController::postEdit(const QString &message) {
 	Q_UNUSED(ok);
 }
 
+
+void PostMessageController::connectionTimedOut() {
+	bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+	toast->setBody(tr("Connection timed out"));
+	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+	toast->show();
+}

@@ -79,22 +79,31 @@
 <context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="58"/>
-        <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/ListFavoriteController.cpp" line="53"/>
+        <source>You are not logged in.</source>
+        <translation>Vous n&apos;êtes pas connecté</translation>
+    </message>
+    <message>
+        <location filename="../src/ListFavoriteController.cpp" line="91"/>
+        <source>Connection timed out</source>
+        <translation>La connexion a échouée</translation>
     </message>
 </context>
 <context>
     <name>LoginController</name>
     <message>
-        <location filename="../src/LoginController.cpp" line="67"/>
-        <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/LoginController.cpp" line="81"/>
+        <source>Login failed, please check if your user name and password are correct</source>
+        <translation>L&apos;authentification a échouée. Vérfiez votre identifiant et mot de passe.</translation>
     </message>
     <message>
-        <location filename="../src/LoginController.cpp" line="75"/>
+        <location filename="../src/LoginController.cpp" line="89"/>
+        <source>Connection timed out</source>
+        <translation>La connexion a échouée</translation>
+    </message>
+    <message>
         <source>Login failed</source>
-        <translation>Erreur lors de l&apos;authentification</translation>
+        <translation type="obsolete">Erreur lors de l&apos;authentification</translation>
     </message>
 </context>
 <context>
@@ -172,16 +181,18 @@
 <context>
     <name>PostMessageController</name>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="119"/>
-        <location filename="../src/PostMessageController.cpp" line="202"/>
-        <location filename="../src/PostMessageController.cpp" line="223"/>
-        <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <source>Post failed</source>
+        <translation type="obsolete">Erreur lors de la publication du post</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="126"/>
-        <source>Post failed</source>
-        <translation>Erreur lors de la publication du post</translation>
+        <location filename="../src/PostMessageController.cpp" line="144"/>
+        <source>Too many consecutive replies, please wait 10 minutes</source>
+        <translation>Trop de réponses consécutives, veuilliez patienter 10 minutes avant de pouvoir reposter ici</translation>
+    </message>
+    <message>
+        <location filename="../src/PostMessageController.cpp" line="398"/>
+        <source>Connection timed out</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -210,9 +221,14 @@
 <context>
     <name>PrivateMessageController</name>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="59"/>
-        <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/PrivateMessageController.cpp" line="77"/>
+        <source>You are not logged in.</source>
+        <translation>Vous n&apos;êtes pas connecté</translation>
+    </message>
+    <message>
+        <location filename="../src/PrivateMessageController.cpp" line="94"/>
+        <source>Connection timed out</source>
+        <translation>La connexion a échouée</translation>
     </message>
 </context>
 <context>
@@ -533,18 +549,22 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="82"/>
-        <location filename="../src/ShowThreadController.cpp" line="473"/>
-        <location filename="../src/ShowThreadController.cpp" line="518"/>
-        <location filename="../src/ShowThreadController.cpp" line="855"/>
-        <location filename="../src/ShowThreadController.cpp" line="894"/>
+        <location filename="../src/ShowThreadController.cpp" line="94"/>
+        <source>Connection timed out</source>
+        <translation>La connexion a échouée</translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="483"/>
+        <location filename="../src/ShowThreadController.cpp" line="528"/>
+        <location filename="../src/ShowThreadController.cpp" line="865"/>
+        <location filename="../src/ShowThreadController.cpp" line="904"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="424"/>
+        <location filename="../src/ShowThreadController.cpp" line="434"/>
         <source>Vote</source>
-        <translation type="unfinished"></translation>
+        <translation>Voter</translation>
     </message>
 </context>
 <context>
