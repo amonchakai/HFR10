@@ -139,32 +139,32 @@
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="167"/>
+        <location filename="../assets/PostMessage.qml" line="168"/>
         <source>New MP to: </source>
         <translation>Nouveau MP à: </translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="212"/>
+        <location filename="../assets/PostMessage.qml" line="223"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="219"/>
+        <location filename="../assets/PostMessage.qml" line="230"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="226"/>
+        <location filename="../assets/PostMessage.qml" line="237"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="233"/>
+        <location filename="../assets/PostMessage.qml" line="244"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="240"/>
+        <location filename="../assets/PostMessage.qml" line="251"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>
@@ -586,88 +586,88 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="166"/>
+        <location filename="../assets/ThreadPage.qml" line="165"/>
         <source>Edit</source>
         <translation>Editer</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="194"/>
+        <location filename="../assets/ThreadPage.qml" line="193"/>
         <source>Quote more</source>
         <translation>Citer (plus)</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="187"/>
+        <location filename="../assets/ThreadPage.qml" line="186"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="163"/>
+        <location filename="../assets/ThreadPage.qml" line="162"/>
         <source>Actions</source>
         <translation>Actions</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="173"/>
+        <location filename="../assets/ThreadPage.qml" line="172"/>
         <source>Add Favorite</source>
         <translation>Ajouter aux favoris</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="180"/>
+        <location filename="../assets/ThreadPage.qml" line="179"/>
         <source>Send PM</source>
         <translation>Enoyer un MP</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="200"/>
+        <location filename="../assets/ThreadPage.qml" line="199"/>
         <source>Delete post</source>
         <translation>Supprimer post</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="326"/>
+        <location filename="../assets/ThreadPage.qml" line="325"/>
         <source>Friendly warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="327"/>
+        <location filename="../assets/ThreadPage.qml" line="326"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation>Vous êtes sur le pont de quitter l&apos;application, êtes vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="337"/>
+        <location filename="../assets/ThreadPage.qml" line="336"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="358"/>
+        <location filename="../assets/ThreadPage.qml" line="357"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="366"/>
+        <location filename="../assets/ThreadPage.qml" line="365"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="374"/>
+        <location filename="../assets/ThreadPage.qml" line="373"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="293"/>
-        <location filename="../assets/ThreadPage.qml" line="383"/>
+        <location filename="../assets/ThreadPage.qml" line="292"/>
+        <location filename="../assets/ThreadPage.qml" line="382"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="290"/>
+        <location filename="../assets/ThreadPage.qml" line="289"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="392"/>
+        <location filename="../assets/ThreadPage.qml" line="391"/>
         <source>To Top</source>
         <translation>Haut de page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="399"/>
+        <location filename="../assets/ThreadPage.qml" line="398"/>
         <source>To Bottom</source>
         <translation>Bas de page</translation>
     </message>

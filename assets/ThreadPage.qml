@@ -151,8 +151,7 @@ Page {
                                 background: Color.create("#00A7DE") 
                                 minHeight: 4
                                 maxHeight: 4
-                                minWidth: 800
-                                maxWidth: 800
+                                horizontalAlignment: HorizontalAlignment.Fill
                             }
                             
                             PostRenderer {

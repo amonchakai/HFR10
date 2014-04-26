@@ -84,7 +84,7 @@ Page {
             id: activityIndicator
             horizontalAlignment: HorizontalAlignment.Center
             verticalAlignment: VerticalAlignment.Center
-            preferredHeight: 60
+            preferredHeight: orientationHandler.orientation == OrientationSupport.orientation.Portrait ? 60 : 80;
         }
         
         horizontalAlignment: HorizontalAlignment.Fill
@@ -123,10 +123,11 @@ Page {
             + "body {font-size:25px; " + formContainer.adjustBackGroundAndcolor(Application.themeSupport.theme.colorTheme.style)  // switch webview color based on theme
             + "p {font-size:25px;} "
             + "</style>" 
-            + "</head><body>" + "<table><tr>" 
+            + "</head><body>" + "<table style=\"margin-left:auto; margin-right:auto; \" ><tr>" 
             + formContainer.chooseIconSet(Application.themeSupport.theme.colorTheme.style)
             + "</tr></table>" + "</body></html>"
             preferredHeight: 60
+            horizontalAlignment: HorizontalAlignment.Fill
             
             onMessageReceived: {
                 if(message.data == "smiley") {
@@ -195,6 +196,16 @@ Page {
         ComponentDefinition {
             id: smileyPicker
             source: "SmileyPicker.qml"
+        },
+        OrientationHandler {
+            id: orientationHandler
+            onOrientationAboutToChange: {
+                if (orientation == UIOrientation.Landscape) {
+                    webviewActionBar.preferredHeight = 80;
+                } else {
+                    webviewActionBar.preferredHeight = 60;
+                }
+            }
         }
     ]
     

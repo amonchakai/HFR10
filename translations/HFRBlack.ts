@@ -139,32 +139,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="167"/>
+        <location filename="../assets/PostMessage.qml" line="168"/>
         <source>New MP to: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="212"/>
+        <location filename="../assets/PostMessage.qml" line="223"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="219"/>
+        <location filename="../assets/PostMessage.qml" line="230"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="226"/>
+        <location filename="../assets/PostMessage.qml" line="237"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="233"/>
+        <location filename="../assets/PostMessage.qml" line="244"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="240"/>
+        <location filename="../assets/PostMessage.qml" line="251"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -586,88 +586,88 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="166"/>
+        <location filename="../assets/ThreadPage.qml" line="165"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="194"/>
+        <location filename="../assets/ThreadPage.qml" line="193"/>
         <source>Quote more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="187"/>
+        <location filename="../assets/ThreadPage.qml" line="186"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="163"/>
+        <location filename="../assets/ThreadPage.qml" line="162"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="173"/>
+        <location filename="../assets/ThreadPage.qml" line="172"/>
         <source>Add Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="180"/>
+        <location filename="../assets/ThreadPage.qml" line="179"/>
         <source>Send PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="200"/>
+        <location filename="../assets/ThreadPage.qml" line="199"/>
         <source>Delete post</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="326"/>
+        <location filename="../assets/ThreadPage.qml" line="325"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="327"/>
+        <location filename="../assets/ThreadPage.qml" line="326"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="337"/>
+        <location filename="../assets/ThreadPage.qml" line="336"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="358"/>
+        <location filename="../assets/ThreadPage.qml" line="357"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="366"/>
+        <location filename="../assets/ThreadPage.qml" line="365"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="374"/>
+        <location filename="../assets/ThreadPage.qml" line="373"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="293"/>
-        <location filename="../assets/ThreadPage.qml" line="383"/>
+        <location filename="../assets/ThreadPage.qml" line="292"/>
+        <location filename="../assets/ThreadPage.qml" line="382"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="290"/>
+        <location filename="../assets/ThreadPage.qml" line="289"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="392"/>
+        <location filename="../assets/ThreadPage.qml" line="391"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="399"/>
+        <location filename="../assets/ThreadPage.qml" line="398"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
