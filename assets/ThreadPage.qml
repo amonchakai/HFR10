@@ -43,7 +43,7 @@ Page {
                 actions: [
                     ActionItem {
                         title: "Reply to quotes"
-                        imageSource: "asset:///images/icon_write.png"
+                        imageSource: "asset:///images/icon_quote_bis.png"
                         
                         onTriggered: {
                             var selection = threadView.selectionList()
@@ -184,7 +184,7 @@ Page {
                                     }
                                     ActionItem {
                                         title: qsTr("Quote")
-                                        imageSource: "asset:///images/chickened.png"
+                                        imageSource: "asset:///images/icon_quote_bis.png"
                                         onTriggered: {
                                             headerContainer.ListItem.view.gotoSingleQuoteMessage(ListItemData.index);
                                         }
