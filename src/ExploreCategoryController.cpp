@@ -24,7 +24,7 @@
 
 
 ExploreCategoryController::ExploreCategoryController(QObject *parent)
-	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SystemListDialog(NULL), m_SelectedSubCat(0) {
+	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SelectedSubCat(0) {
 
 }
 
@@ -46,23 +46,15 @@ void ExploreCategoryController::loadSubCats(const QString &xmlFile) {
 		catRegExp.setCaseSensitivity(Qt::CaseSensitive);
 		catRegExp.setMinimal(true);
 
-		if(m_SystemListDialog != NULL) {
-			QRegExp andAmp("&amp;");
-			int pos = 0;
-			m_SystemListDialog->clearList();
-			m_SubCatURL.clear();
+		QRegExp andAmp("&amp;");
+		int pos = 0;
+		m_SubCatURL.clear();
 
-			while((pos = catRegExp.indexIn(content, pos)) != -1) {
-				QString s = catRegExp.cap(1);
-				s.replace(andAmp, "&");
+		while((pos = catRegExp.indexIn(content, pos)) != -1) {
+			QString s = catRegExp.cap(2); s.replace(andAmp, "&");
+			m_SubCatURL.append(s);
 
-				m_SystemListDialog->appendItem(s);
-
-				s = catRegExp.cap(2); s.replace(andAmp, "&");
-				m_SubCatURL.append(s);
-
-				pos += catRegExp.matchedLength();
-			}
+			pos += catRegExp.matchedLength();
 		}
 	}
 

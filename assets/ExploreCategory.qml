@@ -8,7 +8,9 @@ Page {
     property string  caption
     property string  subCatXml
     property int 	 flagType
+    property int     subCatIndex
     property variant tpage
+    property variant subCatPickerPage
         
     titleBar: TitleBar {
         id: segmentedTitle
@@ -274,18 +276,9 @@ Page {
             id: threadPage
             source: "ThreadPage.qml"
         },
-        SystemListDialog {
-            title: qsTr("Choose a sub-category")
-            id: pickSubCat
-            
-            onFinished: {
-                if(result == SystemUiResult.ConfirmButtonSelection) {
-                    exploreCategoryController.listSubCat(pickSubCat.selectedIndices);
-                    segmentedTitle.setSelectedIndex(0);
-                    activityIndicator.start();
-                }
-                	
-            }
+        ComponentDefinition {
+            id: subcatPicker
+            source: "SubCategoryPicker.qml"
         }
     ] 
     
@@ -295,7 +288,11 @@ Page {
             imageSource: "asset:///images/icon_category.png"
             ActionBar.placement: ActionBarPlacement.OnBar
             onTriggered: {
-                pickSubCat.show();
+                if(!subCatPickerPage)
+                	subCatPickerPage = subcatPicker.createObject(this);
+                subCatPickerPage.subcatXml = subCatXml;
+                nav.push(subCatPickerPage);
+                // pickSubCat.show();
             }
         },
         ActionItem {
@@ -324,7 +321,7 @@ Page {
         }
     ]
     onCreationCompleted: {
-        exploreCategoryController.setListDialog(pickSubCat);
+
     }
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);
@@ -336,5 +333,10 @@ Page {
     onFlagTypeChanged: {
         activityIndicator.start();
         exploreCategoryController.filterByFlag(flagType);
+    }
+    onSubCatIndexChanged: {
+        exploreCategoryController.listSubCat(subCatIndex);
+        segmentedTitle.setSelectedIndex(0);
+        activityIndicator.start();
     }
 }

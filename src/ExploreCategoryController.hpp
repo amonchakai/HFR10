@@ -24,7 +24,6 @@ class ExploreCategoryController : public QObject {
 		bb::cascades::ListView   *m_ListView;
 		QList<ThreadListItem*>   *m_Datas;
 
-		bb::system::SystemListDialog *m_SystemListDialog;
 		int 					  m_SelectedSubCat;
 		QList<QString>			  m_SubCatURL;
 
@@ -43,7 +42,6 @@ class ExploreCategoryController : public QObject {
 
 	public Q_SLOTS:
 		inline void setListView	   	(QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
-		inline void setListDialog	(QObject *dialog) 			{m_SystemListDialog = dynamic_cast<bb::system::SystemListDialog*>(dialog); }
 		void loadSubCats			(const QString &xmlFile);
 		void listSubCat				(int subcat);
 		void listTopics			   	(const QString &url);

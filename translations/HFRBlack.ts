@@ -4,43 +4,38 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="198"/>
+        <location filename="../assets/ExploreCategory.qml" line="200"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="201"/>
-        <location filename="../assets/ExploreCategory.qml" line="302"/>
+        <location filename="../assets/ExploreCategory.qml" line="203"/>
+        <location filename="../assets/ExploreCategory.qml" line="299"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="208"/>
+        <location filename="../assets/ExploreCategory.qml" line="210"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="215"/>
+        <location filename="../assets/ExploreCategory.qml" line="217"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="278"/>
-        <source>Choose a sub-category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/ExploreCategory.qml" line="294"/>
+        <location filename="../assets/ExploreCategory.qml" line="287"/>
         <source>Sub-Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="310"/>
+        <location filename="../assets/ExploreCategory.qml" line="307"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="318"/>
+        <location filename="../assets/ExploreCategory.qml" line="315"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -48,7 +43,7 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="111"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="103"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

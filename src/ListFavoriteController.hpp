@@ -35,7 +35,7 @@ class ListFavoriteController : public QObject {
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void getFavorite();
 		void checkReply();
-
+		void updateView();
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ class ListFavoriteController : public QObject {
 
 		void parse(const QString &page);
 		void parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today);
-		void updateView();
+
 
 		void checkErrorMessage(const QString &page);
 		void connectionTimedOut();
