@@ -547,9 +547,9 @@
     </message>
     <message>
         <location filename="../src/ShowThreadController.cpp" line="483"/>
-        <location filename="../src/ShowThreadController.cpp" line="528"/>
-        <location filename="../src/ShowThreadController.cpp" line="865"/>
-        <location filename="../src/ShowThreadController.cpp" line="904"/>
+        <location filename="../src/ShowThreadController.cpp" line="529"/>
+        <location filename="../src/ShowThreadController.cpp" line="866"/>
+        <location filename="../src/ShowThreadController.cpp" line="905"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

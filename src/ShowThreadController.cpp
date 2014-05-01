@@ -522,6 +522,7 @@ void ShowThreadController::checkSuccessDeletePost() {
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
+				qDebug() << response;
 				showThread(m_Url);
 			}
 		} else {

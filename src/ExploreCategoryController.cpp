@@ -32,7 +32,7 @@ void ExploreCategoryController::listSubCat(int subcat) {
 	if(subcat < m_SubCatURL.length()) {
 		m_SelectedSubCat = subcat;
 		qDebug() << m_SubCatURL[subcat];
-		showTopicList(m_SubCatURL[subcat]);
+		listTopics(m_SubCatURL[subcat]);
 	}
 }
 
