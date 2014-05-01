@@ -17,6 +17,10 @@
 #include "applicationui.hpp"
 
 #include <bb/cascades/Application>
+#include <bb/cascades/ThemeSupport>
+#include <bb/cascades/ColorTheme>
+#include <bb/cascades/Theme>
+
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
@@ -35,6 +39,7 @@
 #include "SmileyPickerController.hpp"
 #include "SearchController.hpp"
 #include "SearchKeyRetriever.hpp"
+#include "ImageUploaderController.hpp"
 #include "Network/NetImageTracker.h"
 #include "Settings.hpp"
 
@@ -55,7 +60,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     CookieJar *cookies = CookieJar::get();
     cookies->loadFromDisk();
 
-    Settings::loadSettings();
+    Settings::themeValue() = app->themeSupport()->theme()->colorTheme()->style() == VisualStyle::Bright ? 1 : 2;
 
     bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this, SLOT(onSystemLanguageChanged()));
     // This is only available in Debug builds
@@ -81,6 +86,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<SmileyPickerController>("Network.SmileyPickerController", 1, 0, "SmileyPickerController");
     qmlRegisterType<SearchController>("Network.SearchController", 1, 0, "SearchController");
     qmlRegisterType<SearchKeyRetriever>("Network.SearchKeyRetriever", 1, 0, "SearchKeyRetriever");
+    qmlRegisterType<ImageUploaderController>("Network.ImageUploaderController", 1, 0, "ImageUploaderController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "Settings");
 

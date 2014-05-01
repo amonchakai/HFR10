@@ -13,6 +13,7 @@
 struct DefineConsts {
 	static QString HARDWARE_FR_URL;
 	static QString FORUM_URL;
+	static QString REHOST_URL;
 };
 
 

@@ -6,6 +6,7 @@ device {
         SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
                  $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/HubIntegration.cpp) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -26,6 +27,7 @@ device {
                  $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/HubIntegration.h) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.hpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
@@ -46,6 +48,7 @@ device {
         SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
                  $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/HubIntegration.cpp) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -66,6 +69,7 @@ device {
                  $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/HubIntegration.h) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.hpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
@@ -88,6 +92,7 @@ simulator {
         SOURCES +=  $$quote($$BASEDIR/src/ExploreCategoryController.cpp) \
                  $$quote($$BASEDIR/src/Globals.cpp) \
                  $$quote($$BASEDIR/src/HubIntegration.cpp) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.cpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.cpp) \
                  $$quote($$BASEDIR/src/LoginController.cpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.cpp) \
@@ -108,6 +113,7 @@ simulator {
                  $$quote($$BASEDIR/src/ExploreCategoryController.hpp) \
                  $$quote($$BASEDIR/src/Globals.h) \
                  $$quote($$BASEDIR/src/HubIntegration.h) \
+                 $$quote($$BASEDIR/src/ImageUploaderController.hpp) \
                  $$quote($$BASEDIR/src/ListFavoriteController.hpp) \
                  $$quote($$BASEDIR/src/LoginController.hpp) \
                  $$quote($$BASEDIR/src/Network/CookieJar.hpp) \
@@ -155,6 +161,9 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../assets/images/smiley/*.qml) \
              $$quote($$BASEDIR/../assets/images/smiley/*.js) \
              $$quote($$BASEDIR/../assets/images/smiley/*.qs) \
+             $$quote($$BASEDIR/../assets/images/smiley/smilies/*.qml) \
+             $$quote($$BASEDIR/../assets/images/smiley/smilies/*.js) \
+             $$quote($$BASEDIR/../assets/images/smiley/smilies/*.qs) \
              $$quote($$BASEDIR/../assets/model/*.qml) \
              $$quote($$BASEDIR/../assets/model/*.js) \
              $$quote($$BASEDIR/../assets/model/*.qs)

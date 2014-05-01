@@ -100,6 +100,30 @@ NavigationPane {
             }
             
             // --------------------------------------------------------------------------
+            // Theme setting
+            DropDown {
+                id: theme
+                title: qsTr("Visual Theme")
+                options: [
+                    Option {
+                        text: qsTr("Bright")
+                        selected: appSettings.theme == 1 ? true : false
+                        value: 1
+                    },
+                    Option {
+                        text: qsTr("Dark")
+                        selected: appSettings.theme == 2 ? true : false
+                        value: 2
+                    } 
+                ]
+                onSelectedOptionChanged: {
+                    appSettings.theme = theme.selectedOption.value;
+                    appSettings.saveSettings(); 
+                }
+                
+            } 
+            
+            // --------------------------------------------------------------------------
             // cache settings
             
             Button {

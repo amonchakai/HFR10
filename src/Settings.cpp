@@ -13,6 +13,7 @@
 
 int Settings::m_FontSize = 25;
 int Settings::m_SmileySize = 3;
+int Settings::m_Theme = 0;
 
 
 
@@ -28,6 +29,7 @@ void Settings::loadSettings() {
 		QDataStream stream(&file);
 		stream >> m_FontSize;
 		stream >> m_SmileySize;
+		stream >> m_Theme;
 
 		file.close();
 	}
@@ -46,7 +48,9 @@ void Settings::saveSettings() const {
 		QDataStream stream(&file);
 		stream << m_FontSize;
 		stream << m_SmileySize;
+		stream << m_Theme;
 
 		file.close();
 	}
 }
+

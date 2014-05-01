@@ -582,7 +582,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 
 		// resize default smileys
 		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
-		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"http://forum-images.hardware.fr/icones/");
+		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"local:///assets/images/smiley/");
 
 	}
 

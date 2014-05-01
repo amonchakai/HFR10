@@ -4,6 +4,7 @@ import Network.PostMessageController 1.0
 Page {
     id: postMesssage
     property variant tpage
+    property variant uploadPage
     
     property string  hashCheck
     property string  postID
@@ -105,14 +106,16 @@ Page {
 		                + "<td><img src=\"local:///assets/images/icon_italic_black.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_underline_black.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_code_black.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-		                + "<td><img src=\"local:///assets/images/icon_quote_black.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ;
+		                + "<td><img src=\"local:///assets/images/icon_quote_black.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_image.png\" alt=\"image\" title=\"image\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ;
             } else {
                 return    "<td><img src=\"local:///assets/images/whiteFace.png\" alt=\"smiley\" title=\"smiley\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_bold.png\" alt=\"bold\" title=\"bold\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_italic.png\" alt=\"italic\" title=\"italic\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_underline.png\" alt=\"underline\" title=\"underline\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
 		                + "<td><img src=\"local:///assets/images/icon_code.png\" alt=\"code\" title=\"code\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
-		                + "<td><img src=\"local:///assets/images/icon_quote.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ; 
+		                + "<td><img src=\"local:///assets/images/icon_quote.png\" alt=\"quote\" title=\"quote\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" 
+                        + "<td><img src=\"local:///assets/images/icon_image_white.png\" alt=\"image\" title=\"image\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ; 
             }
         }
         
@@ -149,6 +152,12 @@ Page {
                                 } else {
                                     if(message.data == "quote") {
                                         formContainer.insertTag("quote");
+                                    } else { 
+                                        if(message.data == "image") {
+                                            if(!uploadPage)
+                                                uploadPage = imageUploader.createObject(this);
+                                            nav.push(uploadPage);
+                                         }
                                     }
                                 }
                             }
@@ -196,6 +205,10 @@ Page {
         ComponentDefinition {
             id: smileyPicker
             source: "SmileyPicker.qml"
+        },
+        ComponentDefinition {
+            id: imageUploader
+            source: "ImageUploader.qml"
         },
         OrientationHandler {
             id: orientationHandler

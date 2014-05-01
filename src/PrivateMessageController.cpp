@@ -111,8 +111,6 @@ void PrivateMessageController::parse(const QString &page) {
 	QRegExp inf("&lt;");
 	QRegExp sup("&gt;");
 
-	qDebug() << "start parser";
-
 
 	// ----------------------------------------------------------------------------------------------
 	// Parse unread MP using regexp
@@ -137,8 +135,6 @@ void PrivateMessageController::parse(const QString &page) {
 		lastPos = pos;
 	}
 	parseMessageListing(read, page.mid(lastPos, pos-lastPos));
-
-	qDebug() << "end parser";
 
 	updateView();
 	emit complete();

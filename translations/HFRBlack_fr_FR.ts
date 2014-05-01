@@ -76,6 +76,57 @@
     </message>
 </context>
 <context>
+    <name>ImageUploader</name>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="43"/>
+        <source>Upload an image to Rehost</source>
+        <translation>Déposer une image sur Rehost</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="57"/>
+        <source>Pick an image</source>
+        <translation>Choisir une image</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="90"/>
+        <source>Size</source>
+        <translation>Taille</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="110"/>
+        <source>Mini</source>
+        <translation>Mini</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="119"/>
+        <source>Preview</source>
+        <translation>Preview</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="128"/>
+        <source>Original</source>
+        <translation>Originale</translation>
+    </message>
+    <message>
+        <location filename="../assets/ImageUploader.qml" line="140"/>
+        <source>Upload</source>
+        <translation>Upload</translation>
+    </message>
+</context>
+<context>
+    <name>ImageUploaderController</name>
+    <message>
+        <location filename="../src/ImageUploaderController.cpp" line="56"/>
+        <source>multipart/form-data; boundary=</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ImageUploaderController.cpp" line="103"/>
+        <source>Connection timed out</source>
+        <translation>La connexion a échouée</translation>
+    </message>
+</context>
+<context>
     <name>ListFavoriteController</name>
     <message>
         <location filename="../src/ListFavoriteController.cpp" line="53"/>
@@ -132,47 +183,47 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/PostMessage.qml" line="27"/>
+        <location filename="../assets/PostMessage.qml" line="28"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="30"/>
+        <location filename="../assets/PostMessage.qml" line="31"/>
         <source>Send</source>
         <translation>Envoyer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="71"/>
+        <location filename="../assets/PostMessage.qml" line="72"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="168"/>
+        <location filename="../assets/PostMessage.qml" line="177"/>
         <source>New MP to: </source>
         <translation>Nouveau MP à: </translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="223"/>
+        <location filename="../assets/PostMessage.qml" line="236"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="230"/>
+        <location filename="../assets/PostMessage.qml" line="243"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="237"/>
+        <location filename="../assets/PostMessage.qml" line="250"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="244"/>
+        <location filename="../assets/PostMessage.qml" line="257"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="251"/>
+        <location filename="../assets/PostMessage.qml" line="264"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>
@@ -512,8 +563,8 @@
     <message>
         <location filename="../assets/Settings.qml" line="21"/>
         <location filename="../assets/Settings.qml" line="47"/>
-        <location filename="../assets/Settings.qml" line="132"/>
-        <location filename="../assets/Settings.qml" line="142"/>
+        <location filename="../assets/Settings.qml" line="156"/>
+        <location filename="../assets/Settings.qml" line="166"/>
         <source>User: </source>
         <translation>Utilisateur: </translation>
     </message>
@@ -541,6 +592,21 @@
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="106"/>
+        <source>Visual Theme</source>
+        <translation>Choix du thème</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="109"/>
+        <source>Bright</source>
+        <translation>Clair</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="114"/>
+        <source>Dark</source>
+        <translation>Sombre</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="130"/>
         <source>Clear image cache</source>
         <translation>Vider le cache</translation>
     </message>

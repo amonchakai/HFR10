@@ -22,11 +22,26 @@
 
 #include <Qt/qdeclarativedebug.h>
 
+#include "Settings.hpp"
+
 using namespace bb::cascades;
 
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
+	Settings::loadSettings();
+
+	switch(Settings::themeValue()) {
+		case 1:
+			qputenv("CASCADES_THEME", "Bright");
+			break;
+		case 2:
+			qputenv("CASCADES_THEME", "Dark");
+			break;
+	}
+
+
     Application app(argc, argv);
+
 
     // Create the Application UI object, this is where the main.qml file
     // is loaded and the application scene is set.
