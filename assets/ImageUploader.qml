@@ -4,6 +4,7 @@ import Network.ImageUploaderController 1.0
 
 Page {
     property string imageToUpload
+    
     ScrollView {
         id: scrollView
         accessibility.name: "scrollView"
@@ -28,6 +29,15 @@ Page {
             }
             horizontalAlignment: HorizontalAlignment.Fill
             verticalAlignment: VerticalAlignment.Top
+            
+            ProgressIndicator {
+                id: uploadingProgress
+                accessibility.name: "uploadingProgress"
+                horizontalAlignment: HorizontalAlignment.Fill
+                fromValue: 0
+                toValue: 100
+                visible: false
+            }
             
             Container {
                 background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
@@ -142,6 +152,7 @@ Page {
                 enabled: false
                 
                 onClicked: {
+                    uploadingProgress.visible = true;
                     uploader.upload(imageToUpload);
                 }
             }
@@ -149,7 +160,10 @@ Page {
             onCreationCompleted: {
                 uploadButton.enabled = false;
                 actionGroup.visible = false;
+                uploader.setProgressIndicator(uploadingProgress);
             }
+            
+            
             
             attachedObjects: [
                 FilePicker {
@@ -173,9 +187,14 @@ Page {
                         preview.preferredHeight = 160;
                         uploadButton.enabled = false;
                         actionGroup.visible = true;
+                        uploadingProgress.visible = false;
                     }
                 }
             ]
         }
+    }
+    
+    onImageToUploadChanged: {
+        actionGroup.visible = false;
     }
 }

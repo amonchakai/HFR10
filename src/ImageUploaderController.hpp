@@ -10,6 +10,7 @@
 
 #include <QtCore/QObject>
 #include <QString>
+#include <bb/cascades/ProgressIndicator>
 
 class ImageUploaderController : public QObject {
 	Q_OBJECT
@@ -26,6 +27,7 @@ private:
 
 	bool				m_uploading;
 
+	bb::cascades::ProgressIndicator			*m_ProgressIndicator;
 
 public:
 	// ----------------------------------------------------------------------------------------------
@@ -47,6 +49,8 @@ public Q_SLOTS:
 	inline const QString &getPreview()  const 				{ return m_Preview;}
 	inline const QString &getOriginal() const 				{ return m_Original;}
 
+
+	inline void setProgressIndicator(bb::cascades::ProgressIndicator *indic)					{ m_ProgressIndicator = indic; }
 	// ----------------------------------------------------------------------------------------------
 
 Q_SIGNALS:

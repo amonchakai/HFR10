@@ -78,37 +78,37 @@
 <context>
     <name>ImageUploader</name>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="43"/>
+        <location filename="../assets/ImageUploader.qml" line="53"/>
         <source>Upload an image to Rehost</source>
         <translation>Déposer une image sur Rehost</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="57"/>
+        <location filename="../assets/ImageUploader.qml" line="67"/>
         <source>Pick an image</source>
         <translation>Choisir une image</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="90"/>
+        <location filename="../assets/ImageUploader.qml" line="100"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="110"/>
+        <location filename="../assets/ImageUploader.qml" line="120"/>
         <source>Mini</source>
         <translation>Mini</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="119"/>
+        <location filename="../assets/ImageUploader.qml" line="129"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="128"/>
+        <location filename="../assets/ImageUploader.qml" line="138"/>
         <source>Original</source>
         <translation>Originale</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="140"/>
+        <location filename="../assets/ImageUploader.qml" line="150"/>
         <source>Upload</source>
         <translation>Upload</translation>
     </message>
@@ -121,7 +121,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ImageUploaderController.cpp" line="103"/>
+        <location filename="../src/ImageUploaderController.cpp" line="106"/>
         <source>Connection timed out</source>
         <translation>La connexion a échouée</translation>
     </message>

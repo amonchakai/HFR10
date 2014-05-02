@@ -23,7 +23,7 @@
 
 
 ImageUploaderController::ImageUploaderController(QObject *parent)
-	: QObject(parent), m_uploading(false) {
+	: QObject(parent), m_uploading(false), m_ProgressIndicator(NULL) {
 
 }
 
@@ -67,7 +67,10 @@ void ImageUploaderController::upload(const QString &image) {
 }
 
 void ImageUploaderController::uploading(qint64 stage, qint64 end) {
-	qDebug() << stage << end;
+	if(m_ProgressIndicator == NULL)
+		return;
+
+	m_ProgressIndicator->setValue(100.f * static_cast<float>(stage)/static_cast<float>(end));
 }
 
 
