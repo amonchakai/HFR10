@@ -75,6 +75,8 @@ Page {
             ImageView {
                 id: preview
                 accessibility.name: "preview"
+                horizontalAlignment: HorizontalAlignment.Center
+                scalingMethod: ScalingMethod.AspectFill
             }
             
             Container {
