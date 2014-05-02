@@ -359,11 +359,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="64"/>
-        <source>Hardware - Périphériques</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../assets/Search.qml" line="68"/>
         <source>Ordinateurs portables</source>
         <translation type="unfinished"></translation>
@@ -389,11 +384,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Search.qml" line="88"/>
-        <source>Photo numérique</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../assets/Search.qml" line="93"/>
         <source>Jeux Video</source>
         <translation type="unfinished"></translation>
@@ -401,16 +391,6 @@
     <message>
         <location filename="../assets/Search.qml" line="97"/>
         <source>Windows &amp; Software</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/Search.qml" line="101"/>
-        <source>Réseaux grand public / SoHo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/Search.qml" line="105"/>
-        <source>Systèmes &amp; Réseaux Pro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -439,8 +419,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../assets/Search.qml" line="64"/>
+        <source>Hardware - PÃ©riphÃ©riques</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="88"/>
+        <source>Photo numÃ©rique</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="101"/>
+        <source>RÃ©seaux grand public / SoHo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Search.qml" line="105"/>
+        <source>SystÃ¨mes &amp; RÃ©seaux Pro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../assets/Search.qml" line="129"/>
-        <source>Seti et projets distribués</source>
+        <source>Seti et projets distribuÃ©s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

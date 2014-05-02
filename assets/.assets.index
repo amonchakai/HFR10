@@ -1,5 +1,5 @@
 1
-157
+127
 ExploreCategory.qml
 Favorite.qml
 help/about_fr.html
@@ -14,7 +14,6 @@ images/icon_bold.svg
 images/icon_bold_black.png
 images/icon_bottom.png
 images/icon_browse.png
-images/icon_BW.png
 images/icon_category.png
 images/icon_code.png
 images/icon_code.svg
@@ -34,8 +33,6 @@ images/icon_global.gif
 images/icon_global.svg
 images/icon_global2.png
 images/icon_home.png
-images/icon_image.png
-images/icon_image_white.png
 images/icon_italic.png
 images/icon_italic_black.png
 images/icon_mp.png
@@ -46,13 +43,10 @@ images/icon_prev.png
 images/icon_prev_all.png
 images/icon_quote.png
 images/icon_quote.svg
-images/icon_quote_bis - copie.png
-images/icon_quote_bis.png
-images/icon_quote_bis.psd
-images/icon_quote_black.png
 images/icon_quoted.png
 images/icon_quoted_white.png
-images/icon_refresh - copie.png
+images/icon_quote_bis.png
+images/icon_quote_black.png
 images/icon_refresh.png
 images/icon_settings.png
 images/icon_top.png
@@ -92,29 +86,6 @@ images/smiley/ohwell.gif
 images/smiley/ouimaitre.gif
 images/smiley/redface.gif
 images/smiley/smile.gif
-images/smiley/smilies/ange.gif
-images/smiley/smilies/bounce.gif
-images/smiley/smilies/cry.gif
-images/smiley/smilies/fou.gif
-images/smiley/smilies/heink.gif
-images/smiley/smilies/hello.gif
-images/smiley/smilies/jap.gif
-images/smiley/smilies/kaola.gif
-images/smiley/smilies/lol.gif
-images/smiley/smilies/love.gif
-images/smiley/smilies/na.gif
-images/smiley/smilies/non.gif
-images/smiley/smilies/ouch.gif
-images/smiley/smilies/pfff.gif
-images/smiley/smilies/pouah.gif
-images/smiley/smilies/pt1cable.gif
-images/smiley/smilies/sarcastic.gif
-images/smiley/smilies/sleep.gif
-images/smiley/smilies/sol.gif
-images/smiley/smilies/spamafote.gif
-images/smiley/smilies/sweat.gif
-images/smiley/smilies/wahoo.gif
-images/smiley/smilies/whistle.gif
 images/smiley/spookie.gif
 images/smiley/sum.gif
 images/smiley/tongue.gif
@@ -122,7 +93,6 @@ images/smiley/vomi.gif
 images/smiley/wink.gif
 images/whiteFace.png
 images/whiteFace.svg
-images/whiteFace3.png
 ImageUploader.qml
 LoginForm.qml
 main.qml
