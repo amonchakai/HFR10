@@ -574,6 +574,24 @@ void ShowThreadController::cleanupPost(QString &post) {
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 
 
+	// ----------------------------------------------------
+	// click on image open new view
+
+	QRegExp imageRegExp("<img src=\"([^\"]+)\"");			imageRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	QRegExp imageFromHFR("forum-images.hardware.fr");		imageFromHFR.setCaseSensitivity(Qt::CaseSensitive);
+	pos = 0;
+	while((pos = imageRegExp.indexIn(cleanPost, pos)) != -1) {
+
+		if(imageFromHFR.indexIn(imageRegExp.cap(1), 0) == -1) {
+			cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
+
+			qDebug() << imageRegExp.cap(1);
+		}
+
+
+
+		pos += imageRegExp.matchedLength();
+	}
 
 	// ----------------------------------------------------
 	// resize images if needed

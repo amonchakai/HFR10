@@ -27,7 +27,8 @@ Q_OBJECT
      * Sets the NetImageTracker source, the remote networked url that points to the image.
      * You need to set one as an attached object in your QML files.
      */
-Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
+Q_PROPERTY(QString source 		READ source WRITE setSource NOTIFY sourceChanged)
+Q_PROPERTY(QString loadingImage READ getLoadingImage WRITE setLoadingImage NOTIFY loadingImageChanged)
 
 public:
     /**
@@ -44,6 +45,8 @@ public slots:
      * @param source in string with path to the source.
      */
     void setSource(const QString &source);
+    inline void setLoadingImage(const QString &img)			{m_DefaultImage = img;}
+    inline const QString &getLoadingImage()	const			{return m_DefaultImage;}
 
     /**
      * Getter for source
@@ -58,7 +61,8 @@ signals:
      * @param source the new source
      */
     void sourceChanged(QString source);
-
+    void loadingImageChanged();
+    void completed();
 
 private slots:
     /**
@@ -76,6 +80,7 @@ private slots:
 
 private:
     QString mSource;
+    QString m_DefaultImage;
 
     bool mIsCreated;
 };

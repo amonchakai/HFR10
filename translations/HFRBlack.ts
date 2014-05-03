@@ -609,8 +609,8 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="483"/>
         <location filename="../src/ShowThreadController.cpp" line="529"/>
-        <location filename="../src/ShowThreadController.cpp" line="866"/>
-        <location filename="../src/ShowThreadController.cpp" line="905"/>
+        <location filename="../src/ShowThreadController.cpp" line="884"/>
+        <location filename="../src/ShowThreadController.cpp" line="923"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -659,88 +659,88 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="165"/>
+        <location filename="../assets/ThreadPage.qml" line="166"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="193"/>
+        <location filename="../assets/ThreadPage.qml" line="194"/>
         <source>Quote more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="186"/>
+        <location filename="../assets/ThreadPage.qml" line="187"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="162"/>
+        <location filename="../assets/ThreadPage.qml" line="163"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="172"/>
+        <location filename="../assets/ThreadPage.qml" line="173"/>
         <source>Add Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="179"/>
+        <location filename="../assets/ThreadPage.qml" line="180"/>
         <source>Send PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="199"/>
+        <location filename="../assets/ThreadPage.qml" line="200"/>
         <source>Delete post</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="325"/>
+        <location filename="../assets/ThreadPage.qml" line="338"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="326"/>
+        <location filename="../assets/ThreadPage.qml" line="339"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="336"/>
+        <location filename="../assets/ThreadPage.qml" line="350"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="357"/>
+        <location filename="../assets/ThreadPage.qml" line="371"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="365"/>
+        <location filename="../assets/ThreadPage.qml" line="379"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="373"/>
+        <location filename="../assets/ThreadPage.qml" line="387"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="292"/>
-        <location filename="../assets/ThreadPage.qml" line="382"/>
+        <location filename="../assets/ThreadPage.qml" line="300"/>
+        <location filename="../assets/ThreadPage.qml" line="396"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="289"/>
+        <location filename="../assets/ThreadPage.qml" line="297"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="391"/>
+        <location filename="../assets/ThreadPage.qml" line="405"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="398"/>
+        <location filename="../assets/ThreadPage.qml" line="412"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>

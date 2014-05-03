@@ -15,6 +15,7 @@ NetImageTracker::NetImageTracker(QObject *parent) :
         ImageTracker(parent)
 {
     mIsCreated = false;
+    m_DefaultImage = "asset:///images/default_avatar.png";
 
     connect(this, SIGNAL(creationCompleted()), this, SLOT(onCreationCompleted()));
     connect(WebResourceManager::get(), SIGNAL(onImageReady(const QString &, const QString &)), this, SLOT(onImageReady(const QString&, const QString&)));
@@ -33,12 +34,13 @@ void NetImageTracker::onImageReady(const QString imageName, const QString filePa
 	if (imageName.compare(mSource) == 0) {
 
 		if(filePath == "loading") {
-			QUrl url = QUrl("asset:///images/default_avatar.png");
+			QUrl url = QUrl(m_DefaultImage);
 			setImageSource(url);
 		} else {
 			// Set the path to the image that is now downloaded and cached in the data folder on the device.
 			QUrl url = QUrl(filePath);
         	setImageSource(url);
+        	emit completed();
 		}
     }
 }

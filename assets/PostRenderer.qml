@@ -33,8 +33,13 @@ Container {
                     var urlTopic = RegExp("sujet_[0-9]+_[0-9]+.htm")
                     if(urlTopic.test(request.url.toString()))
                         headerContainer.ListItem.view.redirectWithinApp(request.url.toString().substring(24));
-                    else
-                        headerContainer.ListItem.view.invokeWebBrowser(request.url);
+                    else {
+                        var urlImg = RegExp(".jpg")
+                        if(urlImg.test(request.url.toString()))
+                            headerContainer.ListItem.view.showPictureViewer(request.url);         
+                        else
+                        	headerContainer.ListItem.view.invokeWebBrowser(request.url);
+                    }
                 }
 
     		} else { 
@@ -42,7 +47,12 @@ Container {
     		}
     	}
 		onMessageReceived: {
-            headerContainer.ListItem.view.pushNewUrl(message.data)
+		    console.log(message.data)
+            var redirection = RegExp("/forum2.php");
+		    if(redirection.test(message.data))
+		        headerContainer.ListItem.view.pushNewUrl(message.data);
+		    else
+                headerContainer.ListItem.view.showPictureViewer(message.data);
       	}
 		
 		onLoadingChanged: {

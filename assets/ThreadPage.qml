@@ -7,6 +7,7 @@ Page {
     id: pageThread
     property variant tpage
     property variant recursivePage
+    property variant previewPage
     
     property string  urlPage
     property string  caption
@@ -276,6 +277,13 @@ Page {
             function redirectWithinApp(newUrl) {
                 urlPage = newUrl;
             }
+            
+            function showPictureViewer(imageUrl) {
+                if(!previewPage)
+                    previewPage = imagePreview.createObject();
+                previewPage.imageList = imageUrl;
+                nav.push(previewPage);
+            }
         }
     }
     
@@ -320,13 +328,19 @@ Page {
                 trigger("bb.action.OPEN");
             }
         },
+        ComponentDefinition {
+            id: imagePreview
+            source: "ImagePreview.qml"
+        },
+        
         SystemDialog {
             id: leaveAppDialog
             title: qsTr("Friendly warning")
             body: qsTr("You are going to leave the application, do you want to continue?")
             onFinished: {
-                if(result == SystemUiResult.ConfirmButtonSelection)
+                if(result == SystemUiResult.ConfirmButtonSelection) {
                 	linkInvocation.query.uri = tentativeNewURL;
+                }
             }
         }
     ]
