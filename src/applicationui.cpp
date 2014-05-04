@@ -43,6 +43,7 @@
 #include "Network/NetImageTracker.h"
 #include "Settings.hpp"
 
+#include "Network/WebResourceManager.h"
 
 #include "CookieJar.hpp"
 #include "DataObjects.h"
@@ -73,6 +74,8 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     onSystemLanguageChanged();
 
 //    initHub();
+
+    WebResourceManager::get()->cleanup();
 
 
     // -------------------------------------------------------------------------------------------------------

@@ -32,6 +32,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
 	void checkReply();
+	void cleanup();
 
 
 private:

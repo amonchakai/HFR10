@@ -8,6 +8,7 @@
 #include "WebResourceManager.h"
 
 #include <QFile>
+#include <QFileInfo>
 #include <QDir>
 #include <QUrl>
 #include <bb/cascades/ImageTracker>
@@ -30,6 +31,25 @@ WebResourceManager *WebResourceManager::get() {
 	}
 
 	return m_This;
+}
+
+void WebResourceManager::cleanup() {
+	// check if cache folder exists, if not, creates it
+	QString directory = QDir::homePath() + "/Cache/";
+	if (!QFile::exists(directory)) {
+		return;
+	}
+
+	QDateTime now = QDateTime::currentDateTime();;
+
+	QDir dir(directory);
+	QStringList fileList = dir.entryList();
+	for(int i = 2 ; i < fileList.length() ; ++i) {
+		QFileInfo fileInfo(directory + fileList[i]);
+		if(fileInfo.lastRead().addDays(3) < now) {
+			QFile(directory + fileList[i]).remove();
+		}
+	}
 }
 
 
