@@ -577,24 +577,37 @@ void ShowThreadController::cleanupPost(QString &post) {
 	// ----------------------------------------------------
 	// click on image open new view
 
+	QRegExp imageWithHiddenLink("<a rel=\"nofollow\" href=\"([^\"]+)\" target=\"_blank\" class=\"cLink\"><img src=\"([^\"]+)\" alt=\"[^\"]+\" title=\"[^\"]+\" onload=\"[^\"]+\" style=\"margin: 5px\"/></a>");
+	imageWithHiddenLink.setCaseSensitivity(Qt::CaseSensitive);
+	imageWithHiddenLink.setMinimal(true);
+	pos = 0;
+	while((pos = imageWithHiddenLink.indexIn(cleanPost, pos)) != -1) {
+		QString urlFullSizeImg = imageWithHiddenLink.cap(1);
+		if(urlFullSizeImg.mid(0, 25) == "http://reho.st/view/self/") {
+			urlFullSizeImg = QString("http://reho.st/self/") + urlFullSizeImg.mid(25); // if the image comes from reho.st, then I can show the biggest picture
+		} else {
+			urlFullSizeImg = imageWithHiddenLink.cap(2);							  // otherwise don't know how to get full size img -> use the src value in tag img...
+		}
+
+		cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL('" + urlFullSizeImg + "')\" src=\"" + imageWithHiddenLink.cap(2) + "\" /> "  + cleanPost.mid(pos+imageWithHiddenLink.matchedLength());
+
+		pos += imageWithHiddenLink.cap(1).length();
+	}
+
+
 	QRegExp imageRegExp("<img src=\"([^\"]+)\"");			imageRegExp.setCaseSensitivity(Qt::CaseSensitive);
 	QRegExp imageFromHFR("forum-images.hardware.fr");		imageFromHFR.setCaseSensitivity(Qt::CaseSensitive);
 	pos = 0;
 	while((pos = imageRegExp.indexIn(cleanPost, pos)) != -1) {
-
 		if(imageFromHFR.indexIn(imageRegExp.cap(1), 0) == -1) {
 			cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
-
-			qDebug() << imageRegExp.cap(1);
 		}
-
-
 
 		pos += imageRegExp.matchedLength();
 	}
 
 	// ----------------------------------------------------
-	// resize images if needed
+	// resize smiley if needed
 
 	if(Settings::smileySize() != 2) {
 

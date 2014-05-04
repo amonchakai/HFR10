@@ -621,8 +621,8 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="483"/>
         <location filename="../src/ShowThreadController.cpp" line="529"/>
-        <location filename="../src/ShowThreadController.cpp" line="884"/>
-        <location filename="../src/ShowThreadController.cpp" line="923"/>
+        <location filename="../src/ShowThreadController.cpp" line="897"/>
+        <location filename="../src/ShowThreadController.cpp" line="936"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
