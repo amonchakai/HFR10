@@ -55,22 +55,22 @@
 <context>
     <name>Favorite</name>
     <message>
-        <location filename="../assets/Favorite.qml" line="105"/>
+        <location filename="../assets/Favorite.qml" line="107"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="108"/>
+        <location filename="../assets/Favorite.qml" line="110"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="115"/>
+        <location filename="../assets/Favorite.qml" line="117"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="122"/>
+        <location filename="../assets/Favorite.qml" line="124"/>
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>
@@ -123,7 +123,7 @@
     <message>
         <location filename="../src/ImageUploaderController.cpp" line="106"/>
         <source>Connection timed out</source>
-        <translation>La connexion a échouée</translation>
+        <translation>La connexion a échoué</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../src/ListFavoriteController.cpp" line="91"/>
         <source>Connection timed out</source>
-        <translation>La connexion a échouée</translation>
+        <translation>La connexion a échoué</translation>
     </message>
 </context>
 <context>
@@ -144,12 +144,12 @@
     <message>
         <location filename="../src/LoginController.cpp" line="81"/>
         <source>Login failed, please check if your user name and password are correct</source>
-        <translation>L&apos;authentification a échouée. Vérfiez votre identifiant et mot de passe.</translation>
+        <translation>L&apos;authentification a échoué. Vérfiez votre identifiant et mot de passe.</translation>
     </message>
     <message>
         <location filename="../src/LoginController.cpp" line="89"/>
         <source>Connection timed out</source>
-        <translation>La connexion a échouée</translation>
+        <translation>La connexion a échoué</translation>
     </message>
     <message>
         <source>Login failed</source>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../assets/PostMessage.qml" line="177"/>
         <source>New MP to: </source>
-        <translation>Nouveau MP à: </translation>
+        <translation>Nouveau MP à : </translation>
     </message>
     <message>
         <location filename="../assets/PostMessage.qml" line="236"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="../src/PostMessageController.cpp" line="144"/>
         <source>Too many consecutive replies, please wait 10 minutes</source>
-        <translation>Trop de réponses consécutives, veuilliez patienter 10 minutes avant de pouvoir reposter ici</translation>
+        <translation>Trop de réponses consécutives, veuillez patienter 10 minutes avant de pouvoir reposter ici</translation>
     </message>
     <message>
         <location filename="../src/PostMessageController.cpp" line="398"/>
         <source>Connection timed out</source>
-        <translation></translation>
+        <translation>La connexion a échoué</translation>
     </message>
 </context>
 <context>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../src/PrivateMessageController.cpp" line="94"/>
         <source>Connection timed out</source>
-        <translation>La connexion a échouée</translation>
+        <translation>La connexion a échoué</translation>
     </message>
 </context>
 <context>
@@ -561,54 +561,79 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../assets/Settings.qml" line="21"/>
-        <location filename="../assets/Settings.qml" line="47"/>
-        <location filename="../assets/Settings.qml" line="156"/>
-        <location filename="../assets/Settings.qml" line="166"/>
+        <location filename="../assets/Settings.qml" line="42"/>
+        <source>Login settings</source>
+        <translation>Paramètres de connexion</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="56"/>
+        <location filename="../assets/Settings.qml" line="82"/>
+        <location filename="../assets/Settings.qml" line="287"/>
+        <location filename="../assets/Settings.qml" line="297"/>
         <source>User: </source>
-        <translation>Utilisateur: </translation>
+        <translation type="unfinished">Utilisateur: </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="28"/>
+        <location filename="../assets/Settings.qml" line="63"/>
         <source>Connect</source>
-        <translation>Se connecter</translation>
+        <translation type="unfinished">Se connecter</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="41"/>
+        <location filename="../assets/Settings.qml" line="76"/>
         <source>log out</source>
-        <translation>Se deconnecter</translation>
+        <translation type="unfinished">Se deconnecter</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="58"/>
-        <location filename="../assets/Settings.qml" line="71"/>
+        <location filename="../assets/Settings.qml" line="102"/>
+        <source>Visual appearance</source>
+        <translation>Apparence de l&apos;application</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="116"/>
+        <location filename="../assets/Settings.qml" line="129"/>
         <source>Font size: </source>
-        <translation>Taille des polices</translation>
+        <translation type="unfinished">Taille des polices : </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="83"/>
-        <location filename="../assets/Settings.qml" line="96"/>
+        <location filename="../assets/Settings.qml" line="141"/>
+        <location filename="../assets/Settings.qml" line="154"/>
         <source>Smiley size: </source>
-        <translation>Taille des smileys</translation>
+        <translation type="unfinished">Taille des smileys : </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="106"/>
+        <location filename="../assets/Settings.qml" line="164"/>
         <source>Visual Theme</source>
-        <translation>Choix du thème</translation>
+        <translation type="unfinished">Choix du thème</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="109"/>
+        <location filename="../assets/Settings.qml" line="167"/>
         <source>Bright</source>
-        <translation>Clair</translation>
+        <translation type="unfinished">Clair</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="114"/>
+        <location filename="../assets/Settings.qml" line="172"/>
         <source>Dark</source>
-        <translation>Sombre</translation>
+        <translation type="unfinished">Sombre</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="130"/>
+        <location filename="../assets/Settings.qml" line="196"/>
+        <source>Feature settings</source>
+        <translation>Fonctionalités</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="228"/>
+        <source>Refresh favorite automatically</source>
+        <translation>Rafraichir favoris automatiquement</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="246"/>
+        <source>Maintenance</source>
+        <translation>Maintenance</translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="260"/>
         <source>Clear image cache</source>
-        <translation>Vider le cache</translation>
+        <translation type="unfinished">Vider le cache</translation>
     </message>
 </context>
 <context>
@@ -616,7 +641,7 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="94"/>
         <source>Connection timed out</source>
-        <translation>La connexion a échouée</translation>
+        <translation>La connexion a échoué</translation>
     </message>
     <message>
         <location filename="../src/ShowThreadController.cpp" line="483"/>
@@ -713,7 +738,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="339"/>
         <source>You are going to leave the application, do you want to continue?</source>
-        <translation>Vous êtes sur le pont de quitter l&apos;application, êtes vous sûr de vouloir continuer?</translation>
+        <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="350"/>

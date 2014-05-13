@@ -1,10 +1,12 @@
 import bb.cascades 1.2
 import bb.data 1.0
 import Network.ListFavoriteController 1.0
+import conf.settings 1.0
 
 
 NavigationPane {
     id: nav
+    property int     navDepth
     property variant tpage
     Page {
         
@@ -176,7 +178,10 @@ NavigationPane {
 	             ComponentDefinition {
 	                 id: threadPage
 	                 source: "ThreadPage.qml"
-	             }
+	             },
+                 Settings {
+                     id: appSettings
+                 }
 	         ]
 	         
 	    }
@@ -186,6 +191,22 @@ NavigationPane {
             listFavoriteController.setListView(listFav);
             listFavoriteController.getFavorite();
             activityIndicator.start();
+            navDepth = 0;
         }
 	}
+    
+    onPopTransitionEnded: {
+        --navDepth;
+        
+        if(navDepth == 1) {
+            if(appSettings.autoRefresh) {
+            	listFavoriteController.getFavorite();
+                activityIndicator.start();
+            }
+        }
+    }
+    
+    onPushTransitionEnded: {
+        ++navDepth;
+    }
 }

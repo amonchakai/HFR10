@@ -27,6 +27,8 @@
 
 #include <bb/cascades/GroupDataModel>
 #include <bb/cascades/ListView>
+#include <bb/cascades/WebView>
+#include <bb/cascades/WebStorage>
 #include <bb/cascades/controls/standardlistitem.h>
 
 

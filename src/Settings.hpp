@@ -17,6 +17,7 @@ class Settings : public QObject {
 	Q_PROPERTY( int fontSize 	READ getFontSize    WRITE setFontSize		NOTIFY fontSizeChanged)
 	Q_PROPERTY( int smileySize 	READ getSmileySize  WRITE setSmileySize		NOTIFY smileySizeChanged)
 	Q_PROPERTY( int theme	 	READ getTheme	    WRITE setTheme			NOTIFY themeChanged)
+	Q_PROPERTY( int autoRefresh	 READ getAutoRefresh WRITE setAutoRefresh   NOTIFY autoRefreshChanged)
 
 private:
 
@@ -24,6 +25,7 @@ private:
 	static int m_FontSize;
 	static int m_SmileySize;
 	static int m_Theme;
+	static int m_AutoRefresh;
 
 
 public:
@@ -37,8 +39,11 @@ public:
 	inline void setTheme(int s) 						{ m_Theme = s; }
 	inline int  getTheme() const						{ return m_Theme; }
 
-	inline void setSmileySize(int s) 					{ m_SmileySize = s; }
-	inline int  getSmileySize() const					{ return m_SmileySize; }
+	inline void setSmileySize(int s) 						{ m_SmileySize = s; }
+	inline int  getSmileySize() const						{ return m_SmileySize; }
+
+	inline void setAutoRefresh(int s) 					{ m_AutoRefresh = s; }
+	inline int  getAutoRefresh() const					{ return m_AutoRefresh; }
 
 	static int  smileySize() 							{ return m_SmileySize; }
 	static int  fontSize()								{ return m_FontSize; }
@@ -55,6 +60,7 @@ public Q_SLOTS:
 		void fontSizeChanged();
 		void smileySizeChanged();
 		void themeChanged();
+		void autoRefreshChanged();
 
 };
 

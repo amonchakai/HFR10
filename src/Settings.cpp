@@ -14,7 +14,7 @@
 int Settings::m_FontSize = 25;
 int Settings::m_SmileySize = 3;
 int Settings::m_Theme = 0;
-
+int Settings::m_AutoRefresh = 0;
 
 
 void Settings::loadSettings() {
@@ -30,6 +30,7 @@ void Settings::loadSettings() {
 		stream >> m_FontSize;
 		stream >> m_SmileySize;
 		stream >> m_Theme;
+		stream >> m_AutoRefresh;
 
 		file.close();
 	}
@@ -49,6 +50,7 @@ void Settings::saveSettings() const {
 		stream << m_FontSize;
 		stream << m_SmileySize;
 		stream << m_Theme;
+		stream << m_AutoRefresh;
 
 		file.close();
 	}

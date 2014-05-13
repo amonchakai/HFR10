@@ -12,9 +12,44 @@ NavigationPane {
         
 	    Container {
 	        layout: StackLayout {}
+            id: headerContainer
+	        
+            function themeStyleToHeaderColor(style){
+                switch (style) {
+                    case VisualStyle.Bright:
+                        return Color.create(0.96,0.96,0.96);
+                    case VisualStyle.Dark: 
+                        return Color.create(0.15,0.15,0.15);
+                    default :
+                        return Color.create(0.96,0.96,0.96);    
+                }
+                return Color.create(0.96,0.96,0.96); 
+            }
 	        
             // --------------------------------------------------------------------------
             // Login settings
+            Container {
+                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Fill
+                preferredHeight: 40
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                Label {
+                    text: qsTr("Login settings")
+                    textStyle.fontSize: FontSize.XSmall
+                }
+            } 
+            Container {
+                background: Color.create("#00A7DE") 
+                minHeight: 4
+                maxHeight: 4
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+            }
             
 	        Label {
 	            id: userLabel
@@ -52,6 +87,29 @@ NavigationPane {
 	        
             // --------------------------------------------------------------------------
             // Font size settings
+            
+            Container {
+                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Fill
+                preferredHeight: 40
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                Label {
+                    text: qsTr("Visual appearance")
+                    textStyle.fontSize: FontSize.XSmall
+                }
+            } 
+            Container {
+                background: Color.create("#00A7DE") 
+                minHeight: 4
+                maxHeight: 4
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+            }
                 
 	        Label {
 	            id: setFontSizeLabel
@@ -123,8 +181,80 @@ NavigationPane {
                 
             } 
             
+            
+            Container {
+                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Fill
+                preferredHeight: 40
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                Label {
+                    text: qsTr("Feature settings")
+                    textStyle.fontSize: FontSize.XSmall
+                }
+            } 
+            Container {
+                background: Color.create("#00A7DE") 
+                minHeight: 4
+                maxHeight: 4
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+            }
+            
+            Container {
+                preferredHeight: 90
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+            	ToggleButton {
+                    verticalAlignment: VerticalAlignment.Center
+            	    id: togglebutton
+                    checked: appSettings.autoRefresh == 1
+            	    onCheckedChanged: {
+                    	if(checked)
+                    		appSettings.autoRefresh = 1;
+                    	else 
+                    		appSettings.autoRefresh = 0;
+                        appSettings.saveSettings();
+                    }
+                }
+                Label {
+                     id: status
+                     verticalAlignment: VerticalAlignment.Center
+                     text: qsTr("Refresh favorite automatically")
+                }
+            }
+            
             // --------------------------------------------------------------------------
             // cache settings
+            
+            Container {
+                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Fill
+                preferredHeight: 40
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                Label {
+                    text: qsTr("Maintenance")
+                    textStyle.fontSize: FontSize.XSmall
+                }
+            } 
+            Container {
+                background: Color.create("#00A7DE") 
+                minHeight: 4
+                maxHeight: 4
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+            }
+            
             
             Button {
                 text: qsTr("Clear image cache")
@@ -133,6 +263,7 @@ NavigationPane {
                     loginController.clearImageCache();
                 }
             }
+
             
 	    }
 	    

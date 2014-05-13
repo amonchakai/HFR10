@@ -51,22 +51,22 @@
 <context>
     <name>Favorite</name>
     <message>
-        <location filename="../assets/Favorite.qml" line="105"/>
+        <location filename="../assets/Favorite.qml" line="107"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="108"/>
+        <location filename="../assets/Favorite.qml" line="110"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="115"/>
+        <location filename="../assets/Favorite.qml" line="117"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="122"/>
+        <location filename="../assets/Favorite.qml" line="124"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
@@ -549,52 +549,77 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../assets/Settings.qml" line="21"/>
-        <location filename="../assets/Settings.qml" line="47"/>
-        <location filename="../assets/Settings.qml" line="156"/>
-        <location filename="../assets/Settings.qml" line="166"/>
+        <location filename="../assets/Settings.qml" line="42"/>
+        <source>Login settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="56"/>
+        <location filename="../assets/Settings.qml" line="82"/>
+        <location filename="../assets/Settings.qml" line="287"/>
+        <location filename="../assets/Settings.qml" line="297"/>
         <source>User: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="28"/>
+        <location filename="../assets/Settings.qml" line="63"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="41"/>
+        <location filename="../assets/Settings.qml" line="76"/>
         <source>log out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="58"/>
-        <location filename="../assets/Settings.qml" line="71"/>
+        <location filename="../assets/Settings.qml" line="102"/>
+        <source>Visual appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="116"/>
+        <location filename="../assets/Settings.qml" line="129"/>
         <source>Font size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="83"/>
-        <location filename="../assets/Settings.qml" line="96"/>
+        <location filename="../assets/Settings.qml" line="141"/>
+        <location filename="../assets/Settings.qml" line="154"/>
         <source>Smiley size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="106"/>
+        <location filename="../assets/Settings.qml" line="164"/>
         <source>Visual Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="109"/>
+        <location filename="../assets/Settings.qml" line="167"/>
         <source>Bright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="114"/>
+        <location filename="../assets/Settings.qml" line="172"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="130"/>
+        <location filename="../assets/Settings.qml" line="196"/>
+        <source>Feature settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="228"/>
+        <source>Refresh favorite automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="246"/>
+        <source>Maintenance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="260"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>

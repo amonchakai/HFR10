@@ -47,6 +47,7 @@ Container {
     		}
     	}
 		onMessageReceived: {
+		    post.storage.clear();
 		    console.log(message.data)
             var redirection = RegExp("/forum2.php");
 		    if(redirection.test(message.data))
