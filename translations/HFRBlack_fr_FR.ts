@@ -74,6 +74,11 @@
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="132"/>
+        <source>Remove flag</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ImageUploader</name>
@@ -129,12 +134,12 @@
 <context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="53"/>
+        <location filename="../src/ListFavoriteController.cpp" line="109"/>
         <source>You are not logged in.</source>
         <translation>Vous n&apos;êtes pas connecté</translation>
     </message>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="91"/>
+        <location filename="../src/ListFavoriteController.cpp" line="147"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>

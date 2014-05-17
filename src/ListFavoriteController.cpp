@@ -24,6 +24,62 @@ ListFavoriteController::ListFavoriteController(QObject *parent)
 }
 
 
+void ListFavoriteController::deleteFlag(const QString &urlFirstPage) {
+
+    QRegExp catIDRegExp("cat=([0-9]+)");
+    if(catIDRegExp.indexIn(urlFirstPage) == -1)
+        return;
+
+    const QUrl url(DefineConsts::HARDWARE_FR_URL + "/modo/manageaction.php?config=hfr.inc&cat=" + catIDRegExp.cap(1) + "&type_page=forum1&moderation=0");
+
+    QRegExp postIDRegExp("post=([0-9]+)");
+    if(postIDRegExp.indexIn(urlFirstPage) == -1)
+        return;
+
+    QRegExp ownRegExp("owntopic=([0-9]+)");
+    if(ownRegExp.indexIn(urlFirstPage) == -1)
+        return;
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    QUrl params;
+    params.addQueryItem("action_reaction", "message_forum_delflags");
+    params.addQueryItem("topic0", postIDRegExp.cap(1));
+    params.addQueryItem("valuecat0", catIDRegExp.cap(1));
+    params.addQueryItem("valueforum0", "hardwarefr");
+    params.addQueryItem("type_page", "forum1");
+    params.addQueryItem("owntopic", ownRegExp.cap(1));
+    params.addQueryItem("topic1", "-1");
+    params.addQueryItem("topic_statusno1", "-1");
+    params.addQueryItem("hash_check", m_HashCheck);
+
+
+    QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+    bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplyDeleteFlag()));
+    Q_ASSERT(ok);
+    Q_UNUSED(ok);
+}
+
+void ListFavoriteController::checkReplyDeleteFlag() {
+    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+        QString response;
+        if (reply) {
+            if (reply->error() == QNetworkReply::NoError) {
+                const int available = reply->bytesAvailable();
+                if (available > 0) {
+                    const QByteArray buffer(reply->readAll());
+                    response = QString::fromUtf8(buffer);
+                    qDebug() << response;
+                }
+            } else {
+                connectionTimedOut();
+            }
+
+            reply->deleteLater();
+        }
+}
 
 void ListFavoriteController::getFavorite() {
 
@@ -188,6 +244,13 @@ void ListFavoriteController::parse(const QString &page) {
 		urlFirstPage.replace(andAmp, "&");
 	}
 	parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);
+
+
+	QRegExp hashCheckRegExp("name=\"hash_check\" value=\"([0-9a-zA-Z]+)\"");
+	hashCheckRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	if(hashCheckRegExp.indexIn(page.mid(lastPos)) != -1) {
+	    m_HashCheck = hashCheckRegExp.cap(1);
+	}
 
 
 	updateView();

@@ -63,20 +63,20 @@
     </description>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7-g/HFRBlack" entry="true" type="Qnx/Elf">HFRBlack</asset>
+       <asset path="arm/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm/o.le-v7/HFRBlack.so" entry="true" type="Qnx/Elf">HFRBlack.so</asset>
+       <asset path="arm/o.le-v7/HFR10.so" entry="true" type="Qnx/Elf">HFR10.so</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="arm-p/o.le-v7-g/HFRBlack" entry="true" type="Qnx/Elf">HFRBlack</asset>
+       <asset path="arm-p/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/HFRBlack" entry="true" type="Qnx/Elf">HFRBlack</asset>
+       <asset path="arm/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
     </configuration>
 
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->

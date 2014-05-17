@@ -127,6 +127,13 @@ NavigationPane {
                                             titleContainer.ListItem.view.gotoPage(ListItemData.urlLastPostRead, ListItemData.title)
                                         }
                                     }
+                                    
+                                    DeleteActionItem {
+                                        title: qsTr("Remove flag")
+                                        onTriggered: {
+                                            titleContainer.ListItem.view.deleteFlag(ListItemData.urlFirstPage)
+                                        }
+                                    }
                                 }
                             ]
 	                    }
@@ -143,6 +150,10 @@ NavigationPane {
                     tpage.caption   = titleTopic
                     
                     nav.push(tpage);
+                }
+                
+                function deleteFlag(urlFirstPage) {
+                    listFavoriteController.deleteFlag(urlFirstPage);
                 }
 	            
 	            onTriggered: {

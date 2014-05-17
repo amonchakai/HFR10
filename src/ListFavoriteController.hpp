@@ -21,7 +21,7 @@ class ListFavoriteController : public QObject {
 
 		bb::cascades::ListView   *m_ListView;
 		QList<ThreadListItem*>   *m_Datas;
-
+		QString                   m_HashCheck;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -35,7 +35,9 @@ class ListFavoriteController : public QObject {
 		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void getFavorite();
 		void checkReply();
+		void checkReplyDeleteFlag();
 		void updateView();
+		void deleteFlag(const QString &url);
 
 
 	// ----------------------------------------------------------------------------------------------
