@@ -1,0 +1,8 @@
+<root>
+	<item name="Aucune" color="#ffffff" value="0" />
+	<item name="Vert" color="#a8cc0a" value="1" />
+	<item name="Bleu" color="#27bbc6" value="2" />
+	<item name="Orange" color="#fe5e05" value="3" />
+	<item name="Rose" color="#ef0061" value="4" />
+	<item name="Violet" color="#795ae0" value="5" />
+</root>

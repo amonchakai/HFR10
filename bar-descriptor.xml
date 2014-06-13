@@ -117,14 +117,13 @@
 	<entryPoint id="HeadlessHFR">
 		<name>HeadlessHFR</name>
 	    <entryPointType>Qnx/Elf</entryPointType>
+	    <permission system="true">run_native</permission>
+	    <permission system="true">_sys_run_headless</permission>
+	    <permission system="true">_sys_headless_nostop</permission>
+		<permission system="true">_sys_manage_pimdomain_external_accounts</permission>
+		<permission system="true">_sys_access_pim_unified</permission>
 	</entryPoint>
 
-    
-	<permission system="true">_sys_run_headless</permission>
-	<permission system="true">_sys_manage_pimdomain_external_accounts</permission>
-	<permission system="true">_sys_access_pim_unified</permission>
-	    
-     
    
 	<invoke-target id="pierre.lebreton.HFRBlack">
 	<entry-point-id>HFR10</entry-point-id>

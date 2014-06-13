@@ -52,7 +52,7 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 
-
+	qDebug() << signature;
 
 	QUrl params;
 	params.addQueryItem("hash_check", hashCheck);
@@ -62,7 +62,7 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	params.addQueryItem("MsgIcon", "20");
 	params.addQueryItem("page", page);
 	params.addQueryItem("pseudo", pseudo);
-	params.addQueryItem("content_form", message);
+	params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
 	params.addQueryItem("sujet", threadTitle);
 	params.addQueryItem("signature", signature ? "1" : "0");
 
@@ -85,14 +85,13 @@ void PostMessageController::postNewPrivateMessage(const QString &hashCheck
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
-
 	QUrl params;
 	params.addQueryItem("hash_check", hashCheck);
 	params.addQueryItem("cat", "prive");
 	params.addQueryItem("verifrequet", "1100");
 	params.addQueryItem("MsgIcon", "20");
 	params.addQueryItem("pseudo", pseudo);
-	params.addQueryItem("content_form", message);
+	params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
 	params.addQueryItem("dest", dest);
 	params.addQueryItem("sujet", caption);
 	params.addQueryItem("signature", signature ? "1" : "0");
@@ -241,7 +240,9 @@ void PostMessageController::checkGetMessageReply() {
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
+
 				parseEditMessage(response);
+
 			}
 		} else {
 			connectionTimedOut();
@@ -249,6 +250,7 @@ void PostMessageController::checkGetMessageReply() {
 
 		reply->deleteLater();
 	}
+
 }
 
 
@@ -371,6 +373,8 @@ void PostMessageController::postEdit(const QString &message) {
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+    QString copyMessage = message;
+    copyMessage.replace("+", "%2");
 
 	QUrl params;
 	params.addQueryItem("hash_check", m_HashCheck);
@@ -380,10 +384,9 @@ void PostMessageController::postEdit(const QString &message) {
 	params.addQueryItem("verifrequet", "1100");
 	params.addQueryItem("parents", m_Parent);
 	params.addQueryItem("pseudo", m_Pseudo);
-	params.addQueryItem("content_form", message);
+	params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
 	params.addQueryItem("sujet", m_ThreadTitle);
-	params.addQueryItem("signature", "0");
-
+	params.addQueryItem("signature", "1");
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));

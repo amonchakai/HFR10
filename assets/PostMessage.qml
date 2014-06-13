@@ -270,15 +270,22 @@ Page {
     ]
     
     onEditURLChanged: {
+        if(editURL == "") return;
+        
         postMessageController.getEditMessage(editURL);
         activityIndicator.start();
         mode = 2;
+        editURL = "";
     }
     
     onQuoteURLChanged: {
+        if(quoteURL == "") return;
+        
         postMessageController.getQuotedMessages(quoteURL);
         activityIndicator.start();
         mode = 3;
+        
+        quoteURL = "";
     }
     
     onCreationCompleted: {

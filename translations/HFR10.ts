@@ -287,12 +287,12 @@
 <context>
     <name>PostMessageController</name>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="144"/>
+        <location filename="../src/PostMessageController.cpp" line="143"/>
         <source>Too many consecutive replies, please wait 10 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="398"/>
+        <location filename="../src/PostMessageController.cpp" line="401"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>

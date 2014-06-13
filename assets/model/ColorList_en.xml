@@ -1,0 +1,8 @@
+<root>
+	<item name="None" color="#ffffff" value="0" />
+	<item name="Green" color="#a8cc0a" value="1" />
+	<item name="Blue" color="#27bbc6" value="2" />
+	<item name="Orange" color="#fe5e05" value="3" />
+	<item name="Pink" color="#ef0061" value="4" />
+	<item name="Purple" color="#795ae0" value="5" />
+</root>

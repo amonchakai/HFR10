@@ -299,12 +299,12 @@
         <translation type="obsolete">Erreur lors de la publication du post</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="144"/>
+        <location filename="../src/PostMessageController.cpp" line="143"/>
         <source>Too many consecutive replies, please wait 10 minutes</source>
         <translation>Trop de réponses consécutives, veuillez patienter 10 minutes avant de pouvoir reposter ici</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="398"/>
+        <location filename="../src/PostMessageController.cpp" line="401"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
