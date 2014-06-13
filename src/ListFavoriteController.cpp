@@ -16,6 +16,7 @@
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
 #include  "DataObjects.h"
+#include  "Settings.hpp"
 
 
 ListFavoriteController::ListFavoriteController(QObject *parent)
@@ -303,6 +304,7 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 			item->setTimestamp(s.mid(23,5));
 		else
 			item->setTimestamp(s.mid(0,10));
+		item->setDetailedTimestamp(s);
 
 
 		item->setLastAuthor(lastContribution.cap(3));
@@ -311,6 +313,14 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 		s.replace(andAmp, "&");
 		item->setUrlLastPage(s);
 
+	}
+
+	QRegExp postIDRegExp("post=([0-9]+)");
+	QRegExp catIDRefExp("cat=([0-9]+)");
+	if(postIDRegExp.indexIn(item->getUrlLastPage()) != -1 && catIDRefExp.indexIn(item->getUrlLastPage()) != -1) {
+	    item->setColor(Settings::getTagValue(postIDRegExp.cap(1) + "@" + catIDRefExp.cap(1)));
+	} else {
+	    item->setColor(0);
 	}
 
 	m_Datas->append(item);
@@ -344,6 +354,7 @@ void ListFavoriteController::updateView() {
 							  << "pages"
 							  << "flagType"
 							  << "read"
+							  << "color"
 				);
 		m_ListView->setDataModel(dataModel);
 	}

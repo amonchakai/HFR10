@@ -37,7 +37,6 @@ Container {
                     return;
                 }
                 readyForRefresh = false;
-
                 if (layoutFrame.y >= 0) {
                     if (layoutFrame.y >= refresh_threshold) {
                         if (! refreshing) {

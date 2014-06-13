@@ -2,6 +2,6 @@ APP_NAME = HFR10
 
 CONFIG += qt warn_on cascades10 
 QT += network xml
-LIBS += -lbbsystem
+LIBS += -lbbsystem -lbbpim -lbb -lbbdata -lbbnetwork -lunifieddatasourcec
 
 include(config.pri)

@@ -5,8 +5,10 @@ import conf.settings 1.0
 NavigationPane {
     id: nav
     property variant tpage
+    property variant colorPage
     
 	Page {
+        ScrollView {
         id: settingPage
         property string userName;
         
@@ -229,6 +231,89 @@ NavigationPane {
                 }
             }
             
+            Button {
+                horizontalAlignment: HorizontalAlignment.Fill
+                text: qsTr("Color management")
+                onClicked: {
+                    if(!colorPage)
+                        colorPage = colorManagement.createObject();
+                    nav.push(colorPage);
+                }
+            }
+            
+            // --------------------------------------------------------------------------
+            // hub settings
+            Container {
+                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
+                horizontalAlignment: HorizontalAlignment.Fill
+                verticalAlignment: VerticalAlignment.Fill
+                preferredHeight: 40
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                Label {
+                    text: qsTr("Hub integration")
+                    textStyle.fontSize: FontSize.XSmall
+                }
+            } 
+            Container {
+                background: Color.create("#00A7DE") 
+                minHeight: 4
+                maxHeight: 4
+                verticalAlignment: VerticalAlignment.Fill
+                horizontalAlignment: HorizontalAlignment.Fill
+            }
+            
+            /*
+            Container {
+                preferredHeight: 90
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                ToggleButton {
+                    verticalAlignment: VerticalAlignment.Center
+                    id: togglebuttonHub
+                    checked: true
+                    onCheckedChanged: {
+                        appSettings.hubIntegration = togglebutton.checked;
+                        appSettings.saveSettings();
+                        
+                    }
+                }
+                Label {
+                    id: statusHub
+                    verticalAlignment: VerticalAlignment.Center
+                    text: qsTr("Enable HUB integration")
+                }
+            }
+            */
+            
+            Label {
+                id: hubRefreshRate
+                text: qsTr("Refresh HUB every: ") + (hubRefreshRateSlider.value).toString() + " minutes."
+            }
+            
+            Slider {
+                id: hubRefreshRateSlider
+                fromValue: 1
+                toValue: 120
+                value: appSettings.hubRefreshRate
+                horizontalAlignment: HorizontalAlignment.Fill
+                
+                
+                onValueChanged: {
+                    appSettings.hubRefreshRate = hubRefreshRateSlider.value;
+                    hubRefreshRate.text = qsTr("Refresh HUB every: ") + (appSettings.hubRefreshRate).toString() + " minutes."
+                    appSettings.saveSettings();
+                    
+                }
+            
+            }
+            
+            
+            
             // --------------------------------------------------------------------------
             // cache settings
             
@@ -277,8 +362,13 @@ NavigationPane {
                 source: "LoginForm.qml"
             
             },
-            Settings {
+            AppSettings {
                 id: appSettings
+            },
+            ComponentDefinition {
+                id: colorManagement
+                source: "ColorManagement.qml"
+            
             }
 	    ]
 	    
@@ -287,6 +377,7 @@ NavigationPane {
             userLabel.setText(qsTr("User: ") + userName);
         }
 	}
+    } 
 	
 	onCreationCompleted: {
         settingPage.userName =  loginController.savedlogin;

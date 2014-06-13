@@ -424,7 +424,7 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			QString listSelectedItemsFunctor("function getSelectedItems() { var ret=0; ");
 			while((pos = answers.indexIn(page, pos)) != -1) {
 				dataType = answers.cap(1).at(0) == 'r';
-				qDebug() << answers.cap(1) <<  answers.cap(2);
+				//qDebug() << answers.cap(1) <<  answers.cap(2);
 				m_Survey += "<li><input type=\"" + answers.cap(1) + "\" value=\"" + QString::number(respIDX) + "\" id=\"sond" + QString::number(respIDX) + "\" name=\"reponse\" />" + answers.cap(2) + "</li>";
 				listSelectedItemsFunctor += "if(document.getElementById(\"sond" + QString::number(respIDX) + "\").checked) { ret += Math.pow(2," + QString::number(respIDX-1) +"); } ";
 				pos += answers.matchedLength();

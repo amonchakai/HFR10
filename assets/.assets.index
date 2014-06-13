@@ -1,5 +1,7 @@
 1
-158
+164
+ColorManagement.qml
+ColorPicker.qml
 ExploreCategory.qml
 Favorite.qml
 help/about_fr.html
@@ -78,14 +80,12 @@ images/smiley/foudtag.gif
 images/smiley/fouyaya.gif
 images/smiley/frown.gif
 images/smiley/fuck.gif
-images/smiley/gratgrat.gif
 images/smiley/gun.gif
 images/smiley/hap.gif
 images/smiley/hebe.gif
 images/smiley/hot.gif
 images/smiley/int.gif
 images/smiley/mad.gif
-images/smiley/miam.gif
 images/smiley/mmmfff.gif
 images/smiley/mouais.gif
 images/smiley/ohill.gif
@@ -97,12 +97,14 @@ images/smiley/smilies/ange.gif
 images/smiley/smilies/bounce.gif
 images/smiley/smilies/cry.gif
 images/smiley/smilies/fou.gif
+images/smiley/smilies/gratgrat.gif
 images/smiley/smilies/heink.gif
 images/smiley/smilies/hello.gif
 images/smiley/smilies/jap.gif
 images/smiley/smilies/kaola.gif
 images/smiley/smilies/lol.gif
 images/smiley/smilies/love.gif
+images/smiley/smilies/miam.gif
 images/smiley/smilies/na.gif
 images/smiley/smilies/non.gif
 images/smiley/smilies/ouch.gif
@@ -129,6 +131,8 @@ LoginForm.qml
 main.qml
 model/AchatsVentes.xml
 model/Apple.xml
+model/ColorList_en.xml
+model/ColorList_fr.xml
 model/Discussions.xml
 model/EmploiEtudes.xml
 model/Graphisme.xml
@@ -155,6 +159,8 @@ Search.qml
 SearchResult.qml
 Settings.qml
 SmileyPicker.qml
+StartupCardCompose.qml
+StartupCardThread.qml
 SubCategoryPicker.qml
 SurveyHeader.qml
 ThreadPage.qml

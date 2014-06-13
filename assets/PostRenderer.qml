@@ -63,7 +63,7 @@ Container {
     }
     
     attachedObjects: [
-        Settings {
+        AppSettings {
             id: appSettings
         }
     ]

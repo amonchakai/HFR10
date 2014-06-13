@@ -8,11 +8,15 @@ NavigationPane {
     id: nav
     property int     navDepth
     property variant tpage
+    property variant tColPage
+    
+    property variant itemToTag
+    property int     chosenTag
+    
     Page {
         
-        
 	    Container {
-	        	        
+            	        
             ActivityIndicator {
                 id: activityIndicator
                 horizontalAlignment: HorizontalAlignment.Center
@@ -67,40 +71,87 @@ NavigationPane {
 	                    type: "item"
 	                    
 	                    Container {
-                            id: titleContainer
+                            function colorIndexToHex(index) {
+                                switch (index) {
+                                    case 0:
+                                        return "#ffffff";
+                                    
+                                    case 1:
+                                        return "#a8cc0a";
+                                    
+                                    case 2:
+                                        return "#27bbc6";
+                                    
+                                    case 3:
+                                        return "#fe5e05";
+                                    
+                                    case 4:
+                                        return "#ef0061";
+                                    
+                                    case 5:
+                                        return "#795ae0";
+                                    
+                                    default:
+                                        return "#ffffff";
+                                }
+                            }
                             
-	                        layout: StackLayout {
-	                            orientation: LayoutOrientation.TopToBottom
-	                        }
-	                        verticalAlignment: VerticalAlignment.Top
-	                        Label {
-	                            text: ListItemData.title
-	                        }
+	                        id: titleContainer
+                            layout: StackLayout {
+                                orientation: LayoutOrientation.LeftToRight
+                            }
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            verticalAlignment: VerticalAlignment.Fill
+                            Container {
+                                id: tagContainer
+                                minWidth: 8
+                                maxWidth: 8
+                                verticalAlignment: VerticalAlignment.Fill
+                                background: Color.create(colorIndexToHex(ListItemData.color))
+                            }
+                            Container {
+                                minWidth: 2
+                                maxWidth: 2
+                                verticalAlignment: VerticalAlignment.Fill
+                            }
 	                        
-	                        Container {
-	                            layout: DockLayout {
-	                            }
-	                            horizontalAlignment: HorizontalAlignment.Fill
-	
-	                            Label {
-	                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
-	                                horizontalAlignment: HorizontalAlignment.Right
-	                                textStyle {
-	                                    base: SystemDefaults.TextStyles.SmallText
-                                        color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.Cyan : Color.Blue
-	                                }
-	                            }
-	                            
-	                            Label {
-	                                text: ListItemData.pages
-	                                horizontalAlignment: HorizontalAlignment.Left
-	                                textStyle {
-	                                    base: SystemDefaults.TextStyles.SmallText
-	                                    color: Color.Gray
-	                                }
-	                            }
-	                        }
-	                        Divider {}
+    	                    Container {
+                                id: topicContainer
+                                
+    	                        layout: StackLayout {
+    	                            orientation: LayoutOrientation.TopToBottom
+    	                        }
+    	                        verticalAlignment: VerticalAlignment.Top
+    	                        Label {
+    	                            text: ListItemData.title
+    	                        }
+    	                        
+    	                        Container {
+    	                            layout: DockLayout {
+    	                            }
+    	                            horizontalAlignment: HorizontalAlignment.Fill
+    	
+    	                            Label {
+    	                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
+    	                                horizontalAlignment: HorizontalAlignment.Right
+    	                                textStyle {
+    	                                    base: SystemDefaults.TextStyles.SmallText
+                                            color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.Cyan : Color.Blue
+    	                                }
+    	                            }
+    	                            
+    	                            Label {
+    	                                text: ListItemData.pages
+    	                                horizontalAlignment: HorizontalAlignment.Left
+    	                                textStyle {
+    	                                    base: SystemDefaults.TextStyles.SmallText
+    	                                    color: Color.Gray
+    	                                }
+    	                            }
+    	                        }
+    	                        Divider {}
+                            }
+
 	                        
                             contextActions: [
                                 ActionSet {
@@ -125,6 +176,15 @@ NavigationPane {
                                         imageSource: "asset:///images/icon_next.png"
                                         onTriggered: {
                                             titleContainer.ListItem.view.gotoPage(ListItemData.urlLastPostRead, ListItemData.title)
+                                        }
+                                    }
+                                    
+                                    ActionItem {
+                                        title: qsTr("Color Tag")
+                                        imageSource: "asset:///images/chickened.png"
+                                        onTriggered: {
+                                            titleContainer.ListItem.view.openColorPicker(ListItemData.urlFirstPage, titleContainer.ListItem.indexPath)
+                                           
                                         }
                                     }
                                     
@@ -155,6 +215,18 @@ NavigationPane {
                 function deleteFlag(urlFirstPage, indexPath) {
                     listFavoriteController.deleteFlag(urlFirstPage);
                     listFav.dataModel.removeAt(indexPath);
+                }
+                
+                function openColorPicker(urlFirstPage, indexPath) {
+                    if(!tColPage) {
+                        tColPage = colorPickerPage.createObject();
+                    }
+                    
+                    // Set the url of the page to load and thread caption. 
+                    itemToTag = indexPath;
+                    tColPage.urlPage = urlFirstPage
+                    nav.push(tColPage);
+                    
                 }
 	            
 	            onTriggered: {
@@ -191,8 +263,12 @@ NavigationPane {
 	                 id: threadPage
 	                 source: "ThreadPage.qml"
 	             },
-                 Settings {
+                 AppSettings {
                      id: appSettings
+                 },
+                 ComponentDefinition {
+                     id: colorPickerPage
+                     source: "ColorPicker.qml"
                  }
 	         ]
 	         
@@ -204,6 +280,7 @@ NavigationPane {
             listFavoriteController.getFavorite();
             activityIndicator.start();
             navDepth = 0;
+            chosenTag = -1;
         }
 	}
     
@@ -215,6 +292,12 @@ NavigationPane {
             	listFavoriteController.getFavorite();
                 activityIndicator.start();
             }
+            
+            if(chosenTag != -1) {
+                var selectedItem = listFav.dataModel.data(itemToTag);
+                selectedItem.color = chosenTag;
+            }
+            chosenTag = -1;
         }
     }
     

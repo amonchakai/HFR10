@@ -26,23 +26,27 @@
 
     <!-- A universally unique application identifier. Must be unique across all BlackBerry 10 applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>pierre.lebreton.HFR10</id>
+    <id>pierre.lebreton.HFRBlack</id>
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7/HFR10.so" entry="true" type="Qnx/Elf">HFR10.so</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm-p/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="x86/o-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/x86/o-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
     </configuration>
 
     <!-- The name that is displayed in the BlackBerry 10 application installer.
@@ -55,11 +59,11 @@
     <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
          Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
          An updated version of application must have a versionNumber value higher than the previous version. Required. -->
-    <versionNumber>1.2.1</versionNumber>
+    <versionNumber>1.3.1</versionNumber>
 
     <!-- Fourth digit segment of the package version. First three segments are taken from the
          <versionNumber> element.  Must be an integer from 0 to 2^16-1 -->
-    <buildId>77</buildId>
+    <buildId>81</buildId>
     <packageLocale>fr-FR</packageLocale>
 
     <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
@@ -99,10 +103,90 @@
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
     </asset>
+    <asset public="true" path="hubassets">hubassets</asset>
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <permission system="true">run_native</permission>
     <permission>access_shared</permission>
-    <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
+    <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>   
+    
+    <entryPoint id="HFR10">
+    	<name>HFR10</name>
+	</entryPoint>
+	
+	<entryPoint id="HeadlessHFR">
+		<name>HeadlessHFR</name>
+	    <entryPointType>Qnx/Elf</entryPointType>
+	</entryPoint>
+
+    
+	<permission system="true">_sys_run_headless</permission>
+	<permission system="true">_sys_manage_pimdomain_external_accounts</permission>
+	<permission system="true">_sys_access_pim_unified</permission>
+	    
+     
+   
+	<invoke-target id="pierre.lebreton.HFRBlack">
+	<entry-point-id>HFR10</entry-point-id>
+	<invoke-target-name>HFR10</invoke-target-name>
+	<invoke-target-type>application</invoke-target-type>
+		<filter>
+			<action>bb.action.OPEN</action>
+			<mime-type>hub/vnd.test.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
+	</invoke-target>
+	
+	<invoke-target id="pierre.lebreton.HFRBlack">
+	<invoke-target-type>card.previewer</invoke-target-type>
+	<filter>
+		<action>bb.action.VIEW</action>
+		<mime-type>hub/vnd.test.item</mime-type>
+		<property var="uris" value="data://,pim:"/>
+	</filter>
+	</invoke-target>
+	
+	<invoke-target id="pierre.lebreton.HFRBlack.Headless">
+	<invoke-target-type>application.headless</invoke-target-type>
+	<invoke-target-name>HeadlessHFR</invoke-target-name>
+	<entry-point-id>HeadlessHFR</entry-point-id>
+	<filter>
+           <action>bb.action.system.STARTED</action>
+           <mime-type>application/vnd.blackberry.system.event.STARTED</mime-type>
+           <property var="uris" value="data://local"/>
+     </filter>
+     <filter>
+           <action>bb.action.START</action>
+           <mime-type>*</mime-type>
+           <property var="uris" value="headless:"/>
+     </filter>
+     <filter>
+		   <action>bb.action.DELETE</action>
+		   <mime-type>hub/vnd.test.item</mime-type>
+		   <property var="uris" value="data://,pim:"/>
+	</filter>
+	<filter>
+		<action>bb.action.MARKREAD</action>
+		<mime-type>hub/vnd.test.item</mime-type>
+		<property var="uris" value="data://,pim:"/>
+	</filter>
+	<filter>
+		<action>bb.action.MARKUNREAD</action>
+		<mime-type>hub/vnd.test.item</mime-type>
+		<property var="uris" value="data://,pim:"/>
+	</filter>
+	<filter>
+		<action>bb.action.MARKPRIORREAD</action>
+		<mime-type>hub/vnd.test.item</mime-type>
+		<property var="uris" value="data://,pim:"/>
+	</filter>
+	<filter>
+		<action>bb.action.DELETEPRIOR</action>
+		<mime-type>hub/vnd.test.item</mime-type>
+		<property var="uris" value="data://,pim:"/>
+	</filter>
+	</invoke-target>
+	
+   
 
 </qnx>

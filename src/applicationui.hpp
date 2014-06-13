@@ -18,6 +18,19 @@
 #define ApplicationUI_HPP_
 
 #include <QObject>
+#include <bb/cascades/AbstractPane>
+#include <bb/cascades/NavigationPane>
+#include <bb/cascades/Page>
+#include <bb/cascades/QmlDocument>
+#include <bb/data/JsonDataAccess>
+#include <bb/system/InvokeManager>
+#include <bb/system/InvokeRequest>
+#include <bb/system/InvokeTargetReply>
+
+using namespace bb::cascades;
+using namespace bb::data;
+using namespace bb::system;
+using bb::system::ApplicationStartupMode;
 
 namespace bb
 {
@@ -25,8 +38,16 @@ namespace bb
     {
         class Application;
         class LocaleHandler;
+        class ApplicationStartupMode;
+    }
+
+    namespace system {
+        class InvokeManager;
+        class InvokeRequest;
+        class InvokeTargetReply;
     }
 }
+
 
 class QTranslator;
 
@@ -42,11 +63,29 @@ class ApplicationUI : public QObject
 public:
     ApplicationUI(bb::cascades::Application *app);
     virtual ~ApplicationUI() { }
+
+    Q_SLOT void closeCard();
+
 private slots:
     void onSystemLanguageChanged();
+    void onInvoked(const bb::system::InvokeRequest& request);
+
+
 private:
     QTranslator* m_pTranslator;
     bb::cascades::LocaleHandler* m_pLocaleHandler;
+
+    bb::cascades::Application   *m_app;
+    bb::cascades::NavigationPane *m_root;
+    bb::cascades::QmlDocument   *m_qml;
+
+
+    QSettings                   m_Settings;
+    bb::system::InvokeManager*  m_InvokeManager;
+    bool                        m_HeadlessStart;
+    bool                        m_isCard;
+
+    QString                     m_PageToLoadInCard;
 };
 
 #endif /* ApplicationUI_HPP_ */

@@ -33,6 +33,7 @@ class ThreadListItem : public QObject {
 	Q_PROPERTY( QString urlLastPostRead  READ getUrlLastPostRead    WRITE setUrlLastPostRead    NOTIFY urlLastPostReadChanged)
 	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
 	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
+	Q_PROPERTY( int     color       READ getColor       WRITE setColor       NOTIFY colorChanged)
 
 	// ----------------------------------------------------------------------------------------------
 
@@ -41,6 +42,7 @@ private:
 	QString m_Title;
 	QString m_Category;
 	QString m_Timestamp;
+	QString m_DetailedTimestamp;
 	QString m_LastAuthor;
 	QString m_Pages;
 	QString m_UrlFirstPage;
@@ -48,7 +50,7 @@ private:
 	QString m_UrlLastPostRead;
 	int 	m_FlagType;
 	bool 	m_Read;
-
+	int     m_Color;
 
 
 
@@ -62,35 +64,41 @@ public:
 
 
 	inline const QString &getTitle() const					{ return m_Title; }
-	inline void			  setTitle(const QString &s)		{ m_Title = s; }
+	inline void			  setTitle(const QString &s)		{ m_Title = s; emit titleChanged(); }
 
 	inline const QString &getCategory() const				{ return m_Category; }
-	inline void			  setCategory(const QString &c)		{ m_Category = c; }
+	inline void			  setCategory(const QString &c)		{ m_Category = c; emit categoryChanged();}
 
 
 	inline const QString &getTimestamp() const				{ return m_Timestamp; }
-	inline void			  setTimestamp(const QString &c)	{ m_Timestamp = c; }
+	inline void			  setTimestamp(const QString &c)	{ m_Timestamp = c; emit timestampChanged(); }
+
+	inline const QString &getDetailedTimestamp() const              { return m_DetailedTimestamp; }
+	inline void           setDetailedTimestamp(const QString &c)    { m_DetailedTimestamp = c; }
 
 	inline const QString &getLastAuthor() const				{ return m_LastAuthor; }
-	inline void			  setLastAuthor(const QString &c)	{ m_LastAuthor = c; }
+	inline void			  setLastAuthor(const QString &c)	{ m_LastAuthor = c; emit lastAuthorChanged(); }
 
 	inline const QString &getPages() const					{ return m_Pages; }
-	inline void			  setPages(const QString &c)		{ m_Pages = c; }
+	inline void			  setPages(const QString &c)		{ m_Pages = c; emit pagesChanged(); }
 
 	inline const QString &getUrlFirstPage() const			{ return m_UrlFirstPage; }
-	inline void			  setUrlFirstPage(const QString &c)	{ m_UrlFirstPage = c; }
+	inline void			  setUrlFirstPage(const QString &c)	{ m_UrlFirstPage = c; emit urlFirstPageChanged(); }
 
 	inline const QString &getUrlLastPage() const			{ return m_UrlLastPage; }
-	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPage = c; }
+	inline void			  setUrlLastPage(const QString &c)	{ m_UrlLastPage = c; emit urlLastPageChanged(); }
 
 	inline const QString &getUrlLastPostRead() const			{ return m_UrlLastPostRead; }
-	inline void			  setUrlLastPostRead(const QString &c)	{ m_UrlLastPostRead = c; }
+	inline void			  setUrlLastPostRead(const QString &c)	{ m_UrlLastPostRead = c; emit urlLastPostReadChanged(); }
 
 	inline int 			  getFlagType() const				{ return m_FlagType; }
-	inline void			  setFlagType(int f)				{ m_FlagType = f; }
+	inline void			  setFlagType(int f)				{ m_FlagType = f; emit flagTypeChanged(); }
 
 	inline bool 		  isRead() const					{ return m_Read; }
-	inline void 		  setRead(bool r)					{ m_Read = r; }
+	inline void 		  setRead(bool r)					{ m_Read = r; emit readChanged(); }
+
+	inline int            getColor() const                  { return m_Color; }
+    inline void           setColor(int r)                   { m_Color = r; emit colorChanged(); }
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
@@ -104,6 +112,7 @@ public:
 		void flagTypeChanged();
 		void readChanged();
 		void urlLastPostReadChanged();
+		void colorChanged();
 
 };
 

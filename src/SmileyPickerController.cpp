@@ -62,7 +62,7 @@ static const QString defaultSmiley = QString("<table>")
 											+"<td><img src=\"smilies/non.gif\" width=\"40%\" height=\"40%\" alt=\":non:\" title=\":non:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
 											+"<td><img src=\"smilies/pouah.gif\" width=\"40%\" height=\"40%\" alt=\":pouah:\" title=\":pouah:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
 											+"<td><img src=\"smilies/whistle.gif\" width=\"40%\" height=\"40%\" alt=\":whistle:\" title=\":whistle:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"miam.gif\" width=\"40%\" height=\"40%\" alt=\":miam:\" title=\":miam:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
+											+"<td><img src=\"smilies/miam.gif\" width=\"40%\" height=\"40%\" alt=\":miam:\" title=\":miam:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
 											+"<td><img src=\"hebe.gif\" width=\"40%\" height=\"40%\" alt=\":hebe:\" title=\":hebe:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
 										+ "</tr>"
 								  + "</table>";
