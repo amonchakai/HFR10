@@ -143,7 +143,7 @@
 	<invoke-target-type>card.previewer</invoke-target-type>
 	<filter>
 		<action>bb.action.VIEW</action>
-		<mime-type>hub/vnd.test.item</mime-type>
+		<mime-type>hub/vnd.hfrblack.item</mime-type>
 		<property var="uris" value="data://,pim:"/>
 	</filter>
 	</invoke-target>
@@ -164,27 +164,27 @@
      </filter>
      <filter>
 		   <action>bb.action.DELETE</action>
-		   <mime-type>hub/vnd.test.item</mime-type>
+		   <mime-type>hub/vnd.hfrblack.item</mime-type>
 		   <property var="uris" value="data://,pim:"/>
 	</filter>
 	<filter>
 		<action>bb.action.MARKREAD</action>
-		<mime-type>hub/vnd.test.item</mime-type>
+		<mime-type>hub/vnd.hfrblack.item</mime-type>
 		<property var="uris" value="data://,pim:"/>
 	</filter>
 	<filter>
 		<action>bb.action.MARKUNREAD</action>
-		<mime-type>hub/vnd.test.item</mime-type>
+		<mime-type>hub/vnd.hfrblack.item</mime-type>
 		<property var="uris" value="data://,pim:"/>
 	</filter>
 	<filter>
 		<action>bb.action.MARKPRIORREAD</action>
-		<mime-type>hub/vnd.test.item</mime-type>
+		<mime-type>hub/vnd.hfrblack.item</mime-type>
 		<property var="uris" value="data://,pim:"/>
 	</filter>
 	<filter>
 		<action>bb.action.DELETEPRIOR</action>
-		<mime-type>hub/vnd.test.item</mime-type>
+		<mime-type>hub/vnd.hfrblack.item</mime-type>
 		<property var="uris" value="data://,pim:"/>
 	</filter>
 	</invoke-target>
