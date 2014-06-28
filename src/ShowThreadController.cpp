@@ -549,7 +549,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br />[&nbsp;]*<p>(.+)</p></td></tr></table></div>"	// message
+								+"</a></b><br /><br />[&nbsp;]*(.+)(<br />&nbsp;<br /></p><div class=\"container\"><table class=\"citation\">|</td></tr></table></div>)"	// message
 			);
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);
@@ -566,74 +566,13 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	codeRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	codeRegexp.setMinimal(true);
 
-	// ----------------------------------------------------
-	// replace quotes
-
-	int lastPos = 0;
-	int pos = 0;
-	while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
-		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
-
-		cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
-		pos += quoteRegexp.matchedLength();
-		lastPos = pos;
-	}
-	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
-
-
-	// ----------------------------------------------------
-	// click on image open new view
-
-	QRegExp imageWithHiddenLink("<a rel=\"nofollow\" href=\"([^\"]+)\" target=\"_blank\" class=\"cLink\"><img src=\"([^\"]+)\" alt=\"[^\"]+\" title=\"[^\"]+\" onload=\"[^\"]+\" style=\"margin: 5px\"/></a>");
-	imageWithHiddenLink.setCaseSensitivity(Qt::CaseSensitive);
-	imageWithHiddenLink.setMinimal(true);
-	pos = 0;
-	while((pos = imageWithHiddenLink.indexIn(cleanPost, pos)) != -1) {
-		QString urlFullSizeImg = imageWithHiddenLink.cap(1);
-		if(urlFullSizeImg.mid(0, 25) == "http://reho.st/view/self/") {
-			urlFullSizeImg = QString("http://reho.st/self/") + urlFullSizeImg.mid(25); // if the image comes from reho.st, then I can show the biggest picture
-		} else {
-			urlFullSizeImg = imageWithHiddenLink.cap(2);							  // otherwise don't know how to get full size img -> use the src value in tag img...
-		}
-
-		cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL('OPEN_IMAGE:" + urlFullSizeImg + "')\" src=\"" + imageWithHiddenLink.cap(2) + "\" /> "  + cleanPost.mid(pos+imageWithHiddenLink.matchedLength());
-
-		pos += imageWithHiddenLink.cap(1).length();
-	}
-
-
-	QRegExp imageRegExp("<img src=\"([^\"]+)\"");			imageRegExp.setCaseSensitivity(Qt::CaseSensitive);
-	QRegExp imageFromHFR("forum-images.hardware.fr");		imageFromHFR.setCaseSensitivity(Qt::CaseSensitive);
-	pos = 0;
-	while((pos = imageRegExp.indexIn(cleanPost, pos)) != -1) {
-		if(imageFromHFR.indexIn(imageRegExp.cap(1), 0) == -1) {
-			cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(\'OPEN_IMAGE:\' + this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
-		}
-
-		pos += imageRegExp.matchedLength();
-	}
-
-	// ----------------------------------------------------
-	// resize smiley if needed
-
-	if(Settings::smileySize() != 2) {
-
-		// resize default smileys
-		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
-		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"auto\" src=\"local:///assets/images/smiley/");
-
-	}
-
-	post = cleanPost;
-
-
 
 	// ----------------------------------------------------
 	// handle spoilers
 
 	cleanPost = "";
-	lastPos = 0;
-	pos = 0;
+	int lastPos = 0;
+	int pos = 0;
 	while((pos = spoilerRegExp.indexIn(post, pos)) != -1) {
 		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
 
@@ -677,6 +616,99 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	}
 	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
 	post = cleanPost;
+
+
+
+    // ----------------------------------------------------
+    // replace quotes
+
+	cleanPost = "";
+    lastPos = 0;
+    pos = 0;
+    while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
+        cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+
+
+
+        if(quoteRegexp.cap(4) == "<br />&nbsp;<br /></p><div class=\"container\"><table class=\"citation\">") {
+            cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</p>";
+            pos += quoteRegexp.matchedLength() - 56;
+            // recursive quote...
+
+            QRegExp nextClose("</td></tr></table></div>");
+            nextClose.setCaseSensitivity(Qt::CaseSensitive);
+            int indexNextClose = nextClose.indexIn(post, pos);
+            int lastMatchingPos = 0;
+            while((pos = quoteRegexp.indexIn(post, pos)) != -1 && indexNextClose != -1 ) {
+                if(pos > indexNextClose)
+                    break;
+
+                cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
+                pos += quoteRegexp.matchedLength();
+                lastMatchingPos = pos;
+                indexNextClose = nextClose.indexIn(post, pos);
+                qDebug() << "two -- inside quote";
+            }
+            qDebug() << indexNextClose << pos << post.mid(lastMatchingPos);
+            qDebug() << post.mid(lastMatchingPos, indexNextClose-lastMatchingPos);
+            cleanPost += post.mid(lastMatchingPos, indexNextClose-lastMatchingPos) + "</div>";
+
+        } else {
+            cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
+            pos += quoteRegexp.matchedLength();
+        }
+
+
+        lastPos = pos;
+
+    }
+    cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+
+
+    // ----------------------------------------------------
+    // click on image open new view
+
+    QRegExp imageWithHiddenLink("<a rel=\"nofollow\" href=\"([^\"]+)\" target=\"_blank\" class=\"cLink\"><img src=\"([^\"]+)\" alt=\"[^\"]+\" title=\"[^\"]+\" onload=\"[^\"]+\" style=\"margin: 5px\"/></a>");
+    imageWithHiddenLink.setCaseSensitivity(Qt::CaseSensitive);
+    imageWithHiddenLink.setMinimal(true);
+    pos = 0;
+    while((pos = imageWithHiddenLink.indexIn(cleanPost, pos)) != -1) {
+        QString urlFullSizeImg = imageWithHiddenLink.cap(1);
+        if(urlFullSizeImg.mid(0, 25) == "http://reho.st/view/self/") {
+            urlFullSizeImg = QString("http://reho.st/self/") + urlFullSizeImg.mid(25); // if the image comes from reho.st, then I can show the biggest picture
+        } else {
+            urlFullSizeImg = imageWithHiddenLink.cap(2);                              // otherwise don't know how to get full size img -> use the src value in tag img...
+        }
+
+        cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL('OPEN_IMAGE:" + urlFullSizeImg + "')\" src=\"" + imageWithHiddenLink.cap(2) + "\" /> "  + cleanPost.mid(pos+imageWithHiddenLink.matchedLength());
+
+        pos += imageWithHiddenLink.cap(1).length();
+    }
+
+
+    QRegExp imageRegExp("<img src=\"([^\"]+)\"");           imageRegExp.setCaseSensitivity(Qt::CaseSensitive);
+    QRegExp imageFromHFR("forum-images.hardware.fr");       imageFromHFR.setCaseSensitivity(Qt::CaseSensitive);
+    pos = 0;
+    while((pos = imageRegExp.indexIn(cleanPost, pos)) != -1) {
+        if(imageFromHFR.indexIn(imageRegExp.cap(1), 0) == -1) {
+            cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(\'OPEN_IMAGE:\' + this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
+        }
+
+        pos += imageRegExp.matchedLength();
+    }
+
+    // ----------------------------------------------------
+    // resize smiley if needed
+
+    if(Settings::smileySize() != 2) {
+
+        // resize default smileys
+        QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
+        cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"auto\" src=\"local:///assets/images/smiley/");
+
+    }
+
+    post = cleanPost;
 
 }
 

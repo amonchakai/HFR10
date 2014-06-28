@@ -11,7 +11,6 @@
         var container 	= document.getElementById("container");
         //var contextMenu = document.getElementById("context");
         //var topic 		= document.getElementById("topic"); 
-        sendURL(container)
 
         container.style.width = window.innerWidth-10;
 
@@ -130,9 +129,6 @@
 		function toggleSurveyVisibility() {
 			var survey = document.getElementById("survey");
 			var surveyVisiButton = document.getElementById("surveyVisibilitySwitch");
-
-			sendURL(survey);
-			sendURL(surveyVisiButton);
 
 			survey.className += " show";
 			surveyVisiButton.style.visibility = "hidden";

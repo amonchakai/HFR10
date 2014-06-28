@@ -70,7 +70,7 @@ Page {
                                 horizontalAlignment: HorizontalAlignment.Right
                                 textStyle {
                                     base: SystemDefaults.TextStyles.SmallText
-                                    color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.Cyan : Color.Blue
+                                    color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df") : Color.Blue
                                 }
                             }
                             Container {

@@ -737,7 +737,7 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="472"/>
         <location filename="../src/ShowThreadController.cpp" line="536"/>
-        <location filename="../src/ShowThreadController.cpp" line="928"/>
+        <location filename="../src/ShowThreadController.cpp" line="960"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
