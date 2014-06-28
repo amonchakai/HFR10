@@ -45,9 +45,7 @@
 #include "ImageUploaderController.hpp"
 #include "Network/NetImageTracker.h"
 #include "Settings.hpp"
-
 #include "Network/WebResourceManager.h"
-
 #include "Network/CookieJar.hpp"
 #include "DataObjects.h"
 
@@ -220,6 +218,8 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
          QObject *thread = m_root->findChild<QObject*>("pageThread");
          if(thread != NULL)
              thread->setProperty("urlPage", urlToOpen);
+         else
+             qDebug() << "not found :(";
 
 
          InvokeRequest request;

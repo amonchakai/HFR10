@@ -34,8 +34,9 @@ Container {
                     if(urlTopic.test(request.url.toString()))
                         headerContainer.ListItem.view.redirectWithinApp(request.url.toString().substring(24));
                     else {
-                        var urlImg = RegExp(".jpg")
-                        if(urlImg.test(request.url.toString()))
+                        var urlImg = RegExp(".jpg");
+                        var urlImgPng = RegExp(".png");
+                        if(urlImg.test(request.url.toString()) || urlImgPng.test(request.url.toString()))
                             headerContainer.ListItem.view.showPictureViewer(request.url);         
                         else
                         	headerContainer.ListItem.view.invokeWebBrowser(request.url);

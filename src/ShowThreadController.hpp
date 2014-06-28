@@ -9,7 +9,7 @@
 #define SHOWTHREADCONTROLLER_HPP_
 
 #include <QtCore/QObject>
-#include <bb/cascades/ListView>
+#include <bb/cascades/WebView>
 #include <QList>
 
 struct PostDetailItem;
@@ -29,7 +29,7 @@ class ShowThreadController : public QObject {
 
 	private:
 
-		bb::cascades::ListView 				*m_ListView;
+		bb::cascades::WebView 				*m_WebView;
 		QList<PostDetailItem*>				*m_Datas;
 		mutable QReadWriteLock	 			 m_EditData;
 
@@ -64,11 +64,9 @@ class ShowThreadController : public QObject {
 
 	public Q_SLOTS:
 		void showThread(const QString &url);
-		inline void setListView	   (QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
+		inline void setWebView	   (QObject *view) 		{m_WebView = dynamic_cast<bb::cascades::WebView*>(view); }
 		void checkReply();
 		void checkSurveyReply();
-		void refreshSurvey();
-		void checkSurvey();
 
 		void addToFavorite(int responseID);
 		void deletePost(int messageID);
@@ -81,6 +79,9 @@ class ShowThreadController : public QObject {
 		void firstPage();
 		void lastPage(bool bas = false);
 		void scrollToItem();
+
+		QString getEditUrl(int messageID) const;
+		QString getMessageAuthor(int messageID) const;
 
 
 		const QString &getHashCheck() 	const 	{ return m_HashCheck; }
@@ -110,7 +111,7 @@ class ShowThreadController : public QObject {
 		void parseSurvey(const QString &page);
 		void parsePost(const QString &postIdex, const QString &author, const QString &post);
 		void parseDataForReply(const QString &page);
-		void cleanupPost(QString &post);
+		void cleanupPost(QString &post, int messageID);
 		void connectionTimedOut();
 };
 

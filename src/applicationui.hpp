@@ -86,6 +86,9 @@ private:
     bool                        m_isCard;
 
     QString                     m_PageToLoadInCard;
+
+
+
 };
 
 #endif /* ApplicationUI_HPP_ */

@@ -1,5 +1,5 @@
 1
-164
+172
 ColorManagement.qml
 ColorPicker.qml
 ExploreCategory.qml
@@ -9,6 +9,7 @@ Help.qml
 Home.qml
 ImagePreview.qml
 images/blackFace.png
+images/can.png
 images/chickened.png
 images/default_avatar.png
 images/icon_about.png
@@ -22,6 +23,7 @@ images/icon_category.png
 images/icon_code.png
 images/icon_code.svg
 images/icon_code_black.png
+images/icon_dismiss.png
 images/icon_drap_lecture.gif
 images/icon_drap_lecture.png
 images/icon_drap_lecture.svg
@@ -32,6 +34,7 @@ images/icon_favori.gif
 images/icon_favorite.png
 images/icon_favorite.svg
 images/icon_favorites.png
+images/icon_feed.png
 images/icon_forum.png
 images/icon_global.gif
 images/icon_global.svg
@@ -41,6 +44,7 @@ images/icon_image.png
 images/icon_image_white.png
 images/icon_italic.png
 images/icon_italic_black.png
+images/icon_more.png
 images/icon_mp.png
 images/icon_next.png
 images/icon_next_all.png
@@ -63,6 +67,7 @@ images/icon_top.svg
 images/icon_underline.png
 images/icon_underline_black.png
 images/icon_write.png
+images/icon_write_context.png
 images/smiley/24.gif
 images/smiley/benetton.gif
 images/smiley/bic.gif
@@ -163,4 +168,7 @@ StartupCardCompose.qml
 StartupCardThread.qml
 SubCategoryPicker.qml
 SurveyHeader.qml
+template.html
+template_black.html
+template_end.html
 ThreadPage.qml

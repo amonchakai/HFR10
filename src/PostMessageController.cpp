@@ -175,9 +175,9 @@ void PostMessageController::getQuotedMessages(const QString &url_str) {
 	m_Message = "";
 	m_NBMessages = 0;
 
-
-	QRegExp args("numrep=[0-9]+");
+	QRegExp args("&cat=[prive0-9]+&post=[0-9]+&numrep=[0-9]+&");
 	args.setCaseSensitivity(Qt::CaseSensitive);
+	args.setMinimal(true);
 
 	int pos = 0;
 	while((pos = args.indexIn(url_str, pos)) != -1) {
@@ -191,10 +191,10 @@ void PostMessageController::getQuotedMessages(const QString &url_str) {
 	int lastPos = 0;
 	pos = 0;
 	while((pos = args.indexIn(url_str, lastPos)) != -1) {
-		qDebug() << url_str.mid(lastPos, pos+args.matchedLength());
+//		qDebug() << url_str.mid(lastPos, args.matchedLength());
 
 
-		const QUrl url(DefineConsts::FORUM_URL + "/message.php?config=hfr.inc" + url_str.mid(lastPos, pos+args.matchedLength()));
+		const QUrl url(DefineConsts::FORUM_URL + "/message.php?config=hfr.inc" + url_str.mid(lastPos, args.matchedLength()-1));
 
 		QNetworkRequest request(url);
 		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");

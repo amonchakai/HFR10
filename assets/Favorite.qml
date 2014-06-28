@@ -74,7 +74,7 @@ NavigationPane {
                             function colorIndexToHex(index) {
                                 switch (index) {
                                     case 0:
-                                        return "#ffffff";
+                                        return Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
                                     
                                     case 1:
                                         return "#a8cc0a";
@@ -136,7 +136,7 @@ NavigationPane {
     	                                horizontalAlignment: HorizontalAlignment.Right
     	                                textStyle {
     	                                    base: SystemDefaults.TextStyles.SmallText
-                                            color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.Cyan : Color.Blue
+                                            color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df") : Color.Blue
     	                                }
     	                            }
     	                            
@@ -181,7 +181,7 @@ NavigationPane {
                                     
                                     ActionItem {
                                         title: qsTr("Color Tag")
-                                        imageSource: "asset:///images/chickened.png"
+                                        imageSource: "asset:///images/icon_feed.png"
                                         onTriggered: {
                                             titleContainer.ListItem.view.openColorPicker(ListItemData.urlFirstPage, titleContainer.ListItem.indexPath)
                                            

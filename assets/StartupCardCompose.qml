@@ -274,7 +274,6 @@ NavigationPane {
     
     onPopTransitionEnded: {
         --navDepth;
-        
         if(navDepth == 0) {
             _app.closeCard();
         }

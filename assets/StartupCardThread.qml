@@ -11,7 +11,7 @@ NavigationPane {
     Page {
         id: pageThread
         objectName: "pageThread"
-         
+        
         property variant tpage
         property variant recursivePage
         property variant previewPage
@@ -24,6 +24,12 @@ NavigationPane {
         
         Container {
             id: pageContainer
+            background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
+            layout: StackLayout {
+                orientation: LayoutOrientation.TopToBottom
+            
+            }
+            horizontalAlignment: HorizontalAlignment.Fill
             
             ActivityIndicator {
                 id: activityIndicator
@@ -32,266 +38,435 @@ NavigationPane {
                 preferredHeight: 60
             }
             
-            ListView {
-                id: threadView
-                objectName: "threadView"
-                
-                dataModel: GroupDataModel {
-                    id: modelPost
+            Container {
+                layout: DockLayout {
                 }
-                
-                property bool surveyVisible
-                leadingVisualSnapThreshold: 2.0
-                leadingVisual: SurveyHeader {
-                    id: surveyHeader
-                }
-                
-                
-                multiSelectHandler {
-                    actions: [
-                        ActionItem {
-                            title: "Reply to quotes"
-                            imageSource: "asset:///images/icon_quote_bis.png"
-                            
-                            onTriggered: {
-                                var selection = threadView.selectionList()
-                                threadView.clearSelection();
+                ScrollView {    
+                    rightMargin: 50
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    verticalAlignment: VerticalAlignment.Fill
+                    
+                    WebView {
+                        horizontalAlignment: HorizontalAlignment.Fill
+                        
+                        
+                        id: threadWebView
+                        settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
+                        
+                        
+                        onNavigationRequested: {
+                            if(request.navigationType != WebNavigationType.Other) {
+                                request.action = WebNavigationRequestAction.Ignore;
                                 
-                                threadView.quoteSelection(selection);
+                                if(request.url.toString().substr(0,31) == "http://forum.hardware.fr/forum2") {
+                                    pageContainer.redirectWithinApp(request.url.toString().substring(24));
+                                } else {
+                                    var urlTopic = RegExp("sujet_[0-9]+_[0-9]+.htm")
+                                    if(urlTopic.test(request.url.toString()))
+                                        pageContainer.redirectWithinApp(request.url.toString().substring(24));
+                                    else {
+                                        var urlImg = RegExp(".jpg");
+                                        var urlImgPng = RegExp(".png");
+                                        if(urlImg.test(request.url.toString()) || urlImgPng.test(request.url.toString()))
+                                            pageContainer.showPictureViewer(request.url);         
+                                        else
+                                            pageContainer.invokeWebBrowser(request.url);
+                                    }
+                                }
+                            
+                            } else { 
+                                request.action = WebNavigationRequestAction.Accept;
                             }
                         }
-                    ]
-                
+                        
+                        onMessageReceived: {
+                            
+                            
+                            var isQuote = RegExp("QUOTE_MULTIPLES:")
+                            var match = message.data.match(isQuote);
+                            if(match) {
+                                var listQuote = RegExp("([0-9]+,)")
+                                var listValue = new Array();
+                                
+                                var str = message.data.substring(16);
+                                var ret = str.match(listQuote);
+                                while(ret) {
+                                    listValue.push(parseInt(ret[1].substring(0, ret[1].length-1)));
+                                    str = str.substring(ret[1].length+1);
+                                    ret = str.match(listQuote);
+                                }
+                                pageContainer.quoteSelection(listValue);
+                            }                            
+                            
+                            var isOpenImg = RegExp("OPEN_IMAGE:([^\"]+)")
+                            match = message.data.match(isOpenImg);
+                            if(match)
+                                pageContainer.showPictureViewer(match[1]);
+                            
+                            var isRedirect = RegExp("REDIRECT:([^\"]+)")
+                            match = message.data.match(isRedirect);
+                            if(match)
+                                pageContainer.pushNewUrl(match[1]);
+                            
+                            var isSurvey = RegExp("SURVEY:([0-9]+)")
+                            match = message.data.match(isSurvey);
+                            if(match)
+                                showThreadController.vote(match[1]);
+                            
+                            var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
+                            match = message.data.match(isContext);
+                            if(match)
+                                pageContainer.showContextMenu(match[1]);
+                            
+                            isContext = RegExp("RANDOM_TAP");
+                            match = message.data.match(isContext);
+                            if(match)
+                                pageContainer.closeContextMenu();
+                            
+                            console.log(message.data);
+                        }
+                        
+                        settings.textAutosizingEnabled: false 
+                        settings.zoomToFitEnabled: false  
+                        
+                        
+                        onLoadProgressChanged: {
+                            if(loadProgress > 70)
+                                pageContainer.notifyWebViewLoaded();
+                        }         
+                    }  
                 }
                 
-                function quoteSelection(selection) {
-                    var quoteURL = "";
-                    for(var i = selection.length-1 ; i >= 0  ; --i) {
-                        quoteURL = quoteURL + "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + dataModel.data(selection[i]).index.toString();
+                Container {
+                    id: contextMenu
+                    layout: DockLayout {
                     }
+                    background: Color.Black
+                    verticalAlignment: VerticalAlignment.Fill
+                    horizontalAlignment: HorizontalAlignment.Right
+                    minWidth: 100
+                    maxWidth: 100
                     
-                    if(!tpage)
-                        tpage = postPage.createObject();                
-                    tpage.quoteURL = quoteURL;
-                    nav.push(tpage);
-                
-                }
-                listItemComponents: [
+                    property bool isVisible;
+                    property int  itemSelected;
+                    property bool multiSelect;
                     
-                    ListItemComponent {
-                        type: "item"
+                    
+                    Container {
+                        layout: StackLayout {
+                        }
+                        verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Center
                         
                         Container {
-                            id: headerContainer
-                            
-                            ListItem.onSelectionChanged: {
-                                if(ListItem.selected)
-                                    lineContainer.background = Color.create("#B00000");
-                                else 
-                                    lineContainer.background = Color.create("#00A7DE");
-                            }
-                            
-                            function themeStyleToHeaderColor(style){
-                                switch (style) {
-                                    case VisualStyle.Bright:
-                                        return Color.create(0.96,0.96,0.96);
-                                    case VisualStyle.Dark: 
-                                        return Color.create(0.15,0.15,0.15);
-                                    default :
-                                        return Color.create(0.96,0.96,0.96);    
-                                }
-                                return Color.create(0.96,0.96,0.96); 
-                            }
-                            
-                            layout: StackLayout {
-                                orientation: LayoutOrientation.TopToBottom
-                            }
-                            
+                            id: line1
+                            minHeight: 2
+                            maxHeight: 2
                             horizontalAlignment: HorizontalAlignment.Fill
-                            Container {
-                                background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
-                                horizontalAlignment: HorizontalAlignment.Fill
-                                verticalAlignment: VerticalAlignment.Fill
-                                preferredWidth: 400
-                                
-                                layout: StackLayout {
-                                    orientation: LayoutOrientation.LeftToRight
-                                }
-                                ImageView {
-                                    id: imgAvatar
-                                    minHeight: 65
-                                    maxHeight: 65
-                                    minWidth: 120
-                                    maxWidth: 120
-                                    scalingMethod: ScalingMethod.AspectFit
-                                    
-                                    verticalAlignment: VerticalAlignment.Center
-                                    image: tracker.image
-                                    
-                                    attachedObjects: [
-                                        NetImageTracker {
-                                            id: tracker
-                                            source: ListItemData.avatar
-                                        } 
-                                    ]
-                                
-                                }
-                                Container {
-                                    layout: StackLayout {
-                                        orientation: LayoutOrientation.TopToBottom
-                                    }
-                                    horizontalAlignment: HorizontalAlignment.Fill
-                                    verticalAlignment: VerticalAlignment.Fill
-                                    
-                                    Label {
-                                        text: ListItemData.author
-                                        textStyle.fontSize: FontSize.XSmall
-                                    }
-                                    Label {
-                                        text: ListItemData.timestamp
-                                        textStyle.fontSize: FontSize.XXSmall
-                                    }
-                                }
-                            
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: editButton
+                            defaultImageSource: "asset:///images/icon_write_context.png"
+                            layoutProperties: StackLayoutProperties {
                             }
-                            Container {
-                                id: lineContainer
-                                background: Color.create("#00A7DE") 
-                                minHeight: 4
-                                maxHeight: 4
-                                horizontalAlignment: HorizontalAlignment.Fill
-                            }
+                            horizontalAlignment: HorizontalAlignment.Center
                             
-                            PostRenderer {
+                            onClicked: {
+                                pageContainer.gotoEditMessage(showThreadController.getEditUrl(parseInt(contextMenu.itemSelected)));
+                                contextMenu.close();
                             }
-                            
-                            contextActions: [
-                                ActionSet {
-                                    title: qsTr("Actions")
-                                    
-                                    ActionItem {
-                                        title: qsTr("Edit")
-                                        imageSource: "asset:///images/icon_write.png"
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.gotoEditMessage(ListItemData.editUrl);
-                                        }
-                                    }
-                                    ActionItem {
-                                        title: qsTr("Add Favorite")
-                                        imageSource: "asset:///images/icon_favorites.png"
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.addToFavorite(ListItemData.index);
-                                        }
-                                    }
-                                    ActionItem {
-                                        title: qsTr("Send PM")
-                                        imageSource: "asset:///images/icon_mp.png"
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.sendPrivateMessage(ListItemData.author);
-                                        }
-                                    }
-                                    ActionItem {
-                                        title: qsTr("Quote")
-                                        imageSource: "asset:///images/icon_quote_bis.png"
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.gotoSingleQuoteMessage(ListItemData.index);
-                                        }
-                                    }
-                                    MultiSelectActionItem {
-                                        title: qsTr("Quote more")
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.multiSelectHandler.active = true;
-                                        }
-                                    }
-                                    DeleteActionItem {
-                                        title: qsTr("Delete post")
-                                        onTriggered: {
-                                            headerContainer.ListItem.view.deletePost(ListItemData.index, ListItemData.author);
-                                        }
-                                    }
-                                }
-                            ]                       
                         
                         }
-                    } 
-                ]
-                
-                function gotoSingleQuoteMessage(messageID) {
-                    var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString();
+                        
+                        Container {
+                            id: line2
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: addFavorite
+                            defaultImageSource: "asset:///images/icon_favorites.png"
+                            layoutProperties: StackLayoutProperties {
+                            }
+                            horizontalAlignment: HorizontalAlignment.Center
+                            onClicked: {
+                                pageContainer.addToFavorite(contextMenu.itemSelected);
+                                contextMenu.close();
+                            }
+                        }
+                        
+                        Container {
+                            id: line3
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: sendMP
+                            defaultImageSource: "asset:///images/icon_mp.png"
+                            layoutProperties: StackLayoutProperties {
+                            }
+                            horizontalAlignment: HorizontalAlignment.Center
+                            onClicked: {
+                                pageContainer.sendPrivateMessage(showThreadController.getMessageAuthor(parseInt(contextMenu.itemSelected)));
+                                contextMenu.close();
+                            }
+                        }
+                        
+                        Container {
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: quote
+                            defaultImageSource: "asset:///images/icon_quote_bis.png"
+                            layoutProperties: StackLayoutProperties {
+                            }
+                            horizontalAlignment: HorizontalAlignment.Center
+                            onClicked: {
+                                if(!contextMenu.multiSelect) {
+                                    pageContainer.gotoSingleQuoteMessage(contextMenu.itemSelected);
+                                    contextMenu.close();
+                                } else {
+                                    threadWebView.evaluateJavaScript("retrieveMultiselect();");
+                                    contextMenu.multiSelect = false;
+                                    contextMenu.close();
+                                }
+                            }
+                        
+                        }
+                        
+                        Container {
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: quoteMore
+                            defaultImageSource: "asset:///images/icon_more.png"
+                            layoutProperties: StackLayoutProperties {
+                            }
+                            horizontalAlignment: HorizontalAlignment.Center
+                            
+                            onClicked: {
+                                threadWebView.evaluateJavaScript("startMultiselect();");
+                                contextMenu.multiSelect = true;
+                                visible = false;
+                                editButton.visible = false;
+                                sendMP.visible = false;
+                                addFavorite.visible = false;
+                                deleteButton.visible = false;
+                                cancelButton.visible = true;
+                                
+                                line1.visible = false;
+                                line2.visible = false;
+                                line3.visible = false;
+                                line4.visible = false;
+                            }
+                        
+                        }
+                        
+                        Container {
+                            id: line4
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                    }
                     
-                    if(!tpage)
-                        tpage = postPage.createObject();                
-                    tpage.quoteURL = quoteURL;
-                    nav.push(tpage);
-                }
-                
-                function deletePost(messageID, author) {
-                    if(author == showThreadController.pseudo)
-                        showThreadController.deletePost(messageID);
-                }
-                
-                function gotoEditMessage(urlEditPage) {
-                    if(urlEditPage == "")
-                        return;
                     
-                    if(!tpage)
-                        tpage = postPage.createObject();
+                    Container {
+                        horizontalAlignment: HorizontalAlignment.Fill
+                        verticalAlignment: VerticalAlignment.Bottom
+                        preferredHeight: 100
+                        
+                        layout: DockLayout {
+                        }
+                        
+                        Container {
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                        
+                        ImageButton {
+                            id: deleteButton
+                            defaultImageSource: "asset:///images/can.png"
+                            verticalAlignment: VerticalAlignment.Center
+                            horizontalAlignment: HorizontalAlignment.Center
+                            onClicked: {
+                                pageContainer.deletePost(contextMenu.itemSelected, showThreadController.getMessageAuthor(parseInt(contextMenu.itemSelected)));
+                                contextMenu.close();
+                            }
+                        
+                        }
+                        
+                        ImageButton {
+                            id: cancelButton
+                            defaultImageSource: "asset:///images/icon_dismiss.png"
+                            verticalAlignment: VerticalAlignment.Center
+                            horizontalAlignment: HorizontalAlignment.Center
+                            visible: false
+                            onClicked: {
+                                contextMenu.multiSelect = false;
+                                contextMenu.close();
+                            }
+                        }
+                        
+                        
+                        Container {
+                            minHeight: 2
+                            maxHeight: 2
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            background: Color.create("#333333")
+                        }
+                    }
                     
-                    // Set the url of the page to load and thread caption. 
-                    tpage.editURL = urlEditPage
                     
-                    nav.push(tpage);
-                }
-                
-                function sendPrivateMessage(dest) {
-                    if(dest == "")
-                        return;
+                    function show() {
+                        if(!isVisible) {
+                            contextMenu.translationX = 0;
+                            isVisible = true;
+                            editButton.visible = true;
+                            sendMP.visible = true;
+                            addFavorite.visible = true;
+                            quoteMore.visible = true;
+                            deleteButton.visible = true;
+                            cancelButton.visible = false;
+                            line1.visible = true;
+                            line2.visible = true;
+                            line3.visible = true;
+                            line4.visible = true;
+                        }
+                    }
                     
-                    if(!tpage)
-                        tpage = postPage.createObject();
-                    
-                    // Set the url of the page to load and thread caption. 
-                    tpage.recipient = dest;
-                    tpage.pseudo = showThreadController.pseudo;
-                    tpage.addSignature= showThreadController.sign;
-                    tpage.hashCheck = showThreadController.hashCheck 
-                    tpage.mode = 4;
-                    
-                    nav.push(tpage);
-                }
+                    function close() {
+                        if(multiSelect) return;
+                        
+                        if(isVisible) {
+                            contextMenu.translationX = contextMenu.minWidth;
+                            isVisible = false;
+                            threadWebView.evaluateJavaScript("unselectAll();")
+                        }
+                    }
                 
-                function pushNewUrl(urlPage) {
-                    if(!recursivePage)
-                        recursivePage = recPageDef.createObject();
-                    
-                    recursivePage.urlPage = urlPage
-                    nav.push(recursivePage);
                 }
-                
-                function addToFavorite(responseID) {
-                    showThreadController.addToFavorite(responseID);
-                }
-                
-                function invokeWebBrowser(urlPage) {
-                    tentativeNewURL = urlPage;
-                    leaveAppDialog.show();
-                }
-                
-                function notifyWebViewLoaded() {
-                    showThreadController.notifyItemLoaded();
-                }
-                
-                function redirectWithinApp(newUrl) {
-                    urlPage = newUrl;
-                }
-                
-                function showPictureViewer(imageUrl) {
-                    if(!previewPage)
-                        previewPage = imagePreview.createObject();
-                    previewPage.imageList = imageUrl;
-                    nav.push(previewPage);
-                }
+            
             }
+            
+            function showContextMenu(messageID) {
+                console.log("show");
+                contextMenu.itemSelected = messageID;
+                contextMenu.show();
+            }
+            
+            function closeContextMenu() {
+                contextMenu.close();
+            }
+            
+            function quoteSelection(selection) {
+                var quoteURL = "";
+                for(var i = selection.length-1 ; i >= 0  ; --i) {
+                    quoteURL = quoteURL + "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + selection[i].toString() + "&";
+                }
+                
+                
+                if(!tpage)
+                    tpage = postPage.createObject();                
+                tpage.quoteURL = quoteURL;
+                nav.push(tpage); 
+            
+            }
+            
+            function gotoSingleQuoteMessage(messageID) {
+                var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString();
+                
+                if(!tpage)
+                    tpage = postPage.createObject();                
+                tpage.quoteURL = quoteURL;
+                nav.push(tpage);
+            }
+            
+            function deletePost(messageID, author) {
+                if(author == showThreadController.pseudo)
+                    showThreadController.deletePost(messageID);
+            }
+            
+            function gotoEditMessage(urlEditPage) {
+                if(urlEditPage == "")
+                    return;
+                
+                if(!tpage)
+                    tpage = postPage.createObject();
+                
+                // Set the url of the page to load and thread caption. 
+                tpage.editURL = urlEditPage
+                
+                nav.push(tpage);
+            }
+            
+            function sendPrivateMessage(dest) {
+                if(dest == "")
+                    return;
+                
+                if(!tpage)
+                    tpage = postPage.createObject();
+                
+                // Set the url of the page to load and thread caption. 
+                tpage.recipient = dest;
+                tpage.pseudo = showThreadController.pseudo;
+                tpage.addSignature= showThreadController.sign;
+                tpage.hashCheck = showThreadController.hashCheck 
+                tpage.mode = 4;
+                
+                nav.push(tpage);
+            }
+            
+            function pushNewUrl(urlPage) {
+                if(!recursivePage)
+                    recursivePage = recPageDef.createObject();
+                
+                recursivePage.urlPage = urlPage
+                nav.push(recursivePage);
+            }
+            
+            function addToFavorite(responseID) {
+                showThreadController.addToFavorite(responseID);
+            }
+            
+            function invokeWebBrowser(urlPage) {
+                tentativeNewURL = urlPage;
+                leaveAppDialog.show();
+            }
+            
+            function notifyWebViewLoaded() {
+                showThreadController.notifyItemLoaded();
+            }
+            
+            function redirectWithinApp(newUrl) {
+                urlPage = newUrl;
+            }
+            
+            function showPictureViewer(imageUrl) {
+                if(!previewPage)
+                    previewPage = imagePreview.createObject();
+                previewPage.imageList = imageUrl;
+                nav.push(previewPage);
+            }   
         }
         
         attachedObjects: [
@@ -308,10 +483,7 @@ NavigationPane {
                         nextPageAction.imageSource = "asset:///images/icon_next.png"
                     }
                 }
-                
-                onSurveyUpdated: {
-                    surveyHeader.setSurvey(showThreadController.survey);
-                }
+            
             },
             ComponentDefinition {
                 id: postPage
@@ -412,20 +584,25 @@ NavigationPane {
                 title: qsTr("To Top")
                 imageSource: "asset:///images/icon_top.png"
                 onTriggered: {
-                    threadView.scrollToPosition(ScrollPosition.Beginning, ScrollAnimation.Default);
+                    threadWebView.evaluateJavaScript("scrollToTop();");
                 }
             },
             ActionItem {
                 title: qsTr("To Bottom")
                 imageSource: "asset:///images/icon_bottom.png"
                 onTriggered: {
-                    threadView.scrollToPosition(ScrollPosition.End, ScrollAnimation.Default);
+                    threadWebView.evaluateJavaScript("scrollToEndPage();");
                 }
             }
         ]    
         
+        onCreationCompleted: {
+            contextMenu.translationX = contextMenu.minWidth;
+            contextMenu.isVisible = false;
+        }
+        
         onUrlPageChanged: {
-            showThreadController.setListView(threadView);
+            showThreadController.setWebView(threadWebView);
             showThreadController.showThread(urlPage);
             
             activityIndicator.start();
@@ -444,7 +621,6 @@ NavigationPane {
     
     onPopTransitionEnded: {
         --navDepth;
-        
         if(navDepth == 0) {
             _app.closeCard();
         }

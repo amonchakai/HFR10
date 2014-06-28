@@ -1,0 +1,174 @@
+
+    </div>
+
+
+
+        <script type="text/javascript">
+
+        // ----------------------
+        // adjust context menu height
+
+        var container 	= document.getElementById("container");
+        //var contextMenu = document.getElementById("context");
+        //var topic 		= document.getElementById("topic"); 
+        sendURL(container)
+
+        container.style.width = window.innerWidth-10;
+
+
+        var CurrentItem = 0;
+        var SelectionList = new Array();
+        var multipleSelectionInProgress = false;
+
+
+        function sendURL(url) { navigator.cascades.postMessage(url); }
+
+        
+		function selectItem(itemNumber, selected) {
+			var post = document.getElementById( "postHeader" + itemNumber);
+			if(selected)
+				post.style.borderBottomColor = '#B00000';
+			else
+				post.style.borderBottomColor = '#00a8df';
+		}
+
+		function toggleSelectItem(itemNumber) {
+			if(CurrentItem != 0)
+				selectItem(CurrentItem, false);
+			selectItem(itemNumber, true);
+
+			CurrentItem = itemNumber;
+
+		}
+
+		var touchThread;
+		var itemTouched;
+		function itemTapped(itemNumber) {
+			if(touchThread !=0) {
+				clearInterval(touchThread);
+				touchThread = 0;
+			}
+			touchThread = setInterval(itemHold, 750);
+			itemTouched = itemNumber;
+		}
+
+		function itemHold() {
+			sendURL('SHOW_CONTEXT:' + itemTouched);
+			clearInterval(touchThread);
+			toggleSelectItem(itemTouched);
+
+			touchThread = 0;
+
+			showPane();
+		}
+
+		function itemReleased() {
+			if(touchThread !=0) {
+				clearInterval(touchThread);
+				addItemTapped(itemTouched);
+				touchThread = 0;
+			}
+		}
+
+
+		function clickAnyWhere(e) {
+			sendURL('RANDOM_TAP'); 
+			if(!multipleSelectionInProgress)
+				unselectAll();
+		}
+
+		function unselectAll() {
+			selectItem(itemTouched, false);
+			selectItem(CurrentItem, false);
+
+			if(SelectionList.length > 0) {
+				for(var i = 0 ; i < SelectionList.length ; ++i)
+					selectItem(SelectionList[i], false);
+				SelectionList = new Array();
+			}
+
+			multipleSelectionInProgress = false;
+		}
+
+		function startMultiselect() {
+			multipleSelectionInProgress = true;
+			addItemTapped(CurrentItem);
+		}
+
+
+		function retrieveMultiselect() {
+			var listPosts = "";
+			for(var i = 0 ; i < SelectionList.length ; ++i) {
+				listPosts += SelectionList[i] + ", ";
+			}
+			sendURL('QUOTE_MULTIPLES:' + listPosts);
+		}
+
+
+		function addItemTapped(itemNumber) {
+			if(multipleSelectionInProgress) {
+
+				for(var i = 0 ; i < SelectionList.length ; ++i) {
+					if(SelectionList[i] == itemNumber) {
+						selectItem(itemNumber, false);
+						SelectionList.splice(i,1);
+						return;
+					}
+				}
+
+				SelectionList.push(itemNumber);
+				selectItem(itemNumber, true);
+
+			}
+		}
+
+
+		// --------------------------------------------------------------------
+		// survey visibility
+
+
+		function toggleSurveyVisibility() {
+			var survey = document.getElementById("survey");
+			var surveyVisiButton = document.getElementById("surveyVisibilitySwitch");
+
+			sendURL(survey);
+			sendURL(surveyVisiButton);
+
+			survey.className += " show";
+			surveyVisiButton.style.visibility = "hidden";
+			surveyVisiButton.style.height = "0";
+
+		}
+
+
+		// --------------------------------------------------------------------
+		// navigation in page
+
+		function scrollToElement(messageID) {
+			document.getElementById(messageID).scrollIntoView();
+		}
+
+		function scrollToEndPage() {
+			window.scrollTo(0,document.body.scrollHeight);
+		}
+
+		function scrollToTop() {
+			window.scrollTo(0,0);
+		}
+
+
+
+		document.getElementsByTagName("html")[0].ontouchstart = clickAnyWhere;
+
+
+		window.onscroll = function(event) {
+			if(touchThread !=0) {
+				clearInterval(touchThread);
+				touchThread = 0;
+			}
+		}
+
+        </script>
+
+    </body>
+</html>

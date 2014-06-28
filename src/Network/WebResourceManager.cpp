@@ -88,7 +88,7 @@ void WebResourceManager::getImage(const QString& requestedURL) const {
 		for(int i = 0 ; i < m_DownloadQueue->length() ; ++i)
 			if(m_DownloadQueue->at(i).compare(requestedURL) == 0) {
 				m_EditQueue->unlock();
-				return;
+				return ;
 			}
 		m_EditQueue->unlock();
 
@@ -104,6 +104,7 @@ void WebResourceManager::getImage(const QString& requestedURL) const {
 		Q_ASSERT(ok);
 		Q_UNUSED(ok);
 	}
+
 
 }
 

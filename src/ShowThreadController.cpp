@@ -33,7 +33,7 @@
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0) {
+	: QObject(parent), m_WebView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0) {
 }
 
 
@@ -55,11 +55,11 @@ void ShowThreadController::showThread(const QString &url) {
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
 
-	if(m_ListView != NULL) {
+	if(m_WebView != NULL) { /*
 		bb::cascades::GroupDataModel* dataModel = dynamic_cast<bb::cascades::GroupDataModel*>(m_ListView->dataModel());
 		if (dataModel) {
 			dataModel->clear();
-		}
+		} */
 	}
 
 }
@@ -302,7 +302,7 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	m_Datas->last()->setEditUrl(editURL);
 
 	if(avatar.isEmpty())
-		m_Datas->last()->setAvatar("asset:///images/default_avatar.png");
+		m_Datas->last()->setAvatar("images/default_avatar.png");
 	else
 		m_Datas->last()->setAvatar(avatar);
 
@@ -312,15 +312,15 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		s.replace(QRegExp("&amp;"), "&");
 
 		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted_white.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'" + s + "\')\" style=\"text-align:center; color:black; margin-top:0px \" >" + quoteUrl.cap(2) +"</p></div>";
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted_white.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:black; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
 		} else {
-			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'" + s + "\')\" style=\"text-align:center; color:white; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:white; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
 		}
 
 	}
 
 	// parse the post so it can be rendered in HTML within a listitem
-	cleanupPost(postContent);
+	cleanupPost(postContent, postIdex.toInt());
 
 	m_Datas->last()->setAuthor(author);
 	m_Datas->last()->setTimestamp(timestamp);
@@ -354,6 +354,7 @@ void ShowThreadController::parseDataForReply(const QString &page) {
 }
 
 void ShowThreadController::parseSurvey(const QString &page) {
+
 	QRegExp question("<div class=\"sondage\"><b class=\"s2\">(.*)</b><br />");
 	question.setCaseSensitivity(Qt::CaseSensitive);
 	question.setMinimal(true);
@@ -367,16 +368,8 @@ void ShowThreadController::parseSurvey(const QString &page) {
 		answers.setCaseSensitivity(Qt::CaseSensitive);
 		answers.setMinimal(true);
 
-		QString colorHandling = "} ";
-		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-			colorHandling = "background-color:#000000; color:#FFFFFF; } ";
-		}
 
-		m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
-							 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
-							 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
-							 + "#parent { overflow: hidden; } .right { float:right; width:400px; background-color: steelblue; text-align: right; padding: 3px; margin: 1px; color: white; } .left { overflow: hidden; } </style></head><body><div class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">"
-							 + question.cap(1) + "</p>";
+		m_Survey = QString("<div id=\"survey\" class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">")  + question.cap(1) + "</p>";
 
 		QList<QString> options;
 		QList<int> nbVotes;
@@ -390,11 +383,14 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			pos += answers.matchedLength();
 		}
 
+		if(overallVoteNumber == 0)  // avoid dividing by 0
+		    overallVoteNumber = 1;
+
 		for(int i = 0 ; i < options.length() ; ++i) {
-			m_Survey += "<div id=\"parent\"><div class=\"right\" style=\"width: " + QString::number(static_cast<int>(nbVotes[i]*600/overallVoteNumber)) + "px;\">" + QString::number(nbVotes[i]) + "</div><div class=\"left\">" + options[i] + "</div></div>";
+			m_Survey += "<div id=\"parentSurvey\"><div class=\"rightSurvey\" style=\"width: " + QString::number(static_cast<int>(nbVotes[i]*600/overallVoteNumber)) + "px;\">" + QString::number(nbVotes[i]) + "</div><div class=\"leftSurvey\">" + options[i] + "</div></div>";
 		}
 
-		m_Survey += "</body></html>";
+		m_Survey += "</div><input type=\"button\" id=\"surveyVisibilitySwitch\" value=\"" + tr("Survey") + "\" onclick=\"toggleSurveyVisibility();\" />";
 
 	} else {
 		pos = 0;
@@ -408,11 +404,8 @@ void ShowThreadController::parseSurvey(const QString &page) {
 		}
 
 		if((pos = newQuestion.indexIn(page, pos)) != -1) {
-			m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
-										 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
-										 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
-										 + "</style></head><body><div class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">"
-										 + newQuestion.cap(2) + "</p><ol type=\"1\">";
+			m_Survey = QString("<div id=\"survey\" class=\"survey\"><p style=\"text-decoration:underline; font-weight:bold;\">")
+										 + newQuestion.cap(2) + "</p>";
 
 			//<input class="checkbox" type="checkbox" value="1" id="sond1" name="reponse1" /><label for="sond1">option 1</label>
 			QRegExp answers("type=\"([radiochekbx]+)\" value=\"[0-9]+\" id=\"sond[0-9]+\" name=\"reponse[0-9]*\" /><label for=\"sond[0-9]+\">(.+)</label>");
@@ -425,24 +418,20 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			while((pos = answers.indexIn(page, pos)) != -1) {
 				dataType = answers.cap(1).at(0) == 'r';
 				//qDebug() << answers.cap(1) <<  answers.cap(2);
-				m_Survey += "<li><input type=\"" + answers.cap(1) + "\" value=\"" + QString::number(respIDX) + "\" id=\"sond" + QString::number(respIDX) + "\" name=\"reponse\" />" + answers.cap(2) + "</li>";
+				m_Survey += "<input type=\"" + answers.cap(1) + "\" value=\"" + QString::number(respIDX) + "\" id=\"sond" + QString::number(respIDX) + "\" name=\"reponse\" class=\"custom\" /><label for=\"sond" + QString::number(respIDX) + "\" ><span></span>" + answers.cap(2) + "</label><br/><br/>" ;
+
 				listSelectedItemsFunctor += "if(document.getElementById(\"sond" + QString::number(respIDX) + "\").checked) { ret += Math.pow(2," + QString::number(respIDX-1) +"); } ";
 				pos += answers.matchedLength();
 				++respIDX;
 			}
 			listSelectedItemsFunctor += " return ret; }";
-			m_Survey += QString("</ol><br /><input type=\"submit\" onclick=\"navigator.cascades.postMessage(\'") + (dataType ? "1" : "0") + "\' + getSelectedItems().toString())\" name=\"sondage_submit\" value=\"" + tr("Vote") + "\" /><script>"+ listSelectedItemsFunctor +"</script></body></html>";
+			m_Survey += QString("<br /><input type=\"submit\" onclick=\"navigator.cascades.postMessage(\'SURVEY:") + (dataType ? "1" : "0") + "\' + getSelectedItems().toString())\" name=\"sondage_submit\" value=\"" + tr("Vote") + "\" /><script>"+ listSelectedItemsFunctor +"</script>";
+
+			m_Survey += "</div><input type=\"button\" id=\"surveyVisibilitySwitch\" value=\"" + tr("Survey") + "\" onclick=\"toggleSurveyVisibility();\" />";
 
 		} else {
-			QString colorHandling = "} ";
-			if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-				colorHandling = "background-color:#000000; color:#FFFFFF; } ";
-			}
 
-			m_Survey = QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
-							 + "body {font-size:" + QString::number(Settings::fontSize())  + "px; " + colorHandling
-							 + "p {font-size:" + QString::number(Settings::fontSize()) + "px;} "
-							 + "#parent { overflow: hidden; } .right { float:right; width:400px; background-color: steelblue; text-align: right; padding: 3px; margin: 1px; color: white; } .left { overflow: hidden; } </style></head><body></body></html>";
+			m_Survey = QString("");
 		}
 	}
 
@@ -511,6 +500,24 @@ void ShowThreadController::deletePost(int messageID) {
 	Q_UNUSED(ok);
 }
 
+QString ShowThreadController::getEditUrl(int messageID) const {
+    for(int i = 0 ; i < m_Datas->length() ; ++i) {
+        if(m_Datas->at(i)->getIndex() == messageID)
+            return m_Datas->at(i)->getEditUrl();
+    }
+
+    return "";
+}
+
+QString ShowThreadController::getMessageAuthor(int messageID) const {
+    for(int i = 0 ; i < m_Datas->length() ; ++i) {
+        if(m_Datas->at(i)->getIndex() == messageID)
+            return m_Datas->at(i)->getAuthor();
+    }
+
+    return "";
+}
+
 void ShowThreadController::checkSuccessDeletePost() {
 	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
 
@@ -535,7 +542,7 @@ void ShowThreadController::checkSuccessDeletePost() {
 }
 
 
-void ShowThreadController::cleanupPost(QString &post) {
+void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	// ----------------------------------------------------
 	// declare regexp used to clean the posts
 
@@ -567,7 +574,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	while((pos = quoteRegexp.indexIn(post, pos)) != -1) {
 		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
 
-		cleanPost += "<div class=\"quote\"><div class=\"header\" onclick=\"sendURL(\'" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</div>" + quoteRegexp.cap(3) + "</div>";
+		cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
 		pos += quoteRegexp.matchedLength();
 		lastPos = pos;
 	}
@@ -589,7 +596,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 			urlFullSizeImg = imageWithHiddenLink.cap(2);							  // otherwise don't know how to get full size img -> use the src value in tag img...
 		}
 
-		cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL('" + urlFullSizeImg + "')\" src=\"" + imageWithHiddenLink.cap(2) + "\" /> "  + cleanPost.mid(pos+imageWithHiddenLink.matchedLength());
+		cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL('OPEN_IMAGE:" + urlFullSizeImg + "')\" src=\"" + imageWithHiddenLink.cap(2) + "\" /> "  + cleanPost.mid(pos+imageWithHiddenLink.matchedLength());
 
 		pos += imageWithHiddenLink.cap(1).length();
 	}
@@ -600,7 +607,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	pos = 0;
 	while((pos = imageRegExp.indexIn(cleanPost, pos)) != -1) {
 		if(imageFromHFR.indexIn(imageRegExp.cap(1), 0) == -1) {
-			cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
+			cleanPost = cleanPost.mid(0, pos) + "<img onclick=\"sendURL(\'OPEN_IMAGE:\' + this.src)\" src=\"" + imageRegExp.cap(1) + "\"" + cleanPost.mid(pos + imageRegExp.matchedLength());
 		}
 
 		pos += imageRegExp.matchedLength();
@@ -613,7 +620,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 
 		// resize default smileys
 		QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
-		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"" + QString::number(Settings::smileySize())  + "%\" src=\"local:///assets/images/smiley/");
+		cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"auto\" src=\"local:///assets/images/smiley/");
 
 	}
 
@@ -630,7 +637,7 @@ void ShowThreadController::cleanupPost(QString &post) {
 	while((pos = spoilerRegExp.indexIn(post, pos)) != -1) {
 		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
 
-		cleanPost += "<div class=\"c1\" style=\"border:1px solid; border-color:gray;\" onclick=\"javascript:montrer_spoiler(\'spoiler" + QString::number(pos) + "\')\"><u><strong>Spoiler :</strong></u><script type=\"text/javascript\"> function montrer_spoiler(value){var actual=document.getElementById(value).style.visibility;if (actual==\'visible\'){document.getElementById(value).style.visibility=\'hidden\';}else{document.getElementById(value).style.visibility=\'visible\';}} </script><dl style=\"visibility: hidden;\" id=\"spoiler" + QString::number(pos) + "\"><dd>" + spoilerRegExp.cap(1) + "</dd></dl></div>";
+		cleanPost += "<div class=\"c1\" style=\"border:1px solid; border-color:gray;\" onclick=\"javascript:montrer_spoiler(\'spoiler_" + QString::number(messageID) + "_" + QString::number(pos) + "\')\"><u><strong>Spoiler :</strong></u><script type=\"text/javascript\"> function montrer_spoiler(value){var actual=document.getElementById(value).style.visibility;if (actual==\'visible\'){document.getElementById(value).style.visibility=\'hidden\';}else{document.getElementById(value).style.visibility=\'visible\';}} </script><dl style=\"visibility: hidden;\" id=\"spoiler_" + QString::number(messageID) + "_" + QString::number(pos) + "\"><dd>" + spoilerRegExp.cap(1) + "</dd></dl></div>";
 		pos += spoilerRegExp.matchedLength();
 		lastPos = pos;
 	}
@@ -680,67 +687,89 @@ void ShowThreadController::updateView() {
 	using namespace bb::cascades;
 
 
-	if(m_ListView == NULL) {
+	if(m_WebView == NULL) {
 		qWarning() << "did not received the listview. quit.";
 		return;
 	}
 
-	GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
-	if (dataModel) {
-		dataModel->clear();
+	QFile htmlTemplateFile(QDir::currentPath() + "/app/native/assets/template.html");
+	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+	    htmlTemplateFile.setFileName(QDir::currentPath() + "/app/native/assets/template_black.html");
+	}
+	QFile htmlEndTemplateFile(QDir::currentPath() + "/app/native/assets/template_end.html");
+	if (htmlTemplateFile.open(QIODevice::ReadOnly) && htmlEndTemplateFile.open(QIODevice::ReadOnly)) {
+	    QString htmlTemplate = htmlTemplateFile.readAll();
+
+
+	    if(Settings::fontSize() != 25) {
+	        htmlTemplate.replace("font-size: 25px;", "font-size: " + QString::number(Settings::fontSize()) + "px;");
+	    }
+
+
+
+	    QString endTemplate = htmlEndTemplateFile.readAll();
+
+	    QString blackTheme = "";
+	    if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+	        blackTheme = " style=\"background:#2E2E2E; \" ";
+	    }
+
+	    QString pageContent;
+	    for(int i = 0 ; i < m_Datas->length() ; ++i) {
+
+
+	        pageContent +=
+	        QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+                        + "<div class=\"PostHeader-Text\">"
+                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
+                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
+                        + "</div>"
+                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+
+
+
+// In case we use jQuery mobile...
+/*
+            pageContent +=
+            QString("<div class=\"PostHeader\" onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+                        + "<div class=\"PostHeader-Text\">"
+                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
+                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
+                        + "</div>"
+                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+
+            pageContent +=
+               QString("<script type=\"text/javascript\"> $(function(){ $( \"#postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\").bind( \"taphold\", tapholdHandler ); function tapholdHandler( event ){ $( event.target ).addClass( \"taphold\" ); toggleSelectItem(" + QString::number(m_Datas->at(i)->getIndex()) + "); $( \"#right\" ).panel( \"open\" , \"" + QString::number(m_Datas->at(i)->getIndex()) + "\" ); }}); </script>");
+*/
+
+	    }
+
+	    m_WebView->setHtml(htmlTemplate + m_Survey + pageContent + endTemplate, QUrl("local:///assets/"));
 	} else {
-		qDebug() << "create new model";
-		dataModel = new GroupDataModel(
-					QStringList() << "author"
-								  << "avatar"
-								  << "timestamp"
-								  << "post"
-								  << "editUrl"
-				);
-		m_ListView->setDataModel(dataModel);
+	    qDebug() << "file not found";
 	}
-
-	// ----------------------------------------------------------------------------------------------
-	// push data to the view
-
-	QList<QObject*> datas;
-	for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
-		datas.push_back(m_Datas->at(i));
-	}
-
-	dataModel->clear();
-	dataModel->insertList(datas);
 
 }
 
 void ShowThreadController::notifyItemLoaded() {
-	++m_NbWebviewLoaded;
-	if(m_NbWebviewLoaded > m_Datas->length()*.2 && !m_ScrollAtLocation) {
-		scrollToItem();
-	}
+	scrollToItem();
 }
 
 void ShowThreadController::scrollToItem() {
+    if(m_WebView == NULL) return;
+
 	m_ScrollAtLocation = true;
 
 	QRegExp goToPost("#t([0-9]+)");
 	if(goToPost.indexIn(m_Url, 0) != -1) {
-		int lookIdx = goToPost.cap(1).toInt();
-
-		int gotoItem = 0;
-		for(int i = m_Datas->length()-1 ; i >= 0 ; --i) {
-			if(lookIdx == m_Datas->at(i)->getIndex()) {
-				gotoItem = i;
-				break;
-			}
-		}
-
-		m_ListView->scrollToItem(QVariantList() << 0 << gotoItem, bb::cascades::ScrollAnimation::None);
+		m_WebView->evaluateJavaScript("scrollToElement(\'postHeader" + goToPost.cap(1) + "\');");
 
 	} else {
 		QRegExp goToEnd("#bas");
 		if(goToEnd.indexIn(m_Url, 0) != -1) {
-			m_ListView->scrollToItem(QVariantList() << 0 << m_Datas->length()-1, bb::cascades::ScrollAnimation::None);
+		    m_WebView->evaluateJavaScript("scrollToEndPage();");
 		}
 	}
 
@@ -891,7 +920,9 @@ void ShowThreadController::checkSurveyReply() {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
 
-				refreshSurvey();
+				qDebug() << "show thread? ";
+
+				showThread(m_Url);
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
@@ -903,40 +934,4 @@ void ShowThreadController::checkSurveyReply() {
 }
 
 
-void ShowThreadController::refreshSurvey() {
-	m_ScrollAtLocation = false;
-	m_NbWebviewLoaded = 0;
 
-	QNetworkRequest request(DefineConsts::FORUM_URL+m_Url);
-	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-
-	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
-	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSurvey()));
-	Q_ASSERT(ok);
-	Q_UNUSED(ok);
-}
-
-
-void ShowThreadController::checkSurvey() {
-	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
-
-	QString response;
-	if (reply) {
-		if (reply->error() == QNetworkReply::NoError) {
-			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
-			if (available > 0) {
-				const QByteArray buffer(reply->readAll());
-				response = QString::fromUtf8(buffer);
-
-				parseSurvey(response);
-			}
-		} else {
-			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
-			qDebug() << response;
-		}
-
-		reply->deleteLater();
-	}
-}
