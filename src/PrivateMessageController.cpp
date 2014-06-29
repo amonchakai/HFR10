@@ -208,12 +208,13 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 	item->setRead(read);
 
-	QRegExp addresseeRegexp("<td class=\"sujetCase6 cBackCouleurTab[0-9] \"><a rel=\"nofollow\" href=\".*\" class=\"Tableau\">(.+)</a></td>");
+	QRegExp addresseeRegexp("<td class=\"sujetCase6 cBackCouleurTab[0-9] \"><a rel=\"nofollow\" href=\"[^\"]+pseudo=([^\"]+)\"");
 	addresseeRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	addresseeRegexp.setMinimal(true);
 
 	if(addresseeRegexp.indexIn(threadListing, 0) != -1) {
 		item->setAddressee(addresseeRegexp.cap(1));
+		qDebug() << addresseeRegexp.cap(1);
 	} else {
 		item->deleteLater();
 		return;

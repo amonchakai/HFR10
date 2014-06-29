@@ -10,6 +10,8 @@ NavigationPane {
     property variant recursivePage
     property variant previewPage
     
+    property bool    scrollRequested
+    
     Page {
         id: pageThread
         objectName: "pageThread"
@@ -18,6 +20,8 @@ NavigationPane {
         property string  caption
         property bool 	 needUpdate
         property string  tentativeNewURL
+        
+        
         
         
         Container {
@@ -130,7 +134,10 @@ NavigationPane {
                         
                         onLoadProgressChanged: {
                             if(loadProgress > 70)
-                                pageContainer.notifyWebViewLoaded();
+                                if(!scrollRequested) {
+                                    pageContainer.notifyWebViewLoaded();
+                                    scrollRequested = true;
+                                }
                         }         
                     }  
                 }
@@ -550,6 +557,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.firstPage();
                     activityIndicator.start();
+                    scrollRequested = false;
                 }
             },
             ActionItem {
@@ -558,6 +566,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.lastPage();
                     activityIndicator.start();
+                    scrollRequested = false;
                 }
             },
             ActionItem {
@@ -566,6 +575,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.prevPage();
                     activityIndicator.start();
+                    scrollRequested = false;
                 }
             },
             ActionItem {
@@ -576,6 +586,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.nextPage();
                     activityIndicator.start();
+                    scrollRequested = false;
                 }
             },
             ActionItem {
@@ -602,6 +613,7 @@ NavigationPane {
         onUrlPageChanged: {
             showThreadController.setWebView(threadWebView);
             showThreadController.showThread(urlPage);
+            scrollRequested = false;
             
             activityIndicator.start();
         }
@@ -611,6 +623,7 @@ NavigationPane {
                 showThreadController.lastPage(true);
                 activityIndicator.start();
                 needUpdate = false;
+                scrollRequested = false;
             } 
         } 
         

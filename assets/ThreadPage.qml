@@ -13,7 +13,8 @@ Page {
     property string  caption
     property bool 	 needUpdate
     property string  tentativeNewURL
-            
+    
+    property bool    scrollRequested
     
     Container {
         id: pageContainer
@@ -125,7 +126,10 @@ Page {
                     
                     onLoadProgressChanged: {
                         if(loadProgress > 70)
-                            pageContainer.notifyWebViewLoaded();
+                            if(!scrollRequested) {
+                                pageContainer.notifyWebViewLoaded();
+                                scrollRequested = true;
+                            }
                     }         
                 }  
             }
@@ -545,6 +549,7 @@ Page {
             onTriggered: {
                 showThreadController.firstPage();
                 activityIndicator.start();
+                scrollRequested = false;
             }
         },
         ActionItem {
@@ -553,6 +558,7 @@ Page {
              onTriggered: {
                  showThreadController.lastPage();
                  activityIndicator.start();
+                 scrollRequested = false;
              }
         },
         ActionItem {
@@ -561,6 +567,7 @@ Page {
             onTriggered: {
                 showThreadController.prevPage();
                 activityIndicator.start();
+                scrollRequested = false;
             }
         },
         ActionItem {
@@ -571,6 +578,7 @@ Page {
         	onTriggered: {
         		showThreadController.nextPage();
                 activityIndicator.start();
+                scrollRequested = false;
             }
         },
         ActionItem {
@@ -597,6 +605,7 @@ Page {
     onUrlPageChanged: {
         showThreadController.setWebView(threadWebView);
         showThreadController.showThread(urlPage);
+        scrollRequested = false;
 
         activityIndicator.start();
     }
@@ -605,6 +614,7 @@ Page {
         if(needUpdate) {
         	showThreadController.lastPage(true);
         	activityIndicator.start();
+            scrollRequested = false;
             needUpdate = false;
         } 
     } 
