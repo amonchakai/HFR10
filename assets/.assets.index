@@ -1,5 +1,5 @@
 1
-172
+173
 ColorManagement.qml
 ColorPicker.qml
 ExploreCategory.qml
@@ -68,6 +68,7 @@ images/icon_underline.png
 images/icon_underline_black.png
 images/icon_write.png
 images/icon_write_context.png
+images/pull-to-refresh.png
 images/smiley/24.gif
 images/smiley/benetton.gif
 images/smiley/bic.gif

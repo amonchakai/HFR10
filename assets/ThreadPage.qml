@@ -386,7 +386,7 @@ Page {
         }
         
         function gotoSingleQuoteMessage(messageID) {
-            var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString();
+            var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString() + "&";
             
             if(!tpage)
                 tpage = postPage.createObject();                

@@ -264,6 +264,8 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 
 	QRegExp andAmp("&amp;");
 
+	if(caption.isEmpty())
+	    return;
 
 	ThreadListItem *item = new ThreadListItem();
 	item->setCategory(category);

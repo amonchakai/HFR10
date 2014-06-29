@@ -7,14 +7,12 @@ NavigationPane {
     id: nav
     property int     navDepth
     property variant tpage
+    property variant recursivePage
+    property variant previewPage
     
     Page {
         id: pageThread
         objectName: "pageThread"
-        
-        property variant tpage
-        property variant recursivePage
-        property variant previewPage
         
         property string  urlPage
         property string  caption

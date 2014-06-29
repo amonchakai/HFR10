@@ -187,7 +187,7 @@ void ShowThreadController::parse(const QString &page) {
 	// ----------------------------------------------------------------------------------------------
 	// Parse posts
 
-	QRegExp regexp = QRegExp(QString("<td class=\"messCase1\" width=\"180\" valign=\"top\" rowspan=\"1\"><a name=\"t([0-9]+)\">")  	// post index
+	QRegExp regexp = QRegExp(QString("<td class=\"(messCase1|messCase1 messageModo )\" width=\"180\" valign=\"top\" rowspan=\"1\"><a name=\"t([0-9]+)\">")  	// post index
 								   + ".*</a></div><div><b class=\"s2\">(.+)</b></div>");											// pseudo
 
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -200,8 +200,8 @@ void ShowThreadController::parse(const QString &page) {
 	QString lastPseudo;
 	QString lastPostIndex;
 	if(lastPos != -1) {
-		lastPostIndex = regexp.cap(1);
-		lastPseudo = regexp.cap(2);
+		lastPostIndex = regexp.cap(2);
+		lastPseudo = regexp.cap(3);
 
 		parseSurvey(page.mid(0, lastPos));
 	}
@@ -218,8 +218,8 @@ void ShowThreadController::parse(const QString &page) {
 
 
 		lastPos = pos;
-		lastPostIndex = regexp.cap(1);
-		lastPseudo = regexp.cap(2);
+		lastPostIndex = regexp.cap(2);
+		lastPseudo = regexp.cap(3);
 
 	}
 
@@ -749,15 +749,28 @@ void ShowThreadController::updateView() {
 	    QString pageContent;
 	    for(int i = 0 ; i < m_Datas->length() ; ++i) {
 
+	        QRegExp isModo("Mod.ration");
+	        if(isModo.indexIn(m_Datas->at(i)->getAuthor()) != -1) {
+	            pageContent +=
+	            QString("<div class=\"PostHeader moderator\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+	                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+	                        + "<div class=\"PostHeader-Text moderator\">"
+	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\">" + m_Datas->at(i)->getAuthor() + "</p></div>"
+	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p class=\"moderator\">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
+	                        + "</div>"
+	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+	        } else {
+	            pageContent +=
+	            QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+	                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+	                        + "<div class=\"PostHeader-Text\">"
+	                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
+	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
+	                        + "</div>"
+	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+	        }
 
-	        pageContent +=
-	        QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
-                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
-                        + "<div class=\"PostHeader-Text\">"
-                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
-                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
-                        + "</div>"
-                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+
 
 
 

@@ -109,34 +109,39 @@
 <context>
     <name>Favorite</name>
     <message>
-        <location filename="../assets/Favorite.qml" line="158"/>
+        <location filename="../assets/Favorite.qml" line="172"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="161"/>
+        <location filename="../assets/Favorite.qml" line="175"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="168"/>
+        <location filename="../assets/Favorite.qml" line="182"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="175"/>
+        <location filename="../assets/Favorite.qml" line="189"/>
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="183"/>
+        <location filename="../assets/Favorite.qml" line="197"/>
         <source>Color Tag</source>
         <translation>Tag de couleur</translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="192"/>
+        <location filename="../assets/Favorite.qml" line="206"/>
         <source>Remove flag</source>
         <translation>Supprimer drapeau</translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="286"/>
+        <source>Pull down to update</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -312,28 +317,33 @@
 <context>
     <name>PrivateMessage</name>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="75"/>
+        <location filename="../assets/PrivateMessage.qml" line="90"/>
         <source>[Not Read] </source>
         <translation>[Non lu] </translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="114"/>
+        <location filename="../assets/PrivateMessage.qml" line="129"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="117"/>
+        <location filename="../assets/PrivateMessage.qml" line="132"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="124"/>
+        <location filename="../assets/PrivateMessage.qml" line="139"/>
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="132"/>
+        <location filename="../assets/PrivateMessage.qml" line="147"/>
         <source>Delete PM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="214"/>
+        <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -737,7 +747,7 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="472"/>
         <location filename="../src/ShowThreadController.cpp" line="536"/>
-        <location filename="../src/ShowThreadController.cpp" line="960"/>
+        <location filename="../src/ShowThreadController.cpp" line="973"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -942,53 +952,53 @@
         <translation type="obsolete">Supprimer post</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="479"/>
+        <location filename="../assets/StartupCardThread.qml" line="477"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="482"/>
-        <location filename="../assets/StartupCardThread.qml" line="575"/>
+        <location filename="../assets/StartupCardThread.qml" line="480"/>
+        <location filename="../assets/StartupCardThread.qml" line="573"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="517"/>
+        <location filename="../assets/StartupCardThread.qml" line="515"/>
         <source>Friendly warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="518"/>
+        <location filename="../assets/StartupCardThread.qml" line="516"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished">Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="529"/>
+        <location filename="../assets/StartupCardThread.qml" line="527"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="550"/>
+        <location filename="../assets/StartupCardThread.qml" line="548"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="558"/>
+        <location filename="../assets/StartupCardThread.qml" line="556"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="566"/>
+        <location filename="../assets/StartupCardThread.qml" line="564"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="584"/>
+        <location filename="../assets/StartupCardThread.qml" line="582"/>
         <source>To Top</source>
         <translation>Haut de page</translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="591"/>
+        <location filename="../assets/StartupCardThread.qml" line="589"/>
         <source>To Bottom</source>
         <translation>Bas de page</translation>
     </message>

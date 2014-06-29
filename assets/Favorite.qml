@@ -16,11 +16,13 @@ NavigationPane {
     Page {
         
 	    Container {
-            	        
+            layout: DockLayout {
+                
+            }
             ActivityIndicator {
                 id: activityIndicator
                 horizontalAlignment: HorizontalAlignment.Center
-                verticalAlignment: VerticalAlignment.Center
+                verticalAlignment: VerticalAlignment.Top
                 preferredHeight: 60
             }
 	        
@@ -58,6 +60,18 @@ NavigationPane {
 	            dataModel: GroupDataModel {
 	                id: theModel
 	                sortingKeys: ["category"]
+	                
+                    property bool empty: true
+                    
+                    
+                    onItemAdded: empty = isEmpty()  
+                    onItemRemoved: empty = isEmpty()  
+                    onItemUpdated: empty = isEmpty()  
+                    
+                    // You might see an 'unknown signal' error  
+                    // in the QML-editor, guess it's a SDK bug.  
+                    onItemsChanged: empty = isEmpty()
+                    
 	            }
 	            
 	            listItemComponents: [
@@ -250,6 +264,31 @@ NavigationPane {
                 }
 	            
 	         }
+             Container {  
+                 id: dataEmptyLabel
+                 visible: theModel.empty && !activityIndicator.running //model.isEmpty() will not work  
+                 horizontalAlignment: HorizontalAlignment.Center  
+                 verticalAlignment: VerticalAlignment.Center  
+                 
+                 layout: StackLayout {
+                     orientation: LayoutOrientation.LeftToRight
+                 }
+                 
+                 ImageView {
+                     imageSource: "asset:///images/pull-to-refresh.png"
+                     horizontalAlignment: HorizontalAlignment.Left
+                     verticalAlignment: VerticalAlignment.Center
+                 }
+                 
+                 Label {
+                     horizontalAlignment: HorizontalAlignment.Right
+                     verticalAlignment: VerticalAlignment.Center
+                     text: qsTr("Pull down to update")  
+                     textStyle.textAlign: TextAlign.Center  
+                 }
+                 
+             }
+	         
 	        
 	         attachedObjects: [
 	             ListFavoriteController {
