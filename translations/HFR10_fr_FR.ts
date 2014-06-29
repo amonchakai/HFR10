@@ -141,7 +141,7 @@
     <message>
         <location filename="../assets/Favorite.qml" line="286"/>
         <source>Pull down to update</source>
-        <translation type="unfinished"></translation>
+        <translation>Tirer pour rafraîchir</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="214"/>
         <source>Pull down to update</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tirer pour rafraîchir</translation>
     </message>
 </context>
 <context>
