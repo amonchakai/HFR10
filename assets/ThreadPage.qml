@@ -14,14 +14,13 @@ Page {
     property bool 	 needUpdate
     property string  tentativeNewURL
     
-    property bool    scrollRequested
+    property int    scrollRequested
     
     Container {
         id: pageContainer
         background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
         layout: StackLayout {
             orientation: LayoutOrientation.TopToBottom
-
         }
         horizontalAlignment: HorizontalAlignment.Fill
 
@@ -43,9 +42,10 @@ Page {
                 WebView {
                     horizontalAlignment: HorizontalAlignment.Fill
                     
-                    
+                    html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #2E2E2E; } </style></head><body></body></html>" : "" ;
+                                        
                     id: threadWebView
-                    settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
+                    settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#2E2E2E" : "#ffffff" ;
                     
                     
                     onNavigationRequested: {
@@ -125,12 +125,29 @@ Page {
     
                     
                     onLoadProgressChanged: {
-                        if(loadProgress > 70)
-                            if(!scrollRequested) {
+                        if(loadProgress > 30) {
+                            if(scrollRequested == 0) {
                                 pageContainer.notifyWebViewLoaded();
-                                scrollRequested = true;
+                                scrollRequested = 1;
                             }
-                    }         
+                        }
+                        if(loadProgress > 70) {
+                            if(scrollRequested != 2) {
+                                pageContainer.notifyWebViewLoaded();
+                                scrollRequested = 2;
+                            }
+                        }
+                    }
+                    
+                    attachedObjects: [
+                        OrientationHandler {
+                            id: orientationHandler
+                            
+                            onOrientationChanged: {
+                                threadWebView.evaluateJavaScript("orientationChanged();")
+                            }
+                        }
+                    ]         
                 }  
             }
             
@@ -549,7 +566,7 @@ Page {
             onTriggered: {
                 showThreadController.firstPage();
                 activityIndicator.start();
-                scrollRequested = false;
+                scrollRequested = 0;
             }
         },
         ActionItem {
@@ -558,7 +575,7 @@ Page {
              onTriggered: {
                  showThreadController.lastPage();
                  activityIndicator.start();
-                 scrollRequested = false;
+                 scrollRequested = 0;
              }
         },
         ActionItem {
@@ -567,7 +584,7 @@ Page {
             onTriggered: {
                 showThreadController.prevPage();
                 activityIndicator.start();
-                scrollRequested = false;
+                scrollRequested = 0;
             }
         },
         ActionItem {
@@ -578,7 +595,7 @@ Page {
         	onTriggered: {
         		showThreadController.nextPage();
                 activityIndicator.start();
-                scrollRequested = false;
+                scrollRequested = 0;
             }
         },
         ActionItem {
@@ -605,7 +622,7 @@ Page {
     onUrlPageChanged: {
         showThreadController.setWebView(threadWebView);
         showThreadController.showThread(urlPage);
-        scrollRequested = false;
+        scrollRequested = 0;
 
         activityIndicator.start();
     }
@@ -614,7 +631,7 @@ Page {
         if(needUpdate) {
         	showThreadController.lastPage(true);
         	activityIndicator.start();
-            scrollRequested = false;
+            scrollRequested = 0;
             needUpdate = false;
         } 
     } 

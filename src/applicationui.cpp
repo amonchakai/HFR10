@@ -59,11 +59,13 @@ using namespace bb::cascades;
 
 ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         QObject(app),
+        m_pLocaleHandler(NULL),
+        m_app(app),
+        m_root(NULL),
+        m_qml(NULL),
         m_Settings("amonchakai.dev", "HFR10"),
         m_InvokeManager(new bb::system::InvokeManager(this)),
         m_HeadlessStart(false),
-        m_app(app),
-        m_root(NULL),
         m_isCard(false)
 
 {
@@ -181,10 +183,10 @@ void ApplicationUI::onSystemLanguageChanged()
 
 
 void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
-    qDebug() << "invoke!" << request.action();
+//    qDebug() << "invoke!" << request.action();
 
     if(request.action().compare("bb.action.VIEW") == 0) {
-         qDebug() << "HubIntegration: onInvoked: view item: " << request.data();
+//         qDebug() << "HubIntegration: onInvoked: view item: " << request.data();
 
          JsonDataAccess jda;
 
@@ -219,7 +221,7 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
          if(thread != NULL)
              thread->setProperty("urlPage", urlToOpen);
          else
-             qDebug() << "not found :(";
+             qDebug() << "pageThread variable is not found in the qml document :(";
 
 
          InvokeRequest request;
@@ -232,7 +234,7 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
          jda.saveToBuffer(objectMap, &bytes);
          request.setData(bytes);
 
-         InvokeTargetReply *reply = m_InvokeManager->invoke(request);
+         m_InvokeManager->invoke(request);
 
     }
 

@@ -10,7 +10,7 @@ NavigationPane {
     property variant recursivePage
     property variant previewPage
     
-    property bool    scrollRequested
+    property int     scrollRequested
     
     Page {
         id: pageThread
@@ -133,11 +133,18 @@ NavigationPane {
                         
                         
                         onLoadProgressChanged: {
-                            if(loadProgress > 70)
-                                if(!scrollRequested) {
+                            if(loadProgress > 30) {
+                                if(scrollRequested == 0) {
                                     pageContainer.notifyWebViewLoaded();
-                                    scrollRequested = true;
+                                    scrollRequested = 1;
                                 }
+                            }
+                            if(loadProgress > 70) {
+                                if(scrollRequested != 2) {
+                                    pageContainer.notifyWebViewLoaded();
+                                    scrollRequested = 2;
+                                }
+                            }
                         }         
                     }  
                 }
@@ -557,7 +564,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.firstPage();
                     activityIndicator.start();
-                    scrollRequested = false;
+                    scrollRequested = 0;
                 }
             },
             ActionItem {
@@ -566,7 +573,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.lastPage();
                     activityIndicator.start();
-                    scrollRequested = false;
+                    scrollRequested = 0;
                 }
             },
             ActionItem {
@@ -575,7 +582,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.prevPage();
                     activityIndicator.start();
-                    scrollRequested = false;
+                    scrollRequested = 0;
                 }
             },
             ActionItem {
@@ -586,7 +593,7 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.nextPage();
                     activityIndicator.start();
-                    scrollRequested = false;
+                    scrollRequested = 0;
                 }
             },
             ActionItem {
@@ -613,7 +620,7 @@ NavigationPane {
         onUrlPageChanged: {
             showThreadController.setWebView(threadWebView);
             showThreadController.showThread(urlPage);
-            scrollRequested = false;
+            scrollRequested = 0;
             
             activityIndicator.start();
         }
@@ -623,7 +630,7 @@ NavigationPane {
                 showThreadController.lastPage(true);
                 activityIndicator.start();
                 needUpdate = false;
-                scrollRequested = false;
+                scrollRequested = 0;
             } 
         } 
         

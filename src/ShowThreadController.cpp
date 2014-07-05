@@ -77,6 +77,12 @@ void ShowThreadController::checkReply() {
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
+
+/*				QFile file(QDir::currentPath() + "/app/native/assets/projet-hfr10-blackberry-sujet_27709_141.htm");
+				if (file.open(QIODevice::ReadOnly)) {
+				        parse(QString::fromUtf8(file.readAll()));
+				}
+*/
 				parse(response);
 			}
 		} else {
@@ -312,9 +318,9 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		s.replace(QRegExp("&amp;"), "&");
 
 		if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted_white.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:black; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted_white.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:black; margin-top:0px; font-size:25px; \" >" + quoteUrl.cap(2) +"</p></div>";
 		} else {
-			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:white; margin-top:0px; \" >" + quoteUrl.cap(2) +"</p></div>";
+			postContent += "<div style=\"background-image: url('local:///assets/images/icon_quoted.png'); width:48px; height:44px; float:right; \" ><p onclick=\"sendURL(\'REDIRECT:" + s + "\')\" style=\"text-align:center; color:white; margin-top:0px; font-size:25px; \" >" + quoteUrl.cap(2) +"</p></div>";
 		}
 
 	}
@@ -743,7 +749,7 @@ void ShowThreadController::updateView() {
 
 	    QString blackTheme = "";
 	    if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-	        blackTheme = " style=\"background:#2E2E2E; \" ";
+	        blackTheme = " style=\"background:#2E2E2E; font-size:25px; \" ";
 	    }
 
 	    QString pageContent;
@@ -755,8 +761,8 @@ void ShowThreadController::updateView() {
 	            QString("<div class=\"PostHeader moderator\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
 	                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
 	                        + "<div class=\"PostHeader-Text moderator\">"
-	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\">" + m_Datas->at(i)->getAuthor() + "</p></div>"
-	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p class=\"moderator\">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
+	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getAuthor() + "</p></div>"
+	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
 	                        + "</div>"
 	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
 	        } else {

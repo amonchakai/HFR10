@@ -121,6 +121,13 @@
 			}
 		}
 
+		// --------------------------------------------------------------------
+		// handle device rotation
+
+		function orientationChanged(newWidth) {
+			container.style.width = window.innerWidth-10;
+		}
+
 
 		// --------------------------------------------------------------------
 		// survey visibility

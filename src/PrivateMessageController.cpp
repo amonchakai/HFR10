@@ -214,7 +214,7 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 	if(addresseeRegexp.indexIn(threadListing, 0) != -1) {
 		item->setAddressee(addresseeRegexp.cap(1));
-		qDebug() << addresseeRegexp.cap(1);
+		//qDebug() << addresseeRegexp.cap(1);
 	} else {
 		item->deleteLater();
 		return;
