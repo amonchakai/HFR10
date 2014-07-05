@@ -42,7 +42,7 @@ Page {
                 WebView {
                     horizontalAlignment: HorizontalAlignment.Fill
                     
-                    html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #2E2E2E; } </style></head><body></body></html>" : "" ;
+                    html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #000000; } </style></head><body></body></html>" : "" ;
                                         
                     id: threadWebView
                     settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#2E2E2E" : "#ffffff" ;
@@ -125,14 +125,19 @@ Page {
     
                     
                     onLoadProgressChanged: {
+                        if(loadProgress < 10)
+                            scrollRequested = 0;
+                   
                         if(loadProgress > 30) {
                             if(scrollRequested == 0) {
+                                console.log("scroll 1")
                                 pageContainer.notifyWebViewLoaded();
                                 scrollRequested = 1;
                             }
                         }
                         if(loadProgress > 70) {
                             if(scrollRequested != 2) {
+                                console.log("scroll 2")
                                 pageContainer.notifyWebViewLoaded();
                                 scrollRequested = 2;
                             }
@@ -617,10 +622,10 @@ Page {
     onCreationCompleted: {
         contextMenu.translationX = contextMenu.minWidth;
         contextMenu.isVisible = false;
+        showThreadController.setWebView(threadWebView);
     }
     
     onUrlPageChanged: {
-        showThreadController.setWebView(threadWebView);
         showThreadController.showThread(urlPage);
         scrollRequested = 0;
 

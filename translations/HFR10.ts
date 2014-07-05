@@ -837,53 +837,53 @@
 <context>
     <name>StartupCardThread</name>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="491"/>
+        <location filename="../assets/StartupCardThread.qml" line="505"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="494"/>
-        <location filename="../assets/StartupCardThread.qml" line="590"/>
+        <location filename="../assets/StartupCardThread.qml" line="508"/>
+        <location filename="../assets/StartupCardThread.qml" line="604"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="529"/>
+        <location filename="../assets/StartupCardThread.qml" line="543"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="530"/>
+        <location filename="../assets/StartupCardThread.qml" line="544"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="541"/>
+        <location filename="../assets/StartupCardThread.qml" line="555"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="562"/>
+        <location filename="../assets/StartupCardThread.qml" line="576"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="571"/>
+        <location filename="../assets/StartupCardThread.qml" line="585"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="580"/>
+        <location filename="../assets/StartupCardThread.qml" line="594"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="600"/>
+        <location filename="../assets/StartupCardThread.qml" line="614"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="607"/>
+        <location filename="../assets/StartupCardThread.qml" line="621"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -891,53 +891,53 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="493"/>
+        <location filename="../assets/ThreadPage.qml" line="498"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="496"/>
-        <location filename="../assets/ThreadPage.qml" line="592"/>
+        <location filename="../assets/ThreadPage.qml" line="501"/>
+        <location filename="../assets/ThreadPage.qml" line="597"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="531"/>
+        <location filename="../assets/ThreadPage.qml" line="536"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="532"/>
+        <location filename="../assets/ThreadPage.qml" line="537"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="543"/>
+        <location filename="../assets/ThreadPage.qml" line="548"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="564"/>
+        <location filename="../assets/ThreadPage.qml" line="569"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="573"/>
+        <location filename="../assets/ThreadPage.qml" line="578"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="582"/>
+        <location filename="../assets/ThreadPage.qml" line="587"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="602"/>
+        <location filename="../assets/ThreadPage.qml" line="607"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="609"/>
+        <location filename="../assets/ThreadPage.qml" line="614"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>

@@ -51,6 +51,7 @@ NavigationPane {
                     WebView {
                         horizontalAlignment: HorizontalAlignment.Fill
                         
+                        html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #000000; } </style></head><body></body></html>" : "" ;
                         
                         id: threadWebView
                         settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
@@ -133,6 +134,9 @@ NavigationPane {
                         
                         
                         onLoadProgressChanged: {
+                            if(loadProgress < 10)
+                                scrollRequested = 0;
+                                
                             if(loadProgress > 30) {
                                 if(scrollRequested == 0) {
                                     pageContainer.notifyWebViewLoaded();
@@ -145,7 +149,17 @@ NavigationPane {
                                     scrollRequested = 2;
                                 }
                             }
-                        }         
+                        }
+                        
+                        attachedObjects: [
+                            OrientationHandler {
+                                id: orientationHandler
+                                
+                                onOrientationChanged: {
+                                    threadWebView.evaluateJavaScript("orientationChanged();")
+                                }
+                            }
+                        ]          
                     }  
                 }
                 
