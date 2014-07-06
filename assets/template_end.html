@@ -123,8 +123,19 @@
 
 		// --------------------------------------------------------------------
 		// handle device rotation
-
+		var rotateThread = 0;
 		function orientationChanged(newWidth) {
+			if(rotateThread != 0) {
+				clearInterval(rotateThread);
+				rotateThread = 0;
+			}
+			rotateThread = setInterval(adjustLayout, 500);
+
+		}
+
+
+		function adjustLayout() {
+			clearInterval(rotateThread);
 			container.style.width = window.innerWidth-10;
 		}
 

@@ -151,6 +151,7 @@ Page {
                             onOrientationChanged: {
                                 threadWebView.evaluateJavaScript("orientationChanged();")
                             }
+                            
                         }
                     ]         
                 }  
