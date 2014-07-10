@@ -15,6 +15,7 @@ Page {
     property string  tentativeNewURL
     
     property int    scrollRequested
+    property string listItemSelected;
     
     Container {
         id: pageContainer
@@ -106,12 +107,14 @@ Page {
                         match = message.data.match(isSurvey);
                         if(match)
                             showThreadController.vote(match[1]);
-                            
+                        
+                        console.log(message.data);    
                         var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
-                        match = message.data.match(isContext);
-                        if(match)
+                        match = message.data.match(isContext); 
+                        if(match) {
+                            console.log(match + " === " + match[1])
                             pageContainer.showContextMenu(match[1]);
-                            
+                        }
                         isContext = RegExp("RANDOM_TAP");
                         match = message.data.match(isContext);
                         if(match)
@@ -168,7 +171,6 @@ Page {
                 maxWidth: 100
                 
                 property bool isVisible;
-                property int  itemSelected;
                 property bool multiSelect;
                 
                 
@@ -194,7 +196,10 @@ Page {
                         horizontalAlignment: HorizontalAlignment.Center
                         
                         onClicked: {
-                            pageContainer.gotoEditMessage(showThreadController.getEditUrl(parseInt(contextMenu.itemSelected)));
+                            console.log("gotoEditMessage: ")
+                            console.log("item: " + listItemSelected)
+                            console.log("item: " + parseInt(listItemSelected))
+                            pageContainer.gotoEditMessage(showThreadController.getEditUrl(parseInt(listItemSelected)));
                             contextMenu.close();
                         }
                         
@@ -215,7 +220,7 @@ Page {
                         }
                         horizontalAlignment: HorizontalAlignment.Center
                         onClicked: {
-                            pageContainer.addToFavorite(contextMenu.itemSelected);
+                            pageContainer.addToFavorite(listItemSelected);
                             contextMenu.close();
                         }
                     }
@@ -235,7 +240,7 @@ Page {
                         }
                         horizontalAlignment: HorizontalAlignment.Center
                         onClicked: {
-                            pageContainer.sendPrivateMessage(showThreadController.getMessageAuthor(parseInt(contextMenu.itemSelected)));
+                            pageContainer.sendPrivateMessage(showThreadController.getMessageAuthor(parseInt(listItemSelected)));
                             contextMenu.close();
                         }
                     }
@@ -255,7 +260,7 @@ Page {
                         horizontalAlignment: HorizontalAlignment.Center
                         onClicked: {
                             if(!contextMenu.multiSelect) {
-                                pageContainer.gotoSingleQuoteMessage(contextMenu.itemSelected);
+                                pageContainer.gotoSingleQuoteMessage(listItemSelected);
                                 contextMenu.close();
                             } else {
                                 threadWebView.evaluateJavaScript("retrieveMultiselect();");
@@ -329,7 +334,7 @@ Page {
                         verticalAlignment: VerticalAlignment.Center
                         horizontalAlignment: HorizontalAlignment.Center
                         onClicked: {
-                            pageContainer.deletePost(contextMenu.itemSelected, showThreadController.getMessageAuthor(parseInt(contextMenu.itemSelected)));
+                            pageContainer.deletePost(listItemSelected, showThreadController.getMessageAuthor(parseInt(listItemSelected)));
                             contextMenu.close();
                         }
                         
@@ -390,7 +395,8 @@ Page {
         
         function showContextMenu(messageID) {
             console.log("show");
-            contextMenu.itemSelected = messageID;
+            listItemSelected = (messageID);
+            console.log(messageID + " -- " + parseInt(messageID) + " === " + listItemSelected)
             contextMenu.show();
         }
         
@@ -413,6 +419,7 @@ Page {
         }
         
         function gotoSingleQuoteMessage(messageID) {
+            console.log("messageID: " + messageID)
             var quoteURL = "&cat=" + showThreadController.catID + "&post=" + showThreadController.postID + "&numrep=" + messageID.toString() + "&";
             
             if(!tpage)
@@ -427,6 +434,7 @@ Page {
         }
         
         function gotoEditMessage(urlEditPage) {
+            console.log("urlEditPage: " + urlEditPage)
             if(urlEditPage == "")
                 return;
             

@@ -174,7 +174,7 @@ NavigationPane {
                     maxWidth: 100
                     
                     property bool isVisible;
-                    property int  itemSelected;
+                    property string itemSelected;
                     property bool multiSelect;
                     
                     

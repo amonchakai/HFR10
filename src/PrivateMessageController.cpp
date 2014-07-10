@@ -29,7 +29,7 @@ PrivateMessageController::PrivateMessageController(QObject *parent)
 void PrivateMessageController::getMessages() {
 
 	// list green + yellow flags
-	const QUrl url(DefineConsts::FORUM_URL + "/forum1.php?config=hfr.inc&cat=prive&page=1&subcat=&sondage=0&owntopic=0&trash=0&trash_post=0&moderation=0&new=0&nojs=0&subcatgroup=0");
+	const QUrl url(DefineConsts::FORUM_URL + "/forum1.php?config=hfr.inc&cat=prive&owntopic=0");
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -208,13 +208,15 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 	item->setRead(read);
 
-	QRegExp addresseeRegexp("<td class=\"sujetCase6 cBackCouleurTab[0-9] \"><a rel=\"nofollow\" href=\"[^\"]+pseudo=([^\"]+)\"");
+	qDebug() << threadListing;
+
+	QRegExp addresseeRegexp("<td class=\"sujetCase6 cBackCouleurTab[0-9] \"><a rel=\"nofollow\" href=\"[^\"]+pseudo=([^\"]+)\" class=\"Tableau\">([^\"]+)</a></td>");
 	addresseeRegexp.setCaseSensitivity(Qt::CaseSensitive);
-	addresseeRegexp.setMinimal(true);
+	//addresseeRegexp.setMinimal(true);
 
 	if(addresseeRegexp.indexIn(threadListing, 0) != -1) {
 		item->setAddressee(addresseeRegexp.cap(1));
-		//qDebug() << addresseeRegexp.cap(1);
+		qDebug() << addresseeRegexp.cap(1) << addresseeRegexp.cap(2) << addresseeRegexp.cap(0) ;
 	} else {
 		item->deleteLater();
 		return;

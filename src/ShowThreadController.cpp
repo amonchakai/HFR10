@@ -555,7 +555,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	QString cleanPost;
 	QRegExp quoteRegexp(QString( "<div class=\"container\"><table class=\"citation\"><tr class=\"none\"><td><b class=\"s1\"><a href=\"(.*[0-9]+)\" class=\"Topic\">")
 								+"(.+)"														// author
-								+"</a></b><br /><br />[&nbsp;]*(.+)(<br />&nbsp;<br /></p><div class=\"container\"><table class=\"citation\">|</td></tr></table></div>)"	// message
+								+"</a></b><br /><br />[&nbsp;]*(.+)(</p><div class=\"container\"><table class=\"citation\">|</td></tr></table></div>)"	// message
 			);
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);
@@ -636,9 +636,9 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 
 
 
-        if(quoteRegexp.cap(4) == "<br />&nbsp;<br /></p><div class=\"container\"><table class=\"citation\">") {
+        if(quoteRegexp.cap(4) == "</p><div class=\"container\"><table class=\"citation\">") {
             cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</p>";
-            pos += quoteRegexp.matchedLength() - 56;
+            pos += quoteRegexp.matchedLength() - 51;
             // recursive quote...
 
             QRegExp nextClose("</td></tr></table></div>");
@@ -658,6 +658,8 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
             qDebug() << indexNextClose << pos << post.mid(lastMatchingPos);
             qDebug() << post.mid(lastMatchingPos, indexNextClose-lastMatchingPos);
             cleanPost += post.mid(lastMatchingPos, indexNextClose-lastMatchingPos) + "</div>";
+
+            pos = indexNextClose + nextClose.matchedLength();
 
         } else {
             cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
