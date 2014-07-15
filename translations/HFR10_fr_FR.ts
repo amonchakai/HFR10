@@ -147,18 +147,14 @@
 <context>
     <name>Help</name>
     <message>
-        <source>Settings</source>
-        <translation type="obsolete">Paramètres</translation>
-    </message>
-    <message>
         <location filename="../assets/Help.qml" line="7"/>
         <source>About</source>
-        <translation type="unfinished">A propos</translation>
+        <translation>A propos</translation>
     </message>
     <message>
         <location filename="../assets/Help.qml" line="9"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer</translation>
     </message>
 </context>
 <context>
@@ -659,22 +655,22 @@
     <message>
         <location filename="../assets/Settings.qml" line="16"/>
         <source>Settings</source>
-        <translation type="unfinished">Paramètres</translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="18"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="26"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="67"/>
         <source>Login settings</source>
-        <translation type="unfinished">Paramètres de connexion</translation>
+        <translation>Paramètres de connexion</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="81"/>
@@ -682,17 +678,17 @@
         <location filename="../assets/Settings.qml" line="395"/>
         <location filename="../assets/Settings.qml" line="406"/>
         <source>User: </source>
-        <translation type="unfinished">Utilisateur: </translation>
+        <translation>Utilisateur: </translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="88"/>
         <source>Connect</source>
-        <translation type="unfinished">Se connecter</translation>
+        <translation>Se connecter</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="101"/>
         <source>log out</source>
-        <translation type="unfinished">Se deconnecter</translation>
+        <translation>Se deconnecter</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="127"/>
