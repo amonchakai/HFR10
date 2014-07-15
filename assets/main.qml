@@ -21,20 +21,40 @@ TabbedPane {
     showTabsOnActionBar: true
     activeTab: tabHome
     
+    
+    attachedObjects: [
+        Sheet {
+            id: settingsPage
+            Settings {
+                onDone : {
+                    settingsPage.close();
+                }
+            }
+        },
+        Sheet {
+            id: infoPage
+            Help {
+                onDone: {
+                    infoPage.close();
+                }
+            }
+        }
+    ]
+    
     Menu.definition: MenuDefinition {
         actions: [
             ActionItem {
                 title: qsTr("About")
                 imageSource: "asset:///images/icon_about.png"
                 onTriggered: {
-                    mainTab.activeTab = tabHelp;
+                    infoPage.open();
                 }
             },
             ActionItem {
                 title: qsTr("Settings")
                 imageSource: "asset:///images/icon_settings.png"
                 onTriggered: {
-                    mainTab.activeTab = tabSettings;
+                    settingsPage.open();
                 }
             }
         ]
@@ -97,32 +117,5 @@ TabbedPane {
             source: "Search.qml"
         }
     } //End of browse tab
-    
-    
-    Tab { //Setting tab
-        id: tabSettings
-        title: qsTr("Settings") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.InOverflow
-        delegateActivationPolicy: TabDelegateActivationPolicy.Default
-        
-        delegate: Delegate {
-            source: "Settings.qml"
-        }
-        
-    } //End of Setting tab
-    
-    
-    Tab { //Setting tab
-        id: tabHelp
-        title: qsTr("About") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.InOverflow
-        imageSource: "asset:///images/icon_about.png"
-        delegateActivationPolicy: TabDelegateActivationPolicy.Default
-        
-        delegate: Delegate {
-            source: "Help.qml"
-        }
-    
-    } //End of Setting tab
 
 }

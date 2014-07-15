@@ -6,8 +6,31 @@ NavigationPane {
     id: nav
     property variant tpage
     property variant colorPage
+    signal done ()
     
 	Page {
+        id: settingsPage
+        
+        
+        titleBar: TitleBar {
+            title: qsTr("Settings")
+            dismissAction: ActionItem {
+                title: qsTr("Close")
+                onTriggered: {
+                    // Emit the custom signal here to indicate that this page needs to be closed
+                    // The signal would be handled by the page which invoked it
+                    nav.done();
+                }
+            }
+            acceptAction: ActionItem {
+                title: qsTr("Save")
+                onTriggered: {
+                    appSettings.saveSettings(); 
+                    nav.done();
+                }
+            }
+        }
+        
         ScrollView {
             id: settingPage
             property string userName;
@@ -129,7 +152,6 @@ NavigationPane {
     	            onValueChanged: {
     	                appSettings.fontSize = value;
     	                setFontSizeLabel.text = qsTr("Font size: ") + appSettings.fontSize.toString() + "px"
-                        appSettings.saveSettings(); 
     	             }
     
                 }
@@ -154,7 +176,6 @@ NavigationPane {
                     onValueChanged: {
                         appSettings.smileySize = value;
                         setSmileySizeLabel.text = qsTr("Smiley size: ") + (appSettings.smileySize*20).toString() + "%"
-                        appSettings.saveSettings(); 
                     }
                 
                 }
@@ -178,7 +199,6 @@ NavigationPane {
                     ]
                     onSelectedOptionChanged: {
                         appSettings.theme = theme.selectedOption.value;
-                        appSettings.saveSettings(); 
                     }
                     
                 } 
@@ -221,7 +241,6 @@ NavigationPane {
                         		appSettings.autoRefresh = 1;
                         	else 
                         		appSettings.autoRefresh = 0;
-                            appSettings.saveSettings();
                         }
                     }
                     Label {
@@ -306,7 +325,6 @@ NavigationPane {
                     onValueChanged: {
                         appSettings.hubRefreshRate = hubRefreshRateSlider.value;
                         hubRefreshRate.text = qsTr("Refresh HUB every: ") + (appSettings.hubRefreshRate).toString() + " minutes."
-                        appSettings.saveSettings();
                         
                     }
                 

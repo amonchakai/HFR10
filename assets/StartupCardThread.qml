@@ -526,8 +526,11 @@ NavigationPane {
                 query {
                     onUriChanged: {
                         linkInvocation.query.updateQuery();
+                        linkInvocation.query.invokeTargetId = "sys.browser";
+                        //linkInvocation.query.mimeType = "text/html";
                     }
                 }
+                
                 
                 onArmed: {
                     trigger("bb.action.OPEN");

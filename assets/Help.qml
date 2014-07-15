@@ -1,6 +1,20 @@
 import bb.cascades 1.2
 
 Page {
+    signal done ()
+    
+    titleBar: TitleBar {
+        title: qsTr("About")
+        dismissAction: ActionItem {
+            title: qsTr("Close")
+            onTriggered: {
+                // Emit the custom signal here to indicate that this page needs to be closed
+                // The signal would be handled by the page which invoked it
+                done();
+            }
+        }
+    }
+    
     ScrollView {
         id: scrollView
         accessibility.name: "scrollView"
