@@ -22,7 +22,7 @@ Page {
 	    WebView {
             accessibility.name: "viewHelp"
 	        
-	        url: "local://assets/help/about_fr.html"        
+            url: qsTr("http://amonchakai.github.io")   
 	        
 	        onNavigationRequested: {
 	            if(request.navigationType != WebNavigationType.Other) {

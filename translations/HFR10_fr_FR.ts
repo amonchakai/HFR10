@@ -156,6 +156,11 @@
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
+    <message>
+        <location filename="../assets/Help.qml" line="25"/>
+        <source>http://amonchakai.github.io</source>
+        <translation>local://assets/help/about_fr.html</translation>
+    </message>
 </context>
 <context>
     <name>ImageUploader</name>
