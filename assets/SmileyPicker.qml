@@ -8,16 +8,22 @@ Page {
         }
         verticalAlignment: VerticalAlignment.Fill
         
-        WebView {
-            id: smileyList
-            settings.textAutosizingEnabled: false
-            layoutProperties: StackLayoutProperties {
-                spaceQuota: 1
-            }
+        ScrollView {    
+            rightMargin: 50
+            horizontalAlignment: HorizontalAlignment.Fill
+            verticalAlignment: VerticalAlignment.Fill
             
-            onMessageReceived: {
-                postMesssage.smileyToAdd = message.data;
-                nav.pop();
+            WebView {
+                id: smileyList
+                settings.textAutosizingEnabled: false
+    //            layoutProperties: StackLayoutProperties {
+    //                spaceQuota: 1
+    //            }
+                
+                onMessageReceived: {
+                    postMesssage.smileyToAdd = message.data;
+                    nav.pop();
+                }
             }
         }
         

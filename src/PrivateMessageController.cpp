@@ -136,7 +136,7 @@ void PrivateMessageController::checkMessageDeleted() {
             if (available > 0) {
                 const QByteArray buffer(reply->readAll());
                 response = QString::fromUtf8(buffer);
-                qDebug() << response;
+                //qDebug() << response;
             }
         } else {
             connectionTimedOut();
@@ -208,7 +208,7 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 	item->setRead(read);
 
-	qDebug() << threadListing;
+	//qDebug() << threadListing;
 
 	QRegExp addresseeRegexp("<td class=\"sujetCase6 cBackCouleurTab[0-9] \"><a rel=\"nofollow\" href=\"[^\"]+pseudo=([^\"]+)\" class=\"Tableau\">([^\"]+)</a></td>");
 	addresseeRegexp.setCaseSensitivity(Qt::CaseSensitive);
@@ -216,7 +216,7 @@ void PrivateMessageController::parseMessageListing(bool read, const QString &thr
 
 	if(addresseeRegexp.indexIn(threadListing, 0) != -1) {
 		item->setAddressee(addresseeRegexp.cap(1));
-		qDebug() << addresseeRegexp.cap(1) << addresseeRegexp.cap(2) << addresseeRegexp.cap(0) ;
+		//qDebug() << addresseeRegexp.cap(1) << addresseeRegexp.cap(2) << addresseeRegexp.cap(0) ;
 	} else {
 		item->deleteLater();
 		return;
@@ -290,7 +290,7 @@ void PrivateMessageController::updateView() {
 	if (dataModel) {
 		dataModel->clear();
 	} else {
-		qDebug() << "create new model";
+		//qDebug() << "create new model";
 		dataModel = new GroupDataModel(
 				QStringList() << "title"
 							  << "addressee"

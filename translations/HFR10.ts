@@ -781,27 +781,27 @@
 <context>
     <name>SmileyPicker</name>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="27"/>
+        <location filename="../assets/SmileyPicker.qml" line="33"/>
         <source>smiley</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="34"/>
+        <location filename="../assets/SmileyPicker.qml" line="40"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="42"/>
+        <location filename="../assets/SmileyPicker.qml" line="48"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="50"/>
+        <location filename="../assets/SmileyPicker.qml" line="56"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="58"/>
+        <location filename="../assets/SmileyPicker.qml" line="64"/>
         <source>Previous page</source>
         <translation type="unfinished"></translation>
     </message>
