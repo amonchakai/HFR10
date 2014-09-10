@@ -1,8 +1,5 @@
 
     </div>
-
-
-
         <script type="text/javascript">
 
         // ----------------------
@@ -159,9 +156,26 @@
 		// navigation in page
 
 		function scrollToElement(messageID) {
-			document.getElementById(messageID).scrollIntoView();
-			//document.location=messageID;
+			//document.getElementById(messageID).scrollIntoView();
+			sendURL("SCROLLTO:"+GetScreenCordinates(document.getElementById(messageID)).y);
 		}
+
+		function GetScreenCordinates(obj) {
+        var p = {};
+        p.x = obj.offsetLeft;
+        p.y = obj.offsetTop;
+        while (obj.offsetParent) {
+            p.x = p.x + obj.offsetParent.offsetLeft;
+            p.y = p.y + obj.offsetParent.offsetTop;
+            if (obj == document.getElementsByTagName("body")[0]) {
+                break;
+            }
+            else {
+                obj = obj.offsetParent;
+            }
+        }
+        return p;
+    }
 
 		function scrollToEndPage() {
 			window.scrollTo(0,document.body.scrollHeight);
@@ -170,8 +184,6 @@
 		function scrollToTop() {
 			window.scrollTo(0,0);
 		}
-
-
 
 		document.getElementsByTagName("html")[0].ontouchstart = clickAnyWhere;
 

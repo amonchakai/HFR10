@@ -33,14 +33,19 @@ Page {
         }
 
         Container {
+            id: webviewContainer
             layout: DockLayout {
             }
             ScrollView {    
                 rightMargin: 50
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
+                id: scrollView
+                
+                
                 
                 WebView {
+                    //visible: false
                     horizontalAlignment: HorizontalAlignment.Fill
                     
                     html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #000000; } </style></head><body></body></html>" : "" ;
@@ -107,6 +112,11 @@ Page {
                         match = message.data.match(isSurvey);
                         if(match)
                             showThreadController.vote(match[1]);
+                            
+                        var isScroll = RegExp("SCROLLTO:([0-9]+)")
+                        match = message.data.match(isScroll);
+                        if(match)
+                            scroll(match[1]);
                         
                         console.log(message.data);    
                         var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
@@ -123,12 +133,17 @@ Page {
                         console.log(message.data);
                     }
                     
+                    function scroll(position) {
+                        scrollView.scrollToPoint(0, position, ScrollAnimation.None);
+                    }
+                    
+                    
                     settings.textAutosizingEnabled: false 
                     settings.zoomToFitEnabled: false  
     
                     
                     onLoadProgressChanged: {
-                        if(loadProgress < 10)
+                        if(loadProgress < 10) 
                             scrollRequested = 0;
                    
                         if(loadProgress > 30) {
@@ -138,6 +153,7 @@ Page {
                                 scrollRequested = 1;
                             }
                         }
+                        
                         if(loadProgress > 70) {
                             if(scrollRequested != 2) {
                                 console.log("scroll 2")
@@ -145,6 +161,11 @@ Page {
                                 scrollRequested = 2;
                             }
                         }
+                        
+                        //if(loadProgress > 40) {
+                             //visible = true;
+                        //     activityIndicator.stop();
+                        //}
                     }
                     
                     attachedObjects: [
@@ -156,7 +177,7 @@ Page {
                             }
                             
                         }
-                    ]         
+                    ]
                 }  
             }
             
@@ -393,6 +414,7 @@ Page {
                       
         }
         
+        
         function showContextMenu(messageID) {
             console.log("show");
             listItemSelected = (messageID);
@@ -503,6 +525,7 @@ Page {
             
             onComplete: {
                 activityIndicator.stop();
+                
                 if(showThreadController.isLastPage()) {
                     nextPageAction.title = qsTr("Refresh");
                     nextPageAction.imageSource = "asset:///images/icon_refresh.png"
