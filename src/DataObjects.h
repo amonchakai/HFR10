@@ -62,7 +62,6 @@ public:
 	virtual ~ThreadListItem() {}
 
 
-
 	inline const QString &getTitle() const					{ return m_Title; }
 	inline void			  setTitle(const QString &s)		{ m_Title = s; emit titleChanged(); }
 
@@ -116,6 +115,43 @@ public:
 
 };
 
+inline QDataStream &operator<<(QDataStream& stream, const ThreadListItem& threadListItem) {
+    stream << threadListItem.getTitle();
+    stream << threadListItem.getCategory();
+    stream << threadListItem.getTimestamp();
+    stream << threadListItem.getDetailedTimestamp();
+    stream << threadListItem.getLastAuthor();
+    stream << threadListItem.getPages();
+    stream << threadListItem.getUrlFirstPage();
+    stream << threadListItem.getUrlLastPage();
+    stream << threadListItem.getUrlLastPostRead();
+    stream << threadListItem.getFlagType();
+    stream << (int) threadListItem.isRead();
+    stream << threadListItem.getColor();
+
+    return stream;
+}
+
+
+inline QDataStream &operator>>(QDataStream& stream, ThreadListItem& threadListItem) {
+    QString tempStr;
+    int tempInt;
+
+    stream >> tempStr; threadListItem.setTitle(tempStr);
+    stream >> tempStr; threadListItem.setCategory(tempStr);
+    stream >> tempStr; threadListItem.setTimestamp(tempStr);
+    stream >> tempStr; threadListItem.setDetailedTimestamp(tempStr);
+    stream >> tempStr; threadListItem.setLastAuthor(tempStr);
+    stream >> tempStr; threadListItem.setPages(tempStr);
+    stream >> tempStr; threadListItem.setUrlFirstPage(tempStr);
+    stream >> tempStr; threadListItem.setUrlLastPage(tempStr);
+    stream >> tempStr; threadListItem.setUrlLastPostRead(tempStr);
+    stream >> tempInt; threadListItem.setFlagType(tempInt);
+    stream >> tempInt; threadListItem.setRead(tempInt);
+    stream >> tempInt; threadListItem.setColor(tempInt);
+
+    return stream;
+}
 
 
 class PrivateMessageListItem : public QObject {
@@ -192,6 +228,37 @@ public:
 		void addresseeReadChanged();
 
 };
+
+inline QDataStream &operator<<(QDataStream& stream, const PrivateMessageListItem& threadListItem) {
+    stream << threadListItem.getTitle();
+    stream << threadListItem.getAddressee();
+    stream << threadListItem.getTimestamp();
+    stream << threadListItem.getLastAuthor();
+    stream << threadListItem.getUrlFirstPage();
+    stream << threadListItem.getUrlLastPage();
+    stream << (int) threadListItem.isRead();
+    stream << (int) threadListItem.isAddresseeRead();
+
+    return stream;
+}
+
+
+inline QDataStream &operator>>(QDataStream& stream, PrivateMessageListItem& threadListItem) {
+    QString tempStr;
+    int tempInt;
+
+    stream >> tempStr; threadListItem.setTitle(tempStr);
+    stream >> tempStr; threadListItem.setAddressee(tempStr);
+    stream >> tempStr; threadListItem.setTimestamp(tempStr);
+    stream >> tempStr; threadListItem.setLastAuthor(tempStr);
+    stream >> tempStr; threadListItem.setUrlFirstPage(tempStr);
+    stream >> tempStr; threadListItem.setUrlLastPage(tempStr);
+    stream >> tempInt; threadListItem.setRead(tempInt);
+    stream >> tempInt; threadListItem.setAddresseeRead(tempInt);
+
+    return stream;
+}
+
 
 
 class PostDetailItem : public QObject {

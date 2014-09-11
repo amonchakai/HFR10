@@ -69,7 +69,7 @@ NavigationPane {
                     }
                 } 
                 Container {
-                    background: Color.create("#00A7DE") 
+                    background: Color.create("#0089bf") 
                     minHeight: 4
                     maxHeight: 4
                     verticalAlignment: VerticalAlignment.Fill
@@ -129,7 +129,7 @@ NavigationPane {
                     }
                 } 
                 Container {
-                    background: Color.create("#00A7DE") 
+                    background: Color.create("#0089bf") 
                     minHeight: 4
                     maxHeight: 4
                     verticalAlignment: VerticalAlignment.Fill
@@ -220,7 +220,7 @@ NavigationPane {
                     }
                 } 
                 Container {
-                    background: Color.create("#00A7DE") 
+                    background: Color.create("#0089bf") 
                     minHeight: 4
                     maxHeight: 4
                     verticalAlignment: VerticalAlignment.Fill
@@ -278,7 +278,7 @@ NavigationPane {
                     }
                 } 
                 Container {
-                    background: Color.create("#00A7DE") 
+                    background: Color.create("#0089bf") 
                     minHeight: 4
                     maxHeight: 4
                     verticalAlignment: VerticalAlignment.Fill
@@ -351,7 +351,7 @@ NavigationPane {
                     }
                 } 
                 Container {
-                    background: Color.create("#00A7DE") 
+                    background: Color.create("#0089bf") 
                     minHeight: 4
                     maxHeight: 4
                     verticalAlignment: VerticalAlignment.Fill

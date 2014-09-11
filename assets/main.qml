@@ -19,7 +19,7 @@ import bb.cascades 1.2
 TabbedPane {
     id: mainTab
     showTabsOnActionBar: true
-    activeTab: tabHome
+    activeTab: tabFav
     
     
     attachedObjects: [
@@ -60,6 +60,21 @@ TabbedPane {
         ]
     }
     
+    
+    Tab { //Favorite tab
+        id: tabFav
+        title: qsTr("Favorite") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.OnBar
+        imageSource: "asset:///images/icon_favorites.png"
+        
+        delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
+        
+        delegate: Delegate {
+            source: "Favorite.qml"
+        }
+    
+    } //End of favorite tab
+    
 
     Tab { //First tab
         // Localized text with the dynamic translation and locale updates support
@@ -68,29 +83,13 @@ TabbedPane {
         ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_home.png"
 
-        delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
+        delegateActivationPolicy: TabDelegateActivationPolicy.Default
 
         delegate: Delegate {
             source: "Home.qml"
         }
 
     } //End of home tab
-    
-    
-    
-    
-    Tab { //Favorite tab
-        title: qsTr("Favorite") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.OnBar
-        imageSource: "asset:///images/icon_favorites.png"
-
-        delegateActivationPolicy: TabDelegateActivationPolicy.Default
-
-        delegate: Delegate {
-            source: "Favorite.qml"
-        }
-
-    } //End of favorite tab
     
     
     Tab { //Setting tab

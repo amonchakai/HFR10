@@ -56,6 +56,7 @@ void PrivateMessageController::checkReply() {
 				response = QString::fromUtf8(buffer);
 				checkErrorMessage(response);
 				parse(response);
+				save();
 			}
 		} else {
 			connectionTimedOut();
@@ -317,3 +318,60 @@ void PrivateMessageController::updateView() {
 }
 
 
+
+void PrivateMessageController::save() {
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+    if (!QFile::exists(directory)) {
+        return;
+    }
+
+    QFile file(directory + "/PrivateMessageCache.txt");
+
+    if (file.open(QIODevice::WriteOnly)) {
+        QDataStream stream(&file);
+
+        stream << m_Datas->length();
+        for(int i = 0 ; i < m_Datas->length() ; ++i) {
+            stream << *(m_Datas->at(i));
+
+        }
+
+        file.close();
+    }
+}
+
+
+
+void PrivateMessageController::load() {
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+    if (!QFile::exists(directory)) {
+        return;
+    }
+
+    QFile file(directory + "/PrivateMessageCache.txt");
+
+    if (file.open(QIODevice::ReadOnly)) {
+        QDataStream stream(&file);
+
+        int nbFav = 0;
+        stream >> nbFav;
+        m_Datas->clear();
+        for(int i = 0 ; i < nbFav ; ++i) {
+            PrivateMessageListItem *item = new PrivateMessageListItem();
+            stream >> (*item);
+
+            m_Datas->push_back(item);
+        }
+
+        file.close();
+
+        if(m_Datas->empty()) {
+            getMessages();
+        } else {
+            updateView();
+        }
+
+    } else {
+        getMessages();
+    }
+}

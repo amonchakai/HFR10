@@ -39,6 +39,7 @@ class PrivateMessageController : public QObject {
 
 		void deletePrivateMessage(const QString &url);
 		void checkMessageDeleted();
+		void load();
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -57,6 +58,7 @@ class PrivateMessageController : public QObject {
 
 		void checkErrorMessage(const QString &page);
 		void connectionTimedOut();
+		void save();
 };
 
 

@@ -58,6 +58,26 @@
 <context>
     <name>ExploreCategory</name>
     <message>
+        <location filename="../assets/ExploreCategory.qml" line="24"/>
+        <source>Tous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="29"/>
+        <source>Favoris</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="34"/>
+        <source>Suivis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="39"/>
+        <source>Lu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../assets/ExploreCategory.qml" line="200"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
@@ -217,7 +237,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="142"/>
+        <location filename="../src/ListFavoriteController.cpp" line="144"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -356,12 +376,12 @@
 <context>
     <name>PrivateMessageController</name>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="77"/>
+        <location filename="../src/PrivateMessageController.cpp" line="78"/>
         <source>You are not logged in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="94"/>
+        <location filename="../src/PrivateMessageController.cpp" line="95"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -988,22 +1008,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="67"/>
+        <location filename="../assets/main.qml" line="82"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="83"/>
+        <location filename="../assets/main.qml" line="66"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="97"/>
+        <location filename="../assets/main.qml" line="96"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="110"/>
+        <location filename="../assets/main.qml" line="109"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>

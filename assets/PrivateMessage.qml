@@ -241,8 +241,7 @@ NavigationPane {
 	    
 	    onCreationCompleted: {
 	        privateMessageController.setListView(listMP);
-	        privateMessageController.getMessages();
-	        activityIndicator.start();
+	        privateMessageController.load();
 	    }
 	}
 }

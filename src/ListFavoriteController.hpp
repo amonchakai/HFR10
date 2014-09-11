@@ -38,7 +38,7 @@ class ListFavoriteController : public QObject {
 		void checkReplyDeleteFlag();
 		void updateView();
 		void deleteFlag(const QString &url);
-
+		void load();
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
@@ -57,6 +57,7 @@ class ListFavoriteController : public QObject {
 		void checkErrorMessage(const QString &page);
 		void connectionTimedOut();
 
+		void save();
 };
 
 

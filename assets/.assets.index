@@ -1,5 +1,5 @@
 1
-173
+174
 ColorManagement.qml
 ColorPicker.qml
 ExploreCategory.qml
@@ -20,6 +20,7 @@ images/icon_bottom.png
 images/icon_browse.png
 images/icon_BW.png
 images/icon_category.png
+images/icon_category.svg
 images/icon_code.png
 images/icon_code.svg
 images/icon_code_black.png
