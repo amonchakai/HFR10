@@ -28,6 +28,8 @@ PrivateMessageController::PrivateMessageController(QObject *parent)
 
 void PrivateMessageController::getMessages() {
 
+    emit loading();
+
 	// list green + yellow flags
 	const QUrl url(DefineConsts::FORUM_URL + "/forum1.php?config=hfr.inc&cat=prive&owntopic=0");
 

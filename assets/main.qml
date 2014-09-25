@@ -104,10 +104,21 @@ TabbedPane {
     
     } //End of Setting tab
     
+    Tab {
+        title: qsTr("Bookmarks") + Retranslate.onLocaleOrLanguageChanged
+        ActionBar.placement: ActionBarPlacement.Default
+        imageSource: "asset:///images/Bookmarks.png"
+        
+        delegateActivationPolicy: TabDelegateActivationPolicy.Default
+        
+        delegate: Delegate {
+            source: "Bookmarks.qml"
+        }
+    }
     
     Tab { //Browse tab
         title: qsTr("Search") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.OnBar
+        ActionBar.placement: ActionBarPlacement.Default
         imageSource: "asset:///images/icon_browse.png"
         
         delegateActivationPolicy: TabDelegateActivationPolicy.Default

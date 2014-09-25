@@ -52,6 +52,65 @@ void WebResourceManager::cleanup() {
 	}
 }
 
+QString WebResourceManager::getMatchingImage(const QString& requestedURL) const {
+    // if something explicitly on the disk is requested, then return it
+    if(requestedURL.length() > 10 && requestedURL.mid(0, 9).compare("asset:///") == 0) {
+        return requestedURL;
+    }
+
+    // check if cache folder exists, if not, creates it
+    QString directory = QDir::homePath() + "/../native/assets/TMP/";
+    if (!QFile::exists(directory)) {
+        QDir dir;
+        dir.mkpath(directory);
+    }
+
+
+    // check if image already available
+    QUrl url = QUrl(requestedURL);
+    // Check if image is stored on disc
+    // The qHash is a bucket type hash so the doubling is to remove possible collisions.
+    QString diskPath = QDir::homePath() + "/../native/assets/TMP/"
+            + QString::number(qHash(url.host())) + "_"
+            + QString::number(qHash(url.path())) + ".JPG";
+
+    QFile imageFile(diskPath);
+
+    // If the file exists, send a signal the image is ready
+    if (imageFile.exists()) {
+        qDebug() << requestedURL << "...existing";
+        qDebug() << diskPath;
+        return "asset:///TMP/" + QString::number(qHash(url.host())) + "_"
+                + QString::number(qHash(url.path())) + ".JPG";
+    } else {
+        // check if the file is being downloaded, if so, skip it
+        m_EditQueue->lockForRead();
+        for(int i = 0 ; i < m_DownloadQueue->length() ; ++i)
+            if(m_DownloadQueue->at(i).compare(requestedURL) == 0) {
+                m_EditQueue->unlock();
+                return "asset:///TMP/" + QString::number(qHash(url.host())) + "_"
+                + QString::number(qHash(url.path())) + ".JPG";;
+            }
+        m_EditQueue->unlock();
+
+        // otherwise let's download the file
+        QNetworkRequest request(url);
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+        QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+        bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
+        Q_ASSERT(ok);
+        Q_UNUSED(ok);
+
+        return "file://" + diskPath;
+
+        qDebug() << requestedURL << "...dowload";
+    }
+
+    return "";
+}
+
 
 void WebResourceManager::getImage(const QString& requestedURL) const {
 

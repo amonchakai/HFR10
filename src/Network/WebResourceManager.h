@@ -25,6 +25,7 @@ public:
 
 
 	void getImage(const QString& url) const;
+	QString getMatchingImage(const QString &url) const;
 
 Q_SIGNALS:
 	void onImageReady(const QString &diskPath, const QString &url) const;

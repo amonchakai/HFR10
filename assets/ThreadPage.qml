@@ -8,6 +8,7 @@ Page {
     property variant tpage
     property variant recursivePage
     property variant previewPage
+    property variant contextActionPage
     
     property string  urlPage
     property string  caption
@@ -16,6 +17,7 @@ Page {
     
     property int    scrollRequested
     property string listItemSelected;
+    
     
     Container {
         id: pageContainer
@@ -241,7 +243,7 @@ Page {
                         }
                         horizontalAlignment: HorizontalAlignment.Center
                         onClicked: {
-                            pageContainer.addToFavorite(listItemSelected);
+                            pageContainer.openContextActionPage(listItemSelected);
                             contextMenu.close();
                         }
                     }
@@ -495,7 +497,17 @@ Page {
         }
         
         function addToFavorite(responseID) {
-            showThreadController.addToFavorite(responseID);
+            //showThreadController.addToFavorite(responseID);
+            console.log('Add to fav!')
+        }
+        
+        function openContextActionPage(messageID) {
+            console.log('More context actions!')
+            if(!contextActionPage)
+                contextActionPage = contextPage.createObject();
+            contextActionPage.messageID = messageID;
+            nav.push(contextActionPage);
+            console.log('Page pushed!')
         }
         
         function invokeWebBrowser(urlPage) {
@@ -518,6 +530,7 @@ Page {
             nav.push(previewPage);
         }   
     }
+
     
     attachedObjects: [
          ShowThreadController {
@@ -548,11 +561,14 @@ Page {
         Invocation {
             id: linkInvocation
             
+            query.invokeTargetId: "sys.browser";
+            query.invokeActionId: "bb.action.OPEN"
+            
             
             query {
                 onUriChanged: {
                     linkInvocation.query.updateQuery();
-                    linkInvocation.query.invokeTargetId = "sys.browser";
+                    //linkInvocation.query.invokeTargetId = "sys.browser";
                     //linkInvocation.query.mimeType = "text/html";
                 }
             }
@@ -565,6 +581,10 @@ Page {
         ComponentDefinition {
             id: imagePreview
             source: "ImagePreview.qml"
+        },
+        ComponentDefinition {
+            id: contextPage
+            source: "ListContextActions.qml"
         },
         
         SystemDialog {

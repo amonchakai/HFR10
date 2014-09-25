@@ -42,6 +42,7 @@ class ListFavoriteController : public QObject {
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
+	    void loading();
 		void complete();
 
 

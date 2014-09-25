@@ -103,8 +103,20 @@ void LoginController::logOut() {
 		return;
 	}
 
-	QFile file(directory + "/UserID.txt");
-	file.remove();
+	{
+	    QFile file(directory + "/UserID.txt");
+	    file.remove();
+	}
+
+	{
+	    QFile file (directory + "/PrivateMessageCache.txt");
+	    file.remove();
+	}
+
+	{
+	    QFile file(directory + "/FavoriteCache.txt");
+	    file.remove();
+	}
 }
 
 

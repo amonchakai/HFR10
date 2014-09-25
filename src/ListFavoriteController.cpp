@@ -78,6 +78,8 @@ void ListFavoriteController::checkReplyDeleteFlag() {
 
 void ListFavoriteController::getFavorite() {
 
+    emit loading();
+
 	// list green + yellow flags
 	const QUrl url(DefineConsts::FORUM_URL + "/forum1f.php?owntopic=1");
 

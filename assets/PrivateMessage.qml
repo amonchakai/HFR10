@@ -192,7 +192,6 @@ NavigationPane {
     	            }
     	            
     	            onRefreshTriggered: {
-    	                activityIndicator.start();
     	                privateMessageController.getMessages();
     	            }
     	        }
@@ -230,7 +229,11 @@ NavigationPane {
 	            id: privateMessageController
 	            
 	            onComplete: {
-	                activityIndicator.stop()
+	                activityIndicator.stop();
+	            }
+	            
+	            onLoading: {
+                    activityIndicator.start();
 	            }
 	        }, 
 	        ComponentDefinition {

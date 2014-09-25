@@ -41,6 +41,7 @@
 #include "PostMessageController.hpp"
 #include "SmileyPickerController.hpp"
 #include "SearchController.hpp"
+#include "BookmarksController.hpp"
 #include "SearchKeyRetriever.hpp"
 #include "ImageUploaderController.hpp"
 #include "Network/NetImageTracker.h"
@@ -147,6 +148,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<SmileyPickerController>("Network.SmileyPickerController", 1, 0, "SmileyPickerController");
     qmlRegisterType<SearchController>("Network.SearchController", 1, 0, "SearchController");
     qmlRegisterType<SearchKeyRetriever>("Network.SearchKeyRetriever", 1, 0, "SearchKeyRetriever");
+    qmlRegisterType<BookmarksController>("Network.BookmarksController", 1, 0, "BookmarksController");
     qmlRegisterType<ImageUploaderController>("Network.ImageUploaderController", 1, 0, "ImageUploaderController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");

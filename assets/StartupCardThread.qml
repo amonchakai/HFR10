@@ -44,6 +44,7 @@ NavigationPane {
                 layout: DockLayout {
                 }
                 ScrollView {    
+                    id: scrollView
                     rightMargin: 50
                     horizontalAlignment: HorizontalAlignment.Fill
                     verticalAlignment: VerticalAlignment.Fill
@@ -116,6 +117,11 @@ NavigationPane {
                             if(match)
                                 showThreadController.vote(match[1]);
                             
+                            var isScroll = RegExp("SCROLLTO:([0-9]+)")
+                            match = message.data.match(isScroll);
+                            if(match)
+                                scroll(match[1]);
+                            
                             var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
                             match = message.data.match(isContext);
                             if(match)
@@ -127,6 +133,10 @@ NavigationPane {
                                 pageContainer.closeContextMenu();
                             
                             console.log(message.data);
+                        }
+                        
+                        function scroll(position) {
+                            scrollView.scrollToPoint(0, position, ScrollAnimation.None);
                         }
                         
                         settings.textAutosizingEnabled: false 

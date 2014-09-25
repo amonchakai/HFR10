@@ -15,6 +15,7 @@
 #include <QUrl>
 #include <QRegExp>
 #include <QDateTime>
+#include <QMap>
 
 #include <bb/cascades/ListView>
 #include <bb/cascades/AbstractPane>
@@ -309,8 +310,9 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 
 	if(avatar.isEmpty())
 		m_Datas->last()->setAvatar("images/default_avatar.png");
-	else
-		m_Datas->last()->setAvatar(avatar);
+	else {
+		m_Datas->last()->setAvatar((avatar));
+	}
 
 	// add information about number of quotes
 	if(quoteUrl.indexIn(post, 0) != -1) {
@@ -446,13 +448,12 @@ void ShowThreadController::parseSurvey(const QString &page) {
 }
 
 void ShowThreadController::addToFavorite(int responseID) {
+
 	const QUrl url(DefineConsts::FORUM_URL + "/user/addflag.php?config=hfr.inc&cat=" + m_CatID + "&post=" + m_PostID + "&numreponse=" + QString::number(responseID));
 
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-	qDebug() << url.toString();
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSuccessAddAddFavorite()));
@@ -545,6 +546,74 @@ void ShowThreadController::checkSuccessDeletePost() {
 
 		reply->deleteLater();
 	}
+}
+
+void ShowThreadController::addBookmark(int messageID) {
+
+    const PostDetailItem *post;
+    for(int i = 0 ; i < m_Datas->length() ; ++i) {
+        if(m_Datas->at(i)->getIndex() == messageID)
+            post = m_Datas->at(i);
+        }
+
+    QMap<int, QString> cvtCatName;
+    cvtCatName[1] = "Hardware";
+    cvtCatName[16] = "Hardware - Peripheriques";
+    cvtCatName[15] = "Ordinateurs portables";
+    cvtCatName[23] = "Technologies Mobiles";
+    cvtCatName[2] = "Overclocking, Cooling & Modding";
+    cvtCatName[25] = "Apple";
+    cvtCatName[3] = "Video & Son";
+    cvtCatName[14] = "Photo numerique";
+    cvtCatName[5] = "Jeux Video";
+    cvtCatName[4] = "Windows & Software";
+    cvtCatName[22] = "Reseaux grand public / SoHo";
+    cvtCatName[21] = "Systemes & Reseaux Pro";
+    cvtCatName[11] = "Linux et OS Alternatifs";
+    cvtCatName[10] = "Programmation";
+    cvtCatName[12] = "Graphisme";
+    cvtCatName[6] = "Achats & Ventes";
+    cvtCatName[8] = "Emploi & Etudes";
+    cvtCatName[9] = "Seti et projets distribues";
+    cvtCatName[13] = "Discussions";
+
+    ThreadListItem item;
+    item.setTitle(m_ThreadTitle);
+    item.setCategory(cvtCatName[m_CatID.toInt()]);
+    item.setTimestamp(post->getTimestamp());
+    item.setLastAuthor(post->getAuthor());
+    item.setPages(m_Page);
+    item.setUrlFirstPage(m_UrlFirstPage);
+
+    if(m_UrlLastPage.isEmpty())
+        item.setUrlLastPage(m_Url);
+    else
+        item.setUrlLastPage(m_UrlLastPage);
+
+    QString urlLastPostRead = m_Url;
+    QRegExp redirect("#[t0-9bas]+");
+    if(redirect.indexIn(urlLastPostRead) != -1) {
+        urlLastPostRead.replace(redirect, "#t"+QString::number(messageID));
+    } else {
+        urlLastPostRead += "#t"+QString::number(messageID);
+    }
+    item.setUrlLastPostRead(urlLastPostRead);
+
+
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+    if (!QFile::exists(directory)) {
+        return;
+    }
+
+    QFile file(directory + "/Bookmarks.txt");
+
+    if (file.open(QIODevice::Append)) {
+        QDataStream stream(&file);
+
+        stream << item;
+
+        file.close();
+    }
 }
 
 
@@ -761,7 +830,7 @@ void ShowThreadController::updateView() {
 	        if(isModo.indexIn(m_Datas->at(i)->getAuthor()) != -1) {
 	            pageContent +=
 	            QString("<div class=\"PostHeader moderator\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
-	                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+	                        + "<div style=\"height:80%; width:auto; position:relative; top:10%; left:5px; width:100px; display: inline-block;\" ><img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:100%; width:auto; position:relative; margin-left: auto; margin-right: auto; display: inline-block;\" /></div>"
 	                        + "<div class=\"PostHeader-Text moderator\">"
 	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getAuthor() + "</p></div>"
 	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
@@ -770,7 +839,7 @@ void ShowThreadController::updateView() {
 	        } else {
 	            pageContent +=
 	            QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
-	                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
+                            + "<div style=\"height:80%; width:auto; position:relative; top:10%; left:5px; width:100px; display: inline-block;\" ><img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:100%; width:auto; margin-left: auto; margin-right: auto; display: block;\" /></div>"
 	                        + "<div class=\"PostHeader-Text\">"
 	                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
 	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"

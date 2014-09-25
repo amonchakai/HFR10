@@ -21,23 +21,23 @@ Page {
         // dataModel used by the photo bucket list.
         options: [
             Option {
-                text: qsTr("Tous") + Retranslate.onLanguageChanged
-//                imageSource: "asset:///images/icon_global2.png"
+//                text: qsTr("All") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_global2.png"
                 value: ("all")
             },
             Option {
-                text: qsTr("Favoris") + Retranslate.onLanguageChanged
-//                imageSource: "asset:///images/icon_favorite.png"
+//                text: qsTr("Fav.") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_favorite.png"
                 value: ("favorites")
             },
             Option {
-                text: qsTr("Suivis") + Retranslate.onLanguageChanged
-//                imageSource: "asset:///images/icon_drap_participe.png"
+//                text: qsTr("Follow") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_drap_participe.png"
                 value: ("participate")
             },
             Option {
-                text: qsTr("Lu") + Retranslate.onLanguageChanged
-//                imageSource: "asset:///images/icon_drap_lecture.png"
+//                text: qsTr("Read") + Retranslate.onLanguageChanged
+                imageSource: "asset:///images/icon_drap_lecture.png"
                 value: ("read")
             }
         ]

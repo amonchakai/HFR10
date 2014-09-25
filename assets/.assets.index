@@ -1,5 +1,6 @@
 1
-174
+179
+Bookmarks.qml
 ColorManagement.qml
 ColorPicker.qml
 ExploreCategory.qml
@@ -9,6 +10,8 @@ Help.qml
 Home.qml
 ImagePreview.qml
 images/blackFace.png
+images/Bookmarks.png
+images/Bookmarks.svg
 images/can.png
 images/chickened.png
 images/default_avatar.png
@@ -134,12 +137,14 @@ images/whiteFace.png
 images/whiteFace.svg
 images/whiteFace3.png
 ImageUploader.qml
+ListContextActions.qml
 LoginForm.qml
 main.qml
 model/AchatsVentes.xml
 model/Apple.xml
 model/ColorList_en.xml
 model/ColorList_fr.xml
+model/ContextualActions.xml
 model/Discussions.xml
 model/EmploiEtudes.xml
 model/Graphisme.xml

@@ -1,7 +1,7 @@
 import bb.cascades 1.2
 
 Page {
-    property string subcatXml
+    property string messageID
     id: subCatSelectPage
     signal slectionCompleted(int index);
     

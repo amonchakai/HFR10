@@ -1,6 +1,6 @@
 import bb.cascades 1.2
 import bb.data 1.0
-import Network.ListFavoriteController 1.0
+import Network.BookmarksController 1.0
 import conf.settings 1.0
 
 
@@ -8,20 +8,17 @@ NavigationPane {
     id: nav
     property int     navDepth
     property variant tpage
-    property variant tColPage
     
-    property variant itemToTag
-    property int     chosenTag
     
     Page {
         
-	    Container {
+        Container {
             layout: DockLayout {
-                
+            
             }
             Container {
                 layout: StackLayout {
-                    
+                
                 }
                 
                 ActivityIndicator {
@@ -30,8 +27,8 @@ NavigationPane {
                     verticalAlignment: VerticalAlignment.Top
                     preferredHeight: 60
                 }
-    	        
-    	        ListView {
+                
+                ListView {
                     // ------------------------------------------------------------------
                     // Pull to refresh
                     signal refreshTriggered()
@@ -59,13 +56,13 @@ NavigationPane {
                     
                     // ---------------------------------------------------------------------
                     // view
-    
-    	            objectName: "listFav"
-    	            
-    	            dataModel: GroupDataModel {
-    	                id: theModel
-    	                sortingKeys: ["category"]
-    	                
+                    
+                    objectName: "listFav"
+                    
+                    dataModel: GroupDataModel {
+                        id: theModel
+                        sortingKeys: ["category"]
+                        
                         property bool empty: true
                         
                         
@@ -76,20 +73,20 @@ NavigationPane {
                         // You might see an 'unknown signal' error  
                         // in the QML-editor, guess it's a SDK bug.  
                         onItemsChanged: empty = isEmpty()
-                        
-    	            }
-    	            
-    	            listItemComponents: [
-    	                ListItemComponent {
-    	                    type: "header"
-    	                    Header {
-    	                        title: ListItemData
-    	                    }
-    	                },
-    	                ListItemComponent {
-    	                    type: "item"
-    	                    
-    	                    Container {
+                    
+                    }
+                    
+                    listItemComponents: [
+                        ListItemComponent {
+                            type: "header"
+                            Header {
+                                title: ListItemData
+                            }
+                        },
+                        ListItemComponent {
+                            type: "item"
+                            
+                            Container {
                                 function colorIndexToHex(index) {
                                     switch (index) {
                                         case 0:
@@ -115,7 +112,7 @@ NavigationPane {
                                     }
                                 }
                                 
-    	                        id: titleContainer
+                                id: titleContainer
                                 layout: StackLayout {
                                     orientation: LayoutOrientation.LeftToRight
                                 }
@@ -133,45 +130,45 @@ NavigationPane {
                                     maxWidth: 2
                                     verticalAlignment: VerticalAlignment.Fill
                                 }
-    	                        
-        	                    Container {
+                                
+                                Container {
                                     id: topicContainer
                                     
-        	                        layout: StackLayout {
-        	                            orientation: LayoutOrientation.TopToBottom
-        	                        }
-        	                        verticalAlignment: VerticalAlignment.Top
-        	                        Label {
-        	                            text: ListItemData.title
-        	                        }
-        	                        
-        	                        Container {
-        	                            layout: DockLayout {
-        	                            }
-        	                            horizontalAlignment: HorizontalAlignment.Fill
-        	
-        	                            Label {
-        	                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
-        	                                horizontalAlignment: HorizontalAlignment.Right
-        	                                textStyle {
-        	                                    base: SystemDefaults.TextStyles.SmallText
+                                    layout: StackLayout {
+                                        orientation: LayoutOrientation.TopToBottom
+                                    }
+                                    verticalAlignment: VerticalAlignment.Top
+                                    Label {
+                                        text: ListItemData.title
+                                    }
+                                    
+                                    Container {
+                                        layout: DockLayout {
+                                        }
+                                        horizontalAlignment: HorizontalAlignment.Fill
+                                        
+                                        Label {
+                                            text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
+                                            horizontalAlignment: HorizontalAlignment.Right
+                                            textStyle {
+                                                base: SystemDefaults.TextStyles.SmallText
                                                 color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df") : Color.Blue
-        	                                }
-        	                            }
-        	                            
-        	                            Label {
-        	                                text: ListItemData.pages
-        	                                horizontalAlignment: HorizontalAlignment.Left
-        	                                textStyle {
-        	                                    base: SystemDefaults.TextStyles.SmallText
-        	                                    color: Color.Gray
-        	                                }
-        	                            }
-        	                        }
-        	                        Divider {}
+                                            }
+                                        }
+                                        
+                                        Label {
+                                            text: ListItemData.pages
+                                            horizontalAlignment: HorizontalAlignment.Left
+                                            textStyle {
+                                                base: SystemDefaults.TextStyles.SmallText
+                                                color: Color.Gray
+                                            }
+                                        }
+                                    }
+                                    Divider {}
                                 }
-    
-    	                        
+                                
+                                
                                 contextActions: [
                                     ActionSet {
                                         title: qsTr("Navigation")
@@ -197,16 +194,7 @@ NavigationPane {
                                                 titleContainer.ListItem.view.gotoPage(ListItemData.urlLastPostRead, ListItemData.title)
                                             }
                                         }
-                                        
-                                        ActionItem {
-                                            title: qsTr("Color Tag")
-                                            imageSource: "asset:///images/icon_feed.png"
-                                            onTriggered: {
-                                                titleContainer.ListItem.view.openColorPicker(ListItemData.urlFirstPage, titleContainer.ListItem.indexPath)
-                                               
-                                            }
-                                        }
-                                        
+                                                                                
                                         DeleteActionItem {
                                             title: qsTr("Remove flag")
                                             onTriggered: {
@@ -215,10 +203,10 @@ NavigationPane {
                                         }
                                     }
                                 ]
-    	                    }
-    	                }
-    	            ]
-    	            
+                            }
+                        }
+                    ]
+                    
                     function gotoPage(urlFirstPage, titleTopic) {
                         if(!tpage) {
                             tpage = threadPage.createObject();
@@ -232,8 +220,9 @@ NavigationPane {
                     }
                     
                     function deleteFlag(urlFirstPage, indexPath) {
-                        listFavoriteController.deleteFlag(urlFirstPage);
+                        //listFavoriteController.deleteFlag(urlFirstPage);
                         listFav.dataModel.removeAt(indexPath);
+                        bookmarksController.deleteBookmark(urlFirstPage);
                     }
                     
                     function openColorPicker(urlFirstPage, indexPath) {
@@ -245,106 +234,96 @@ NavigationPane {
                         itemToTag = indexPath;
                         tColPage.urlPage = urlFirstPage
                         nav.push(tColPage);
-                        
+                    
                     }
-    	            
-    	            onTriggered: {
-    	                var chosenItem = dataModel.data(indexPath);
-    	                
-    	                // Create the content page and push it on top to drill down to it.
+                    
+                    onTriggered: {
+                        var chosenItem = dataModel.data(indexPath);
+                        
+                        // Create the content page and push it on top to drill down to it.
                         if(!tpage) {
                             tpage = threadPage.createObject();
                         }
-    	                
-    	                // Set the url of the page to load and thread caption. 
+                        
+                        // Set the url of the page to load and thread caption. 
                         tpage.urlPage = chosenItem.urlLastPostRead
                         tpage.caption   = chosenItem.title
-    	                	                
+                        
                         nav.push(tpage);
-    	            }
-    	            
-    	            onRefreshTriggered: {
-                        listFavoriteController.getFavorite();
                     }
-    	            
-    	         }
-	         }
-             Container {  
-                 id: dataEmptyLabel
-                 visible: theModel.empty && !activityIndicator.running //model.isEmpty() will not work  
-                 horizontalAlignment: HorizontalAlignment.Center  
-                 verticalAlignment: VerticalAlignment.Center  
-                 
-                 layout: StackLayout {
-                     orientation: LayoutOrientation.LeftToRight
-                 }
-                 
-                 ImageView {
-                     imageSource: "asset:///images/pull-to-refresh.png"
-                     horizontalAlignment: HorizontalAlignment.Left
-                     verticalAlignment: VerticalAlignment.Center
-                 }
-                 
-                 Label {
-                     horizontalAlignment: HorizontalAlignment.Right
-                     verticalAlignment: VerticalAlignment.Center
-                     text: qsTr("Pull down to update")  
-                     textStyle.textAlign: TextAlign.Center  
-                 }
-                 
-             }
-	         
-	        
-	         attachedObjects: [
-	             ListFavoriteController {
-	                 id: listFavoriteController
-	                 
-	                 onComplete: {
-	                        activityIndicator.stop();
-	                        listFav.requestFocus();
-	                 }
-	                 
-	                 onLoading: {
-	                        activityIndicator.start();
-	                 }
-	             }, 
-	             ComponentDefinition {
-	                 id: threadPage
-	                 source: "ThreadPage.qml"
-	             },
-                 AppSettings {
-                     id: appSettings
-                 },
-                 ComponentDefinition {
-                     id: colorPickerPage
-                     source: "ColorPicker.qml"
-                 }
-	         ]
-	         
-	    }
-	    
-	    onCreationCompleted: {
-	        
-            listFavoriteController.setListView(listFav);
-            listFavoriteController.load();
-            navDepth = 0;
-            chosenTag = -1;
+                    
+                    onRefreshTriggered: {
+                        bookmarksController.getFavorite();
+                    }
+                
+                }
+            }
+            Container {  
+                id: dataEmptyLabel
+                visible: theModel.empty && !activityIndicator.running //model.isEmpty() will not work  
+                horizontalAlignment: HorizontalAlignment.Center  
+                verticalAlignment: VerticalAlignment.Center  
+                
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                
+                ImageView {
+                    imageSource: "asset:///images/pull-to-refresh.png"
+                    horizontalAlignment: HorizontalAlignment.Left
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                
+                Label {
+                    horizontalAlignment: HorizontalAlignment.Right
+                    verticalAlignment: VerticalAlignment.Center
+                    text: qsTr("Pull down to update")  
+                    textStyle.textAlign: TextAlign.Center  
+                }
+            
+            }
+            
+            
+            attachedObjects: [
+                BookmarksController {
+                    id: bookmarksController
+                    
+                    onComplete: {
+                        activityIndicator.stop();
+                    }
+                    
+                    onLoading: {
+                        activityIndicator.start();
+                    }
+                }, 
+                ComponentDefinition {
+                    id: threadPage
+                    source: "ThreadPage.qml"
+                },
+                AppSettings {
+                    id: appSettings
+                }
+            ]
+        
         }
-	}
+        
+        onCreationCompleted: {
+            
+            bookmarksController.setListView(listFav);
+            bookmarksController.getFavorite();
+            navDepth = 0;
+
+        }
+    }
     
     onPopTransitionEnded: {
         --navDepth;
         
         if(navDepth == 1) {
             if(appSettings.autoRefresh) {
-            	listFavoriteController.getFavorite();
+                bookmarksController.getFavorite();
             }
             
-            if(chosenTag != -1) {
-                var selectedItem = listFav.dataModel.data(itemToTag);
-                selectedItem.color = chosenTag;
-            }
-            chosenTag = -1;
         }
     }
     
