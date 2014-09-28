@@ -129,7 +129,7 @@ Page {
             + "</head><body>" + "<table style=\"margin-left:auto; margin-right:auto; \" ><tr>" 
             + formContainer.chooseIconSet(Application.themeSupport.theme.colorTheme.style)
             + "</tr></table>" + "</body></html>"
-            preferredHeight: 60
+            //preferredHeight: 60
             horizontalAlignment: HorizontalAlignment.Fill
             
             onMessageReceived: {

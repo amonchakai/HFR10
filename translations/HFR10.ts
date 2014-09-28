@@ -243,6 +243,14 @@
     </message>
 </context>
 <context>
+    <name>ListContextActions</name>
+    <message>
+        <location filename="../assets/ListContextActions.qml" line="11"/>
+        <source>model/ContextualActions.xml</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ListFavoriteController</name>
     <message>
         <location filename="../src/ListFavoriteController.cpp" line="106"/>
@@ -957,91 +965,109 @@
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="543"/>
+        <location filename="../assets/ThreadPage.qml" line="544"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="546"/>
-        <location filename="../assets/ThreadPage.qml" line="653"/>
+        <location filename="../assets/ThreadPage.qml" line="547"/>
+        <location filename="../assets/ThreadPage.qml" line="654"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="592"/>
+        <location filename="../assets/ThreadPage.qml" line="593"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="593"/>
+        <location filename="../assets/ThreadPage.qml" line="594"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="604"/>
+        <location filename="../assets/ThreadPage.qml" line="605"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="625"/>
+        <location filename="../assets/ThreadPage.qml" line="626"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="634"/>
+        <location filename="../assets/ThreadPage.qml" line="635"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="643"/>
+        <location filename="../assets/ThreadPage.qml" line="644"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="663"/>
+        <location filename="../assets/ThreadPage.qml" line="664"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="670"/>
+        <location filename="../assets/ThreadPage.qml" line="671"/>
         <source>To Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Welcome</name>
+    <message>
+        <location filename="../assets/Welcome.qml" line="27"/>
+        <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Welcome.qml" line="36"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Welcome.qml" line="46"/>
+        <source>Submit</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="47"/>
+        <location filename="../assets/main.qml" line="61"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="54"/>
+        <location filename="../assets/main.qml" line="68"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="82"/>
+        <location filename="../assets/main.qml" line="96"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="66"/>
+        <location filename="../assets/main.qml" line="80"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="96"/>
+        <location filename="../assets/main.qml" line="110"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="108"/>
+        <location filename="../assets/main.qml" line="122"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="120"/>
+        <location filename="../assets/main.qml" line="135"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>

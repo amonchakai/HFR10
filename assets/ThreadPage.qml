@@ -453,8 +453,9 @@ Page {
         }
         
         function deletePost(messageID, author) {
-            if(author == showThreadController.pseudo)
+            //if(author == showThreadController.pseudo) {
                 showThreadController.deletePost(messageID);
+            //}
         }
         
         function gotoEditMessage(urlEditPage) {

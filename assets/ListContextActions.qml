@@ -8,7 +8,7 @@ Page {
         accessibility.name: "listContextActions"
         
         dataModel: XmlDataModel {
-            source: "model/ContextualActions.xml"
+            source: qsTr("model/ContextualActions.xml")
         }
         
         listItemComponents: [

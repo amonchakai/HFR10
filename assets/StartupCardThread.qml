@@ -438,8 +438,8 @@ NavigationPane {
             }
             
             function deletePost(messageID, author) {
-                if(author == showThreadController.pseudo)
-                    showThreadController.deletePost(messageID);
+                //if(author == showThreadController.pseudo)
+                showThreadController.deletePost(messageID);
             }
             
             function gotoEditMessage(urlEditPage) {

@@ -326,7 +326,8 @@ NavigationPane {
 	    onCreationCompleted: {
 	        
             listFavoriteController.setListView(listFav);
-            listFavoriteController.load();
+            if(loginController.isLogged())
+                listFavoriteController.load();
             navDepth = 0;
             chosenTag = -1;
         }

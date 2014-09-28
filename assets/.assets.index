@@ -1,5 +1,5 @@
 1
-179
+182
 Bookmarks.qml
 ColorManagement.qml
 ColorPicker.qml
@@ -133,6 +133,7 @@ images/smiley/sum.gif
 images/smiley/tongue.gif
 images/smiley/vomi.gif
 images/smiley/wink.gif
+images/wallpaper/wallpaper.jpg
 images/whiteFace.png
 images/whiteFace.svg
 images/whiteFace3.png
@@ -145,6 +146,7 @@ model/Apple.xml
 model/ColorList_en.xml
 model/ColorList_fr.xml
 model/ContextualActions.xml
+model/ContextualActions_fr.xml
 model/Discussions.xml
 model/EmploiEtudes.xml
 model/Graphisme.xml
@@ -179,3 +181,4 @@ template.html
 template_black.html
 template_end.html
 ThreadPage.qml
+Welcome.qml

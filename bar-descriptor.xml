@@ -45,8 +45,8 @@
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset path="x86/o-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
        <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/x86/o-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
+       <asset path="x86/o-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
     </configuration>
 
     <!-- The name that is displayed in the BlackBerry 10 application installer.
@@ -63,7 +63,7 @@
 
     <!-- Fourth digit segment of the package version. First three segments are taken from the
          <versionNumber> element.  Must be an integer from 0 to 2^16-1 -->
-    <buildId>104</buildId>
+    <buildId>105</buildId>
     <packageLocale>fr-FR</packageLocale>
 
     <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->

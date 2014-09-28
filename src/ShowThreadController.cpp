@@ -629,7 +629,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	quoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	quoteRegexp.setMinimal(true);
 
-	QRegExp spoilerRegExp("<div class=\"container\"><table class=\"spoiler\".*class=\"s1Topic\">Spoiler :</b><br /><br /><div class=\"Topic masque\"><p>(.*)</p></div></td></tr></table></div>");
+	QRegExp spoilerRegExp("<div class=\"container\"><table class=\"spoiler\".*class=\"s1Topic\">Spoiler :</b><br /><br /><div class=\"Topic masque\">[&nbsp;]*<p>(.*)</p>[&nbsp;]*</div></td></tr></table></div>");
 	spoilerRegExp.setCaseSensitivity(Qt::CaseSensitive);
 	spoilerRegExp.setMinimal(true);
 

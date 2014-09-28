@@ -15,13 +15,14 @@
  */
 
 import bb.cascades 1.2
+import Network.LoginController 1.0
+
 
 TabbedPane {
     id: mainTab
     showTabsOnActionBar: true
     activeTab: tabFav
-    
-    
+        
     attachedObjects: [
         Sheet {
             id: settingsPage
@@ -38,7 +39,20 @@ TabbedPane {
                     infoPage.close();
                 }
             }
-        }
+        },
+        Sheet {
+            id: welcome
+            Welcome {
+                onDone: {
+                    welcome.close();
+                }
+            }
+        },
+        
+        LoginController {
+            id: loginController
+            
+         }
     ]
     
     Menu.definition: MenuDefinition {
@@ -106,8 +120,9 @@ TabbedPane {
     
     Tab {
         title: qsTr("Bookmarks") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.Default
+        ActionBar.placement: ActionBarPlacement.InOverflow
         imageSource: "asset:///images/Bookmarks.png"
+        
         
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
         
@@ -118,7 +133,7 @@ TabbedPane {
     
     Tab { //Browse tab
         title: qsTr("Search") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.Default
+        ActionBar.placement: ActionBarPlacement.InOverflow
         imageSource: "asset:///images/icon_browse.png"
         
         delegateActivationPolicy: TabDelegateActivationPolicy.Default
@@ -127,5 +142,11 @@ TabbedPane {
             source: "Search.qml"
         }
     } //End of browse tab
+    
 
+    onCreationCompleted: {
+        if(!loginController.isLogged()) {
+            welcome.open();
+        }
+    }
 }
