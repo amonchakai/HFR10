@@ -428,6 +428,7 @@ void ListFavoriteController::load() {
         if(m_Datas->empty()) {
             getFavorite();
         } else {
+            emit complete();
             updateView();
         }
 

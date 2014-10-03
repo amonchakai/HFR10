@@ -118,7 +118,7 @@ Page {
                         + "<td><img src=\"local:///assets/images/icon_image_white.png\" alt=\"image\" title=\"image\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>" ; 
             }
         }
-        
+        ScrollView {
         WebView {
             id: webviewActionBar
             html: "<!DOCTYPE html><html><head><style type=\"text/css\">"
@@ -135,10 +135,12 @@ Page {
             onMessageReceived: {
                 if(message.data == "smiley") {
                     if(!tpage)
-                        tpage = smileyPicker.createObject(0);
+                        tpage = smileyPicker.createObject();
                     nav.push(tpage);
+                    
                 } else {
                     if(message.data == "bold") {
+                        console.log('bold')
                         formContainer.insertTag("b");
                     } else { 
                         if (message.data == "italic") {
@@ -155,7 +157,7 @@ Page {
                                     } else { 
                                         if(message.data == "image") {
                                             if(!uploadPage)
-                                                uploadPage = imageUploader.createObject(this);
+                                                uploadPage = imageUploader.createObject();
                                             nav.push(uploadPage);
                                          }
                                     }
@@ -166,7 +168,7 @@ Page {
                 }
             }
         }
-        
+        }
         function insertTag(tag) {
             message.editor.insertPlainText("[" + tag + "]" + message.editor.selectedText + "[/" + tag + "]" );
         }

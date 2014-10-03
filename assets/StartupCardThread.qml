@@ -518,6 +518,8 @@ NavigationPane {
                         nextPageAction.title = qsTr("Next page");
                         nextPageAction.imageSource = "asset:///images/icon_next.png"
                     }
+                    
+                    scrollView.requestFocus();
                 }
             
             },
@@ -669,10 +671,14 @@ NavigationPane {
         if(navDepth == 0) {
             _app.closeCard();
         }
+        
+        scrollView.requestFocus();
     }
     
     onPushTransitionEnded: {
         ++navDepth;
+        
+        scrollView.requestFocus();
     }
     
     

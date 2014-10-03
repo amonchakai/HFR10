@@ -22,6 +22,8 @@ TabbedPane {
     id: mainTab
     showTabsOnActionBar: true
     activeTab: tabFav
+    property variant focusOnFavTab
+    property variant focusOnMPTab
         
     attachedObjects: [
         Sheet {
@@ -78,7 +80,7 @@ TabbedPane {
     Tab { //Favorite tab
         id: tabFav
         title: qsTr("Favorite") + Retranslate.onLocaleOrLanguageChanged
-        ActionBar.placement: ActionBarPlacement.OnBar
+        
         imageSource: "asset:///images/icon_favorites.png"
         
         delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
@@ -107,6 +109,7 @@ TabbedPane {
     
     
     Tab { //Setting tab
+        id: tabMP
         title: qsTr("Message") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_mp.png"
@@ -143,10 +146,26 @@ TabbedPane {
         }
     } //End of browse tab
     
-
+    
     onCreationCompleted: {
         if(!loginController.isLogged()) {
             welcome.open();
         }
     }
+    
+    onActiveTabChanged: {
+        if(activeTab == tabFav) {
+            if(focusOnFavTab) {
+                focusOnFavTab.requestFocus();
+            }
+        }
+        
+        if(activeTab == tabMP) {
+            if(focusOnMPTab) {
+                focusOnMPTab.requestFocus();
+            }
+        }
+    }
+    
+   
 }

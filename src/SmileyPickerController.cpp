@@ -165,6 +165,8 @@ void SmileyPickerController::parse(const QString &page, int startingPosition) {
 		}
 	}
 
+	emit complete();
+
 }
 
 

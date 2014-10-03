@@ -4,10 +4,16 @@ NavigationPane {
     id: nav
     property variant tpage
     
+    property int     navDepth
+    property variant focusedItem
+    property variant listTopic
+    property variant focusTopicPage
+    
 	Page {
 	    Container {
             
 	        ListView {
+	            id: homeList
 	            
 	            dataModel: XmlDataModel {
 	                source: "model/listCategories.xml"
@@ -68,5 +74,43 @@ NavigationPane {
 	        } // end view
 	    } //end container
 	} // end page
+
+    onCreationCompleted: {
+        navDepth = 0;
+        focusedItem = homeList;
+    }
+
+    onPopTransitionEnded: {
+        --navDepth;
+        
+        if(navDepth == 1) {
+            
+            // Trackpad enabled devices: the listview must have the focus to catch scroll events!
+            focusedItem = homeList;
+        
+        }
+        
+        if(navDepth == 2) {
+            // depth of 2 == list of topics
+            focusedItem = listTopic;
+        }
+        
+        focusedItem.requestFocus();
+    
+    }
+    
+    onPushTransitionEnded: {
+        ++navDepth;
+        
+        if(navDepth == 2) {
+            focusedItem = listTopic;
+        }
+        
+        if(navDepth == 3) {
+            focusedItem = focusTopicPage;
+        }
+        
+        focusedItem.requestFocus();
+    }
 }
 

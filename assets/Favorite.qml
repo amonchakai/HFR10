@@ -13,6 +13,9 @@ NavigationPane {
     property variant itemToTag
     property int     chosenTag
     
+    property variant focusedItem
+    property variant focusTopicPage
+    
     Page {
         
 	    Container {
@@ -259,7 +262,7 @@ NavigationPane {
     	                // Set the url of the page to load and thread caption. 
                         tpage.urlPage = chosenItem.urlLastPostRead
                         tpage.caption   = chosenItem.title
-    	                	                
+
                         nav.push(tpage);
     	            }
     	            
@@ -301,6 +304,7 @@ NavigationPane {
 	                 
 	                 onComplete: {
 	                        activityIndicator.stop();
+                            focusedItem = listFav;
 	                        listFav.requestFocus();
 	                 }
 	                 
@@ -326,10 +330,15 @@ NavigationPane {
 	    onCreationCompleted: {
 	        
             listFavoriteController.setListView(listFav);
-            if(loginController.isLogged())
+            if(loginController.isLogged()) {
                 listFavoriteController.load();
+            }
             navDepth = 0;
             chosenTag = -1;
+            
+            listFav.requestFocus();
+            
+            focusOnFavTab = listFav;
         }
 	}
     
@@ -346,10 +355,23 @@ NavigationPane {
                 selectedItem.color = chosenTag;
             }
             chosenTag = -1;
+            
+            // Trackpad enabled devices: the listview must have the focus to catch scroll events!
+            focusedItem = listFav;
+            
         }
+        
+        focusedItem.requestFocus();
+        
     }
     
     onPushTransitionEnded: {
         ++navDepth;
+        if(navDepth == 2) {
+            focusedItem = focusTopicPage;
+        }
+        
+        focusedItem.requestFocus();
     }
+    
 }

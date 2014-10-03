@@ -370,6 +370,7 @@ void PrivateMessageController::load() {
         if(m_Datas->empty()) {
             getMessages();
         } else {
+            emit complete();
             updateView();
         }
 

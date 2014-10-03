@@ -269,7 +269,7 @@ NavigationPane {
                 }
                 
                 ImageView {
-                    imageSource: "asset:///images/pull-to-refresh.png"
+                    imageSource: "asset:///images/icon_favorites.png"
                     horizontalAlignment: HorizontalAlignment.Left
                     verticalAlignment: VerticalAlignment.Center
                 }
@@ -277,7 +277,7 @@ NavigationPane {
                 Label {
                     horizontalAlignment: HorizontalAlignment.Right
                     verticalAlignment: VerticalAlignment.Center
-                    text: qsTr("Pull down to update")  
+                    text: qsTr("Use the star to mark new content")  
                     textStyle.textAlign: TextAlign.Center  
                 }
             

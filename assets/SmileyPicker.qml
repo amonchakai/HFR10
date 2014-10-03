@@ -9,6 +9,7 @@ Page {
         verticalAlignment: VerticalAlignment.Fill
         
         ScrollView {    
+            id: scrollView
             rightMargin: 50
             horizontalAlignment: HorizontalAlignment.Fill
             verticalAlignment: VerticalAlignment.Fill
@@ -72,6 +73,7 @@ Page {
     attachedObjects: [
     	SmileyPickerController {
             id: smileyPickerController
+
         }    
     ]
     

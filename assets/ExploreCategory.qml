@@ -270,6 +270,8 @@ Page {
             
             onComplete: {
                 activityIndicator.stop()
+                listCats.requestFocus();
+                listTopic = listCats;
             }
         }, 
         ComponentDefinition {
@@ -291,6 +293,8 @@ Page {
                 if(!subCatPickerPage)
                 	subCatPickerPage = subcatPicker.createObject(this);
                 subCatPickerPage.subcatXml = subCatXml;
+                focusedItem = listCats;
+                listTopic = listCats;
                 nav.push(subCatPickerPage);
                 // pickSubCat.show();
             }

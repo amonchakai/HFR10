@@ -5,6 +5,10 @@ NavigationPane {
     id: nav
     property variant tpage
     
+    property int     navDepth
+    property variant focusedItem
+    property variant focusTopicPage
+    
 	Page {
 	    Container {
 	        layout: DockLayout {
@@ -230,6 +234,7 @@ NavigationPane {
 	            
 	            onComplete: {
 	                activityIndicator.stop();
+	                listMP.requestFocus();
 	            }
 	            
 	            onLoading: {
@@ -245,6 +250,29 @@ NavigationPane {
 	    onCreationCompleted: {
 	        privateMessageController.setListView(listMP);
 	        privateMessageController.load();
+	        navDepth = 0;
+            focusOnMPTab = listMP;
 	    }
 	}
+	
+    onPopTransitionEnded: {
+        --navDepth;
+        
+        if(navDepth == 1) {
+            // Trackpad enabled devices: the listview must have the focus to catch scroll events!
+            focusedItem = listMP;
+        }
+        
+        focusedItem.requestFocus();
+    
+    }
+    
+    onPushTransitionEnded: {
+        ++navDepth;
+        if(navDepth == 2) {
+            focusedItem = focusTopicPage;
+        }
+        
+        focusedItem.requestFocus();
+    }
 }

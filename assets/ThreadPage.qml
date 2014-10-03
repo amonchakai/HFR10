@@ -18,7 +18,6 @@ Page {
     property int    scrollRequested
     property string listItemSelected;
     
-    
     Container {
         id: pageContainer
         background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
@@ -168,6 +167,12 @@ Page {
                              //visible = true;
                         //     activityIndicator.stop();
                         //}
+                    }
+                    
+                    onLoadingChanged: {
+                        if (loadRequest.status == WebLoadStatus.Succeeded) {
+                            pageContainer.notifyWebViewLoaded();
+                        }
                     }
                     
                     attachedObjects: [
@@ -547,6 +552,9 @@ Page {
                     nextPageAction.title = qsTr("Next page");
                     nextPageAction.imageSource = "asset:///images/icon_next.png"
                 }
+                
+                scrollView.requestFocus();
+                focusTopicPage = scrollView;
             }
             
         },
@@ -675,11 +683,15 @@ Page {
             }
         }
     ]    
+    onActionBarVisibilityChanged: {
+        focusedItem.requestFocus();
+    }
     
     onCreationCompleted: {
         contextMenu.translationX = contextMenu.minWidth;
         contextMenu.isVisible = false;
         showThreadController.setWebView(threadWebView);
+        focusedItem = scrollView;
     }
     
     onUrlPageChanged: {
@@ -697,4 +709,5 @@ Page {
             needUpdate = false;
         } 
     } 
+    
 }
