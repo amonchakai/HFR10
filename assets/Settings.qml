@@ -365,9 +365,7 @@ NavigationPane {
                     onClicked: {
                         loginController.clearImageCache();
                     }
-                }
-    
-                
+                }             
     	    }
     	    
     	    

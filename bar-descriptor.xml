@@ -30,22 +30,22 @@
     <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
-       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset> 
     </configuration>
     <configuration name="Device-Release">
        <entryPointType>Qnx/Cascades</entryPointType>
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm/o.le-v7/HFR10.so" entry="true" type="Qnx/Elf">HFR10.so</asset>
-       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset> 
     </configuration>
     <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="arm-p/o.le-v7-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
-       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/arm/o.le-v7-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset> 
     </configuration>
     <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
-       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/x86/o-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset>
+       <asset entryPointId="HeadlessHFR" path="../HeadlessHFR/x86/o-g/HeadlessHFR" type="Qnx/Elf">HeadlessHFR</asset> 
        <asset path="x86/o-g/HFR10" entry="true" type="Qnx/Elf">HFR10</asset>
     </configuration>
 
@@ -113,6 +113,7 @@
     <entryPoint id="HFR10">
     	<name>HFR10</name>
 	</entryPoint>
+
 	
 	<entryPoint id="HeadlessHFR">
 		<name>HeadlessHFR</name>
@@ -124,18 +125,7 @@
 		<permission system="true">_sys_access_pim_unified</permission>
 	</entryPoint>
 
-<!--  
-	<invoke-target id="pierre.lebreton.HFRBlack">
-	<entry-point-id>HFR10</entry-point-id>
-	<invoke-target-name>HFR10</invoke-target-name>
-	<invoke-target-type>application</invoke-target-type>
-		<filter>
-			<action>bb.action.OPEN</action>
-			<mime-type>hub/vnd.test.item</mime-type>
-			<property var="uris" value="data://,pim:"/>
-		</filter>
-	</invoke-target>
--->
+
 		
 	<invoke-target id="pierre.lebreton.HFRBlack">
 	<entry-point-id>HFR10</entry-point-id>
@@ -189,6 +179,6 @@
 	</filter>
 	</invoke-target>
 	
-   
+
 
 </qnx>

@@ -157,7 +157,11 @@
 
 		function scrollToElement(messageID) {
 			//document.getElementById(messageID).scrollIntoView();
-			sendURL("SCROLLTO:"+GetScreenCordinates(document.getElementById(messageID)).y);
+			if(window.innerWidth > 1000)
+				sendURL("SCROLLTO:"+GetScreenCordinates(document.getElementById(messageID)).y*1.395);
+			else
+				sendURL("SCROLLTO:"+GetScreenCordinates(document.getElementById(messageID)).y);
+
 		}
 
 		function GetScreenCordinates(obj) {

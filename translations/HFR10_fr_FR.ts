@@ -4,7 +4,7 @@
 <context>
     <name>ApplicationUI</name>
     <message>
-        <location filename="../src/applicationui.cpp" line="283"/>
+        <location filename="../src/applicationui.cpp" line="281"/>
         <source>Success!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -729,8 +729,8 @@
     <message>
         <location filename="../assets/Settings.qml" line="81"/>
         <location filename="../assets/Settings.qml" line="107"/>
-        <location filename="../assets/Settings.qml" line="395"/>
-        <location filename="../assets/Settings.qml" line="406"/>
+        <location filename="../assets/Settings.qml" line="393"/>
+        <location filename="../assets/Settings.qml" line="404"/>
         <source>User: </source>
         <translation>Utilisateur: </translation>
     </message>

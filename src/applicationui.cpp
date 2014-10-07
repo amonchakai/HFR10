@@ -55,7 +55,6 @@
 #include <bb/system/InvokeTargetReply>
 #include <bb/system/CardDoneMessage>
 
-
 using namespace bb::cascades;
 
 ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
@@ -152,7 +151,6 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<ImageUploaderController>("Network.ImageUploaderController", 1, 0, "ImageUploaderController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");
-
 
     // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set
