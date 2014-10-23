@@ -17,11 +17,12 @@
 #include <QFile>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
+#include <bb/platform/Notification>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
 #include  "DataObjects.h"
-
+#include  "Settings.hpp"
 
 ExploreCategoryController::ExploreCategoryController(QObject *parent)
 	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SelectedSubCat(0) {
@@ -122,6 +123,22 @@ void ExploreCategoryController::parse(const QString &page) {
 	QRegExp inf("&lt;");
 	QRegExp sup("&gt;");
 
+
+    // ----------------------------------------------------------------------------------------------
+    // Parse new MP, and notify if needed!
+    QRegExp newMP("Vous avez ([0-9]+) nouveau[x]* message[s]*");
+    newMP.setMinimal(true);
+    if(newMP.indexIn(page) != -1) {
+        if(Settings::getMPNotificationUp) {
+            Settings::setMPNotificationUp(true);
+
+            bb::platform::Notification *notif = new bb::platform::Notification();
+            notif->notify();
+
+            Settings s;
+            s.saveSettings();
+        }
+    }
 
 	// ----------------------------------------------------------------------------------------------
 	// drap filter

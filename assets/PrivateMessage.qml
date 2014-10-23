@@ -262,7 +262,7 @@ NavigationPane {
             // Trackpad enabled devices: the listview must have the focus to catch scroll events!
             focusedItem = listMP;
         }
-        
+        privateMessageController.checkforUnreadMP();
         focusedItem.requestFocus();
     
     }

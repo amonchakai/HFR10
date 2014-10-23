@@ -9,6 +9,7 @@
 #include <QRegExp>
 #include <QDateTime>
 
+#include <bb/platform/Notification>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
 #include <bb/system/SystemToast>
@@ -163,6 +164,23 @@ void ListFavoriteController::parse(const QString &page) {
 	QRegExp euro("&euro;");
 	QRegExp inf("&lt;");
 	QRegExp sup("&gt;");
+
+
+	// ----------------------------------------------------------------------------------------------
+    // Parse new MP, and notify if needed!
+	QRegExp newMP("Vous avez ([0-9]+) nouveau[x]* message[s]*");
+	newMP.setMinimal(true);
+	if(newMP.indexIn(page) != -1) {
+	    if(Settings::getMPNotificationUp) {
+	        Settings::setMPNotificationUp(true);
+
+	        bb::platform::Notification *notif = new bb::platform::Notification();
+	        notif->notify();
+
+	        Settings s;
+	        s.saveSettings();
+	    }
+	}
 
 	// ----------------------------------------------------------------------------------------------
 	// Parse categories using regexp

@@ -130,7 +130,7 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="103"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="104"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -253,12 +253,12 @@
 <context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="106"/>
+        <location filename="../src/ListFavoriteController.cpp" line="107"/>
         <source>You are not logged in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="146"/>
+        <location filename="../src/ListFavoriteController.cpp" line="147"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -397,12 +397,12 @@
 <context>
     <name>PrivateMessageController</name>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="80"/>
+        <location filename="../src/PrivateMessageController.cpp" line="81"/>
         <source>You are not logged in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="97"/>
+        <location filename="../src/PrivateMessageController.cpp" line="98"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -796,25 +796,25 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="101"/>
+        <location filename="../src/ShowThreadController.cpp" line="102"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="401"/>
-        <location filename="../src/ShowThreadController.cpp" line="438"/>
+        <location filename="../src/ShowThreadController.cpp" line="419"/>
+        <location filename="../src/ShowThreadController.cpp" line="456"/>
         <source>Survey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="436"/>
+        <location filename="../src/ShowThreadController.cpp" line="454"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="479"/>
-        <location filename="../src/ShowThreadController.cpp" line="543"/>
-        <location filename="../src/ShowThreadController.cpp" line="1050"/>
+        <location filename="../src/ShowThreadController.cpp" line="497"/>
+        <location filename="../src/ShowThreadController.cpp" line="561"/>
+        <location filename="../src/ShowThreadController.cpp" line="1068"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

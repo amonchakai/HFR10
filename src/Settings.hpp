@@ -43,6 +43,8 @@ private:
 	static bool m_NotifPink;
 	static bool m_NotifPurple;
 
+	static bool m_MPNotificationUp;
+
 	static QMap<QString, int>   m_TopicTags;
 
 
@@ -92,6 +94,9 @@ public:
 	static void	loadSettings();
 
 	static int getTagValue(const QString& topicID);
+
+	static bool getMPNotificationUp()                     { return m_MPNotificationUp; }
+	static void setMPNotificationUp(bool value)           { m_MPNotificationUp = value; }
 
 public Q_SLOTS:
 	void saveSettings() const;

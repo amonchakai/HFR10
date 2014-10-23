@@ -12,11 +12,12 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
 #include <bb/system/SystemToast>
+#include <bb/platform/Notification>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
 #include  "DataObjects.h"
-
+#include  "Settings.hpp"
 
 
 PrivateMessageController::PrivateMessageController(QObject *parent)
@@ -197,6 +198,7 @@ void PrivateMessageController::parse(const QString &page) {
 	emit complete();
 
 
+	checkforUnreadMP();
 }
 
 void PrivateMessageController::parseMessageListing(bool read, const QString &threadListing) {
@@ -376,5 +378,32 @@ void PrivateMessageController::load() {
 
     } else {
         getMessages();
+    }
+
+    checkforUnreadMP();
+}
+
+
+void PrivateMessageController::checkforUnreadMP() {
+    bool unread = false;
+    for(int i = 0 ; i < m_Datas->size() ; ++i) {
+        if(m_Datas->at(i)->isRead()) {
+            unread = true;
+            break;
+        }
+    }
+
+    qDebug() << "ALL MP READ: " << unread;
+
+    if(!unread) {
+        if(Settings::getMPNotificationUp()) {
+            bb::platform::Notification *notif = new bb::platform::Notification();
+            notif->clearEffectsForAll();
+            notif->deleteLater();
+
+            Settings::setMPNotificationUp(false);
+            Settings s;
+            s.saveSettings();
+        }
     }
 }

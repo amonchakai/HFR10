@@ -25,6 +25,7 @@
 #include <bb/cascades/ColorTheme>
 #include <bb/cascades/Theme>
 #include <bb/system/SystemToast>
+#include <bb/platform/Notification>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
@@ -189,6 +190,23 @@ void ShowThreadController::parse(const QString &page) {
 			lastPageNumber = currentPageNumber;
 
 	}
+
+    // ----------------------------------------------------------------------------------------------
+    // Parse new MP, and notify if needed!
+    QRegExp newMP("Vous avez ([0-9]+) nouveau[x]* message[s]*");
+    newMP.setMinimal(true);
+    if(newMP.indexIn(page) != -1) {
+        if(Settings::getMPNotificationUp) {
+            Settings::setMPNotificationUp(true);
+
+            bb::platform::Notification *notif = new bb::platform::Notification();
+            notif->notify();
+
+            Settings s;
+            s.saveSettings();
+        }
+    }
+
 
 
 	// ----------------------------------------------------------------------------------------------

@@ -24,6 +24,8 @@ bool Settings::m_NotifOrange = false;
 bool Settings::m_NotifPink = false;
 bool Settings::m_NotifPurple = false;
 
+bool Settings::m_MPNotificationUp = false;
+
 QMap<QString, int>   Settings::m_TopicTags;
 
 void Settings::loadSettings() {
@@ -58,6 +60,8 @@ void Settings::loadSettings() {
 		    stream >> value;
 		    m_TopicTags[key] = value;
 	     }
+
+		stream >> m_MPNotificationUp;
 
 		file.close();
 	}
@@ -95,6 +99,8 @@ void Settings::saveSettings() const {
             stream << it.key();
             stream << it.value();
          }
+
+        stream << m_MPNotificationUp;
 
 		file.close();
 	}

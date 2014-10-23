@@ -40,6 +40,7 @@ class PrivateMessageController : public QObject {
 		void deletePrivateMessage(const QString &url);
 		void checkMessageDeleted();
 		void load();
+		void checkforUnreadMP();
 
 
 	// ----------------------------------------------------------------------------------------------
