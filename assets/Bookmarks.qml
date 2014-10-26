@@ -58,6 +58,7 @@ NavigationPane {
                     // view
                     
                     objectName: "listFav"
+                    focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable
                     
                     dataModel: GroupDataModel {
                         id: theModel

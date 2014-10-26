@@ -97,6 +97,7 @@ Page {
             
             // ------------------------------------------------------------------
             // view
+            focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable
             
             dataModel: GroupDataModel {
                 id: theModel
@@ -325,7 +326,8 @@ Page {
         }
     ]
     onCreationCompleted: {
-
+        focusedItem = listCats;
+        focusedItemDepth = 1;
     }
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);

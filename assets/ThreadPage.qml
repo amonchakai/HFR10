@@ -42,12 +42,13 @@ Page {
                 horizontalAlignment: HorizontalAlignment.Fill
                 verticalAlignment: VerticalAlignment.Fill
                 id: scrollView
-                
+                focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable
                 
                 
                 WebView {
                     //visible: false
                     horizontalAlignment: HorizontalAlignment.Fill
+                    focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable
                     
                     html: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "<!DOCTYPE html><html><head><style>body { background-color: #000000; } </style></head><body></body></html>" : "" ;
                                         
@@ -141,8 +142,8 @@ Page {
                     
                     settings.textAutosizingEnabled: false 
                     settings.zoomToFitEnabled: false  
-    
                     
+                                    
                     onLoadProgressChanged: {
                         if(loadProgress < 10) 
                             scrollRequested = 0;
@@ -554,7 +555,6 @@ Page {
                 }
                 
                 scrollView.requestFocus();
-                focusTopicPage = scrollView;
             }
             
         },
@@ -692,6 +692,7 @@ Page {
         contextMenu.isVisible = false;
         showThreadController.setWebView(threadWebView);
         focusedItem = scrollView;
+        focusedItemDepth = 1;
     }
     
     onUrlPageChanged: {

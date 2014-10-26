@@ -254,9 +254,9 @@ void ShowThreadController::parse(const QString &page) {
 	PostDetailItem *item = m_Datas->last();
 
 	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-		item->getPost() += "<br /><br /><div style=\"background-color:#262626; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</div>";
+		item->getPost() += "<br /><br /><p style=\"background-color:#262626; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
 	} else {
-		item->getPost() += "<br /><br /><div style=\"background-color:#f5f5f5; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</div>";
+		item->getPost() += "<br /><br /><p style=\"background-color:#f5f5f5; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
 	}
 
 	updateView();
@@ -829,14 +829,14 @@ void ShowThreadController::updateView() {
 
 
 	    if(Settings::fontSize() != 25) {
-	        htmlTemplate.replace("font-size: 25px;", "font-size: " + QString::number(Settings::fontSize()) + "px;");
+	        htmlTemplate.replace("p { font-size: 25px;", "p { font-size: " + QString::number(Settings::fontSize()) + "px;");
 	    }
 
 
 
 	    QString endTemplate = htmlEndTemplateFile.readAll();
 
-	    QString blackTheme = "";
+	    QString blackTheme = "style=\"font-size:25px; \"";
 	    if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
 	        blackTheme = " style=\"background:#2E2E2E; font-size:25px; \" ";
 	    }
