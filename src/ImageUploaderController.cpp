@@ -61,7 +61,7 @@ void ImageUploaderController::upload(const QString &image) {
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, datas);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
-	connect(reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(uploading(qint64, qint64)));
+	connect(reply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(uploading(qint64, qint64)));
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
 }

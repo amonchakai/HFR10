@@ -99,23 +99,23 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="201"/>
+        <location filename="../assets/ExploreCategory.qml" line="202"/>
         <source>Navigation</source>
         <translation>Navigation</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="204"/>
-        <location filename="../assets/ExploreCategory.qml" line="304"/>
+        <location filename="../assets/ExploreCategory.qml" line="205"/>
+        <location filename="../assets/ExploreCategory.qml" line="322"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="211"/>
+        <location filename="../assets/ExploreCategory.qml" line="212"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="218"/>
+        <location filename="../assets/ExploreCategory.qml" line="219"/>
         <source>Last page read</source>
         <translation>Dernière page lue</translation>
     </message>
@@ -124,17 +124,22 @@
         <translation type="obsolete">Choisissez une sous-catégorie</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="290"/>
+        <location filename="../assets/ExploreCategory.qml" line="295"/>
         <source>Sub-Category</source>
         <translation>Sous-catégorie</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="312"/>
+        <location filename="../assets/ExploreCategory.qml" line="309"/>
+        <source>New topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="330"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="320"/>
+        <location filename="../assets/ExploreCategory.qml" line="338"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
@@ -216,27 +221,27 @@
         <translation>Choisir une image</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="102"/>
+        <location filename="../assets/ImageUploader.qml" line="96"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="122"/>
+        <location filename="../assets/ImageUploader.qml" line="116"/>
         <source>Mini</source>
         <translation>Mini</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="131"/>
+        <location filename="../assets/ImageUploader.qml" line="125"/>
         <source>Preview</source>
         <translation>Preview</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="140"/>
+        <location filename="../assets/ImageUploader.qml" line="134"/>
         <source>Original</source>
         <translation>Originale</translation>
     </message>
     <message>
-        <location filename="../assets/ImageUploader.qml" line="152"/>
+        <location filename="../assets/ImageUploader.qml" line="146"/>
         <source>Upload</source>
         <translation>Upload</translation>
     </message>
@@ -319,47 +324,62 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/PostMessage.qml" line="28"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="33"/>
+        <location filename="../assets/PostMessage.qml" line="33"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="31"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="36"/>
+        <location filename="../assets/PostMessage.qml" line="36"/>
         <source>Send</source>
         <translation>Envoyer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="72"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="86"/>
+        <location filename="../assets/PostMessage.qml" line="86"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="179"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="116"/>
+        <location filename="../assets/PostMessage.qml" line="116"/>
         <source>New MP to: </source>
         <translation>Nouveau MP à : </translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="238"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="121"/>
+        <location filename="../assets/PostMessage.qml" line="121"/>
+        <source>New topic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="408"/>
+        <location filename="../assets/PostMessage.qml" line="408"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="245"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="415"/>
+        <location filename="../assets/PostMessage.qml" line="415"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="252"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="422"/>
+        <location filename="../assets/PostMessage.qml" line="422"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="259"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="429"/>
+        <location filename="../assets/PostMessage.qml" line="429"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="266"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="436"/>
+        <location filename="../assets/PostMessage.qml" line="436"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>
@@ -371,12 +391,12 @@
         <translation type="obsolete">Erreur lors de la publication du post</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="143"/>
+        <location filename="../src/PostMessageController.cpp" line="172"/>
         <source>Too many consecutive replies, please wait 10 minutes</source>
         <translation>Trop de réponses consécutives, veuillez patienter 10 minutes avant de pouvoir reposter ici</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="401"/>
+        <location filename="../src/PostMessageController.cpp" line="509"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
@@ -842,27 +862,32 @@
 <context>
     <name>SmileyPicker</name>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="34"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="67"/>
+        <location filename="../assets/SmileyPicker.qml" line="66"/>
         <source>smiley</source>
         <translation>Smiley</translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="41"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="74"/>
+        <location filename="../assets/SmileyPicker.qml" line="73"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="49"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="82"/>
+        <location filename="../assets/SmileyPicker.qml" line="81"/>
         <source>Search</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="57"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="90"/>
+        <location filename="../assets/SmileyPicker.qml" line="89"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/SmileyPicker.qml" line="65"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="98"/>
+        <location filename="../assets/SmileyPicker.qml" line="97"/>
         <source>Previous page</source>
         <translation>Page précédente</translation>
     </message>
@@ -870,7 +895,7 @@
 <context>
     <name>SmileyPickerController</name>
     <message>
-        <location filename="../src/SmileyPickerController.cpp" line="108"/>
+        <location filename="../src/SmileyPickerController.cpp" line="133"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

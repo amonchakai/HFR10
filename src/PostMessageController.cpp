@@ -15,6 +15,7 @@
 #include <QUrl>
 #include <QRegExp>
 #include <bb/system/SystemToast>
+#include <bb/cascades/Option>
 
 #include "Globals.h"
 #include "Network/HFRNetworkAccessManager.hpp"
@@ -103,6 +104,34 @@ void PostMessageController::postNewPrivateMessage(const QString &hashCheck
 	Q_UNUSED(ok);
 }
 
+void PostMessageController::postNewTopic(         const QString &caption
+                                                , const QString &subcat
+                                                , const QString &message) {
+    const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
+
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    QUrl params;
+    params.addQueryItem("hash_check", m_HashCheck);
+    params.addQueryItem("cat", m_CatID);
+    params.addQueryItem("subcat", subcat);
+    params.addQueryItem("verifrequet", "1100");
+    params.addQueryItem("MsgIcon", "20");
+    params.addQueryItem("pseudo", m_Pseudo);
+    params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
+    params.addQueryItem("sujet", caption);
+    params.addQueryItem("signature", "1");
+
+
+    QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+    bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
+    Q_ASSERT(ok);
+    Q_UNUSED(ok);
+}
+
+
 void PostMessageController::checkReply() {
 	QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
 
@@ -152,6 +181,85 @@ void PostMessageController::errorMessage(const QString &page) {
 	toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
 	toast->show();
 
+}
+
+void PostMessageController::getSubCatsInfo(const QString &url_str) {
+
+    qDebug() << DefineConsts::FORUM_URL + "/hfr/" + url_str.mid(0, url_str.length()-4) + "/nouveau_sujet.htm";
+    const QUrl url(DefineConsts::FORUM_URL + "/hfr/" + url_str.mid(0, url_str.length()-4) + "/nouveau_sujet.htm");
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+    bool ok = connect(reply, SIGNAL(finished()), this, SLOT(getDropdownData()));
+    Q_ASSERT(ok);
+    Q_UNUSED(ok);
+
+}
+
+void PostMessageController::getDropdownData() {
+    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+    QRegExp andAmp("&amp;");
+    QRegExp quote("&#034;");
+    QRegExp euro("&euro;");
+    QRegExp inf("&lt;");
+    QRegExp sup("&gt;");
+
+    m_DropdownSubCatPicker->removeAll();
+
+    QString response;
+    if (reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            const int available = reply->bytesAvailable();
+            if (available > 0) {
+                const QByteArray buffer(reply->readAll());
+                response = QString::fromUtf8(buffer);
+
+                QRegExp dropDown("<option value=\"([0-9]+)\" >([^<]+)</option>");
+                int pos = 0;
+                while((pos = dropDown.indexIn(response, pos)) != -1) {
+                    QString title = dropDown.cap(2);
+                    title.replace(andAmp, "&");
+                    title.replace(quote, "\"");
+                    title.replace(euro, "e");
+                    title.replace(inf, "<");
+                    title.replace(sup, ">");
+
+                    bb::cascades::Option *option = bb::cascades::Option::create().text(title);
+                    option->setValue(dropDown.cap(1));
+
+                    m_DropdownSubCatPicker->add(option);
+
+                    pos += dropDown.matchedLength();
+                }
+
+                QRegExp pseudo("name=\"pseudo\" value=\"([^\"]+)\"");
+                if(pseudo.indexIn(response) != -1)
+                    m_Pseudo = pseudo.cap(1);
+
+
+                QRegExp hash("name=\"hash_check\" value=\"([^\"]+)\"");
+                if(hash.indexIn(response) != -1)
+                    m_HashCheck = hash.cap(1);
+
+                QRegExp cat("name=\"cat\" id=\"catid\" value=\"([^\"]+)\"");
+                if(cat.indexIn(response) != -1)
+                    m_CatID = cat.cap(1);
+
+                qDebug() << m_Pseudo << m_HashCheck << m_CatID;
+
+                emit messageLoaded("");
+
+
+            }
+        } else {
+            connectionTimedOut();
+        }
+
+        reply->deleteLater();
+    }
 }
 
 

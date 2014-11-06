@@ -12,6 +12,8 @@
 #include <QString>
 #include <QReadWriteLock>
 
+#include <bb/cascades/DropDown>
+
 class PostMessageController : public QObject {
 	Q_OBJECT;
 
@@ -35,9 +37,11 @@ private:
 
 	bool    m_MessageBeingPosted;
 
+	bb::cascades::DropDown *m_DropdownSubCatPicker;
+
 public:
 
-	PostMessageController(QObject *parent = 0) : QObject(parent), m_AddSignature(false), m_NBMessages(0), m_MessageBeingPosted(false) {}
+	PostMessageController(QObject *parent = 0) : QObject(parent), m_AddSignature(false), m_NBMessages(0), m_MessageBeingPosted(false), m_DropdownSubCatPicker(NULL) {}
 	virtual ~PostMessageController() {}
 
 
@@ -71,12 +75,20 @@ public Q_SLOTS:
 							 , const QString &dest
 							 , const QString &message);
 
+	void postNewTopic(         const QString &caption
+                             , const QString &subcat
+                             , const QString &message);
 
 	void getEditMessage(const QString &url);
 	void parseEditMessage(const QString &editpage);
 
 	void getQuotedMessages(const QString &url);
 	void parseQuotedMessage(const QString &editpage);
+
+
+	inline void setDropdown(bb::cascades::DropDown *d)              { m_DropdownSubCatPicker = d; }
+	void getSubCatsInfo(const QString &url);
+	void getDropdownData();
 
 
 Q_SIGNALS:

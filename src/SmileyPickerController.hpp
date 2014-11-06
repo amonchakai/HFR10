@@ -11,24 +11,29 @@
 #include <QtCore/QObject>
 #include <QString>
 #include <QList>
+#include <QReadWriteLock>
 
-#include <bb/cascades/WebView>
+#include <bb/cascades/ListView>
+
+class Emoticon;
 
 class SmileyPickerController : public QObject {
 	Q_OBJECT;
 
 	private:
 
-	bb::cascades::WebView 				*m_WebView;
-	QString 							 m_SmileysPage;
-	QString								 m_Page;
+	bb::cascades::ListView 				*m_ListView;
+	QList<Emoticon*>					 m_Emoticons;
+	QString                              m_Page;
 
 	int									 m_lastId;
 	QList<int>							 m_IndexSubpagesInFile;
+	QReadWriteLock                       m_Mutex;
+	bool                                 m_Pushing;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
-		SmileyPickerController(QObject *parent = 0) : QObject(parent), m_WebView(NULL), m_lastId(0) {};
+		SmileyPickerController(QObject *parent = 0);
 		virtual ~SmileyPickerController() {};
 
 
@@ -41,9 +46,11 @@ class SmileyPickerController : public QObject {
 		void getPrevPage();
 
 		void checkReply();
+		void pushToView(Emoticon *e);
 
 
-		inline void setWebView(QObject *webView) 				{m_WebView = dynamic_cast<bb::cascades::WebView*>(webView); }
+		inline void setListView(QObject *listview) 				{m_ListView = dynamic_cast<bb::cascades::ListView*>(listview); }
+		void onImageReady      (const QString &url, const QString &diskPath);
 
 
 
@@ -58,7 +65,7 @@ class SmileyPickerController : public QObject {
 	private:
 
 		void parse(const QString &page, int startingPosition = 0);
-		void updateView(const QString &webpage);
+		void updateView();
 
 };
 

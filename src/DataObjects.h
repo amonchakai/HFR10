@@ -319,4 +319,42 @@ public:
 };
 
 
+// ---------------------------------------------------------------------------------------------
+// Stickers
+
+class Emoticon : public QObject {
+    Q_OBJECT
+
+    Q_PROPERTY( QString localUrl        READ getLocalUrl      WRITE setLocalUrl        NOTIFY localUrlChanged)
+    Q_PROPERTY( QString distlUrl        READ getDistUrl       WRITE setDistUrl         NOTIFY distUrlChanged)
+    Q_PROPERTY( QString tag             READ getTag           WRITE setTag             NOTIFY tagChanged)
+
+private:
+    QString m_LocalUrl;
+    QString m_DistUrl;
+    QString m_Tag;
+
+
+public:
+    Emoticon(QObject *parent = 0) : QObject(parent) {}
+    virtual ~Emoticon() {}
+
+    inline const QString &getLocalUrl() const                    { return m_LocalUrl; }
+    inline void           setLocalUrl(const QString &s)          { m_LocalUrl = s; emit localUrlChanged(); }
+
+    inline const QString &getDistUrl() const                     { return m_DistUrl; }
+    inline void           setDistUrl(const QString &s)           { m_DistUrl = s; emit localUrlChanged(); }
+
+    inline const QString &getTag() const                         { return m_Tag; }
+    inline void           setTag(const QString &c)               { m_Tag = c; emit tagChanged();}
+
+    // ----------------------------------------------------------------------------------------------
+    Q_SIGNALS:
+        void localUrlChanged();
+        void distUrlChanged();
+        void tagChanged();
+
+};
+
+
 #endif /* DATAOBJECTS_H_ */

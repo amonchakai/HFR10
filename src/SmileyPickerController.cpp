@@ -16,62 +16,72 @@
 #include <QRegExp>
 
 #include  "Globals.h"
+#include  "DataObjects.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
+#include  "Network/WebResourceManager.h"
 
 #include <bb/cascades/Application>
 #include <bb/cascades/ThemeSupport>
 #include <bb/cascades/ColorTheme>
 #include <bb/cascades/Theme>
+#include <bb/cascades/AbstractPane>
+#include <bb/cascades/GroupDataModel>
 
 
-static const QString defaultSmiley = QString("<table>")
-										+ "<tr>"
-											+"<td><img src=\"smilies/pfff.gif\" width=\"40%\" height=\"40%\" alt=\":pfff:\" title=\":pfff:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smile.gif\" width=\"40%\" height=\"40%\" alt=\":)\" title=\":)\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"mad.gif\" width=\"40%\" height=\"40%\" alt=\":fou:\" title=\":fou:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/love.gif\" width=\"40%\" height=\"40%\" alt=\":love:\" title=\":love:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"ddr555.gif\" width=\"40%\" height=\"40%\" alt=\"[:ddr555]\" title=\"[:ddr555]\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/ange.gif\" width=\"40%\" height=\"40%\" alt=\":ange:\" title=\":ange:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-										+ "</tr>"
-										+ "<tr>"
-											+"<td><img src=\"frown.gif\" width=\"40%\" height=\"40%\" alt=\":(\" title=\":(\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"confused.gif\" width=\"40%\" height=\"40%\" alt=\":??:\" title=\":??:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/jap.gif\" width=\"40%\" height=\"40%\" alt=\":jap:\" title=\":jap:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/heink.gif\" width=\"40%\" height=\"40%\" alt=\":heink:\" title=\":heink:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"biggrin.gif\" width=\"40%\" height=\"40%\" alt=\":D\" title=\":D\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"tongue.gif\" width=\"40%\" height=\"40%\" alt=\":p\" title=\":p\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-										+ "</tr>"
-										+ "<tr>"
-											+"<td><img src=\"smilies/lol.gif\" width=\"40%\" height=\"40%\" alt=\":lol:\" title=\":lol:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/cry.gif\" width=\"40%\" height=\"40%\" alt=\":cry:\" title=\":cry:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/sleep.gif\" width=\"40%\" height=\"40%\" alt=\":sleep:\" title=\":sleep:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/sweat.gif\" width=\"40%\" height=\"40%\" alt=\":sweat:\" title=\":sweat:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"wink.gif\" width=\"40%\" height=\"40%\" alt=\";)\" title=\";)\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/na.gif\" width=\"40%\" height=\"40%\" alt=\":na:\" title=\":na:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-										+ "</tr>"
-										+ "<tr>"
-											+"<td><img src=\"smilies/wahoo.gif\" width=\"40%\" height=\"40%\" alt=\":wahoo:\" title=\":wahoo:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/bounce.gif\" width=\"40%\" height=\"40%\" alt=\":bounce:\" title=\":bounce:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/ouch.gif\" width=\"40%\" height=\"40%\" alt=\":ouch:\" title=\":ouch:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/sarcastic.gif\" width=\"40%\" height=\"40%\" alt=\":sarcastic:\" title=\":sarcastic:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/kaola.gif\" width=\"40%\" height=\"40%\" alt=\":kaola:\" title=\":kaola:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/sol.gif\" width=\"40%\" height=\"40%\" alt=\":sol:\" title=\":sol:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-										+ "</tr>"
-										+ "<tr>"
-											+"<td><img src=\"smilies/hello.gif\" width=\"40%\" height=\"40%\" alt=\":hello:\" title=\":hello:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/non.gif\" width=\"40%\" height=\"40%\" alt=\":non:\" title=\":non:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/pouah.gif\" width=\"40%\" height=\"40%\" alt=\":pouah:\" title=\":pouah:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/whistle.gif\" width=\"40%\" height=\"40%\" alt=\":whistle:\" title=\":whistle:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"smilies/miam.gif\" width=\"40%\" height=\"40%\" alt=\":miam:\" title=\":miam:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-											+"<td><img src=\"hebe.gif\" width=\"40%\" height=\"40%\" alt=\":hebe:\" title=\":hebe:\" onclick=\"navigator.cascades.postMessage(this.alt)\" /></td>"
-										+ "</tr>"
-								  + "</table>";
+SmileyPickerController::SmileyPickerController(QObject *parent) : QObject(parent), m_ListView(NULL), m_lastId(0), m_Pushing(false) {
+
+    bool check = connect(WebResourceManager::get(), SIGNAL(onImageReady(const QString &, const QString &)), this, SLOT(onImageReady(const QString &, const QString &)));
+    Q_ASSERT(check);
+    Q_UNUSED(check);
+
+};
 
 void SmileyPickerController::loadDefautSmiley() {
-	updateView(defaultSmiley);
+    m_Emoticons.clear();
+
+    Emoticon *e;
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/pfff.gif"); e->setTag(":pfff:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smile.gif");        e->setTag(":)");     m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/mad.gif");          e->setTag(":fou:");  m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/love.gif"); e->setTag(":love:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/ddr555.gif");       e->setTag("[:ddr555]"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/ange.gif"); e->setTag(":ange:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/frown.gif");        e->setTag(":("); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/confused.gif");     e->setTag(":??:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/heink.gif");e->setTag(":heink:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/biggrin.gif");      e->setTag(":D"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/tongue.gif");       e->setTag(":p"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/lol.gif");  e->setTag(":lol:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/cry.gif");  e->setTag(":cry:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/sleep.gif");e->setTag(":sleep:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/sweat.gif");e->setTag(":sweat:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/wink.gif");         e->setTag(";)"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/na.gif");   e->setTag(":na:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/wahoo.gif");e->setTag(":wahoo:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/bounce.gif");e->setTag(":bounce:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/ouch.gif");  e->setTag(":ouch:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/sarcastic.gif"); e->setTag(":sarcastic:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/kaola.gif");  e->setTag(":kaola:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/sol.gif");    e->setTag(":sol:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/hello.gif");  e->setTag(":hello:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/non.gif");    e->setTag(":non:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/pouah.gif");  e->setTag(":pouah:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/whistle.gif");e->setTag(":whistle:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/miam.gif");   e->setTag(":miam:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/hebe.gif");           e->setTag(":hebe:"); m_Emoticons.push_back(e);
+
+    m_Mutex.lockForWrite();
+    m_Pushing = false;
+    m_Mutex.unlock();
+
+    updateView();
 }
 
 void SmileyPickerController::getSmiley(const QString &keyword) {
+
+    if(keyword.isEmpty())
+        return;
+
 	// list green + yellow flags
 	const QUrl url(DefineConsts::FORUM_URL + "/message-smi-mp-aj.php?config=hfr.inc&findsmilies=" + keyword);
 
@@ -83,6 +93,18 @@ void SmileyPickerController::getSmiley(const QString &keyword) {
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
+
+    // ----------------------------------------------------------------------------------------------
+    // get the dataModel of the listview if not already available
+    using namespace bb::cascades;
+
+    if(m_ListView == NULL) {
+        qWarning() << "did not received the listview. quit.";
+        return;
+    }
+
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+    dataModel->clear();
 
 }
 
@@ -102,6 +124,9 @@ void SmileyPickerController::checkReply() {
 				m_IndexSubpagesInFile.clear();
 				m_IndexSubpagesInFile.append(0);
 				m_lastId = 0;
+				m_Mutex.lockForWrite();
+				m_Pushing = true;
+				m_Mutex.unlock();
 				parse(response);
 			}
 		} else {
@@ -116,37 +141,33 @@ void SmileyPickerController::checkReply() {
 
 
 void SmileyPickerController::parse(const QString &page, int startingPosition) {
-	m_SmileysPage = "<table><tr>";
+    m_Emoticons.clear();
 
-	QRegExp smiley("<img.*/>");
-	QRegExp notifRegexp("putSmiley.this.alt,this.src.");
+	QRegExp smiley("<img src=\"([^\"]+)\" alt=\"([^\"]+)\".*/>");
+	qDebug() << "start parsing";
 
 	smiley.setCaseSensitivity(Qt::CaseSensitive);
 	smiley.setMinimal(true);
 
+	int nbSmileyPage = 0;
 	int pos = startingPosition;
-	int rowNb = 0;
-	int colNb = 0;
-	while((pos = smiley.indexIn(page, pos)) != -1 && rowNb < 10 ) {
+	while((pos = smiley.indexIn(page, pos)) != -1 && nbSmileyPage < 60) {
+	    qDebug() << smiley.cap(2);
+	    m_Mutex.lockForWrite();
+	    Emoticon *e = new Emoticon;
+	    e->setTag(smiley.cap(2));
+	    e->setDistUrl(smiley.cap(1));
+	    m_Emoticons.push_back(e);
+	    m_Mutex.unlock();
 
-		if(colNb > 6) {
-			m_SmileysPage += "</tr><tr>";
-			++rowNb;
-			colNb = 0;
-		}
+	    WebResourceManager::get()->getImage(smiley.cap(1));
 
-		m_SmileysPage += "<td>" + page.mid(pos, smiley.matchedLength()).replace(notifRegexp, "navigator.cascades.postMessage(this.alt)") + "</td>";
 
-		++colNb;
 		pos += smiley.matchedLength();
+
+		++nbSmileyPage;
 	}
-
-	for( ; colNb < 6 ; ++colNb)
-		m_SmileysPage += "<td></td>";
-
-	m_SmileysPage += "</tr></table>";
-
-	updateView(m_SmileysPage);
+	qDebug() << "end parsing";
 
 
 	// -------------------------------------------------------------
@@ -174,6 +195,18 @@ void SmileyPickerController::getNextPage() {
 	if(m_IndexSubpagesInFile.length() == 0)
 		return;
 
+    // ----------------------------------------------------------------------------------------------
+    // get the dataModel of the listview if not already available
+    using namespace bb::cascades;
+
+    if(m_ListView == NULL) {
+        qWarning() << "did not received the listview. quit.";
+        return;
+    }
+
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+    dataModel->clear();
+
 	m_lastId = std::min(m_lastId+1, m_IndexSubpagesInFile.length()-1);
 
 	parse(m_Page, m_IndexSubpagesInFile[m_lastId]);
@@ -183,31 +216,135 @@ void SmileyPickerController::getPrevPage() {
 	if(m_IndexSubpagesInFile.length() == 0)
 		return;
 
+    // ----------------------------------------------------------------------------------------------
+    // get the dataModel of the listview if not already available
+    using namespace bb::cascades;
+
+    if(m_ListView == NULL) {
+        qWarning() << "did not received the listview. quit.";
+        return;
+    }
+
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+    dataModel->clear();
+
 	m_lastId = std::max(m_lastId-1, 0);
 
 	parse(m_Page, m_IndexSubpagesInFile[m_lastId]);
 }
 
 
-void SmileyPickerController::updateView(const QString &webpage) {
-	if(m_WebView == NULL) {
-		qWarning() << "error webview was not provided or not a webview";
-		return;
-	}
+void SmileyPickerController::updateView() {
+    // ----------------------------------------------------------------------------------------------
+    // get the dataModel of the listview if not already available
+    using namespace bb::cascades;
+
+    if(m_ListView == NULL) {
+        qWarning() << "did not received the listview. quit.";
+        return;
+    }
+
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+    if (dataModel) {
+        dataModel->clear();
+    } else {
+        qDebug() << "create new model";
+        dataModel = new GroupDataModel(
+                QStringList() << "tag"
+                              << "localUrl"
+                 );
+        m_ListView->setDataModel(dataModel);
+    }
+
+    // ----------------------------------------------------------------------------------------------
+    // push data to the view
+
+    QList<QObject*> datas;
+    for(int i = 0 ; i < m_Emoticons.size() ; ++i) {
+
+        Emoticon *e = new Emoticon;
+        e->setLocalUrl(m_Emoticons.at(i)->getLocalUrl());
+        e->setTag(m_Emoticons.at(i)->getTag());
+        datas.push_back(e);
+
+    }
+
+    dataModel->clear();
+    dataModel->insertList(datas);
 
 
-	QString colorHandling = "} ";
-	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-		colorHandling = "background-color:#000000; color:#FFFFFF; } ";
-	}
+}
 
-	m_WebView->setHtml(QString("<!DOCTYPE html><html><head><style type=\"text/css\">")
-				+ "table {table-layout:fixed; width: 800px; border-spacing: 30px; } th {text-align:left; text-decoration:underline;} td {width: 30px; overflow: hidden; }"	// render quotation table
-	            + "body {font-size:25px; " + colorHandling  // switch webview color based on theme
-	            + "p {font-size:25px;} "
-			+ "</style>"
-			+ "</head><body>"
-			+ "<center>" + webpage + "</center></body></html>", QUrl("local:///assets/images/smiley/"));
+
+
+void SmileyPickerController::onImageReady(const QString &url, const QString &diskPath) {
+
+    m_Mutex.lockForWrite();
+    if(!m_Pushing) {
+        m_Mutex.unlock();
+        return;
+    }
+    m_Mutex.unlock();
+
+
+    if(diskPath == "loading")
+        return;
+
+    if(url[0] == '/')
+        return;
+
+    qDebug() << url << diskPath;
+
+    m_Mutex.lockForWrite();
+    Emoticon *e = NULL;
+    bool alreadyLoaded = false;
+    for(int i = 0 ; i < m_Emoticons.size() ; ++i) {
+        if(m_Emoticons.at(i)->getDistUrl() == url) {
+            if(m_Emoticons.at(i)->getLocalUrl().isEmpty())
+                m_Emoticons.at(i)->setLocalUrl(diskPath);
+            else
+                alreadyLoaded = true;
+            e = m_Emoticons[i];
+            break;
+        }
+    }
+
+    if(!alreadyLoaded)
+        pushToView(e);
+
+    m_Mutex.unlock();
+
+}
+
+void SmileyPickerController::pushToView(Emoticon *e) {
+    if(e == NULL)
+        return;
+
+    // ----------------------------------------------------------------------------------------------
+        // get the dataModel of the listview if not already available
+        using namespace bb::cascades;
+
+        if(m_ListView == NULL) {
+            qWarning() << "did not received the listview. quit.";
+            return;
+        }
+
+        GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+        if (!dataModel) {
+
+            qDebug() << "create new model";
+            dataModel = new GroupDataModel(
+                    QStringList() << "tag"
+                                  << "localUrl"
+                     );
+            m_ListView->setDataModel(dataModel);
+        }
+
+        // ----------------------------------------------------------------------------------------------
+        // push data to the view
+
+        dataModel->insert(e);
+
 }
 
 

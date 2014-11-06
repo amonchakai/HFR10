@@ -10,6 +10,7 @@ Page {
     property int 	 flagType
     property int     subCatIndex
     property variant tpage
+    property variant createPage
     property variant subCatPickerPage
         
     titleBar: TitleBar {
@@ -282,6 +283,10 @@ Page {
         ComponentDefinition {
             id: subcatPicker
             source: "SubCategoryPicker.qml"
+        },
+        ComponentDefinition {
+            id: postMessage
+            source: "PostMessage.qml"
         }
     ] 
     
@@ -298,6 +303,19 @@ Page {
                 listTopic = listCats;
                 nav.push(subCatPickerPage);
                 // pickSubCat.show();
+            }
+        },
+        ActionItem {
+            title: qsTr("New topic")
+            imageSource: "asset:///images/icon_write.png"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            onTriggered: {
+                if(!createPage)
+                    createPage = postMessage.createObject();
+                createPage.subcatxml = subCatXml;
+                createPage.mode = 5;
+                createPage.update = true;
+                nav.push(createPage);
             }
         },
         ActionItem {

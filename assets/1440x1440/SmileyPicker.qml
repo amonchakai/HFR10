@@ -36,10 +36,10 @@ Page {
                             id: avatarImg
                             scalingMethod: ScalingMethod.AspectFit
                             image: tracker.image
-                            minHeight: tracker.height*2
-                            maxHeight: tracker.height*2
-                            minWidth: tracker.width*2
-                            maxWidth: tracker.width*2
+                            minHeight: tracker.height*3
+                            maxHeight: tracker.height*3
+                            minWidth: tracker.width*3
+                            maxWidth: tracker.width*3
                             
                             attachedObjects: [
                                 NetImageTracker {
@@ -59,6 +59,7 @@ Page {
                 nav.pop();
             }
         }   
+        
         
         TextField {
             id: searchField

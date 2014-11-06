@@ -72,13 +72,7 @@ Page {
                 }
             }
             
-            ImageView {
-                id: preview
-                accessibility.name: "preview"
-                horizontalAlignment: HorizontalAlignment.Center
-                scalingMethod: ScalingMethod.AspectFill
-            }
-            
+                       
             Container {
                 id: actionGroup
                 visible: false
@@ -159,6 +153,13 @@ Page {
                 }
             }
             
+            ImageView {
+                id: preview
+                accessibility.name: "preview"
+                horizontalAlignment: HorizontalAlignment.Center
+                scalingMethod: ScalingMethod.AspectFill
+            }
+            
             onCreationCompleted: {
                 uploadButton.enabled = false;
                 actionGroup.visible = false;
@@ -186,7 +187,8 @@ Page {
                     id: uploader 
                     
                     onComplete: {
-                        preview.preferredHeight = 160;
+                        preview.preferredHeight = 500;
+                        preview.scalingMethod = ScalingMethod.AspectFit
                         uploadButton.enabled = false;
                         actionGroup.visible = true;
                         uploadingProgress.visible = false;

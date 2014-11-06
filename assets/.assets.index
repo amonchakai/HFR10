@@ -1,5 +1,7 @@
 1
-182
+190
+1440x1440/PostMessage.qml
+1440x1440/SmileyPicker.qml
 Bookmarks.qml
 ColorManagement.qml
 ColorPicker.qml
@@ -21,6 +23,7 @@ images/icon_bold.svg
 images/icon_bold_black.png
 images/icon_bottom.png
 images/icon_browse.png
+images/icon_browse_black.png
 images/icon_BW.png
 images/icon_category.png
 images/icon_category.svg
@@ -44,6 +47,7 @@ images/icon_global.gif
 images/icon_global.svg
 images/icon_global2.png
 images/icon_home.png
+images/icon_home_black.png
 images/icon_image.png
 images/icon_image_white.png
 images/icon_italic.png
@@ -52,9 +56,11 @@ images/icon_more.png
 images/icon_mp.png
 images/icon_next.png
 images/icon_next_all.png
+images/icon_next_black.png
 images/icon_pen.png
 images/icon_prev.png
 images/icon_prev_all.png
+images/icon_prev_black.png
 images/icon_quote.png
 images/icon_quote.svg
 images/icon_quote_bis - copie.png
@@ -65,6 +71,8 @@ images/icon_quoted.png
 images/icon_quoted_white.png
 images/icon_refresh - copie.png
 images/icon_refresh.png
+images/icon_refresh2.png
+images/icon_refresh_black.png
 images/icon_settings.png
 images/icon_top.png
 images/icon_top.svg
