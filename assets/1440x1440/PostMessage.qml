@@ -258,7 +258,7 @@ Page {
             ListView {
                 id: smileyPickerList
                 layout: GridListLayout {
-                    columnCount: 5
+                    columnCount: 9
                 }
                 dataModel: GroupDataModel {
                     id: theModel
@@ -296,7 +296,7 @@ Page {
                 
                 onTriggered: {
                     var chosenItem = dataModel.data(indexPath);
-                    message.text = message.text  + chosenItem.tag;
+                    message.text = message.text.substring(0, message.editor.cursorPosition)  + " " + chosenItem.tag + " " + message.text.substring(message.editor.cursorPosition);
                     toogleEmoji();
                 }
             }
@@ -326,6 +326,7 @@ Page {
                     preferredWidth: 80
                     onClicked: {
                         smileyPickerController.getSmiley(searchField.text);
+                        smileyPickerList.layout.columnCount = 5;
                     }
                 }
                 ImageButton {
@@ -333,6 +334,7 @@ Page {
                     preferredWidth: 80
                     onClicked: {
                         smileyPickerController.loadDefautSmiley();
+                        smileyPickerList.layout.columnCount = 9;
                     }
                 }
                 ImageButton {
@@ -352,7 +354,7 @@ Page {
     
     function toogleEmoji() {
         if(emoticonsPicker.preferredHeight == 0) {
-            emoticonsPicker.preferredHeight=550;
+            emoticonsPicker.preferredHeight=500;
             controlContainer.visible = true;
         } else {
             emoticonsPicker.preferredHeight=0;

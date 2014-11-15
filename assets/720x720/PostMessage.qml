@@ -147,7 +147,10 @@ Page {
                 defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ? "asset:///images/blackFace.png" : "asset:///images/whiteFace.png";
                 verticalAlignment: VerticalAlignment.Center
                 onClicked: {
-                    toogleEmoji();
+                    //toogleEmoji();
+                    if(!tpage)
+                        tpage = smileyPicker.createObject(0);
+                    nav.push(tpage);
                 }
             }
             Container {
@@ -254,7 +257,7 @@ Page {
                 }
             ]
             
-            
+            /*
             ListView {
                 id: smileyPickerList
                 layout: GridListLayout {
@@ -312,7 +315,7 @@ Page {
                 ImageButton {
                     id: prev
                     defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ? "asset:///images/icon_prev_black.png" : "asset:///images/icon_prev.png" 
-                    preferredWidth: 80
+                    preferredWidth: 60
                     onClicked: {
                         smileyPickerController.getPrevPage();
                     }
@@ -323,7 +326,7 @@ Page {
                 ImageButton {
                     id: search
                     defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ? "asset:///images/icon_refresh_black.png" :  "asset:///images/icon_refresh2.png"
-                    preferredWidth: 80
+                    preferredWidth: 60
                     onClicked: {
                         smileyPickerController.getSmiley(searchField.text);
                         smileyPickerList.layout.columnCount = 5;
@@ -331,7 +334,7 @@ Page {
                 }
                 ImageButton {
                     defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ? "asset:///images/icon_home_black.png" : "asset:///images/icon_home.png"
-                    preferredWidth: 80
+                    preferredWidth: 60
                     onClicked: {
                         smileyPickerController.loadDefautSmiley();
                         smileyPickerList.layout.columnCount = 7;
@@ -340,13 +343,14 @@ Page {
                 ImageButton {
                     id: next
                     defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ? "asset:///images/icon_next_black.png" : "asset:///images/icon_next.png"
-                    preferredWidth: 80
+                    preferredWidth: 60
                     onClicked: {
                         smileyPickerController.getNextPage();
                     }
                 }
             
             }    
+*/
         }
         
         
@@ -354,7 +358,7 @@ Page {
     
     function toogleEmoji() {
         if(emoticonsPicker.preferredHeight == 0) {
-            emoticonsPicker.preferredHeight=350;
+            emoticonsPicker.preferredHeight=200;
             controlContainer.visible = true;
         } else {
             emoticonsPicker.preferredHeight=0;
