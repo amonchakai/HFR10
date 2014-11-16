@@ -192,17 +192,18 @@ void ListFavoriteController::parse(const QString &page) {
 
 
 	QList<int> indexCategories;
-	QList<QString> categoriesLabels;
 
+
+	m_CategoriesLabels.clear();
 	int pos = 0;
 	while((pos = regexp.indexIn(page, pos)) != -1) {
 		pos += regexp.matchedLength();
 		indexCategories.push_back(pos);					// Store position of each category into the stream
 
 		QString s(regexp.cap(1)); s.replace(andAmp, "&");
-		categoriesLabels.push_back(s);		// Store the matching label
-	}
+		m_CategoriesLabels.push_back(s);		// Store the matching label
 
+	}
 
 	// Get favorite topics
 	regexp = QRegExp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
@@ -221,6 +222,7 @@ void ListFavoriteController::parse(const QString &page) {
 	int lastPos = regexp.indexIn(page, pos);
 	QString caption;
 	QString category;
+	int     groupKey = 0;
 	QString urlFirstPage;
 
 	if(lastPos != -1) {
@@ -236,7 +238,10 @@ void ListFavoriteController::parse(const QString &page) {
 
 		lastPos += regexp.matchedLength();
 		for( ; catIndex < indexCategories.length() && lastPos > indexCategories[catIndex] ; ++catIndex) {}
-		category = categoriesLabels[catIndex-1];
+		category = m_CategoriesLabels[catIndex-1];
+		groupKey = catIndex-1;
+
+		qDebug() << category << groupKey;
 
 	}
 
@@ -244,11 +249,14 @@ void ListFavoriteController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);
+		parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today, groupKey);
 
 		catIndex = 0;
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}
-		category = categoriesLabels[catIndex-1];
+		category = m_CategoriesLabels[catIndex-1];
+		groupKey = catIndex-1;
+
+		qDebug() << category << groupKey;
 
 		lastPos = pos;
 		caption = regexp.cap(3);
@@ -261,7 +269,7 @@ void ListFavoriteController::parse(const QString &page) {
 		urlFirstPage = regexp.cap(2);
 		urlFirstPage.replace(andAmp, "&");
 	}
-	parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today);
+	parseThreadListing(category, caption, urlFirstPage, page.mid(lastPos, pos-lastPos), today, groupKey);
 
 
 	QRegExp hashCheckRegExp("name=\"hash_check\" value=\"([0-9a-zA-Z]+)\"");
@@ -276,7 +284,7 @@ void ListFavoriteController::parse(const QString &page) {
 
 }
 
-void ListFavoriteController::parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today) {
+void ListFavoriteController::parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today, int groupKey) {
 	//						   + ".*<td class=\"sujetCase4\"><a href=\"(.+)\" class=\"cCatTopic\">"		// link to first post
 	//						   + "([0-9]+)</a></td>"													// overall number of pages
 	//						   + ".*<td class=\"sujetCase5\"><a href=\"(.+)\"><img src"					// index to last read post
@@ -347,6 +355,8 @@ void ListFavoriteController::parseThreadListing(const QString &category, const Q
 	    item->setColor(0);
 	}
 
+	item->setGroupKey(groupKey);
+
 	m_Datas->append(item);
 
 }
@@ -379,6 +389,7 @@ void ListFavoriteController::updateView() {
 							  << "flagType"
 							  << "read"
 							  << "color"
+							  << "groupKey"
 				);
 		m_ListView->setDataModel(dataModel);
 	}
@@ -446,6 +457,27 @@ void ListFavoriteController::load() {
         if(m_Datas->empty()) {
             getFavorite();
         } else {
+            // --------------------------------------------------------
+            // rebuild category index.
+
+            m_CategoriesLabels.clear();
+            int nbCats = 0;
+            for(int i = 0 ; i < m_Datas->size() ; ++i) {
+                nbCats = std::max(m_Datas->at(i)->getGroupKey(), nbCats);
+            }
+
+            for(int i = 0 ; i < nbCats+1 ; ++i)
+                m_CategoriesLabels.push_back("");
+
+            for(int i = 0 ; i < m_Datas->size() ; ++i) {
+                qDebug() << m_Datas->at(i)->getGroupKey() << m_Datas->at(i)->getCategory();
+                if(m_Datas->at(i)->getGroupKey() < m_CategoriesLabels.size())
+                    m_CategoriesLabels[m_Datas->at(i)->getGroupKey()] = m_Datas->at(i)->getCategory();
+            }
+
+            for(int i = 0 ; i < nbCats ; ++i)
+                qDebug() << i << m_CategoriesLabels[i];
+
             emit complete();
             updateView();
         }

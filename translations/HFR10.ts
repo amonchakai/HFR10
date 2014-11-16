@@ -173,7 +173,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="302"/>
+        <location filename="../assets/Favorite.qml" line="306"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>

@@ -11,6 +11,7 @@
 
 #include <QtCore/QObject>
 #include <bb/cascades/ListView>
+#include <QMap>
 
 class ThreadListItem;
 
@@ -22,6 +23,7 @@ class ListFavoriteController : public QObject {
 		bb::cascades::ListView   *m_ListView;
 		QList<ThreadListItem*>   *m_Datas;
 		QString                   m_HashCheck;
+		QList<QString>            m_CategoriesLabels;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -40,6 +42,8 @@ class ListFavoriteController : public QObject {
 		void deleteFlag(const QString &url);
 		void load();
 
+		inline const QString getCatCaption(int index)      {if(index < m_CategoriesLabels.length()) return m_CategoriesLabels.at(index); else return "";}
+
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
 	    void loading();
@@ -52,7 +56,7 @@ class ListFavoriteController : public QObject {
 	private:
 
 		void parse(const QString &page);
-		void parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today);
+		void parseThreadListing(const QString &category, const QString &caption, const QString &urlFirstPage, const QString &threadListing, const QString &today, int groupKey);
 
 
 		void checkErrorMessage(const QString &page);

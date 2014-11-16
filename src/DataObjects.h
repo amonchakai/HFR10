@@ -25,6 +25,7 @@ class ThreadListItem : public QObject {
 
 	Q_PROPERTY( QString title 		READ getTitle      	WRITE setTitle        NOTIFY titleChanged)
 	Q_PROPERTY( QString category  	READ getCategory   	WRITE setCategory     NOTIFY categoryChanged)
+	Q_PROPERTY( int     groupKey    READ getGroupKey    WRITE setGroupKey     NOTIFY groupKeyChanged)
 	Q_PROPERTY( QString timestamp 	READ getTimestamp 	WRITE setTimestamp    NOTIFY timestampChanged)
 	Q_PROPERTY( QString lastAuthor  READ getLastAuthor  WRITE setLastAuthor   NOTIFY lastAuthorChanged)
 	Q_PROPERTY( QString pages		READ getPages       WRITE setPages   	  NOTIFY pagesChanged)
@@ -41,6 +42,7 @@ class ThreadListItem : public QObject {
 private:
 	QString m_Title;
 	QString m_Category;
+	int     m_GroupKey;
 	QString m_Timestamp;
 	QString m_DetailedTimestamp;
 	QString m_LastAuthor;
@@ -68,6 +70,8 @@ public:
 	inline const QString &getCategory() const				{ return m_Category; }
 	inline void			  setCategory(const QString &c)		{ m_Category = c; emit categoryChanged();}
 
+	inline int            getGroupKey() const               { return m_GroupKey; }
+    inline void           setGroupKey(int c)                { m_GroupKey = c; emit groupKeyChanged();}
 
 	inline const QString &getTimestamp() const				{ return m_Timestamp; }
 	inline void			  setTimestamp(const QString &c)	{ m_Timestamp = c; emit timestampChanged(); }
@@ -102,6 +106,7 @@ public:
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
 		void titleChanged();
+		void groupKeyChanged();
 		void categoryChanged();
 		void timestampChanged();
 		void lastAuthorChanged();
@@ -128,6 +133,7 @@ inline QDataStream &operator<<(QDataStream& stream, const ThreadListItem& thread
     stream << threadListItem.getFlagType();
     stream << (int) threadListItem.isRead();
     stream << threadListItem.getColor();
+    stream << threadListItem.getGroupKey();
 
     return stream;
 }
@@ -149,6 +155,7 @@ inline QDataStream &operator>>(QDataStream& stream, ThreadListItem& threadListIt
     stream >> tempInt; threadListItem.setFlagType(tempInt);
     stream >> tempInt; threadListItem.setRead(tempInt);
     stream >> tempInt; threadListItem.setColor(tempInt);
+    stream >> tempInt; threadListItem.setGroupKey(tempInt);
 
     return stream;
 }

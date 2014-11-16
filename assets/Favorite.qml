@@ -75,7 +75,7 @@ NavigationPane {
     	            
     	            dataModel: GroupDataModel {
     	                id: theModel
-    	                sortingKeys: ["category"]
+                        sortingKeys: ["groupKey"]
     	                
                         property bool empty: true
                         
@@ -94,7 +94,7 @@ NavigationPane {
     	                ListItemComponent {
     	                    type: "header"
     	                    Header {
-    	                        title: ListItemData
+                                title: ListItem.view.indexToCatName(parseInt(ListItemData))
     	                    }
     	                },
     	                ListItemComponent {
@@ -230,6 +230,10 @@ NavigationPane {
     	                }
     	            ]
     	            
+                    function indexToCatName(index) {
+                        return listFavoriteController.getCatCaption(index);
+                    }
+                    
                     function gotoPage(urlFirstPage, titleTopic) {
                         if(!tpage) {
                             tpage = threadPage.createObject();
