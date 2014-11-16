@@ -1151,53 +1151,53 @@
         <translation type="obsolete">Supprimer post</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="601"/>
+        <location filename="../assets/ThreadPage.qml" line="598"/>
         <source>Friendly warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="602"/>
+        <location filename="../assets/ThreadPage.qml" line="599"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="613"/>
+        <location filename="../assets/ThreadPage.qml" line="610"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="634"/>
+        <location filename="../assets/ThreadPage.qml" line="631"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="643"/>
+        <location filename="../assets/ThreadPage.qml" line="640"/>
         <source>Last page</source>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="652"/>
+        <location filename="../assets/ThreadPage.qml" line="649"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="553"/>
-        <location filename="../assets/ThreadPage.qml" line="662"/>
+        <location filename="../assets/ThreadPage.qml" line="550"/>
+        <location filename="../assets/ThreadPage.qml" line="659"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="550"/>
+        <location filename="../assets/ThreadPage.qml" line="547"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="672"/>
+        <location filename="../assets/ThreadPage.qml" line="669"/>
         <source>To Top</source>
         <translation>Haut de page</translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="679"/>
+        <location filename="../assets/ThreadPage.qml" line="676"/>
         <source>To Bottom</source>
         <translation>Bas de page</translation>
     </message>

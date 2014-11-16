@@ -59,13 +59,14 @@ Page {
                     onNavigationRequested: {
                         if(request.navigationType != WebNavigationType.Other) {
                             request.action = WebNavigationRequestAction.Ignore;
-                            
+                                                        
                             if(request.url.toString().substr(0,31) == "http://forum.hardware.fr/forum2") {
-                                pageContainer.redirectWithinApp(request.url.toString().substring(24));
+                                pageContainer.pushNewUrl(request.url.toString().substring(24));
                             } else {
+                                
                                 var urlTopic = RegExp("sujet_[0-9]+_[0-9]+.htm")
                                 if(urlTopic.test(request.url.toString()))
-                                    pageContainer.redirectWithinApp(request.url.toString().substring(24));
+                                    pageContainer.pushNewUrl(request.url.toString().substring(24));
                                 else {
                                     var urlImg = RegExp(".jpg");
                                     var urlImgPng = RegExp(".png");
@@ -524,10 +525,6 @@ Page {
         
         function notifyWebViewLoaded() {
             showThreadController.notifyItemLoaded();
-        }
-        
-        function redirectWithinApp(newUrl) {
-            urlPage = newUrl;
         }
         
         function showPictureViewer(imageUrl) {
