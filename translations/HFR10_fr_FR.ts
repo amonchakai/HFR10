@@ -359,37 +359,37 @@
         <translation type="unfinished">Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="410"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="417"/>
         <location filename="../assets/720x720/PostMessage.qml" line="414"/>
-        <location filename="../assets/PostMessage.qml" line="410"/>
+        <location filename="../assets/PostMessage.qml" line="417"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="417"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="424"/>
         <location filename="../assets/720x720/PostMessage.qml" line="421"/>
-        <location filename="../assets/PostMessage.qml" line="417"/>
+        <location filename="../assets/PostMessage.qml" line="424"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="424"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="431"/>
         <location filename="../assets/720x720/PostMessage.qml" line="428"/>
-        <location filename="../assets/PostMessage.qml" line="424"/>
+        <location filename="../assets/PostMessage.qml" line="431"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="431"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="438"/>
         <location filename="../assets/720x720/PostMessage.qml" line="435"/>
-        <location filename="../assets/PostMessage.qml" line="431"/>
+        <location filename="../assets/PostMessage.qml" line="438"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="438"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="445"/>
         <location filename="../assets/720x720/PostMessage.qml" line="442"/>
-        <location filename="../assets/PostMessage.qml" line="438"/>
+        <location filename="../assets/PostMessage.qml" line="445"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>
@@ -878,26 +878,26 @@
         <translation>Smiley</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/SmileyPicker.qml" line="74"/>
-        <location filename="../assets/SmileyPicker.qml" line="73"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="81"/>
+        <location filename="../assets/SmileyPicker.qml" line="80"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/SmileyPicker.qml" line="82"/>
-        <location filename="../assets/SmileyPicker.qml" line="81"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="89"/>
+        <location filename="../assets/SmileyPicker.qml" line="88"/>
         <source>Search</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/SmileyPicker.qml" line="90"/>
-        <location filename="../assets/SmileyPicker.qml" line="89"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="97"/>
+        <location filename="../assets/SmileyPicker.qml" line="96"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/SmileyPicker.qml" line="98"/>
-        <location filename="../assets/SmileyPicker.qml" line="97"/>
+        <location filename="../assets/1440x1440/SmileyPicker.qml" line="105"/>
+        <location filename="../assets/SmileyPicker.qml" line="104"/>
         <source>Previous page</source>
         <translation>Page précédente</translation>
     </message>

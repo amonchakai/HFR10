@@ -319,6 +319,13 @@ Page {
                 }
                 TextField {
                     id: searchField
+                    inputMode: TextFieldInputMode.Chat
+                    input {
+                        submitKey: SubmitKey.Send
+                        onSubmitted: {
+                            smileyPickerController.getSmiley(searchField.text);
+                        }
+                    }
                 }
                 ImageButton {
                     id: search
@@ -473,7 +480,7 @@ Page {
         if(smileyToAdd == "")
         	return;
         	
-        message.editor.insertPlainText(smileyToAdd);
+        message.text = message.text.substring(0, message.editor.cursorPosition)  + " " + smileyToAdd + " " + message.text.substring(message.editor.cursorPosition);
         
     }
     

@@ -66,6 +66,13 @@ Page {
             verticalAlignment: VerticalAlignment.Bottom
             hintText:  qsTr("smiley")
             horizontalAlignment: HorizontalAlignment.Left
+            inputMode: TextFieldInputMode.Chat
+            input {
+                submitKey: SubmitKey.Send
+                onSubmitted: {
+                    smileyPickerController.getSmiley(searchField.text);
+                }
+            }
         }
     }
     

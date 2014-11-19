@@ -475,9 +475,6 @@ void ListFavoriteController::load() {
                     m_CategoriesLabels[m_Datas->at(i)->getGroupKey()] = m_Datas->at(i)->getCategory();
             }
 
-            for(int i = 0 ; i < nbCats ; ++i)
-                qDebug() << i << m_CategoriesLabels[i];
-
             emit complete();
             updateView();
         }

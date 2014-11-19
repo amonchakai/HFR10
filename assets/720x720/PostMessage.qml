@@ -477,7 +477,7 @@ Page {
         if(smileyToAdd == "")
         	return;
         	
-        message.editor.insertPlainText(smileyToAdd);
+        message.text = message.text.substring(0, message.editor.cursorPosition)  + " " + smileyToAdd + " " + message.text.substring(message.editor.cursorPosition);
         
     }
     
