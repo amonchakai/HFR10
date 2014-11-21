@@ -43,7 +43,7 @@ NavigationPane {
 	                            horizontalAlignment: HorizontalAlignment.Fill
 	                            
 	                            Container {
-	                                preferredWidth: 8
+	                                preferredWidth: 4
 	                            }
 	                            
 	                            Label {

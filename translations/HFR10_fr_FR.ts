@@ -359,35 +359,35 @@
         <translation type="unfinished">Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="418"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="423"/>
         <location filename="../assets/720x720/PostMessage.qml" line="414"/>
         <location filename="../assets/PostMessage.qml" line="418"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="425"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="430"/>
         <location filename="../assets/720x720/PostMessage.qml" line="421"/>
         <location filename="../assets/PostMessage.qml" line="425"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="432"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="437"/>
         <location filename="../assets/720x720/PostMessage.qml" line="428"/>
         <location filename="../assets/PostMessage.qml" line="432"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="439"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="444"/>
         <location filename="../assets/720x720/PostMessage.qml" line="435"/>
         <location filename="../assets/PostMessage.qml" line="439"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="446"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="451"/>
         <location filename="../assets/720x720/PostMessage.qml" line="442"/>
         <location filename="../assets/PostMessage.qml" line="446"/>
         <source>Underline</source>
@@ -905,7 +905,7 @@
 <context>
     <name>SmileyPickerController</name>
     <message>
-        <location filename="../src/SmileyPickerController.cpp" line="133"/>
+        <location filename="../src/SmileyPickerController.cpp" line="134"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

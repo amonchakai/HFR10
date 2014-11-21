@@ -315,6 +315,7 @@ Page {
                     preferredWidth: 80
                     onClicked: {
                         smileyPickerController.getPrevPage();
+                        smileyPickerList.requestFocus();
                     }
                 }
                 TextField {
@@ -325,6 +326,7 @@ Page {
                         onSubmitted: {
                             smileyPickerController.getSmiley(searchField.text);
                             smileyPickerList.layout.columnCount = 5;
+                            smileyPickerList.requestFocus();
                         }
                     }
                 }
@@ -335,6 +337,7 @@ Page {
                     onClicked: {
                         smileyPickerController.getSmiley(searchField.text);
                         smileyPickerList.layout.columnCount = 5;
+                        smileyPickerList.requestFocus();
                     }
                 }
                 ImageButton {
@@ -343,6 +346,7 @@ Page {
                     onClicked: {
                         smileyPickerController.loadDefautSmiley();
                         smileyPickerList.layout.columnCount = 9;
+                        smileyPickerList.requestFocus();
                     }
                 }
                 ImageButton {
@@ -351,6 +355,7 @@ Page {
                     preferredWidth: 80
                     onClicked: {
                         smileyPickerController.getNextPage();
+                        smileyPickerList.requestFocus();
                     }
                 }
             

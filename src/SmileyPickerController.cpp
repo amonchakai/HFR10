@@ -72,6 +72,7 @@ void SmileyPickerController::loadDefautSmiley() {
 
     m_Mutex.lockForWrite();
     m_Pushing = false;
+    m_Page = "";
     m_Mutex.unlock();
 
     updateView();
@@ -195,6 +196,9 @@ void SmileyPickerController::getNextPage() {
 	if(m_IndexSubpagesInFile.length() == 0)
 		return;
 
+	if(m_Page.isEmpty())
+	    return;
+
     // ----------------------------------------------------------------------------------------------
     // get the dataModel of the listview if not already available
     using namespace bb::cascades;
@@ -215,6 +219,9 @@ void SmileyPickerController::getNextPage() {
 void SmileyPickerController::getPrevPage() {
 	if(m_IndexSubpagesInFile.length() == 0)
 		return;
+
+	if(m_Page.isEmpty())
+	    return;
 
     // ----------------------------------------------------------------------------------------------
     // get the dataModel of the listview if not already available
