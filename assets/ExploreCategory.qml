@@ -116,6 +116,9 @@ Page {
                     type: "item"
                     
                     Container {
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        }
                         id: titleContainer
                         function typeFromReadStatus(read) {
                             if(read)
@@ -124,78 +127,86 @@ Page {
                                 return FontWeight.Normal;
                         }
                         
-                        layout: StackLayout {
-                            orientation: LayoutOrientation.TopToBottom
-                        }
-                        verticalAlignment: VerticalAlignment.Top
-                        Label {
-                            text: ListItemData.title
-                            textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
-                        }
-                        
                         Container {
-                            layout: DockLayout {
-                            }
-                            horizontalAlignment: HorizontalAlignment.Fill
-                            
-                            Label {
-                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
-                                horizontalAlignment: HorizontalAlignment.Right
-                                textStyle {
-                                    base: SystemDefaults.TextStyles.SmallText
-                                    color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df")  : Color.Blue
-                                }
-                            }
-                            Container {
-                                id: pageNumContainter
-                                
-                                // ---------------------------------------------------------------
-                                // layout functions...
-                                
-                                function getFlag(flagCode) {
-                                    switch(flagCode) {
-                                        case 0:
-                                            return "";
-                                            
-                                        case 1:
-                                            return "asset:///images/icon_drap_participe.gif"
-                                            
-                                        case 2:
-                                            return "asset:///images/icon_drap_lecture.gif"
-                                            
-                                        case 3:
-                                            return "asset:///images/icon_favori.gif"
-                                            
-                                    }
-                                    return "";
-                                
-                                }
-                                
-                                
-                                // ---------------------------------------------------------------
-                                // list item itself...
+                            preferredWidth: 8
+                        }
 
+                        Container {
+                            
+                            
+                            layout: StackLayout {
+                                orientation: LayoutOrientation.TopToBottom
+                            }
+                            verticalAlignment: VerticalAlignment.Top
+                            Label {
+                                text: ListItemData.title
+                                textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
+                            }
+                            
+                            Container {
+                                layout: DockLayout {
+                                }
+                                horizontalAlignment: HorizontalAlignment.Fill
                                 
-                                layout: StackLayout {
-                                    orientation: LayoutOrientation.LeftToRight
-                                }
-                                horizontalAlignment: HorizontalAlignment.Left
-                                ImageView {
-                                    imageSource: pageNumContainter.getFlag(ListItemData.flagType)
-                                    horizontalAlignment: HorizontalAlignment.Left
-                                }
                                 Label {
-                                    text: ListItemData.pages
+                                    text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
                                     horizontalAlignment: HorizontalAlignment.Right
                                     textStyle {
                                         base: SystemDefaults.TextStyles.SmallText
-                                        color: Color.Gray
+                                        color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df")  : Color.Blue
                                     }
                                 }
+                                Container {
+                                    id: pageNumContainter
+                                    
+                                    // ---------------------------------------------------------------
+                                    // layout functions...
+                                    
+                                    function getFlag(flagCode) {
+                                        switch(flagCode) {
+                                            case 0:
+                                                return "";
+                                                
+                                            case 1:
+                                                return "asset:///images/icon_drap_participe.gif"
+                                                
+                                            case 2:
+                                                return "asset:///images/icon_drap_lecture.gif"
+                                                
+                                            case 3:
+                                                return "asset:///images/icon_favori.gif"
+                                                
+                                        }
+                                        return "";
+                                    
+                                    }
+                                    
+                                    
+                                    // ---------------------------------------------------------------
+                                    // list item itself...
+    
+                                    
+                                    layout: StackLayout {
+                                        orientation: LayoutOrientation.LeftToRight
+                                    }
+                                    horizontalAlignment: HorizontalAlignment.Left
+                                    ImageView {
+                                        imageSource: pageNumContainter.getFlag(ListItemData.flagType)
+                                        horizontalAlignment: HorizontalAlignment.Left
+                                    }
+                                    Label {
+                                        text: ListItemData.pages
+                                        horizontalAlignment: HorizontalAlignment.Right
+                                        textStyle {
+                                            base: SystemDefaults.TextStyles.SmallText
+                                            color: Color.Gray
+                                        }
+                                    }
+                                }
+                                
                             }
-                            
+                            Divider {}
                         }
-                        Divider {}
                         
                         contextActions: [
                             ActionSet {

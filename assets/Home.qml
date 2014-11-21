@@ -42,6 +42,9 @@ NavigationPane {
 	                            verticalAlignment: VerticalAlignment.Fill
 	                            horizontalAlignment: HorizontalAlignment.Fill
 	                            
+	                            Container {
+	                                preferredWidth: 8
+	                            }
 	                            
 	                            Label {
 	                                id: itemText

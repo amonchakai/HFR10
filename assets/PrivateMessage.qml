@@ -93,53 +93,65 @@ NavigationPane {
     	                    type: "item"
     	                    
     	                    Container {
-    	                        id: titleContainer
-    	                        function typeFromReadStatus(read) {
-    	                            if(read) {
-    	                                return FontWeight.Bold;}
-    	                            else {
-    	                                return FontWeight.Normal;}
-    	                        }
-    	                        function hasRead(read) {
-    	                            if(read)
-    	                                return "";
-    	                            else
-    	                                return qsTr("[Not Read] "); 
-    	                        }
-    	                        
-    	                        layout: StackLayout {
-    	                            orientation: LayoutOrientation.TopToBottom
-    	                        }
-    	                        verticalAlignment: VerticalAlignment.Top
-    	                        Label {
-    	                            text: titleContainer.hasRead(ListItemData.addresseeRead) + ListItemData.title
-    	                            textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
-    	                        }
-    	                        
-    	                        Container {
-    	                            layout: DockLayout {
-    	                            }
-    	                            horizontalAlignment: HorizontalAlignment.Fill
-    	                            
-    	                            Label {
-    	                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
-    	                                horizontalAlignment: HorizontalAlignment.Right
-    	                                textStyle {
-    	                                    base: SystemDefaults.TextStyles.SmallText
-                                            color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df") : Color.Blue
-    	                                }
-    	                            }
-    	                            Label {
-    	                                text: "@" + ListItemData.addressee
-    	                                horizontalAlignment: HorizontalAlignment.Left
-    	                                textStyle {
-    	                                    base: SystemDefaults.TextStyles.SmallText
-    	                                    color: Color.Gray
-    	                                }
-    	                            }
-    	                        
-    	                        }
-    	                        Divider {}
+                                id: titleContainer
+                                function typeFromReadStatus(read) {
+                                    if(read) {
+                                        return FontWeight.Bold;}
+                                        else {
+                                        return FontWeight.Normal;}
+                                }
+                                function hasRead(read) {
+                                    if(read)
+                                        return "";
+                                    else
+                                        return qsTr("[Not Read] "); 
+                                }
+                                layout: StackLayout {
+                                    orientation: LayoutOrientation.LeftToRight
+                                }
+                                
+                                Container {
+                                    preferredWidth: 8
+                                }
+                                
+        	                    Container {
+        	                        
+        	                        
+        	                        layout: StackLayout {
+        	                            orientation: LayoutOrientation.TopToBottom
+        	                        }
+        	                        verticalAlignment: VerticalAlignment.Top
+        	                        Label {
+        	                            text: titleContainer.hasRead(ListItemData.addresseeRead) + ListItemData.title
+        	                            textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
+        	                        }
+        	                        
+        	                        Container {
+        	                            layout: DockLayout {
+        	                            }
+        	                            horizontalAlignment: HorizontalAlignment.Fill
+        	                            
+        	                            Label {
+        	                                text: ListItemData.lastAuthor + " - " + ListItemData.timestamp
+        	                                horizontalAlignment: HorizontalAlignment.Right
+        	                                textStyle {
+        	                                    base: SystemDefaults.TextStyles.SmallText
+                                                color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df") : Color.Blue
+        	                                }
+        	                            }
+        	                            Label {
+        	                                text: "@" + ListItemData.addressee
+        	                                horizontalAlignment: HorizontalAlignment.Left
+        	                                textStyle {
+        	                                    base: SystemDefaults.TextStyles.SmallText
+        	                                    color: Color.Gray
+        	                                }
+        	                            }
+        	                        
+        	                        }
+                                    Divider {}
+        	                    }
+        	                        
     	                        
                                 contextActions: [
                                     ActionSet {

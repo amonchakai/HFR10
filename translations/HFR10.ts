@@ -91,43 +91,43 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="202"/>
+        <location filename="../assets/ExploreCategory.qml" line="213"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="205"/>
-        <location filename="../assets/ExploreCategory.qml" line="322"/>
+        <location filename="../assets/ExploreCategory.qml" line="216"/>
+        <location filename="../assets/ExploreCategory.qml" line="333"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="212"/>
+        <location filename="../assets/ExploreCategory.qml" line="223"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="219"/>
+        <location filename="../assets/ExploreCategory.qml" line="230"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="295"/>
+        <location filename="../assets/ExploreCategory.qml" line="306"/>
         <source>Sub-Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="309"/>
+        <location filename="../assets/ExploreCategory.qml" line="320"/>
         <source>New topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="330"/>
+        <location filename="../assets/ExploreCategory.qml" line="341"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="338"/>
+        <location filename="../assets/ExploreCategory.qml" line="349"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -343,37 +343,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="417"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="418"/>
         <location filename="../assets/720x720/PostMessage.qml" line="414"/>
-        <location filename="../assets/PostMessage.qml" line="417"/>
+        <location filename="../assets/PostMessage.qml" line="418"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="424"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="425"/>
         <location filename="../assets/720x720/PostMessage.qml" line="421"/>
-        <location filename="../assets/PostMessage.qml" line="424"/>
+        <location filename="../assets/PostMessage.qml" line="425"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="431"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="432"/>
         <location filename="../assets/720x720/PostMessage.qml" line="428"/>
-        <location filename="../assets/PostMessage.qml" line="431"/>
+        <location filename="../assets/PostMessage.qml" line="432"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="438"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="439"/>
         <location filename="../assets/720x720/PostMessage.qml" line="435"/>
-        <location filename="../assets/PostMessage.qml" line="438"/>
+        <location filename="../assets/PostMessage.qml" line="439"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="445"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="446"/>
         <location filename="../assets/720x720/PostMessage.qml" line="442"/>
-        <location filename="../assets/PostMessage.qml" line="445"/>
+        <location filename="../assets/PostMessage.qml" line="446"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -399,27 +399,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="146"/>
+        <location filename="../assets/PrivateMessage.qml" line="158"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="149"/>
+        <location filename="../assets/PrivateMessage.qml" line="161"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="156"/>
+        <location filename="../assets/PrivateMessage.qml" line="168"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="164"/>
+        <location filename="../assets/PrivateMessage.qml" line="176"/>
         <source>Delete PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="231"/>
+        <location filename="../assets/PrivateMessage.qml" line="243"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>

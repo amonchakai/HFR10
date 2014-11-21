@@ -241,8 +241,6 @@ void ListFavoriteController::parse(const QString &page) {
 		category = m_CategoriesLabels[catIndex-1];
 		groupKey = catIndex-1;
 
-		qDebug() << category << groupKey;
-
 	}
 
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
@@ -255,8 +253,6 @@ void ListFavoriteController::parse(const QString &page) {
 		for( ; catIndex < indexCategories.length() && pos > indexCategories[catIndex] ; ++catIndex) {}
 		category = m_CategoriesLabels[catIndex-1];
 		groupKey = catIndex-1;
-
-		qDebug() << category << groupKey;
 
 		lastPos = pos;
 		caption = regexp.cap(3);

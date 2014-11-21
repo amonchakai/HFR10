@@ -324,6 +324,7 @@ Page {
                         submitKey: SubmitKey.Send
                         onSubmitted: {
                             smileyPickerController.getSmiley(searchField.text);
+                            smileyPickerList.layout.columnCount = 5;
                         }
                     }
                 }
