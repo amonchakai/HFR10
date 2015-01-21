@@ -3,6 +3,7 @@
 	<name>HFR10</name>
 	<comment></comment>
 	<projects>
+		<project>HFR10Service</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

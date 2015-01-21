@@ -315,6 +315,11 @@ Page {
                 nav.push(subCatPickerPage);
                 // pickSubCat.show();
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("s")
+                }
+            ]
         },
         ActionItem {
             title: qsTr("New topic")
@@ -351,8 +356,16 @@ Page {
             onTriggered: {
                 exploreCategoryController.nextPage();
                 activityIndicator.start();
+            }            
+        },
+        ActionItem {
+            title: qsTr("Refresh")
+            imageSource: "asset:///images/icon_refresh.png"
+            onTriggered: {
+                exploreCategoryController.refresh();
             }
         }
+        
     ]
     onCreationCompleted: {
         focusedItem = listCats;

@@ -351,7 +351,24 @@ NavigationPane {
             
             focusOnFavTab = listFav;
         }
+	    
+	    actions: [
+	        ActionItem {
+                title: qsTr("Refresh")
+                imageSource: "asset:///images/icon_refresh.png"
+                onTriggered: {
+                    listFavoriteController.getFavorite();
+                }
+                
+                shortcuts: [
+                    Shortcut {
+                        key: qsTr("r")
+                    }
+                ]
+	        }
+	    ]
 	}
+    
     
     onPopTransitionEnded: {
         --navDepth;

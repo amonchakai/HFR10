@@ -626,6 +626,11 @@ Page {
                 
                 
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("r")
+                }
+            ]
         },
         ActionItem {
             title: qsTr("First page")
@@ -635,6 +640,11 @@ Page {
                 activityIndicator.start();
                 scrollRequested = 0;
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("f")
+                }
+            ]
         },
         ActionItem {
              title: qsTr("Last page")
@@ -644,6 +654,11 @@ Page {
                  activityIndicator.start();
                  scrollRequested = 0;
              }
+             shortcuts: [
+                 Shortcut {
+                     key: qsTr("l")
+                 }
+             ]
         },
         ActionItem {
             title: qsTr("Prev page")
@@ -653,6 +668,11 @@ Page {
                 activityIndicator.start();
                 scrollRequested = 0;
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("p")
+                }
+            ]
         },
         ActionItem {
             id: nextPageAction
@@ -664,6 +684,11 @@ Page {
                 activityIndicator.start();
                 scrollRequested = 0;
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("n")
+                }
+            ]
         },
         ActionItem {
             title: qsTr("To Top")
@@ -671,6 +696,11 @@ Page {
             onTriggered: {
                 threadWebView.evaluateJavaScript("scrollToTop();");
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("t")
+                }
+            ]
         },
         ActionItem {
             title: qsTr("To Bottom")
@@ -678,6 +708,11 @@ Page {
             onTriggered: {
                 threadWebView.evaluateJavaScript("scrollToEndPage();");
             }
+            shortcuts: [
+                Shortcut {
+                    key: qsTr("b")
+                }
+            ]
         }
     ]    
     onActionBarVisibilityChanged: {

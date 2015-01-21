@@ -273,6 +273,22 @@ NavigationPane {
 	        navDepth = 0;
             focusOnMPTab = listMP;
 	    }
+	    
+        actions: [
+            ActionItem {
+                title: qsTr("Refresh")
+                imageSource: "asset:///images/icon_refresh.png"
+                onTriggered: {
+                    privateMessageController.load();
+                }
+                
+                shortcuts: [
+                    Shortcut {
+                        key: qsTr("r")
+                    }
+                ]
+            }
+        ]
 	}
 	
     onPopTransitionEnded: {

@@ -97,7 +97,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="216"/>
-        <location filename="../assets/ExploreCategory.qml" line="333"/>
+        <location filename="../assets/ExploreCategory.qml" line="338"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -118,17 +118,27 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="320"/>
+        <source>s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="325"/>
         <source>New topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="341"/>
+        <location filename="../assets/ExploreCategory.qml" line="346"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="349"/>
+        <location filename="../assets/ExploreCategory.qml" line="354"/>
         <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ExploreCategory.qml" line="362"/>
+        <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -175,6 +185,16 @@
     <message>
         <location filename="../assets/Favorite.qml" line="306"/>
         <source>Pull down to update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="357"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Favorite.qml" line="365"/>
+        <source>r</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -345,35 +365,35 @@
     <message>
         <location filename="../assets/1440x1440/PostMessage.qml" line="423"/>
         <location filename="../assets/720x720/PostMessage.qml" line="414"/>
-        <location filename="../assets/PostMessage.qml" line="418"/>
+        <location filename="../assets/PostMessage.qml" line="420"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/1440x1440/PostMessage.qml" line="430"/>
         <location filename="../assets/720x720/PostMessage.qml" line="421"/>
-        <location filename="../assets/PostMessage.qml" line="425"/>
+        <location filename="../assets/PostMessage.qml" line="427"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/1440x1440/PostMessage.qml" line="437"/>
         <location filename="../assets/720x720/PostMessage.qml" line="428"/>
-        <location filename="../assets/PostMessage.qml" line="432"/>
+        <location filename="../assets/PostMessage.qml" line="434"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/1440x1440/PostMessage.qml" line="444"/>
         <location filename="../assets/720x720/PostMessage.qml" line="435"/>
-        <location filename="../assets/PostMessage.qml" line="439"/>
+        <location filename="../assets/PostMessage.qml" line="441"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../assets/1440x1440/PostMessage.qml" line="451"/>
         <location filename="../assets/720x720/PostMessage.qml" line="442"/>
-        <location filename="../assets/PostMessage.qml" line="446"/>
+        <location filename="../assets/PostMessage.qml" line="448"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -421,6 +441,16 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="243"/>
         <source>Pull down to update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="279"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/PrivateMessage.qml" line="287"/>
+        <source>r</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -739,8 +769,8 @@
     <message>
         <location filename="../assets/Settings.qml" line="81"/>
         <location filename="../assets/Settings.qml" line="107"/>
-        <location filename="../assets/Settings.qml" line="393"/>
-        <location filename="../assets/Settings.qml" line="404"/>
+        <location filename="../assets/Settings.qml" line="397"/>
+        <location filename="../assets/Settings.qml" line="408"/>
         <source>User: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,28 +827,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="255"/>
-        <source>Color management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/Settings.qml" line="276"/>
-        <source>Hub integration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/Settings.qml" line="314"/>
-        <location filename="../assets/Settings.qml" line="327"/>
-        <source>Refresh HUB every: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/Settings.qml" line="349"/>
+        <location filename="../assets/Settings.qml" line="353"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="363"/>
+        <location filename="../assets/Settings.qml" line="367"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1006,7 +1020,7 @@
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="550"/>
-        <location filename="../assets/ThreadPage.qml" line="659"/>
+        <location filename="../assets/ThreadPage.qml" line="679"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1027,27 +1041,62 @@
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="631"/>
+        <source>r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="636"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="640"/>
+        <location filename="../assets/ThreadPage.qml" line="645"/>
+        <source>f</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="650"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="649"/>
+        <location filename="../assets/ThreadPage.qml" line="659"/>
+        <source>l</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="664"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="669"/>
+        <location filename="../assets/ThreadPage.qml" line="673"/>
+        <source>p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="689"/>
+        <source>n</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="694"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="676"/>
+        <location filename="../assets/ThreadPage.qml" line="701"/>
+        <source>t</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="706"/>
         <source>To Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="713"/>
+        <source>b</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

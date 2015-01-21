@@ -57,7 +57,7 @@ NavigationPane {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
                     verticalAlignment: VerticalAlignment.Fill
-                    preferredHeight: 40
+                    preferredHeight: 50
                     
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
@@ -117,7 +117,7 @@ NavigationPane {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
                     verticalAlignment: VerticalAlignment.Fill
-                    preferredHeight: 40
+                    preferredHeight: 50
                     
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
@@ -208,7 +208,7 @@ NavigationPane {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
                     verticalAlignment: VerticalAlignment.Fill
-                    preferredHeight: 40
+                    preferredHeight: 50
                     
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
@@ -250,6 +250,7 @@ NavigationPane {
                     }
                 }
                 
+                /*
                 Button {
                     horizontalAlignment: HorizontalAlignment.Fill
                     text: qsTr("Color management")
@@ -259,9 +260,11 @@ NavigationPane {
                         nav.push(colorPage);
                     }
                 }
+                */
                 
                 // --------------------------------------------------------------------------
                 // hub settings
+                /*
                 Container {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
@@ -285,7 +288,7 @@ NavigationPane {
                     horizontalAlignment: HorizontalAlignment.Fill
                 }
                 
-                /*
+                
                 Container {
                     preferredHeight: 90
                     layout: StackLayout {
@@ -307,7 +310,7 @@ NavigationPane {
                         text: qsTr("Enable HUB integration")
                     }
                 }
-                */
+                
                 
                 Label {
                     id: hubRefreshRate
@@ -329,6 +332,7 @@ NavigationPane {
                     }
                 
                 }
+*/
                 
                 
                 
@@ -339,7 +343,7 @@ NavigationPane {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
                     verticalAlignment: VerticalAlignment.Fill
-                    preferredHeight: 40
+                    preferredHeight: 50
                     
                     layout: StackLayout {
                         orientation: LayoutOrientation.LeftToRight
