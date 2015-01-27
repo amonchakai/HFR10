@@ -20,21 +20,32 @@ Page {
         
         ScrollView {
             id: scrollView
-            horizontalAlignment: HorizontalAlignment.Center
-            verticalAlignment: VerticalAlignment.Center
-            scrollViewProperties.scrollMode: ScrollMode.Both
-           scrollViewProperties.pinchToZoomEnabled: true
+            horizontalAlignment: HorizontalAlignment.Fill
+            verticalAlignment: VerticalAlignment.Fill
+            
+            
+            scrollViewProperties {
+                scrollMode: ScrollMode.Both
+                pinchToZoomEnabled: true
+            }
+            
+            
         
 	        ImageView {
 	            id: imagePreview
-	            horizontalAlignment: HorizontalAlignment.Center
-	            verticalAlignment: VerticalAlignment.Center
 	            scalingMethod: ScalingMethod.AspectFit
 	            touchBehaviors: TouchBehavior {
 	                TouchReaction {
 	                    
 	                }
 	            }
+	            rightMargin: 6
+	            topMargin: 6
+                layoutProperties: FlowListLayoutProperties {
+                    aspectRatio: 1
+                    fillRatio: 1/3
+                }
+                
 	            property double initialScale: 1.0
 	            property double scaleFactor: 0.8
 	            

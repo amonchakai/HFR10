@@ -363,36 +363,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="423"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="414"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="426"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="417"/>
         <location filename="../assets/PostMessage.qml" line="420"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="430"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="421"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="433"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="424"/>
         <location filename="../assets/PostMessage.qml" line="427"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="437"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="428"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="440"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="431"/>
         <location filename="../assets/PostMessage.qml" line="434"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="444"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="435"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="447"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="438"/>
         <location filename="../assets/PostMessage.qml" line="441"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="451"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="442"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="454"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="445"/>
         <location filename="../assets/PostMessage.qml" line="448"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>

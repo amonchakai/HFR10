@@ -131,6 +131,8 @@ Page {
             }
             
         }
+        
+        background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#202020") : Color.create("#f5f5f5")
         Container {
             layout: StackLayout {
                 orientation: LayoutOrientation.LeftToRight
@@ -138,6 +140,7 @@ Page {
             }
             horizontalAlignment: HorizontalAlignment.Fill
             verticalAlignment: VerticalAlignment.Center
+            background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#202020") : Color.create("#f5f5f5")
             Container {
                 layoutProperties: StackLayoutProperties {
                     spaceQuota: 1

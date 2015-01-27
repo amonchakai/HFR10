@@ -131,7 +131,7 @@
     <message>
         <location filename="../assets/ExploreCategory.qml" line="320"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="325"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../assets/Favorite.qml" line="357"/>
         <source>Refresh</source>
-        <translation type="unfinished">Rafraîchir</translation>
+        <translation>Rafraîchir</translation>
     </message>
     <message>
         <location filename="../assets/Favorite.qml" line="365"/>
         <source>r</source>
-        <translation type="unfinished"></translation>
+        <translation>r</translation>
     </message>
 </context>
 <context>
@@ -379,36 +379,36 @@
         <translation type="unfinished">Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="423"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="414"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="426"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="417"/>
         <location filename="../assets/PostMessage.qml" line="420"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="430"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="421"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="433"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="424"/>
         <location filename="../assets/PostMessage.qml" line="427"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="437"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="428"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="440"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="431"/>
         <location filename="../assets/PostMessage.qml" line="434"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="444"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="435"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="447"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="438"/>
         <location filename="../assets/PostMessage.qml" line="441"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="451"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="442"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="454"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="445"/>
         <location filename="../assets/PostMessage.qml" line="448"/>
         <source>Underline</source>
         <translation>Souligner</translation>
@@ -456,7 +456,7 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="176"/>
         <source>Delete PM</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer MP</translation>
     </message>
     <message>
         <location filename="../assets/PrivateMessage.qml" line="243"/>
@@ -471,7 +471,7 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="287"/>
         <source>r</source>
-        <translation type="unfinished"></translation>
+        <translation>r</translation>
     </message>
 </context>
 <context>
@@ -1194,7 +1194,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="631"/>
         <source>r</source>
-        <translation type="unfinished"></translation>
+        <translation>r</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="636"/>
@@ -1204,7 +1204,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="645"/>
         <source>f</source>
-        <translation type="unfinished"></translation>
+        <translation>f</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="650"/>
@@ -1214,7 +1214,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="659"/>
         <source>l</source>
-        <translation type="unfinished"></translation>
+        <translation>d</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="664"/>
@@ -1224,7 +1224,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="713"/>
         <source>b</source>
-        <translation type="unfinished"></translation>
+        <translation>b</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="550"/>
@@ -1240,12 +1240,12 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="673"/>
         <source>p</source>
-        <translation type="unfinished"></translation>
+        <translation>p</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="689"/>
         <source>n</source>
-        <translation type="unfinished"></translation>
+        <translation>s</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="694"/>
@@ -1255,7 +1255,7 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="701"/>
         <source>t</source>
-        <translation type="unfinished"></translation>
+        <translation>h</translation>
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="706"/>

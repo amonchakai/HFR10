@@ -279,7 +279,7 @@ NavigationPane {
                 title: qsTr("Refresh")
                 imageSource: "asset:///images/icon_refresh.png"
                 onTriggered: {
-                    privateMessageController.load();
+                    privateMessageController.getMessages();
                 }
                 
                 shortcuts: [
