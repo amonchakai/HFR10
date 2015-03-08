@@ -904,7 +904,7 @@
 <context>
     <name>SmileyPickerController</name>
     <message>
-        <location filename="../src/SmileyPickerController.cpp" line="134"/>
+        <location filename="../src/SmileyPickerController.cpp" line="135"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

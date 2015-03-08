@@ -69,6 +69,7 @@ void SmileyPickerController::loadDefautSmiley() {
     e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/whistle.gif");e->setTag(":whistle:"); m_Emoticons.push_back(e);
     e = new Emoticon; e->setLocalUrl("asset:///images/smiley/smilies/miam.gif");   e->setTag(":miam:"); m_Emoticons.push_back(e);
     e = new Emoticon; e->setLocalUrl("asset:///images/smiley/hebe.gif");           e->setTag(":hebe:"); m_Emoticons.push_back(e);
+    e = new Emoticon; e->setLocalUrl("asset:///images/smiley/redface.gif"); e->setTag(":o"); m_Emoticons.push_back(e);
 
     m_Mutex.lockForWrite();
     m_Pushing = false;
