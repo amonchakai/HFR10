@@ -920,6 +920,54 @@ void ShowThreadController::scrollToItem() {
 // -----------------------------------------------------------------------------------------------------
 // navigation within page
 
+void ShowThreadController::doAction(int code) {
+    switch(code) {
+
+        case 1:
+            m_WebView->evaluateJavaScript("scrollToTop();");
+            break;
+
+        case 2:
+            m_WebView->evaluateJavaScript("scrollToEndPage();");
+            break;
+
+        case 3:
+            nextPage();
+            break;
+
+        case 4:
+            prevPage();
+            break;
+
+        case 5:
+            lastPage();
+            break;
+
+        case 6:
+            firstPage();
+            break;
+
+        case 7:
+        {
+            QRegExp goToPost("#t([0-9]+)");
+            int pos = 0;
+            if((pos = goToPost.indexIn(m_Url, 0)) != -1) {
+                showThread(m_Url.mid(0, pos) + "#bas");
+            } else {
+                QRegExp goToEnd("#bas");
+                if(goToEnd.indexIn(m_Url, 0) != -1) {
+                    showThread(m_Url);
+                    return;
+                }
+            }
+
+            showThread(m_Url + "#bas");
+            break;
+        }
+
+    }
+}
+
 void ShowThreadController::nextPage() {
 	if(!m_UrlNextPage.isEmpty())
 		showThread(m_UrlNextPage);
@@ -1071,6 +1119,87 @@ void ShowThreadController::checkSurveyReply() {
 
 		reply->deleteLater();
 	}
+}
+
+
+void ShowThreadController::setActionListView(QObject *list) {
+    using namespace bb::cascades;
+
+    m_ListView = dynamic_cast<bb::cascades::ListView*>(list);
+
+    if(m_ListView == NULL)
+        return;
+
+
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_ListView->dataModel());
+    if (dataModel) {
+        dataModel->clear();
+    } else {
+        qDebug() << "create new model";
+        dataModel = new GroupDataModel(
+                QStringList() << "image"
+                              << "category"
+                              << "caption"
+                              << "action"
+                 );
+        m_ListView->setDataModel(dataModel);
+    }
+
+
+
+    // ----------------------------------------------------------------------------------------------
+    // push data to the view
+
+
+
+
+    QFile actionFile(QDir::currentPath() + tr("/app/native/assets/model/action_list.xml"));
+//    if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+//        htmlTemplateFile.setFileName(QDir::currentPath() + "/app/native/assets/template_black.html");
+//    }
+
+
+
+    QRegExp caption("title=\"([^\"]+)\"");
+    QRegExp category("category=\"([^\"]+)\"");
+    QRegExp image("url=\"([^\"]+)\"");
+    QRegExp actionReg("action=\"([0-9]+)\"");
+
+    if (actionFile.open(QIODevice::ReadOnly)) {
+        QString actionList = actionFile.readAll();
+
+        int pos = 0;
+        while(pos != -1) {
+            ActionComposerItem *action = NULL;
+            pos = caption.indexIn(actionList, pos);
+            if(pos != -1) {
+                action = new ActionComposerItem(this);
+                action->setCaption(caption.cap(1));
+                pos += caption.matchedLength();
+            } else break;
+
+            pos = category.indexIn(actionList, pos);
+            pos += category.matchedLength();
+            action->setCategory(category.cap(1));
+
+            pos = image.indexIn(actionList, pos);
+            pos += image.matchedLength();
+            action->setImage(image.cap(1));
+
+            pos = actionReg.indexIn(actionList, pos);
+            pos += actionReg.matchedLength();
+            action->setAction(actionReg.cap(1).toInt());
+
+            qDebug() << action->getCaption() << action->getCategory() << action->getImage() << action->getAction();
+
+
+            dataModel->insert(action);
+
+        }
+
+
+    }
+
 }
 
 

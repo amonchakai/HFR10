@@ -1,0 +1,10 @@
+<root>
+	<item title="To Bottom" category="Navigation" url="asset:///images/color/to_Bottom.png" action="2" />
+	<item title="To Top" category="Navigation" url="asset:///images/color/to_Top.png" action="1" />	
+	<item title="Next page" category="Navigation" url="asset:///images/color/Next.png" action="3" />	
+	<item title="Prev page" category="Navigation" url="asset:///images/color/Prev.png" action="4" />	
+	<item title="Last page" category="Navigation" url="asset:///images/color/Last.png" action="5" />	
+	<item title="First page" category="Navigation" url="asset:///images/color/First.png" action="6" />	
+	<item title="Refresh" category="Action" url="asset:///images/color/Refresh.png" action="7" />	
+	<item title="Reply" category="Action" url="asset:///images/color/Reply.png" action="8" />	
+</root>

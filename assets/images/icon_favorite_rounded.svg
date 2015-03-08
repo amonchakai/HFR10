@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="81"
+   height="81"
+   sodipodi:docname="icon_favorite_rounded.svg"
+   inkscape:export-filename="/Users/pierre/Documents/Code/momentics/HFR10/assets/images/icon_favorite_rounded.png"
+   inkscape:export-xdpi="82"
+   inkscape:export-ydpi="82">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1852"
+     inkscape:window-height="1279"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="2.1481482"
+     inkscape:cx="106.60345"
+     inkscape:cy="21.879311"
+     inkscape:window-x="202"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039" />
+  <rect
+     style="fill:none;stroke:#d8d8d8;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3049"
+     width="78.556023"
+     height="78.672401"
+     x="1.2801723"
+     y="1.0474138"
+     ry="18.349495" />
+  <image
+     width="58.206894"
+     height="58.206894"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD0AAAA9CAYAAAAeYmHpAAAABHNCSVQICAgIfAhkiAAABShJREFU aIHtm11oHFUUx8987MzszGx22Y27m91FEAKFlkpDJJCiIBGhYgkoglCJbGhoUBQLPgmBQiEgPohF qbRQEAQRBEWw6GvBp4BPQiBPeepTXsJusjtz595z+mAS1rhf83XXkv5hIMzcj/9vz5k7996ZKEQE Z03qpA1MQs+gJaqIiM0J9T0ZaES8hogfTaJvgAlBCyGaiDhPRBcn0b90aCKaJ6J5AABEvC67f4AJ QCPiyvHfQogVADBke5ANneWcrxARHB1FRFyW7EEuNCK+CQDF3nNCCOkpLhWac36jJ8pARCCEeJ2I 6jJ9SIMmoucRcanPJU12tKVBCyGaRKSdjjQRAed8ZXQLyUkadBAEzX7ARASIOCuE6JcFqUgKtBBi iYheGFGmKcMLgCRozvn1QVE+PoIgeIeI8jL8pA5NRHnO+VtjFM0KId5N2w+ABGjO+TUiyo6K9FG0 pYziqUMPG8D6jOILiJj6IiRVaES8KIRYCFMnCIJmSnZOlCo0Y2zkAHb6YIylvghRejcGPc/7gnOe 2PMSEc8RkRu2nqqq24qidMcpqyhKV1XV7SFFhGmam6qqPj6pc2o31Oh0OvcYY82wRv+nErZtrxqG 8X3vydPpzWzbXrUs63OJxlKTbdtrp4EB/hvpE/m+/0Gn0/kaALS0zaUhx3FWDcP4rt+1gdAAAIyx 5cPDwx+JKJuWuTTkOM6aaZoPBl0fCg0AwDlfaLfbvyHic4m7S0GO46xblnV/WJmR0AAAQojZdrv9 uxBiNjF3KchxnA8ty/p2VLmxoAEAELHaarV+5ZyHmmzIkuu6H1uW9c04ZceGBgAgomyr1fqZMXYl srsU5LruzWw2e2fc8qGgj6S12+273W73RtiKach13U9t2/4yTJ0o01CRy+XWHcfZiFA3UUUBBogW 6RN1u91mu92+R0TSN+xd1/3McZxIk6hY0AAAvu9f2d/f/ynKHDuqcrlcZGCABKABAA4PDz9ptVpf xW5oDOVyuVuu696O00YiS0vO+fkk2hmlJIABAPQkzDDG5tP+dkXX9e0kgAESgCaiLGPsUhJmhikI gnNE5CqKchC3rdjpHQTBpUFvLhI+NN/3F+P6TQSaMSZtWsoYezmJdmKnt+/7C7K+RUsq0k8VtOd5 i/DPpoaI006s9EbEIuc86nIztHEicpMYNGNBM8bmw9ZRFOWgVCq9NzMzc8EwjK2w9X3fj31fx4IO e4+ZpvloZmbmRcdxfshkMjvVavVyPp+/DSGinsR9HRd6fpzHDQCwfD6/UalUXtN1fbenCZHP529V KpXLmqbtjtOW53kTj/TCKJO6rh9HdBMGRNQ0za2jDHgwxvuuOud86LvuUYoMLYSoCyGqw8rkcrn7 tVptzjCMv0YaUdWD6enptXK5/LamaXvDysZN8cjQw6KsqupeuVy+WiqV1sd9PXMs27Z/qdVqc5Zl /ZFWiseC7nfetu2H9Xr9gm3bD6O2rWna42q1+kapVLrZ70ebGLTnef+KNAB0S6XSeqVSuToqPcfV 1NTUnXq9PpfJZP7u7cv3/fOIGPlTjajQmu/7J89o0zS3Go3G3NTU1NBN9ijKZDI79Xr9pUKhsNnb /9HsLJIiQQdBMHv0S4tCobBZq9VeyWQyO1FNjJKiKKxYLG7UarVXjx95cVI80tzb87xFXdd3y+Xy +5Zl/Rm187CyLOtRo9GY29vbuxvrvo6ytu10OktCCFfCGnrgcXBwsBy1biIbg0+bnv23zlnRM+iz ojMJ/QTQmmbXFMy2rQAAAABJRU5ErkJggg== "
+     id="image3045"
+     x="9.9999962"
+     y="11.396552" />
+</svg>

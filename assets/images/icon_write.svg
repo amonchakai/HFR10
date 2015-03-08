@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="81"
+   height="81"
+   sodipodi:docname="icon_write.svg"
+   inkscape:export-filename="/Users/pierre/Documents/Code/momentics/HFR10/assets/images/icon_write_rounded.png"
+   inkscape:export-xdpi="82"
+   inkscape:export-ydpi="82">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1852"
+     inkscape:window-height="1279"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="8.5925926"
+     inkscape:cx="-5.1206898"
+     inkscape:cy="40.5"
+     inkscape:window-x="202"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039" />
+  <image
+     width="81"
+     height="81"
+     xlink:href="data:image/png;base64,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 "
+     id="image3047"
+     x="0"
+     y="0" />
+  <rect
+     style="fill:none;stroke:#d8d8d8;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3049"
+     width="78.556023"
+     height="78.672401"
+     x="1.2801723"
+     y="1.0474138"
+     ry="18.349495" />
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="81"
+   height="81"
+   sodipodi:docname="icon_quote_rounded.svg"
+   inkscape:export-filename="/Users/pierre/Documents/Code/momentics/HFR10/assets/images/icon_quote_rounded.png"
+   inkscape:export-xdpi="82"
+   inkscape:export-ydpi="82">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1852"
+     inkscape:window-height="1279"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="2.1481482"
+     inkscape:cx="106.60345"
+     inkscape:cy="21.879311"
+     inkscape:window-x="202"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039" />
+  <rect
+     style="fill:none;stroke:#d8d8d8;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3049"
+     width="78.556023"
+     height="78.672401"
+     x="1.2801723"
+     y="1.0474138"
+     ry="18.349495" />
+  <image
+     width="51.139908"
+     height="51.992241"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA9CAYAAADxoArXAAAABHNCSVQICAgIfAhkiAAABR1JREFU aIHtm8tLK0kYxU98JJtE6XYTHyhBFMTZDCg+FoqoGAQRX6AmAYmaPyK6NOJ2FrPQjEaNMBtfCSii goK4UMS7cSUBMUISBhWxHbndMcksru1E7TytpFvvPdCLVHdXfT++01XdVRUZRVEgqAmSlaVA4zKC wBNyuVzd2to6XFxcjFAoRKrepBQIBJCZmQkA8Hq92NrammVZ1pdFspGOjo5ho9GIoqIiktV+WB6P B4+Pj8M7OzuWDJIVDw0NobCwkGSVRFRQUACj0QgAIJrh/Px8ABDdzkKqqKgAQBj4raanp1MGn5mZ iUAgEPX86Ojou/KUAlut1j+fnp7uUtlGNI2Ojo69LSMOLJDRcdJtxKkJIXcR7bQ+g4hmeGZmBjKZ 7OV3MBj8TrJ+EiINbCFZ30clZGke2Eyg/scI5STqjqbJRC7OwnNAJSUllvr6euTk5KQkKpJiGAaH h4dwu92ToVDIjASgs4AfsCaTCTxw+HMoRd3f36OyshLT09Nmt9v9buiJpiwA6O/vR1tb2wuoFN+U wqVSqaDVasEwDKampiJeJzgsZWdna1pbWyWfVSFptdqE78lQKBQalUqVgnBSr2TizmJZ9gKQvo2T kaCl/X7/hQixiKYM4GtmN5Je3rS+IvSvjwc8Z1hK2eU4Dqenp7i9vYVSqURtbS3kcjmx+iVlaY7j sLq6it3dXVxfX0OlUiEUCqGhoSGp+qJ9PIguHnZhYeGfm5ubP/jy7e1tS7LAQpJELy0AO/l8gGVZ om2JbmmO4+BwON7CAoCZpumR5ubmpGOTnKU5jsPa2lpEWIPBoGlqaiLapmjDUjRYiqJG9Hq9pre3 l2gPDYg0LPHP7OLioiCswWBICSwgwjPMw9rt9piwH41J9Dct3sbxwKZKaRuWeNhINtbr9Zqenp6U wgJpsnSszIZ3UCTjEMXSicCmQzF7aa/XC6/XC7Vajfz8/ITmvuKBJWjjuLZbRLX01dUV7HY7PB4P 1Go1+vr6UF5eHhc0x3FYX1+PC5aUjYeGhl5N2Sb8prWxsYHNzc3JYDD4LwAwDGMxGo0xoROBJSmT yRT1vFKp/D1qL+1yufhzkwBwcHAwNjc3h7Ozs4j3xAPb3d2dtmeWF8MwkMlk/3daoVDo3VFdXQ25 XK7Bj+WYF+jZ2VkcHBwgGAy+up5lWTidzrhghdpL5ghXpGsYhoHT6QTDMN+iWrqlpQU+n29gfX39 b5ZleWjz8fHx2N3dnSUQCKCxsREymewls0tLS6Jldn5+XrCcYRjs7Ox8A2I8wzRNQ6/XA8A76PPz 8zGbzWYBgLq6OjgcjoiwOp0uLTa2Wq2xlmvHYw5LNE1Dp9MBAtAul2vMZrNZXC4XnE6nqLCIc2tF XG9asaDdbreG47gLRIEVe1aFV9wTAFGgwXFc+KXpzmxCSujjgYfu7OwcUCgUv+H96r6ZoqiRwcFB TVdXl+RggSQ+HiiKgk6nQyAQGHA6nX/5/X5z2LmRwcFBydk4XEnNadE0DYPBAAAjh4eH8Pl8Y6Wl pRatVgsp2jhcSU/x5OXlwWAwoKysDB6Px1JWVoa6ujpJwwIf/B6maRrt7e2vyqRo43D9dItpklh5 SKdEX3lIt35Z+qvr57T0w8OD2HEkpWTizgCA/f39T5nhvb29hO/JAoCVlRXk5uaiqqoKSqWSeGCk 9fDwgJOTEywvLyd8r4yiqJftwzU1NZ8G+OjoCJeXl/y0bNzbh/m/4qV6E3cqldAG8f8AVvVsszre UA0AAAAASUVORK5CYII= "
+     id="image3384"
+     x="13.758622"
+     y="14.189658" />
+</svg>

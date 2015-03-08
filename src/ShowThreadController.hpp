@@ -10,6 +10,7 @@
 
 #include <QtCore/QObject>
 #include <bb/cascades/WebView>
+#include <bb/cascades/ListView>
 #include <QList>
 
 struct PostDetailItem;
@@ -30,6 +31,7 @@ class ShowThreadController : public QObject {
 	private:
 
 		bb::cascades::WebView 				*m_WebView;
+		bb::cascades::ListView              *m_ListView;
 		QList<PostDetailItem*>				*m_Datas;
 		mutable QReadWriteLock	 			 m_EditData;
 
@@ -65,6 +67,7 @@ class ShowThreadController : public QObject {
 	public Q_SLOTS:
 		void showThread(const QString &url);
 		inline void setWebView	   (QObject *view) 		{m_WebView = dynamic_cast<bb::cascades::WebView*>(view); }
+		void setActionListView     (QObject *list);
 		void checkReply();
 		void checkSurveyReply();
 
@@ -75,6 +78,7 @@ class ShowThreadController : public QObject {
 		void vote(const QString &choices);
 		void addBookmark(int messageID);
 
+		void doAction(int code);
 		void nextPage();
 		void prevPage();
 		void firstPage();
@@ -95,6 +99,8 @@ class ShowThreadController : public QObject {
 		bool 		   isAddSignature()const	{ return m_AddSignature; }
 
 		bool		   isLastPage() const		{ return m_UrlLastPage == ""; }
+
+
 
 		void  notifyItemLoaded();
 

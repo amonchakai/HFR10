@@ -403,6 +403,11 @@ Page {
                     }
                 }
                 
+                Label {
+                    verticalAlignment: VerticalAlignment.Center
+                    text: qsTr("Actions")
+                    textStyle.fontSize: FontSize.Small
+                }
             }    
             
             Container {
@@ -614,7 +619,7 @@ Page {
                 horizontalAlignment: HorizontalAlignment.Fill
                 
                 layout: GridListLayout {
-                    columnCount: 5
+                    columnCount: 6
                     headerMode: ListHeaderMode.Sticky
                 }
                 
@@ -649,10 +654,10 @@ Page {
                                 id: avatarImg
                                 scalingMethod: ScalingMethod.AspectFit
                                 image: tracker.image
-                                minHeight: ui.du(6)
-                                maxHeight: ui.du(6)
-                                minWidth: ui.du(6)
-                                maxWidth: ui.du(6)
+                                minHeight: ui.du(7)
+                                maxHeight: ui.du(7)
+                                minWidth: ui.du(7)
+                                maxWidth: ui.du(7)
                                 
                                 attachedObjects: [
                                     NetImageTracker {

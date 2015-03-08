@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="81"
+   height="81"
+   sodipodi:docname="icon_trash_rounded.svg"
+   inkscape:export-filename="/Users/pierre/Documents/Code/momentics/HFR10/assets/images/icon_trash_rounded.png"
+   inkscape:export-xdpi="82"
+   inkscape:export-ydpi="82">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1852"
+     inkscape:window-height="1279"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="2.1481482"
+     inkscape:cx="106.60345"
+     inkscape:cy="21.879311"
+     inkscape:window-x="202"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039" />
+  <rect
+     style="fill:none;stroke:#d8d8d8;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3049"
+     width="78.556023"
+     height="78.672401"
+     x="1.2801723"
+     y="1.0474138"
+     ry="18.349495" />
+  <image
+     width="47.910244"
+     height="49.362068"
+     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAiCAYAAADRcLDBAAAABHNCSVQICAgIfAhkiAAABX5JREFU WIWt189PE2kYB/Dv+06VGZ2Z0gRMlCCajaGlpaM9NP5I9uBhSTh5QYG2B9oCJnrgMPs/mLgHDwhY qqAjQeW4iYnxsCYkxHDQLLSlKO7BmBJJOdh2DIOm7x6k3f6YQll5kvcyeTvzyfd93nmnxGazAYCK 6vrD5NrPlulziM1mUwHA4XDcdjqdyOVyWFhYmMtkMosHDFFFUXRfunQpIEkSEokEEonE7wDACYJw saOj43YoFEJXVxecTid4nneura19MQyjDcDCQQF6e3sDPT09uHDhAlpaWvDp06ff0un0S47nec+N Gze6L1++jCNHjqCxsRF2ux2EkIOCFAF9fX1obm4Gz/M4efIkeJ7Hq1evXlLGGFpbW0EIKf7q6NGj uHbtGnp7e3usVqsX5mu5b4AoiiCEFMepU6cAABzP895Dhw51K4qChoaG4oTDhw+jvb0dhBDn+/fv /08iqiiK7r6+viKgtHRdx+zsLOLx+EtOEATvx48fUwA8drvdFEIp3S9EFUXR3d/fH+jv74ckSWUJ 6LqOp0+fYm5ubvTbt2+fOUEQFg3DaFtdXf2HEOItQCilIISgoaGhCHn37l09kOIS+Hy+KsDXr1/x 5MkTaJoW1XU9Tikd5QRBAIDF7e3tX5LJZBnEbGn2gKiiKLp9Pl/A7/ebAmZnZ/Ho0aNoLpf7mxAy SggBJwhCoSn3hNjtdlBKnaurq2aQIqBWAmYA4Md7AgBqQnier4JwHOdMJpOlEFUURbff7w/4/X7I slwFmJmZwcOHD6sAZQgTSIoQ4nE4HFU9UkikABFF0R34UTUTmJ6eNgVUISogbaWQykQcDgcopc5U KtV+9erVXwOBQFUCuq4XEtCy2ewbM4ApohKysrJSBqlMpLm5ufHKlSum23BmZgbT09PR3QA1EXtB Cg8qQEobmBCCXC6Hx48fY2pqKprNZk2XoC5ELUhHR0dZIoWblyagaVrdgD0RZhCr1eo5e/ZsGaJ0 PHv2DOPj43UDAMCy54z/ICCEgFJaHGaVz+eLc+sBAHUksVOqLMuegYGBAb/fX9YXlePMmTNgjHmS yeTm9vb2L6jjrKkHoUqS5A4Gg4FgMAir1VoTUGjWzs5OMMaURCLxuR7IXghVkiR3KBQyBei6jufP n6O1tbVsh+wXshtClSTJHQ6HA6FQqAqQy+UwNTWFSCSy+v379yaXy1W1fV0uFwAoKysru56+tRCq LMvecDjcZwbQdR0PHjzAvXv3ohsbG3OxWGzDYrEUt29lIgCcsVisZiJmCFWWZe/AwEDP0NCQaQI7 AC2bzb6hlE4YhtEWi8U2KaVKZ2enaSKMMSUej5tCKhGqLMveYDDYc/369ZqAiYkJLZPJLJa8BxYN w2hZXl5OWSwWj8vlquoRt9sNxphilkgpQpVl2Ts4ONgzPDxsCrh//z7Gx8crASiBtC0vL29yHKfs BonH42U9UkCosix7h4aGai5BLUChKhLZtFgsphBFUcAYc5ZCOEEQVFmWvcPDw6YJZLNZRKNRjI2N 1QSYQZaWljY5jjPtkZ1EnLFY7IthGG2cIAgXfT7fyMjIiGkCk5OTdQFqQSwWi7Lzr64Kkk6nnUtL S/Mcz/OeW7dudZ8+fboqgUgkgrt379YN2G8ix44dg6Zpf1HGGNbW1soOm58BlEIIIaOZTGZxbGxM i0QiyGazZXM+fPgAxtgWx/O8d319vfvEiRNoampCKpWCpmk/BaiVCKVUOX78ODiOw/z8PO7cuYP1 9fU/SWNj4818Pr917ty5yfPnzyOdTuPFixf7+h7YqxhjYIzdlCRJ6erqCjc1NeH169d4+/btIKWU JzabDYyxm/l8fosxBgCglPIHBaiE5PP5LaD4bcITQkb/BeFHODzQKPasAAAAAElFTkSuQmCC "
+     id="image3605"
+     x="16.086206"
+     y="16.982759" />
+</svg>

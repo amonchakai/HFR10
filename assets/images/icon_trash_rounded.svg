@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="81"
+   height="81"
+   sodipodi:docname="icon_quote_more_rounded.svg"
+   inkscape:export-filename="/Users/pierre/Documents/Code/momentics/HFR10/assets/images/icon_quote_more_rounded.png"
+   inkscape:export-xdpi="82"
+   inkscape:export-ydpi="82">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1852"
+     inkscape:window-height="1279"
+     id="namedview3041"
+     showgrid="false"
+     inkscape:zoom="2.1481482"
+     inkscape:cx="106.60345"
+     inkscape:cy="21.879311"
+     inkscape:window-x="202"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039" />
+  <rect
+     style="fill:none;stroke:#d8d8d8;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect3049"
+     width="78.556023"
+     height="78.672401"
+     x="1.2801723"
+     y="1.0474138"
+     ry="18.349495" />
+  <image
+     width="43.792522"
+     height="52.729767"
+     xlink:href="data:image/png;base64,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  "
+     id="image3485"
+     x="18.327585"
+     y="13.546096" />
+</svg>
