@@ -27,6 +27,7 @@ class ShowThreadController : public QObject {
 	Q_PROPERTY( bool	sign		READ isAddSignature )
 
 	Q_PROPERTY( QString survey 		READ getSurvey   )
+	Q_PROPERTY( bool    emptySurvey READ isEmptySurvey   )
 
 	private:
 
@@ -61,6 +62,7 @@ class ShowThreadController : public QObject {
 
 
 		void updateView();
+		bool isEmptySurvey() const      { return m_Survey.isEmpty(); }
 
 	// ----------------------------------------------------------------------------------------------
 

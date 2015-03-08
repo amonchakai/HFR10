@@ -8,6 +8,7 @@ Page {
     property variant tpage
     property variant recursivePage
     property variant previewPage
+    property variant statPage
     property variant contextActionPage
     
     property string  urlPage
@@ -216,6 +217,7 @@ Page {
                         
                         composeNewActionBar.visible = false;
                         nextPageNewActionBar.visible = false;
+                        statsNewActionBar.visible = false;
                     }
                 }
                 
@@ -237,6 +239,7 @@ Page {
                         
                         composeNewActionBar.visible = true;
                         nextPageNewActionBar.visible = true;
+                        statsNewActionBar.visible = !showThreadController.emptySurvey;
                     }
                 }                
             }     
@@ -445,6 +448,27 @@ Page {
                         
                         nav.push(tpage);
                     
+                    
+                    }
+                }
+                
+                ImageButton {
+                    verticalAlignment: VerticalAlignment.Center
+                    id: statsNewActionBar
+                    visible: false
+                    
+                    preferredHeight: ui.du(8)
+                    preferredWidth: ui.du(8)
+                    
+                    defaultImageSource: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded.png" : "asset:///images/icon_stats_rounded_black.png"
+                    
+                    onClicked: {
+                        if(!statPage)
+                            statPage = surveyPage.createObject();
+                        
+                        statPage.survey = showThreadController.survey;
+                        
+                        nav.push(statPage);
                     
                     }
                 }
@@ -695,7 +719,14 @@ Page {
                         tpage.addSignature= showThreadController.sign;
                         
                         nav.push(tpage);
+                    
+                    } else if (chosenItem.action == 9) {
+                        if(!statPage)
+                            statPage = surveyPage.createObject();
                         
+                        statPage.survey = showThreadController.survey;
+                        
+                        nav.push(statPage);
                     } else {
                         showThreadController.doAction(chosenItem.action);
                     }
@@ -733,6 +764,10 @@ Page {
                     nextPageAction.imageSource = "asset:///images/icon_next.png"
                     nextPageNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_next_rounded.png" : "asset:///images/icon_next_rounded_black.png"
                 }
+                
+                statsNewActionBar.visible = !showThreadController.emptySurvey;
+                if(statPage)
+                    statPage.survey = showThreadController.survey;
                 
                 scrollView.requestFocus();
             }
@@ -775,7 +810,10 @@ Page {
             id: contextPage
             source: "ListContextActions.qml"
         },
-        
+        ComponentDefinition {
+            id: surveyPage
+            source: "Survey.qml"
+        },
         SystemDialog {
             id: leaveAppDialog
             title: qsTr("Friendly warning")

@@ -1,5 +1,5 @@
 1
-250
+258
 1440x1440/PostMessage.qml
 1440x1440/SmileyPicker.qml
 1440x1440/ThreadPage.qml
@@ -25,6 +25,7 @@ images/color/Next.png
 images/color/Prev.png
 images/color/Refresh.png
 images/color/Reply.png
+images/color/Survey.png
 images/color/to_Bottom.png
 images/color/to_Top.png
 images/default_avatar.png
@@ -123,6 +124,12 @@ images/icon_refresh_rounded.svg
 images/icon_refresh_rounded_black.png
 images/icon_refresh_rounded_black.svg
 images/icon_settings.png
+images/icon_stats.png
+images/icon_stats_black.png
+images/icon_stats_rounded.png
+images/icon_stats_rounded.svg
+images/icon_stats_rounded_black.png
+images/icon_stats_rounded_black.svg
 images/icon_top.png
 images/icon_top.svg
 images/icon_trash_rounded.png
@@ -244,6 +251,7 @@ SmileyPicker.qml
 StartupCardCompose.qml
 StartupCardThread.qml
 SubCategoryPicker.qml
+Survey.qml
 SurveyHeader.qml
 template.html
 template_black.html

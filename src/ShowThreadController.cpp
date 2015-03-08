@@ -416,7 +416,7 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			m_Survey += "<div id=\"parentSurvey\"><div class=\"rightSurvey\" style=\"width: " + QString::number(static_cast<int>(nbVotes[i]*600/overallVoteNumber)) + "px;\">" + QString::number(nbVotes[i]) + "</div><div class=\"leftSurvey\">" + options[i] + "</div></div>";
 		}
 
-		m_Survey += "</div><input type=\"button\" id=\"surveyVisibilitySwitch\" value=\"" + tr("Survey") + "\" onclick=\"toggleSurveyVisibility();\" />";
+		m_Survey += "</div>";
 
 	} else {
 		pos = 0;
@@ -453,7 +453,8 @@ void ShowThreadController::parseSurvey(const QString &page) {
 			listSelectedItemsFunctor += " return ret; }";
 			m_Survey += QString("<br /><input type=\"submit\" onclick=\"navigator.cascades.postMessage(\'SURVEY:") + (dataType ? "1" : "0") + "\' + getSelectedItems().toString())\" name=\"sondage_submit\" value=\"" + tr("Vote") + "\" /><script>"+ listSelectedItemsFunctor +"</script>";
 
-			m_Survey += "</div><input type=\"button\" id=\"surveyVisibilitySwitch\" value=\"" + tr("Survey") + "\" onclick=\"toggleSurveyVisibility();\" />";
+			m_Survey += "</div>";
+
 
 		} else {
 
@@ -461,6 +462,24 @@ void ShowThreadController::parseSurvey(const QString &page) {
 		}
 	}
 
+	if(!m_Survey.isEmpty()) {
+	    QFile htmlTemplateFile(QDir::currentPath() + "/app/native/assets/template.html");
+	    if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+	        htmlTemplateFile.setFileName(QDir::currentPath() + "/app/native/assets/template_black.html");
+	    }
+	    QFile htmlEndTemplateFile(QDir::currentPath() + "/app/native/assets/template_end.html");
+	    QString htmlTemplate;
+	    if (htmlTemplateFile.open(QIODevice::ReadOnly) && htmlEndTemplateFile.open(QIODevice::ReadOnly)) {
+	        htmlTemplate = htmlTemplateFile.readAll();
+
+
+	        if(Settings::fontSize() != 25) {
+	            htmlTemplate.replace("p { font-size: 25px;", "p { font-size: " + QString::number(Settings::fontSize()) + "px;");
+	        }
+	    }
+
+	    m_Survey = htmlTemplate + m_Survey + htmlEndTemplateFile.readAll();
+	}
 
 	emit surveyUpdated();
 }
@@ -886,7 +905,7 @@ void ShowThreadController::updateView() {
 
 	    }
 
-	    m_WebView->setHtml(htmlTemplate + m_Survey + pageContent + endTemplate, QUrl("local:///assets/"));
+	    m_WebView->setHtml(htmlTemplate + pageContent + endTemplate, QUrl("local:///assets/"));
 	} else {
 	    qDebug() << "file not found";
 	}
