@@ -17,6 +17,7 @@
 #include <QDateTime>
 #include <QMap>
 
+#include <bb/cascades/WebStorage>
 #include <bb/cascades/ListView>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
@@ -35,7 +36,7 @@
 
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_WebView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0) {
+	: QObject(parent), m_WebView(NULL), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0), m_ActionSurvey(false) {
 }
 
 
@@ -387,7 +388,7 @@ void ShowThreadController::parseSurvey(const QString &page) {
 
 	int pos = 0;
 	if((pos = question.indexIn(page, 0)) != -1) {
-
+	    m_ActionSurvey = false;
 		pos += question.matchedLength();
 
 		QRegExp answers("<div class=\"barre\" style=\"width:[0-9.]+%\">&nbsp;</div><div style=\"position:absolute;left:0px\" class=\"sondageTop\">[0-9.]+&nbsp;%</div><div class=\"sondageTop\">[&nbsp;]+([0-9]+) vote[s]*</div></div><div class=\"sondageRight\">(.+)</div>");
@@ -420,6 +421,7 @@ void ShowThreadController::parseSurvey(const QString &page) {
 
 	} else {
 		pos = 0;
+		m_ActionSurvey = true;
 		QRegExp newQuestion("<input type=\"hidden\" name=\"numeropost\" value=\"([0-9]+)\" /><input type=\"hidden\" name=\"hash_check\" value=\"[a-zA-Z0-9]+\" /><b class=\"s2\">(.*)</b>");
 		newQuestion.setCaseSensitivity(Qt::CaseSensitive);
 		newQuestion.setMinimal(true);
@@ -983,6 +985,10 @@ void ShowThreadController::doAction(int code) {
             showThread(m_Url + "#bas");
             break;
         }
+
+        case 10:
+            m_WebView->storage()->clearCache();
+            break;
 
     }
 }

@@ -1,5 +1,7 @@
 import bb.cascades 1.2
 import Network.PrivateMessageController 1.0
+import Lib.QTimer 1.0
+import bb.system 1.2
 
 NavigationPane {
     id: nav
@@ -196,9 +198,12 @@ NavigationPane {
                         nav.push(tpage);
                     }
                     
-                    function detetePM(urlLastPage, indexPath) {
-                        privateMessageController.deletePrivateMessage(urlLastPage);
-                        listMP.dataModel.removeAt(indexPath);
+                    function detetePM(urlLastPage, indexPath) {                        
+                        deleteToast.who = urlLastPage;
+                        deleteToast.idxPath = indexPath;
+                        deleteToast.dismissed = false;
+                        deleteToast.show();
+                        timerDelete.start();
                     }
     	            
     	            onTriggered: {
@@ -264,7 +269,41 @@ NavigationPane {
 	        ComponentDefinition {
 	            id: threadPage
 	            source: "ThreadPage.qml"
-	        }
+	        },
+            SystemToast {
+                id: deleteToast
+                property string who
+                property variant idxPath
+                property bool dismissed
+                body: qsTr("PM will be deleted") + Retranslate.onLanguageChanged
+                button.label: qsTr("Undo")
+                
+                
+                
+                onFinished: {
+                    console.log('undo' + value)
+                    if(value == SystemUiResult.ButtonSelection){
+                        dismissed = true;
+                        // UNDO clicked - revert to normal Icon in this case
+                    } else {
+                        privateMessageController.deletePrivateMessage(who);
+                        listMP.dataModel.removeAt(idxPath);
+                    }
+                }
+            },
+            QTimer {
+                id: timerDelete
+                singleShot: true
+                interval: 3000
+                
+                onTimeout: {
+                    if(!deleteToast.dismissed) {
+                        deleteToast.cancel();
+                        privateMessageController.deletePrivateMessage(deleteToast.who);
+                        listMP.dataModel.removeAt(deleteToast.idxPath);
+                    }
+                }
+            }
 	    ] 
 	    
 	    onCreationCompleted: {

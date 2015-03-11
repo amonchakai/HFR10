@@ -101,6 +101,7 @@ Page {
                                 str = str.substring(ret[1].length+1);
                                 ret = str.match(listQuote);
                             }
+                            listValue.reverse();
                             pageContainer.quoteSelection(listValue);
                         }                            
                         
@@ -211,6 +212,7 @@ Page {
                         editButton.visible = true;
                         sendMP.visible = true;
                         addFavorite.visible = true;
+                        quote.visible = true;
                         quoteMore.visible = true;
                         deleteButton.visible = true;
                         cancelButton.visible = false;
@@ -218,6 +220,10 @@ Page {
                         composeNewActionBar.visible = false;
                         nextPageNewActionBar.visible = false;
                         statsNewActionBar.visible = false;
+                        
+                        actionButton.visible = false;
+                        labelAction.visible = false;
+                        
                     }
                 }
                 
@@ -240,6 +246,8 @@ Page {
                         composeNewActionBar.visible = true;
                         nextPageNewActionBar.visible = true;
                         statsNewActionBar.visible = !showThreadController.emptySurvey;
+                        actionButton.visible = true;
+                        labelAction.visible = true;
                     }
                 }                
             }     
@@ -394,6 +402,7 @@ Page {
                 }
 
                 ImageButton {
+                    id: actionButton
                     verticalAlignment: VerticalAlignment.Center
                     
                     preferredHeight: ui.du(8)
@@ -404,6 +413,13 @@ Page {
                     onClicked: {
                         actionPicker.toogleActionPicker();
                     }
+                }
+                
+                Label {
+                    id: labelAction
+                    verticalAlignment: VerticalAlignment.Center
+                    text: qsTr("Actions")
+                    textStyle.fontSize: FontSize.Small
                 }
                 
             }    
@@ -761,6 +777,12 @@ Page {
                     nextPageAction.imageSource = "asset:///images/icon_next.png"
                     nextPageNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_next_rounded.png" : "asset:///images/icon_next_rounded_black.png"
                 }
+                
+                if(showThreadController.actionSurvey)
+                    statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded_orange.png" : "asset:///images/icon_stats_rounded_black_orange.png"
+                else
+                    statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded.png" : "asset:///images/icon_stats_rounded_black.png"
+
                 
                 statsNewActionBar.visible = !showThreadController.emptySurvey;
                 if(statPage)

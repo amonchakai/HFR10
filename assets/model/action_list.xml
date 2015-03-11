@@ -5,6 +5,7 @@
 	<item title="Prev page" category="Navigation" url="asset:///images/color/Prev.png" action="4" />	
 	<item title="Last page" category="Navigation" url="asset:///images/color/Last.png" action="5" />	
 	<item title="First page" category="Navigation" url="asset:///images/color/First.png" action="6" />	
+	<item title="Clear cache" category="Action" url="asset:///images/color/Clean.png" action="10" />	
 	<item title="Survey" category="Action" url="asset:///images/color/Survey.png" action="9" />	
 	<item title="Refresh" category="Action" url="asset:///images/color/Refresh.png" action="7" />	
 	<item title="Reply" category="Action" url="asset:///images/color/Reply.png" action="8" />	

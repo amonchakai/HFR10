@@ -1,5 +1,5 @@
 1
-258
+265
 1440x1440/PostMessage.qml
 1440x1440/SmileyPicker.qml
 1440x1440/ThreadPage.qml
@@ -19,6 +19,7 @@ images/Bookmarks.svg
 images/can.png
 images/can_black.png
 images/chickened.png
+images/color/Clean.png
 images/color/First.png
 images/color/Last.png
 images/color/Next.png
@@ -126,10 +127,16 @@ images/icon_refresh_rounded_black.svg
 images/icon_settings.png
 images/icon_stats.png
 images/icon_stats_black.png
+images/icon_stats_orange.png
+images/icon_stats_orange_dark.png
 images/icon_stats_rounded.png
 images/icon_stats_rounded.svg
 images/icon_stats_rounded_black.png
 images/icon_stats_rounded_black.svg
+images/icon_stats_rounded_black_orange.png
+images/icon_stats_rounded_black_orange.svg
+images/icon_stats_rounded_orange.png
+images/icon_stats_rounded_orange.svg
 images/icon_top.png
 images/icon_top.svg
 images/icon_trash_rounded.png

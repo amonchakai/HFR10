@@ -28,6 +28,7 @@ class ShowThreadController : public QObject {
 
 	Q_PROPERTY( QString survey 		READ getSurvey   )
 	Q_PROPERTY( bool    emptySurvey READ isEmptySurvey   )
+	Q_PROPERTY( bool    actionSurvey READ isActionSurvey   )
 
 	private:
 
@@ -54,6 +55,7 @@ class ShowThreadController : public QObject {
 		int									 m_NbWebviewLoaded;
 
 		QString								 m_Survey;
+		bool                                 m_ActionSurvey;
 
 	// ----------------------------------------------------------------------------------------------
 	public:
@@ -63,6 +65,7 @@ class ShowThreadController : public QObject {
 
 		void updateView();
 		bool isEmptySurvey() const      { return m_Survey.isEmpty(); }
+		bool isActionSurvey() const     { return m_ActionSurvey; }
 
 	// ----------------------------------------------------------------------------------------------
 

@@ -2,7 +2,8 @@ import bb.cascades 1.2
 import bb.data 1.0
 import Network.ListFavoriteController 1.0
 import conf.settings 1.0
-
+import Lib.QTimer 1.0
+import bb.system 1.2
 
 NavigationPane {
     id: nav
@@ -247,8 +248,14 @@ NavigationPane {
                     }
                     
                     function deleteFlag(urlFirstPage, indexPath) {
-                        listFavoriteController.deleteFlag(urlFirstPage);
-                        listFav.dataModel.removeAt(indexPath);
+                        //listFavoriteController.deleteFlag(urlFirstPage);
+                        //listFav.dataModel.removeAt(indexPath);
+ 
+                        deleteToast.who = urlFirstPage;
+                        deleteToast.idxPath = indexPath;
+                        deleteToast.dismissed = false;
+                        deleteToast.show();
+                        timerDelete.start();
                     }
                     
                     function openColorPicker(urlFirstPage, indexPath) {
@@ -308,6 +315,8 @@ NavigationPane {
                  }
                  
              }
+             
+             
 	         
 	        
 	         attachedObjects: [
@@ -334,6 +343,40 @@ NavigationPane {
                  ComponentDefinition {
                      id: colorPickerPage
                      source: "ColorPicker.qml"
+                 },
+                 SystemToast {
+                     id: deleteToast
+                     property string who
+                     property variant idxPath
+                     property bool dismissed
+                     body: qsTr("Flag will be deleted") + Retranslate.onLanguageChanged
+                     button.label: qsTr("Undo")
+                     
+                     
+                     
+                     onFinished: {
+                         console.log('undo' + value)
+                         if(value == SystemUiResult.ButtonSelection){
+                             dismissed = true;
+                             // UNDO clicked - revert to normal Icon in this case
+                         } else {
+                             listFavoriteController.deleteFlag(who);
+                             listFav.dataModel.removeAt(idxPath);
+                         }
+                     }
+                 },
+                 QTimer {
+                     id: timerDelete
+                     singleShot: true
+                     interval: 3000
+                     
+                     onTimeout: {
+                         if(!deleteToast.dismissed) {
+                             deleteToast.cancel();
+                             listFavoriteController.deleteFlag(deleteToast.who);
+                             listFav.dataModel.removeAt(deleteToast.idxPath);
+                         }
+                     }
                  }
 	         ]
 	         

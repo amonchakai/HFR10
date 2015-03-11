@@ -101,6 +101,7 @@ Page {
                                 str = str.substring(ret[1].length+1);
                                 ret = str.match(listQuote);
                             }
+                            listValue.reverse();
                             pageContainer.quoteSelection(listValue);
                         }                            
                         
@@ -211,6 +212,7 @@ Page {
                         editButton.visible = true;
                         sendMP.visible = true;
                         addFavorite.visible = true;
+                        quote.visible = true;
                         quoteMore.visible = true;
                         deleteButton.visible = true;
                         cancelButton.visible = false;
@@ -764,6 +766,12 @@ Page {
                     nextPageAction.imageSource = "asset:///images/icon_next.png"
                     nextPageNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_next_rounded.png" : "asset:///images/icon_next_rounded_black.png"
                 }
+                
+                if(showThreadController.actionSurvey)
+                    statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded_orange.png" : "asset:///images/icon_stats_rounded_black_orange.png"
+                else
+                    statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded.png" : "asset:///images/icon_stats_rounded_black.png"
+                    
                 
                 statsNewActionBar.visible = !showThreadController.emptySurvey;
                 if(statPage)

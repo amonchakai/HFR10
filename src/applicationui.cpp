@@ -32,6 +32,7 @@
 #include <bb/cascades/WebStorage>
 #include <bb/cascades/controls/standardlistitem.h>
 
+#include <QTimer>
 
 #include "LoginController.hpp"
 #include "ListFavoriteController.hpp"
@@ -151,6 +152,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<ImageUploaderController>("Network.ImageUploaderController", 1, 0, "ImageUploaderController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");
+    qmlRegisterType<QTimer>("Lib.QTimer", 1, 0, "QTimer");
 
     // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set
