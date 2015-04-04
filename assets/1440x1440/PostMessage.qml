@@ -26,6 +26,9 @@ Page {
     
     property bool   update
     
+    property int selectionBegin
+    property int selectionStop
+    
     actionBarVisibility: ChromeVisibility.Visible
     
     titleBar: TitleBar {
@@ -107,7 +110,13 @@ Page {
         
         
         function insertTag(tag) {
-            message.editor.insertPlainText("[" + tag + "]" + message.editor.selectedText + "[/" + tag + "]" );
+            if(selectionBegin>selectionStop) {
+                var tmp = selectionStop;
+                selectionStop = selectionBegin;
+                selectionBegin = tmp;
+            }
+            
+            message.text = message.text.substring(0, selectionBegin) + "[" + tag + "]" + message.text.substring(selectionBegin, selectionStop) + "[/" + tag + "]" + message.text.substring(selectionStop);
         }
         
         TextField {
@@ -130,6 +139,17 @@ Page {
                 spaceQuota: 1
             }
             
+            
+            editor {
+                onSelectionEndChanged: {
+                    if(selectionEnd != 0 && selectionEnd != selectionBegin)
+                        selectionStop = selectionEnd;
+                }
+                onSelectionStartChanged: {
+                    if(selectionStart != 0 && selectionStart != selectionStop)
+                        selectionBegin = selectionStart;
+                }
+            }
         }
         
         background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#202020") : Color.create("#f5f5f5")

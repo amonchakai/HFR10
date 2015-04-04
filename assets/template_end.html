@@ -39,17 +39,19 @@
 
 		var touchThread;
 		var itemTouched;
-		function itemTapped(itemNumber) {
+		var itemUsername;
+		function itemTapped(itemNumber, username) {
 			if(touchThread !=0) {
 				clearInterval(touchThread);
 				touchThread = 0;
 			}
 			touchThread = setInterval(itemHold, 750);
 			itemTouched = itemNumber;
+			itemUsername = username;
 		}
 
 		function itemHold() {
-			sendURL('SHOW_CONTEXT:' + itemTouched);
+			sendURL('SHOW_CONTEXT:' + itemTouched + ',' + itemUsername);
 			clearInterval(touchThread);
 			toggleSelectItem(itemTouched);
 

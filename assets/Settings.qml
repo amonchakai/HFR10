@@ -1,4 +1,4 @@
-import bb.cascades 1.2
+import bb.cascades 1.3
 import Network.LoginController 1.0
 import conf.settings 1.0
 
@@ -229,11 +229,12 @@ NavigationPane {
                 
                 Container {
                     preferredHeight: 90
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-                    }
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    layout: DockLayout {  }
+                    
                 	ToggleButton {
                         verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Right
                 	    id: togglebutton
                         checked: appSettings.autoRefresh == 1
                 	    onCheckedChanged: {
@@ -246,25 +247,16 @@ NavigationPane {
                     Label {
                          id: status
                          verticalAlignment: VerticalAlignment.Center
+                         horizontalAlignment: HorizontalAlignment.Left
                          text: qsTr("Refresh favorite automatically")
                     }
                 }
                 
-                /*
-                Button {
-                    horizontalAlignment: HorizontalAlignment.Fill
-                    text: qsTr("Color management")
-                    onClicked: {
-                        if(!colorPage)
-                            colorPage = colorManagement.createObject();
-                        nav.push(colorPage);
-                    }
-                }
-                */
+                
                 
                 // --------------------------------------------------------------------------
                 // hub settings
-                /*
+                
                 Container {
                     background: headerContainer.themeStyleToHeaderColor(Application.themeSupport.theme.colorTheme.style)
                     horizontalAlignment: HorizontalAlignment.Fill
@@ -291,50 +283,134 @@ NavigationPane {
                 
                 Container {
                     preferredHeight: 90
-                    layout: StackLayout {
-                        orientation: LayoutOrientation.LeftToRight
-                    }
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    
+                    
+                    layout: DockLayout { }
                     ToggleButton {
                         verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Right
                         id: togglebuttonHub
-                        checked: true
+                        checked: appSettings.hubIntegration
+               
                         onCheckedChanged: {
-                            appSettings.hubIntegration = togglebutton.checked;
-                            appSettings.saveSettings();
-                            
+                            appSettings.hubIntegration = checked;
+                         
+                            colorManagementButton.visible = togglebuttonHub.checked;
+                            hubRefreshRateSlider.visible  = togglebuttonHub.checked;
+                                
                         }
                     }
                     Label {
                         id: statusHub
                         verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Left
                         text: qsTr("Enable HUB integration")
                     }
                 }
                 
-                
-                Label {
-                    id: hubRefreshRate
-                    text: qsTr("Refresh HUB every: ") + (hubRefreshRateSlider.value).toString() + " minutes."
+                Button {
+                    id: updateHub
+                    visible: togglebuttonHub.checked
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    text: qsTr("Update HUB")
+                    onClicked: {
+                        appSettings.updateHub();
+                    }
                 }
                 
-                Slider {
+                Button {
+                    id: colorManagementButton
+                    visible: togglebuttonHub.checked
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    text: qsTr("Color management")
+                    onClicked: {
+                        if(!colorPage)
+                            colorPage = colorManagement.createObject();
+                        nav.push(colorPage);
+                    }
+                }
+                
+                function refreshToIndex() {
+                    switch(appSettings.hubRefreshRate) {
+                        case 15:
+                            return 0;
+                            
+                        case 20:
+                            return 1;
+                            
+                        case 30:
+                            return 2;
+                            
+                        case 45:
+                            return 3;
+                            
+                        case 60:
+                            return 4;
+                            
+                        case 90:
+                            return 5;
+                            
+                        case 120:
+                            return 6;
+                            
+                        case 180:
+                            return 7;
+                    }
+                    
+                    return 0;
+                }
+                
+                DropDown {
+                    visible: togglebuttonHub.checked
                     id: hubRefreshRateSlider
-                    fromValue: 1
-                    toValue: 120
-                    value: appSettings.hubRefreshRate
                     horizontalAlignment: HorizontalAlignment.Fill
                     
+                    title: qsTr("Refresh HUB every: ") 
+                    options: [
+                        Option {
+                            text: "15 minutes"
+                            value: 15
+                        },
+                        Option {
+                            text: "20 minutes"
+                            value: 20
+                        },
+                        Option {
+                            text: "30 minutes"
+                            value: 30
+                        },
+                        Option {
+                            text: "45 minutes"
+                            value: 45
+                        },
+                        Option {
+                            text: "60 minutes"
+                            value: 60
+                        },
+                        Option {
+                            text: "90 minutes"
+                            value: 90
+                        },
+                        Option {
+                            text: "120 minutes"
+                            value: 120
+                        },
+                        Option {
+                            text: "180 minutes"
+                            value: 180
+                        }
+                    ]
                     
-                    onValueChanged: {
-                        appSettings.hubRefreshRate = hubRefreshRateSlider.value;
-                        hubRefreshRate.text = qsTr("Refresh HUB every: ") + (appSettings.hubRefreshRate).toString() + " minutes."
-                        
+                    onSelectedOptionChanged: {
+                        appSettings.hubRefreshRate = selectedOption.value;
                     }
-                
+                    
+                    selectedIndex: headerContainer.refreshToIndex();
+                    
                 }
-*/
                 
-                
+
                 
                 // --------------------------------------------------------------------------
                 // cache settings

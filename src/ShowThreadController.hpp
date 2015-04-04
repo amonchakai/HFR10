@@ -57,6 +57,9 @@ class ShowThreadController : public QObject {
 		QString								 m_Survey;
 		bool                                 m_ActionSurvey;
 
+
+		QString                              m_ToBlackList;
+
 	// ----------------------------------------------------------------------------------------------
 	public:
 		ShowThreadController(QObject *parent = 0);
@@ -106,6 +109,7 @@ class ShowThreadController : public QObject {
 		bool		   isLastPage() const		{ return m_UrlLastPage == ""; }
 
 
+		bool           isOwnMessage(const QString &name);
 
 		void  notifyItemLoaded();
 

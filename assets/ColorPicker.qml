@@ -108,7 +108,7 @@ Page {
                 var postId = urlPage.match("post=[0-9]+"); postId = postId.toString().substring(5);
                 var catId = urlPage.match("cat=[0-9]+"); catId = catId.toString().substring(4);
                 appSettings.setTag(postId + "@" + catId, chosenItem.value);
-                appSettings.saveSettings();
+                appSettings.saveColors();
                 nav.pop();
             }
         }

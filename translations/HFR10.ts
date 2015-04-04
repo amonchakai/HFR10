@@ -4,7 +4,7 @@
 <context>
     <name>ApplicationUI</name>
     <message>
-        <location filename="../src/applicationui.cpp" line="283"/>
+        <location filename="../src/applicationui.cpp" line="286"/>
         <source>Success!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -338,72 +338,72 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="33"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="33"/>
-        <location filename="../assets/PostMessage.qml" line="33"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="36"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="36"/>
+        <location filename="../assets/PostMessage.qml" line="36"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="36"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="36"/>
-        <location filename="../assets/PostMessage.qml" line="36"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="39"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="39"/>
+        <location filename="../assets/PostMessage.qml" line="39"/>
         <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="86"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="86"/>
-        <location filename="../assets/PostMessage.qml" line="86"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="89"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="89"/>
+        <location filename="../assets/PostMessage.qml" line="89"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="116"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="116"/>
-        <location filename="../assets/PostMessage.qml" line="116"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="125"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="125"/>
+        <location filename="../assets/PostMessage.qml" line="125"/>
         <source>New MP to: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="121"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="121"/>
-        <location filename="../assets/PostMessage.qml" line="121"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="130"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="130"/>
+        <location filename="../assets/PostMessage.qml" line="130"/>
         <source>New topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="426"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="417"/>
-        <location filename="../assets/PostMessage.qml" line="420"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="446"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="437"/>
+        <location filename="../assets/PostMessage.qml" line="440"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="433"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="424"/>
-        <location filename="../assets/PostMessage.qml" line="427"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="453"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="444"/>
+        <location filename="../assets/PostMessage.qml" line="447"/>
         <source>Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="440"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="431"/>
-        <location filename="../assets/PostMessage.qml" line="434"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="460"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="451"/>
+        <location filename="../assets/PostMessage.qml" line="454"/>
         <source>Bold</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="447"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="438"/>
-        <location filename="../assets/PostMessage.qml" line="441"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="467"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="458"/>
+        <location filename="../assets/PostMessage.qml" line="461"/>
         <source>Italic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/PostMessage.qml" line="454"/>
-        <location filename="../assets/720x720/PostMessage.qml" line="445"/>
-        <location filename="../assets/PostMessage.qml" line="448"/>
+        <location filename="../assets/1440x1440/PostMessage.qml" line="474"/>
+        <location filename="../assets/720x720/PostMessage.qml" line="465"/>
+        <location filename="../assets/PostMessage.qml" line="468"/>
         <source>Underline</source>
         <translation type="unfinished"></translation>
     </message>
@@ -789,8 +789,8 @@
     <message>
         <location filename="../assets/Settings.qml" line="81"/>
         <location filename="../assets/Settings.qml" line="107"/>
-        <location filename="../assets/Settings.qml" line="397"/>
-        <location filename="../assets/Settings.qml" line="408"/>
+        <location filename="../assets/Settings.qml" line="473"/>
+        <location filename="../assets/Settings.qml" line="484"/>
         <source>User: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -842,17 +842,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="249"/>
+        <location filename="../assets/Settings.qml" line="251"/>
         <source>Refresh favorite automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="353"/>
+        <location filename="../assets/Settings.qml" line="271"/>
+        <source>Hub integration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="308"/>
+        <source>Enable HUB integration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="316"/>
+        <source>Update HUB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="326"/>
+        <source>Color management</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="369"/>
+        <source>Refresh HUB every: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="429"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="367"/>
+        <location filename="../assets/Settings.qml" line="443"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>
@@ -860,24 +885,29 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="103"/>
+        <location filename="../src/ShowThreadController.cpp" line="113"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="456"/>
+        <location filename="../src/ShowThreadController.cpp" line="466"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="518"/>
-        <location filename="../src/ShowThreadController.cpp" line="582"/>
-        <location filename="../src/ShowThreadController.cpp" line="1141"/>
+        <location filename="../src/ShowThreadController.cpp" line="528"/>
+        <location filename="../src/ShowThreadController.cpp" line="592"/>
+        <location filename="../src/ShowThreadController.cpp" line="1165"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1181"/>
+        <location filename="../src/ShowThreadController.cpp" line="1011"/>
+        <source>Link to current page copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1205"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished"></translation>
     </message>
@@ -979,166 +1009,225 @@
 <context>
     <name>StartupCardThread</name>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="515"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="428"/>
+        <location filename="../assets/StartupCardThread.qml" line="431"/>
+        <source>Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="779"/>
+        <location filename="../assets/StartupCardThread.qml" line="782"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="518"/>
-        <location filename="../assets/StartupCardThread.qml" line="619"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="783"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="926"/>
+        <location filename="../assets/StartupCardThread.qml" line="786"/>
+        <location filename="../assets/StartupCardThread.qml" line="929"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="558"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="845"/>
+        <location filename="../assets/StartupCardThread.qml" line="848"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="559"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="846"/>
+        <location filename="../assets/StartupCardThread.qml" line="849"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="570"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="857"/>
+        <location filename="../assets/StartupCardThread.qml" line="860"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="591"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="878"/>
+        <location filename="../assets/StartupCardThread.qml" line="881"/>
+        <source>r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="883"/>
+        <location filename="../assets/StartupCardThread.qml" line="886"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="600"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="892"/>
+        <location filename="../assets/StartupCardThread.qml" line="895"/>
+        <source>f</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="897"/>
+        <location filename="../assets/StartupCardThread.qml" line="900"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="609"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="906"/>
+        <location filename="../assets/StartupCardThread.qml" line="909"/>
+        <source>l</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="911"/>
+        <location filename="../assets/StartupCardThread.qml" line="914"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="629"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="920"/>
+        <location filename="../assets/StartupCardThread.qml" line="923"/>
+        <source>p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="936"/>
+        <location filename="../assets/StartupCardThread.qml" line="939"/>
+        <source>n</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="941"/>
+        <location filename="../assets/StartupCardThread.qml" line="944"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThread.qml" line="636"/>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="948"/>
+        <location filename="../assets/StartupCardThread.qml" line="951"/>
+        <source>t</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="953"/>
+        <location filename="../assets/StartupCardThread.qml" line="956"/>
         <source>To Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/1440x1440/StartupCardThread.qml" line="960"/>
+        <location filename="../assets/StartupCardThread.qml" line="963"/>
+        <source>b</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ThreadPage</name>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="413"/>
-        <location filename="../assets/ThreadPage.qml" line="421"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="411"/>
+        <location filename="../assets/ThreadPage.qml" line="420"/>
         <source>Actions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="761"/>
-        <location filename="../assets/ThreadPage.qml" line="772"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="759"/>
+        <location filename="../assets/ThreadPage.qml" line="771"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="765"/>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="908"/>
-        <location filename="../assets/ThreadPage.qml" line="776"/>
-        <location filename="../assets/ThreadPage.qml" line="919"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="763"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="906"/>
+        <location filename="../assets/ThreadPage.qml" line="775"/>
+        <location filename="../assets/ThreadPage.qml" line="918"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="827"/>
-        <location filename="../assets/ThreadPage.qml" line="838"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="825"/>
+        <location filename="../assets/ThreadPage.qml" line="837"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="828"/>
-        <location filename="../assets/ThreadPage.qml" line="839"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="826"/>
+        <location filename="../assets/ThreadPage.qml" line="838"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="839"/>
-        <location filename="../assets/ThreadPage.qml" line="850"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="837"/>
+        <location filename="../assets/ThreadPage.qml" line="849"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="860"/>
-        <location filename="../assets/ThreadPage.qml" line="871"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="858"/>
+        <location filename="../assets/ThreadPage.qml" line="870"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="865"/>
-        <location filename="../assets/ThreadPage.qml" line="876"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="863"/>
+        <location filename="../assets/ThreadPage.qml" line="875"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="874"/>
-        <location filename="../assets/ThreadPage.qml" line="885"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="872"/>
+        <location filename="../assets/ThreadPage.qml" line="884"/>
         <source>f</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="879"/>
-        <location filename="../assets/ThreadPage.qml" line="890"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="877"/>
+        <location filename="../assets/ThreadPage.qml" line="889"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="888"/>
-        <location filename="../assets/ThreadPage.qml" line="899"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="886"/>
+        <location filename="../assets/ThreadPage.qml" line="898"/>
         <source>l</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="893"/>
-        <location filename="../assets/ThreadPage.qml" line="904"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="891"/>
+        <location filename="../assets/ThreadPage.qml" line="903"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="902"/>
-        <location filename="../assets/ThreadPage.qml" line="913"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="900"/>
+        <location filename="../assets/ThreadPage.qml" line="912"/>
         <source>p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="918"/>
-        <location filename="../assets/ThreadPage.qml" line="929"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="916"/>
+        <location filename="../assets/ThreadPage.qml" line="928"/>
         <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="923"/>
-        <location filename="../assets/ThreadPage.qml" line="934"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="921"/>
+        <location filename="../assets/ThreadPage.qml" line="933"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="930"/>
-        <location filename="../assets/ThreadPage.qml" line="941"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="928"/>
+        <location filename="../assets/ThreadPage.qml" line="940"/>
         <source>t</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="935"/>
-        <location filename="../assets/ThreadPage.qml" line="946"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="933"/>
+        <location filename="../assets/ThreadPage.qml" line="945"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/1440x1440/ThreadPage.qml" line="942"/>
-        <location filename="../assets/ThreadPage.qml" line="953"/>
+        <location filename="../assets/1440x1440/ThreadPage.qml" line="940"/>
+        <location filename="../assets/ThreadPage.qml" line="952"/>
         <source>b</source>
         <translation type="unfinished"></translation>
     </message>

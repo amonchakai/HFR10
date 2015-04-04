@@ -129,8 +129,9 @@ Page {
                         var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
                         match = message.data.match(isContext); 
                         if(match) {
-                            console.log(match + " === " + match[1])
-                            pageContainer.showContextMenu(match[1]);
+                            
+                            var own = message.data.substr(14+match[1].length)
+                            pageContainer.showContextMenu(match[1], own);
                         }
                         isContext = RegExp("RANDOM_TAP");
                         match = message.data.match(isContext);
@@ -206,15 +207,15 @@ Page {
                 property bool multiSelect;
                                 
                 
-                function show() {
+                function show(own) {
                     if(!isVisible) {
                         isVisible = true;
-                        editButton.visible = true;
+                        editButton.visible = own;
                         sendMP.visible = true;
                         addFavorite.visible = true;
                         quote.visible = true;
                         quoteMore.visible = true;
-                        deleteButton.visible = true;
+                        deleteButton.visible = own;
                         cancelButton.visible = false;
                         
                         composeNewActionBar.visible = false;
@@ -254,11 +255,9 @@ Page {
         }
         
         
-        function showContextMenu(messageID) {
-            console.log("show");
+        function showContextMenu(messageID, own) {
             listItemSelected = (messageID);
-            console.log(messageID + " -- " + parseInt(messageID) + " === " + listItemSelected)
-            contextMenu.show();
+            contextMenu.show(own);
         }
         
         function closeContextMenu() {
@@ -338,7 +337,7 @@ Page {
             //showThreadController.addToFavorite(responseID);
             console.log('Add to fav!')
         }
-        
+                
         function openContextActionPage(messageID) {
             console.log('More context actions!')
             if(!contextActionPage)

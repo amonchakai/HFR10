@@ -466,7 +466,6 @@ void ListFavoriteController::load() {
                 m_CategoriesLabels.push_back("");
 
             for(int i = 0 ; i < m_Datas->size() ; ++i) {
-                qDebug() << m_Datas->at(i)->getGroupKey() << m_Datas->at(i)->getCategory();
                 if(m_Datas->at(i)->getGroupKey() < m_CategoriesLabels.size())
                     m_CategoriesLabels[m_Datas->at(i)->getGroupKey()] = m_Datas->at(i)->getCategory();
             }

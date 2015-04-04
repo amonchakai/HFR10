@@ -83,7 +83,7 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     onCheckedChanged: {
                         appSettings.notifGreen = greenHubNotif.checked;
-                        appSettings.saveSettings(); 
+                        appSettings.saveColors(); 
                     }
                 }
                 
@@ -132,7 +132,7 @@ Page {
                     verticalAlignment: VerticalAlignment.Center
                     onCheckedChanged: {
                         appSettings.notifBlue = blueHubNotif.checked;
-                        appSettings.saveSettings(); 
+                        appSettings.saveColors(); 
                     }
                 }
             
@@ -182,7 +182,7 @@ Page {
                     horizontalAlignment: HorizontalAlignment.Left
                     onCheckedChanged: {
                         appSettings.notifOrange = orangeHubNotif.checked;
-                        appSettings.saveSettings(); 
+                        appSettings.saveColors(); 
                     }
                 }
             
@@ -236,7 +236,7 @@ Page {
                        horizontalAlignment: HorizontalAlignment.Right
                        onCheckedChanged: {
                            appSettings.notifPink = pinkHubNotif.checked;
-                           appSettings.saveSettings(); 
+                           appSettings.saveColors(); 
                        }
                    }
                     
@@ -287,7 +287,7 @@ Page {
                     horizontalAlignment: HorizontalAlignment.Left
                     onCheckedChanged: {
                         appSettings.notifPurple = purpleHubNotif.checked;
-                        appSettings.saveSettings(); 
+                        appSettings.saveColors(); 
                     }
                 }
             

@@ -9,6 +9,7 @@
 #define SETTINGS_HPP_
 
 #include <QtCore/QObject>
+#include <QSettings>
 
 class Settings : public QObject {
 
@@ -47,9 +48,11 @@ private:
 
 	static QMap<QString, int>   m_TopicTags;
 
+	static QSettings  *m_Settings;
+
 
 public:
-	Settings(QObject *parent = 0) : QObject(parent) {}
+	Settings(QObject *parent = 0);
 	virtual ~Settings() {}
 
 
@@ -100,6 +103,8 @@ public:
 
 public Q_SLOTS:
 	void saveSettings() const;
+	void saveColors() const;
+	void updateHub() const;
 
 	void setTag(const QString &topicID, int color);
 	int  getTag(const QString &topicID) const;

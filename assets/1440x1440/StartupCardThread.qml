@@ -228,10 +228,7 @@ NavigationPane {
                             composeNewActionBar.visible = false;
                             nextPageNewActionBar.visible = false;
                             statsNewActionBar.visible = false;
-                            
-                            actionButton.visible = false;
-                            labelAction.visible = false;
-                        
+                                                    
                         }
                     }
                     
@@ -262,7 +259,7 @@ NavigationPane {
             }
             
             
-            function showContextMenu(messageID,own) {
+            function showContextMenu(messageID, own) {
                 pageThread.listItemSelected = (messageID);
                 contextMenu.show(own);
             }
@@ -666,7 +663,7 @@ NavigationPane {
                     horizontalAlignment: HorizontalAlignment.Fill
                     
                     layout: GridListLayout {
-                        columnCount: 5
+                        columnCount: 6
                         headerMode: ListHeaderMode.Sticky
                     }
                     

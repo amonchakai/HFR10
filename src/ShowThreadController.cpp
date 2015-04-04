@@ -27,6 +27,7 @@
 #include <bb/cascades/Theme>
 #include <bb/system/SystemToast>
 #include <bb/platform/Notification>
+#include <bb/system/Clipboard>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
@@ -39,6 +40,15 @@ ShowThreadController::ShowThreadController(QObject *parent)
 	: QObject(parent), m_WebView(NULL), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0), m_ActionSurvey(false) {
 }
 
+
+
+bool ShowThreadController::isOwnMessage(const QString &name) {
+
+    qDebug() << name;
+    m_ToBlackList = name;
+
+    return name == m_Pseudo;
+}
 
 
 void ShowThreadController::showThread(const QString &url) {
@@ -868,7 +878,7 @@ void ShowThreadController::updateView() {
 	        QRegExp isModo("Mod.ration");
 	        if(isModo.indexIn(m_Datas->at(i)->getAuthor()) != -1) {
 	            pageContent +=
-	            QString("<div class=\"PostHeader moderator\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+	            QString("<div class=\"PostHeader moderator\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ", " + QString::number(isOwnMessage(m_Datas->at(i)->getAuthor())) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
 	                        + "<div style=\"height:80%; width:auto; position:relative; top:10%; left:5px; width:100px; display: inline-block;\" ><img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:100%; width:auto; position:relative; margin-left: auto; margin-right: auto; display: inline-block;\" /></div>"
 	                        + "<div class=\"PostHeader-Text moderator\">"
 	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getAuthor() + "</p></div>"
@@ -877,7 +887,7 @@ void ShowThreadController::updateView() {
 	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
 	        } else {
 	            pageContent +=
-	            QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
+	            QString("<div class=\"PostHeader\" ontouchstart=\"itemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ", " + QString::number(isOwnMessage(m_Datas->at(i)->getAuthor())) + ")\" ontouchend=\"itemReleased();\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
                             + "<div style=\"height:80%; width:auto; position:relative; top:10%; left:5px; width:100px; display: inline-block;\" ><img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:100%; width:auto; margin-left: auto; margin-right: auto; display: block;\" /></div>"
 	                        + "<div class=\"PostHeader-Text\">"
 	                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
@@ -989,6 +999,20 @@ void ShowThreadController::doAction(int code) {
         case 10:
             m_WebView->storage()->clearCache();
             break;
+
+
+        case 11:
+        {
+            bb::system::Clipboard clipboard;
+            clipboard.clear();
+            clipboard.insert("text/plain", (DefineConsts::FORUM_URL + m_Url).toAscii());
+
+            bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+            toast->setBody(tr("Link to current page copied to clipboard"));
+            toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+            toast->show();
+            break;
+        }
 
     }
 }

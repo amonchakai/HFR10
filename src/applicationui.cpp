@@ -64,7 +64,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         m_app(app),
         m_root(NULL),
         m_qml(NULL),
-        m_Settings("amonchakai.dev", "HFR10"),
+        m_Settings("Amonchakai", "HFR10Service"),
         m_InvokeManager(new bb::system::InvokeManager(this)),
         m_HeadlessStart(false),
         m_isCard(false)
@@ -185,9 +185,9 @@ void ApplicationUI::onSystemLanguageChanged()
 
 
 void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
-//    qDebug() << "invoke!" << request.action();
+    qDebug() << "invoke!" << request.action();
 
-    if(request.action().compare("bb.action.VIEW") == 0) {
+    if(request.action().compare("bb.action.VIEW") == 0 || request.action().compare("bb.action.OPEN") == 0) {
 //         qDebug() << "HubIntegration: onInvoked: view item: " << request.data();
 
          JsonDataAccess jda;
@@ -206,11 +206,14 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
               if (item["sourceId"].toString() == itemMap["messageid"].toString() ||
                   item["sourceId"].toString() == itemMap["sourceId"].toString()) {
 
+                  qDebug() << "FOUD!";
                   urlToOpen = item["url"].toString();
 
                   break;
               }
          }
+
+         qDebug() << "URL TO OPEN: " << urlToOpen;
 
          QmlDocument *qml = QmlDocument::create("asset:///StartupCardThread.qml")
                                                           .parent(this);
@@ -227,7 +230,7 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
 
 
          InvokeRequest request;
-         request.setTarget("pierre.lebreton.HFRBlack.Headless");
+         request.setTarget("com.amonchakai.HFR10Service");
          request.setAction("bb.action.MARKREAD");
          request.setMimeType("hub/item");
          request.setUri(QUrl("pim:"));
