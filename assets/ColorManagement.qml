@@ -77,17 +77,26 @@ Page {
                 
             }
             
-            
-            ToggleButton {
-                id: greenHubNotif
-                checked: appSettings.notifGreen
-                verticalAlignment: VerticalAlignment.Center
+            Container {
                 horizontalAlignment: HorizontalAlignment.Right
-                onCheckedChanged: {
-                    appSettings.notifGreen = greenHubNotif.checked;
-                    appSettings.saveColors(); 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
                 }
-            }                   
+                ToggleButton {
+                    id: greenHubNotif
+                    checked: appSettings.notifGreen
+                    verticalAlignment: VerticalAlignment.Center
+                    onCheckedChanged: {
+                        appSettings.notifGreen = greenHubNotif.checked;
+                        appSettings.saveColors(); 
+                    }
+                }
+                
+                Container {
+                    preferredWidth: ui.du(.5)
+                }
+            }
+            
             
         }
         
@@ -130,16 +139,27 @@ Page {
             }
             
             
-            ToggleButton {
-                id: blueHubNotif
-                checked: appSettings.notifBlue
-                verticalAlignment: VerticalAlignment.Center
+            Container {
                 horizontalAlignment: HorizontalAlignment.Right
-                onCheckedChanged: {
-                    appSettings.notifBlue = blueHubNotif.checked;
-                    appSettings.saveColors(); 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                ToggleButton {
+                    id: blueHubNotif
+                    checked: appSettings.notifBlue
+                    verticalAlignment: VerticalAlignment.Center
+                    onCheckedChanged: {
+                        appSettings.notifBlue = blueHubNotif.checked;
+                        appSettings.saveColors(); 
+                    }
+                }
+                
+                Container {
+                    preferredWidth: ui.du(.5)
                 }
             }
+            
+            
         
         }
         
@@ -181,17 +201,26 @@ Page {
             }
             
             
-            ToggleButton {
-                id: orangeHubNotif
-                checked: appSettings.notifOrange
-                verticalAlignment: VerticalAlignment.Center
+            Container {
                 horizontalAlignment: HorizontalAlignment.Right
-                onCheckedChanged: {
-                    appSettings.notifOrange = orangeHubNotif.checked;
-                    appSettings.saveColors(); 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                ToggleButton {
+                    id: orangeHubNotif
+                    checked: appSettings.notifOrange
+                    verticalAlignment: VerticalAlignment.Center
+                    onCheckedChanged: {
+                        appSettings.notifOrange = orangeHubNotif.checked;
+                        appSettings.saveColors(); 
+                    }
+                }
+                
+                Container {
+                    preferredWidth: ui.du(.5)
                 }
             }
-        
+                    
         }
         
         
@@ -234,17 +263,27 @@ Page {
             
             }
             
-            
-            ToggleButton {
-                id: pinkHubNotif
-                checked: appSettings.notifPink
-                verticalAlignment: VerticalAlignment.Center
+            Container {
                 horizontalAlignment: HorizontalAlignment.Right
-                onCheckedChanged: {
-                    appSettings.notifPink = pinkHubNotif.checked;
-                    appSettings.saveColors(); 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
                 }
-            }        
+                ToggleButton {
+                    id: pinkHubNotif
+                    checked: appSettings.notifPink
+                    verticalAlignment: VerticalAlignment.Center
+                    onCheckedChanged: {
+                        appSettings.notifPink = pinkHubNotif.checked;
+                        appSettings.saveColors(); 
+                    }
+                }                        
+                Container {
+                    preferredWidth: ui.du(.5)
+                }
+            }
+
+            
+            
         }
     
         
@@ -286,17 +325,27 @@ Page {
             
             }
             
-            
-            ToggleButton {
-                id: purpleHubNotif
-                checked: appSettings.notifPurple
-                verticalAlignment: VerticalAlignment.Center
+            Container {
                 horizontalAlignment: HorizontalAlignment.Right
-                onCheckedChanged: {
-                    appSettings.notifPurple = purpleHubNotif.checked;
-                    appSettings.saveColors(); 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
+                ToggleButton {
+                    id: purpleHubNotif
+                    checked: appSettings.notifPurple
+                    verticalAlignment: VerticalAlignment.Center
+                    onCheckedChanged: {
+                        appSettings.notifPurple = purpleHubNotif.checked;
+                        appSettings.saveColors(); 
+                    }
+                }
+                Container {
+                    preferredWidth: ui.du(.5)
                 }
             }
+            
+            
+            
         }
         
         

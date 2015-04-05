@@ -55,22 +55,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="126"/>
+        <location filename="../assets/ColorManagement.qml" line="135"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="177"/>
+        <location filename="../assets/ColorManagement.qml" line="197"/>
         <source>Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="230"/>
+        <location filename="../assets/ColorManagement.qml" line="259"/>
         <source>Pink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="282"/>
+        <location filename="../assets/ColorManagement.qml" line="321"/>
         <source>Purple</source>
         <translation type="unfinished"></translation>
     </message>
@@ -839,42 +839,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="274"/>
+        <location filename="../assets/Settings.qml" line="284"/>
         <source>Refresh favorite automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="288"/>
+        <location filename="../assets/Settings.qml" line="298"/>
         <source>Hub integration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="322"/>
+        <location filename="../assets/Settings.qml" line="345"/>
         <source>Enable HUB integration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="330"/>
+        <location filename="../assets/Settings.qml" line="353"/>
         <source>Update HUB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="340"/>
+        <location filename="../assets/Settings.qml" line="363"/>
         <source>Color management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="383"/>
+        <location filename="../assets/Settings.qml" line="406"/>
         <source>Refresh HUB every: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="438"/>
+        <location filename="../assets/Settings.qml" line="461"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="449"/>
+        <location filename="../assets/Settings.qml" line="472"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>

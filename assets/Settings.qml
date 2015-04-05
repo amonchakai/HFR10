@@ -255,17 +255,27 @@ NavigationPane {
                     horizontalAlignment: HorizontalAlignment.Fill
                     layout: DockLayout {  }
                     
-                	ToggleButton {
-                        verticalAlignment: VerticalAlignment.Center
+                    Container {
                         horizontalAlignment: HorizontalAlignment.Right
-                	    id: togglebutton
-                        checked: appSettings.autoRefresh == 1
-                	    onCheckedChanged: {
-                        	if(checked)
-                        		appSettings.autoRefresh = 1;
-                        	else 
-                        		appSettings.autoRefresh = 0;
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
                         }
+                        ToggleButton {
+                            verticalAlignment: VerticalAlignment.Center
+                            
+                            id: togglebutton
+                            checked: appSettings.autoRefresh == 1
+                            onCheckedChanged: {
+                                if(checked)
+                                    appSettings.autoRefresh = 1;
+                                else 
+                                    appSettings.autoRefresh = 0;
+                            }
+                        }
+                        Container {
+                            preferredWidth: ui.du(0.5)
+                        }
+                        
                     }
                     Label {
                          id: status
@@ -301,19 +311,32 @@ NavigationPane {
                     
                     
                     layout: DockLayout { }
-                    ToggleButton {
-                        verticalAlignment: VerticalAlignment.Center
+                    
+                    Container {
                         horizontalAlignment: HorizontalAlignment.Right
-                        id: togglebuttonHub
-                        checked: appSettings.hubIntegration
-               
-                        onCheckedChanged: {
-                            appSettings.hubIntegration = checked;
-                         
-                            colorManagementButton.visible = togglebuttonHub.checked;
-                            hubRefreshRateSlider.visible  = togglebuttonHub.checked;
-                                
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
                         }
+                        
+                        ToggleButton {
+                            verticalAlignment: VerticalAlignment.Center
+                            
+                            id: togglebuttonHub
+                            checked: appSettings.hubIntegration
+                   
+                            onCheckedChanged: {
+                                appSettings.hubIntegration = checked;
+                             
+                                colorManagementButton.visible = togglebuttonHub.checked;
+                                hubRefreshRateSlider.visible  = togglebuttonHub.checked;
+                                    
+                            }
+                        }
+                        
+                        Container {
+                            preferredWidth: ui.du(0.5)
+                        }
+                        
                     }
                     Label {
                         id: statusHub
