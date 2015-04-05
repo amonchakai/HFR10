@@ -20,7 +20,7 @@ Page {
     property string listItemSelected;
     
     actionBarVisibility: ChromeVisibility.Hidden
-    
+     
     Container {
         id: pageContainer
         background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;

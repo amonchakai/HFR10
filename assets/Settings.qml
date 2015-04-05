@@ -73,7 +73,7 @@ NavigationPane {
                                 
                 Container {
                     layout: DockLayout { }
-                    
+                    background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#131313") : Color.create("#fafafaff")
                     Container {
                         layout: StackLayout {
                             orientation: LayoutOrientation.LeftToRight
@@ -85,12 +85,14 @@ NavigationPane {
                             preferredWidth: ui.du(.1)
                         }
                         
+                        
                         ImageView {
                             imageSource: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/avatar_white.png" : "asset:///images/avatar_black.png"
                             preferredHeight: ui.du(3)
                             preferredWidth: ui.du(3)
                             verticalAlignment: VerticalAlignment.Center
                             scalingMethod: ScalingMethod.AspectFit
+                            
                         }
                         
                         TextField {
