@@ -58,8 +58,6 @@ class ShowThreadController : public QObject {
 		bool                                 m_ActionSurvey;
 
 
-		QString                              m_ToBlackList;
-
 	// ----------------------------------------------------------------------------------------------
 	public:
 		ShowThreadController(QObject *parent = 0);

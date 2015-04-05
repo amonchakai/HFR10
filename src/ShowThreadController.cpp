@@ -43,10 +43,6 @@ ShowThreadController::ShowThreadController(QObject *parent)
 
 
 bool ShowThreadController::isOwnMessage(const QString &name) {
-
-    qDebug() << name;
-    m_ToBlackList = name;
-
     return name == m_Pseudo;
 }
 

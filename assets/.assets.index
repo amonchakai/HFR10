@@ -1,5 +1,5 @@
 1
-267
+269
 1440x1440/PostMessage.qml
 1440x1440/SmileyPicker.qml
 1440x1440/StartupCardThread.qml
@@ -14,6 +14,8 @@ help/about_fr.html
 Help.qml
 Home.qml
 ImagePreview.qml
+images/avatar_black.png
+images/avatar_white.png
 images/blackFace.png
 images/Bookmarks.png
 images/Bookmarks.svg

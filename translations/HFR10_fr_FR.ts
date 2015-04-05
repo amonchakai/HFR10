@@ -58,27 +58,27 @@
         <translation>Gestion des couleurs et des notifications</translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="76"/>
+        <location filename="../assets/ColorManagement.qml" line="74"/>
         <source>Green</source>
         <translation>Vert</translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="125"/>
+        <location filename="../assets/ColorManagement.qml" line="126"/>
         <source>Blue</source>
         <translation>Bleu</translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="174"/>
+        <location filename="../assets/ColorManagement.qml" line="177"/>
         <source>Orange</source>
         <translation>Orange</translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="227"/>
+        <location filename="../assets/ColorManagement.qml" line="230"/>
         <source>Pink</source>
         <translation>Rose</translation>
     </message>
     <message>
-        <location filename="../assets/ColorManagement.qml" line="279"/>
+        <location filename="../assets/ColorManagement.qml" line="282"/>
         <source>Purple</source>
         <translation>Violet</translation>
     </message>
@@ -802,102 +802,103 @@
         <translation type="unfinished">Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="67"/>
         <source>Login settings</source>
-        <translation type="unfinished">Paramètres de connexion</translation>
+        <translation type="obsolete">Paramètres de connexion</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="81"/>
-        <location filename="../assets/Settings.qml" line="107"/>
-        <location filename="../assets/Settings.qml" line="473"/>
-        <location filename="../assets/Settings.qml" line="484"/>
+        <location filename="../assets/Settings.qml" line="134"/>
         <source>User: </source>
         <translation type="unfinished">Utilisateur: </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="88"/>
+        <location filename="../assets/Settings.qml" line="111"/>
         <source>Connect</source>
         <translation type="unfinished">Se connecter</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="101"/>
+        <location filename="../assets/Settings.qml" line="126"/>
         <source>log out</source>
         <translation type="unfinished">Se deconnecter</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="127"/>
+        <location filename="../assets/Settings.qml" line="153"/>
         <source>Visual appearance</source>
         <translation type="unfinished">Apparence de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="141"/>
-        <location filename="../assets/Settings.qml" line="154"/>
+        <location filename="../assets/Settings.qml" line="165"/>
+        <location filename="../assets/Settings.qml" line="178"/>
         <source>Font size: </source>
         <translation type="unfinished">Taille des polices : </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="165"/>
-        <location filename="../assets/Settings.qml" line="178"/>
+        <location filename="../assets/Settings.qml" line="189"/>
+        <location filename="../assets/Settings.qml" line="202"/>
         <source>Smiley size: </source>
         <translation type="unfinished">Taille des smileys : </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="187"/>
+        <location filename="../assets/Settings.qml" line="211"/>
         <source>Visual Theme</source>
         <translation type="unfinished">Choix du thème</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="190"/>
+        <location filename="../assets/Settings.qml" line="214"/>
         <source>Bright</source>
         <translation type="unfinished">Clair</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="195"/>
+        <location filename="../assets/Settings.qml" line="219"/>
         <source>Dark</source>
         <translation type="unfinished">Sombre</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="218"/>
+        <location filename="../assets/Settings.qml" line="240"/>
         <source>Feature settings</source>
         <translation type="unfinished">Fonctionalités</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="251"/>
+        <location filename="../assets/Settings.qml" line="272"/>
         <source>Refresh favorite automatically</source>
         <translation type="unfinished">Rafraichir favoris automatiquement</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="308"/>
+        <location filename="../assets/Settings.qml" line="320"/>
         <source>Enable HUB integration</source>
         <translation>Activer l&apos;integration au HUB</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="316"/>
+        <location filename="../assets/Settings.qml" line="328"/>
         <source>Update HUB</source>
         <translation>Mettre à jour le HUB</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="326"/>
+        <location filename="../assets/Settings.qml" line="338"/>
         <source>Color management</source>
         <translation type="unfinished">Gestion des couleurs</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="271"/>
+        <location filename="../assets/Settings.qml" line="286"/>
         <source>Hub integration</source>
         <translation type="unfinished">Intégration au Hub</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="369"/>
+        <location filename="../assets/Settings.qml" line="65"/>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="381"/>
         <source>Refresh HUB every: </source>
         <translation type="unfinished">Rafraichir chaque: </translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="429"/>
+        <location filename="../assets/Settings.qml" line="436"/>
         <source>Maintenance</source>
         <translation type="unfinished">Maintenance</translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="443"/>
+        <location filename="../assets/Settings.qml" line="447"/>
         <source>Clear image cache</source>
         <translation type="unfinished">Vider le cache</translation>
     </message>
@@ -905,12 +906,12 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="113"/>
+        <location filename="../src/ShowThreadController.cpp" line="109"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1011"/>
+        <location filename="../src/ShowThreadController.cpp" line="1007"/>
         <source>Link to current page copied to clipboard</source>
         <translation>L&apos;addresse de la page courante a été copiée dans le presse papier</translation>
     </message>
@@ -919,19 +920,19 @@
         <translation type="obsolete">Sondage</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="528"/>
-        <location filename="../src/ShowThreadController.cpp" line="592"/>
-        <location filename="../src/ShowThreadController.cpp" line="1165"/>
+        <location filename="../src/ShowThreadController.cpp" line="524"/>
+        <location filename="../src/ShowThreadController.cpp" line="588"/>
+        <location filename="../src/ShowThreadController.cpp" line="1161"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1205"/>
+        <location filename="../src/ShowThreadController.cpp" line="1201"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation>/app/native/assets/model/action_list_fr.xml</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="466"/>
+        <location filename="../src/ShowThreadController.cpp" line="462"/>
         <source>Vote</source>
         <translation>Voter</translation>
     </message>

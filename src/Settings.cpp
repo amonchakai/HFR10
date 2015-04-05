@@ -210,24 +210,35 @@ void Settings::saveColors() const {
 
 
 void Settings::setTag(const QString &topicID, int color) {
+    qDebug() << topicID << color;
+
     if(color == 0 && m_TopicTags.find(topicID) == m_TopicTags.end()) {
         return;
     }
+
+    qDebug() << "do something";
 
     if(color == 0 && m_TopicTags.find(topicID) != m_TopicTags.end()) {
         m_TopicTags.remove(topicID);
         return;
     }
 
+    qDebug() << "add entry";
+
     m_TopicTags[topicID] = color;
 }
 
 int  Settings::getTag(const QString &topicID) const {
+    qDebug() << "getTag: " << topicID;
     QMap<QString, int>::const_iterator it = m_TopicTags.find(topicID);
     if(it == m_TopicTags.end()) {
+        qDebug() << 0;
         return 0;
     }
+    qDebug() << it.value();
     return it.value();
+
+
 }
 
 
