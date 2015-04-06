@@ -50,6 +50,14 @@ TabbedPane {
                 }
             }
         },
+        Sheet {
+            id: bugReport
+            BugReport {
+                onDone : {
+                    bugReport.close();
+                }
+            }
+        },
         
         LoginController {
             id: loginController
@@ -71,6 +79,13 @@ TabbedPane {
                 imageSource: "asset:///images/icon_settings.png"
                 onTriggered: {
                     settingsPage.open();
+                }
+            },
+            ActionItem {
+                title: qsTr("Report")
+                imageSource: "asset:///images/BugReport_white.png"
+                onTriggered: {
+                    bugReport.open();
                 }
             }
         ]

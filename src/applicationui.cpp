@@ -50,6 +50,7 @@
 #include "Network/WebResourceManager.h"
 #include "Network/CookieJar.hpp"
 #include "DataObjects.h"
+#include "BugReportController.hpp"
 
 #include <bb/system/InvokeManager>
 #include <bb/system/InvokeRequest>
@@ -153,6 +154,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");
     qmlRegisterType<QTimer>("Lib.QTimer", 1, 0, "QTimer");
+    qmlRegisterType<BugReportController>("Lib.BugReport", 1, 0, "BugReport");
 
     // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set
