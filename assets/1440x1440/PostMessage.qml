@@ -28,6 +28,9 @@ Page {
     
     property int selectionBegin
     property int selectionStop
+    property int startDecreasing
+    property bool anchored
+    property int lastPosC
     
     actionBarVisibility: ChromeVisibility.Visible
     
@@ -110,6 +113,8 @@ Page {
         
         
         function insertTag(tag) {
+            if(selectionStop == 0) selectionStop = startDecreasing;
+            
             if(selectionBegin>selectionStop) {
                 var tmp = selectionStop;
                 selectionStop = selectionBegin;
@@ -144,8 +149,21 @@ Page {
                 onSelectionEndChanged: {
                     if(selectionEnd != 0 && selectionEnd != selectionBegin)
                         selectionStop = selectionEnd;
+                    anchored = false;
                 }
+                
+                onCursorPositionChanged: {
+                    if(Math.abs(lastPosC-cursorPosition) > 1)
+                        selectionStop = cursorPosition;
+                    lastPosC = cursorPosition;
+                }
+                
                 onSelectionStartChanged: {
+                    if(selectionStart < selectionBegin && !anchored) {
+                        startDecreasing = selectionBegin;
+                        anchored = true;
+                    }
+                    
                     if(selectionStart != 0 && selectionStart != selectionStop)
                         selectionBegin = selectionStart;
                 }
