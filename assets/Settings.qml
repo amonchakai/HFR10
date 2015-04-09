@@ -6,6 +6,7 @@ NavigationPane {
     id: nav
     property variant tpage
     property variant colorPage
+    property variant logPage
     signal done ()
     
 	Page {
@@ -163,6 +164,7 @@ NavigationPane {
                 
                     
     	        Label {
+                    margin.leftOffset: ui.du(1)
     	            id: setFontSizeLabel
                     text: qsTr("Font size: ") + appSettings.fontSize.toString() + "px"
                 }
@@ -187,6 +189,7 @@ NavigationPane {
                 // smiley settings
                 
                 Label {
+                    margin.leftOffset: ui.du(1)
                     id: setSmileySizeLabel
                     text: qsTr("Smiley size: ") + (appSettings.smileySize*40).toString() + "%"
                 }
@@ -278,6 +281,7 @@ NavigationPane {
                         
                     }
                     Label {
+                        margin.leftOffset: ui.du(1)
                          id: status
                          verticalAlignment: VerticalAlignment.Center
                          horizontalAlignment: HorizontalAlignment.Left
@@ -339,6 +343,7 @@ NavigationPane {
                         
                     }
                     Label {
+                        margin.leftOffset: ui.du(1)
                         id: statusHub
                         verticalAlignment: VerticalAlignment.Center
                         horizontalAlignment: HorizontalAlignment.Left
@@ -474,7 +479,52 @@ NavigationPane {
                     onClicked: {
                         loginController.clearImageCache();
                     }
-                }             
+                }           
+                  
+                Container {
+                    layout: DockLayout { }
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    
+                    Label {
+                        text: qsTr("Enable logs")
+                        horizontalAlignment: HorizontalAlignment.Left
+                        verticalAlignment: VerticalAlignment.Center
+                        margin.leftOffset: ui.du(1)
+                    }
+                    
+                    Container {
+                        horizontalAlignment: HorizontalAlignment.Right
+                        verticalAlignment: VerticalAlignment.Center
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        }
+                        
+                        ToggleButton {
+                            id: enableLogs
+                            verticalAlignment: VerticalAlignment.Center
+                            checked: appSettings.enableLogs
+                            onCheckedChanged: {
+                                appSettings.enableLogs = checked;
+                            }
+                        }    
+                        
+                        Container {
+                            preferredWidth: ui.du(0.5)
+                        }    
+                    }
+                    
+                
+                }
+                
+                Button {
+                    text: qsTr("Logs")
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    onClicked: {
+                        if(!logPage)
+                            logPage = applicationLog.createObject();
+                        nav.push(logPage);
+                    }
+                }
     	    }
     	    
     	    
@@ -489,6 +539,10 @@ NavigationPane {
                 },
                 AppSettings {
                     id: appSettings
+                },
+                ComponentDefinition {
+                    id: applicationLog
+                    source: "ApplicationLog.qml"
                 },
                 ComponentDefinition {
                     id: colorManagement

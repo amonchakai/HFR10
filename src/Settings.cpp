@@ -30,6 +30,7 @@ bool Settings::m_NotifBlue = false;
 bool Settings::m_NotifOrange = false;
 bool Settings::m_NotifPink = false;
 bool Settings::m_NotifPurple = false;
+bool Settings::m_LogEnabled = false;
 
 bool Settings::m_MPNotificationUp = false;
 QSettings *Settings::m_Settings = NULL;
@@ -64,6 +65,8 @@ void Settings::loadSettings() {
 	m_NotifOrange= m_Settings->value("NotifOrange", false).toBool();
 	m_NotifPink= m_Settings->value("NotifPink", false).toBool();
 	m_NotifPurple= m_Settings->value("NotifPurple", false).toBool();
+
+	m_LogEnabled= m_Settings->value("LogEnabled", false).toBool();
 
 	m_MPNotificationUp= m_Settings->value("MPNotificationUp", false).toBool();
 
@@ -114,6 +117,7 @@ void Settings::saveSettings() const {
     m_Settings->setValue("SimleySize", m_SmileySize);
     m_Settings->setValue("Theme", m_Theme);
     m_Settings->setValue("AutoRefresh", m_AutoRefresh);
+    m_Settings->setValue("LogEnabled", m_LogEnabled);
 
     if(!m_Settings->value("HubIntegration", false).toBool()) {
         if(m_HubIntegration) {

@@ -1,0 +1,1 @@
+../../BugReport/assets/IssueViewer.qml

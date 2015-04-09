@@ -28,6 +28,9 @@ class Settings : public QObject {
 	Q_PROPERTY( bool notifPink  READ getNotifPink WRITE setNotifPink   NOTIFY notifPinkChanged)
 	Q_PROPERTY( bool notifPurple  READ getNotifPurple WRITE setNotifPurple   NOTIFY notifPurpleChanged)
 
+	Q_PROPERTY( bool enableLogs  READ getLogEnabled WRITE setLogEnabled   NOTIFY logEnabledChanged)
+
+
 private:
 
 
@@ -45,6 +48,7 @@ private:
 	static bool m_NotifPurple;
 
 	static bool m_MPNotificationUp;
+	static bool m_LogEnabled;
 
 	static QMap<QString, int>   m_TopicTags;
 
@@ -94,11 +98,15 @@ public:
     inline void setNotifPurple(bool s)                  { m_NotifPurple = s; }
     inline bool getNotifPurple() const                  { return m_NotifPurple; }
 
+    inline void setLogEnabled(bool s)                  { m_LogEnabled = s; }
+    inline bool getLogEnabled() const                  { return m_LogEnabled; }
+
 	static void	loadSettings();
 
 	static int getTagValue(const QString& topicID);
 
 	static bool getMPNotificationUp()                     { return m_MPNotificationUp; }
+	static bool getLogEnabledUI()                         { return m_LogEnabled; }
 	static void setMPNotificationUp(bool value)           { m_MPNotificationUp = value; }
 
 public Q_SLOTS:
@@ -123,6 +131,7 @@ public Q_SLOTS:
 		void notifOrangeChanged();
 		void notifPinkChanged();
 		void notifPurpleChanged();
+		void logEnabledChanged();
 
 };
 

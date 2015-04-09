@@ -1,0 +1,1 @@
+../../BugReport/src/BugReportController.hpp

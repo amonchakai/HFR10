@@ -51,6 +51,7 @@
 #include "Network/CookieJar.hpp"
 #include "DataObjects.h"
 #include "BugReportController.hpp"
+#include "ApplicationLogController.hpp"
 
 #include <bb/system/InvokeManager>
 #include <bb/system/InvokeRequest>
@@ -155,6 +156,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");
     qmlRegisterType<QTimer>("Lib.QTimer", 1, 0, "QTimer");
     qmlRegisterType<BugReportController>("Lib.BugReport", 1, 0, "BugReport");
+    qmlRegisterType<ApplicationLogController>("Lib.ApplicationLogController", 1, 0, "ApplicationLogController");
 
     // -------------------------------------------------------------------------------------------------------
     // Create scene document from main.qml asset, the parent is set

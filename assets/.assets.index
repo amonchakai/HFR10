@@ -1,10 +1,11 @@
 1
-284
+285
 1440x1440/PostMessage.qml
 1440x1440/SmileyPicker.qml
 1440x1440/StartupCardThread.qml
 1440x1440/ThreadPage.qml
 720x720/PostMessage.qml
+ApplicationLog.qml
 Bookmarks.qml
 BugReport.qml
 ColorManagement.qml

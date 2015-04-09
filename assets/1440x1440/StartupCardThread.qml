@@ -217,12 +217,12 @@ NavigationPane {
                     function show(own) {
                         if(!isVisible) {
                             isVisible = true;
-                            editButton.visible = own;
+                            editButton.visible = true;
                             sendMP.visible = true;
                             addFavorite.visible = true;
                             quote.visible = true;
                             quoteMore.visible = true;
-                            deleteButton.visible = own;
+                            deleteButton.visible = true;
                             cancelButton.visible = false;
                             
                             composeNewActionBar.visible = false;
@@ -847,6 +847,7 @@ NavigationPane {
                 onFinished: {
                     if(result == SystemUiResult.ConfirmButtonSelection) {
                         linkInvocation.query.uri = pageThread.tentativeNewURL;
+                        linkInvocation.trigger("bb.action.OPEN");
                     }
                 }
             }
