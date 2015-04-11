@@ -20,7 +20,9 @@
 #include "Globals.h"
 #include "Network/HFRNetworkAccessManager.hpp"
 #include "LoginController.hpp"
+#include "Easter.hpp"
 
+#include <bb/system/SystemToast>
 
 void PostMessageController::postMessage(const QString &message) {
 	postMessage(m_HashCheck,
@@ -42,6 +44,9 @@ void PostMessageController::postMessage(const QString &hashCheck,
 										const QString &threadTitle,
 										bool signature) {
 
+    EASTER1
+
+
 	if(m_MessageBeingPosted) {
 		return;
 	}
@@ -52,8 +57,6 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
-
-	qDebug() << signature;
 
 	QUrl params;
 	params.addQueryItem("hash_check", hashCheck);
@@ -82,6 +85,7 @@ void PostMessageController::postNewPrivateMessage(const QString &hashCheck
 												, const QString &message) {
 	const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
 
+	qDebug() << hashCheck << pseudo << signature << caption << dest << message;
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -162,6 +166,8 @@ void PostMessageController::checkReply() {
 }
 
 void PostMessageController::errorMessage(const QString &page) {
+    qDebug() << page;
+
 	QRegExp message("Afin de prevenir les tentatives de flood");
 	message.setCaseSensitivity(Qt::CaseSensitive);
 	message.setMinimal(true);
@@ -185,7 +191,6 @@ void PostMessageController::errorMessage(const QString &page) {
 
 void PostMessageController::getSubCatsInfo(const QString &url_str) {
 
-    qDebug() << DefineConsts::FORUM_URL + "/hfr/" + url_str.mid(0, url_str.length()-4) + "/nouveau_sujet.htm";
     const QUrl url(DefineConsts::FORUM_URL + "/hfr/" + url_str.mid(0, url_str.length()-4) + "/nouveau_sujet.htm");
 
     QNetworkRequest request(url);
@@ -248,8 +253,6 @@ void PostMessageController::getDropdownData() {
                 if(cat.indexIn(response) != -1)
                     m_CatID = cat.cap(1);
 
-                qDebug() << m_Pseudo << m_HashCheck << m_CatID;
-
                 emit messageLoaded("");
 
 
@@ -299,7 +302,6 @@ void PostMessageController::getQuotedMessages(const QString &url_str) {
 	int lastPos = 0;
 	pos = 0;
 	while((pos = args.indexIn(url_str, lastPos)) != -1) {
-//		qDebug() << url_str.mid(lastPos, args.matchedLength());
 
 
 		const QUrl url(DefineConsts::FORUM_URL + "/message.php?config=hfr.inc" + url_str.mid(lastPos, args.matchedLength()-1));

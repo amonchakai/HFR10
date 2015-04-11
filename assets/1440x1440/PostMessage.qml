@@ -39,6 +39,7 @@ Page {
         title: qsTr("Reply")
         
         acceptAction: ActionItem {
+            id: sendAction
             title: qsTr ("Send")
             
             onTriggered: {
@@ -128,6 +129,13 @@ Page {
             id: newMessageCaption
             visible: false
             hintText: qsTr("New MP to: ") + recipient
+            
+            onTextChanged: {
+                if(text.length > 0)
+                    sendAction.enabled = true;
+                else         
+                    sendAction.enabled = false;  
+            }
         }
         TextField {
             id: newTopic
@@ -532,10 +540,13 @@ Page {
     }
     
     onModeChanged: {
-        if(mode == 4)
-        	newMessageCaption.visible = true;
-        else 
+        if(mode == 4) {
+            newMessageCaption.visible = true;
+            sendAction.enabled = false;
+        } else  {
             newMessageCaption.visible = false;
+            sendAction.enabled = true;
+        }  
             
     }
     

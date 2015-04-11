@@ -64,13 +64,6 @@ void ShowThreadController::showThread(const QString &url) {
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
 
-	if(m_WebView != NULL) { /*
-		bb::cascades::GroupDataModel* dataModel = dynamic_cast<bb::cascades::GroupDataModel*>(m_ListView->dataModel());
-		if (dataModel) {
-			dataModel->clear();
-		} */
-	}
-
 }
 
 
@@ -82,7 +75,6 @@ void ShowThreadController::checkReply() {
 	if (reply) {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
@@ -165,13 +157,6 @@ void ShowThreadController::parse(const QString &page) {
 	} else
 		m_UrlNextPage = "";
 
-/*
-	qDebug() << m_UrlFirstPage;
-	qDebug() << m_UrlLastPage;
-	qDebug() << m_UrlPrevPage;
-	qDebug() << m_UrlNextPage;
-	qDebug() << m_Url;
-*/
 
 	// ----------------------------------------------------------------------------------------------
 	QString currentPageNumber;
@@ -514,7 +499,7 @@ void ShowThreadController::checkSuccessAddAddFavorite() {
 	if (reply) {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
+
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
@@ -577,11 +562,9 @@ void ShowThreadController::checkSuccessDeletePost() {
 	if (reply) {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
-				qDebug() << response;
 				showThread(m_Url);
 			}
 		} else {
@@ -767,10 +750,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
                 pos += quoteRegexp.matchedLength();
                 lastMatchingPos = pos;
                 indexNextClose = nextClose.indexIn(post, pos);
-                qDebug() << "two -- inside quote";
             }
-            qDebug() << indexNextClose << pos << post.mid(lastMatchingPos);
-            qDebug() << post.mid(lastMatchingPos, indexNextClose-lastMatchingPos);
             cleanPost += post.mid(lastMatchingPos, indexNextClose-lastMatchingPos) + "</div>";
 
             pos = indexNextClose + nextClose.matchedLength();
@@ -1148,12 +1128,9 @@ void ShowThreadController::checkSurveyReply() {
 	if (reply) {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
-			qDebug() << "number of bytes retrieved: " << reply->bytesAvailable();
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
-
-				qDebug() << "show thread? ";
 
 				showThread(m_Url);
 			}
@@ -1180,7 +1157,6 @@ void ShowThreadController::setActionListView(QObject *list) {
     if (dataModel) {
         dataModel->clear();
     } else {
-        qDebug() << "create new model";
         dataModel = new GroupDataModel(
                 QStringList() << "image"
                               << "category"
@@ -1235,7 +1211,6 @@ void ShowThreadController::setActionListView(QObject *list) {
             pos += actionReg.matchedLength();
             action->setAction(actionReg.cap(1).toInt());
 
-            qDebug() << action->getCaption() << action->getCategory() << action->getImage() << action->getAction();
 
 
             dataModel->insert(action);

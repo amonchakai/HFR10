@@ -18,6 +18,7 @@
 #include "Globals.h"
 #include "Network/CookieJar.hpp"
 #include "Network/HFRNetworkAccessManager.hpp"
+#include "Settings.hpp"
 
 #include <bb/system/SystemToast>
 
@@ -114,6 +115,14 @@ void ImageUploaderController::parse(const QString &page) {
 	QRegExp imageUrl("<code>([^\"]+)</code>");
 	imageUrl.setMinimal(true);
 	imageUrl.setCaseSensitivity(Qt::CaseSensitive);
+
+	if(Settings::getLogEnabledUI()) {
+	    qDebug() << "---------------------------------------------------- ";
+	    qDebug() << "Upload page response";
+        qDebug() << "---------------------------------------------------- ";
+	    qDebug() << page.mid(5);
+	    qDebug() << "---------------------------------------------------- ";
+	}
 
 	int pos = 0;
 

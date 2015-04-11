@@ -20,6 +20,7 @@
 #include <bb/cascades/ThemeSupport>
 #include <bb/cascades/ColorTheme>
 #include <bb/cascades/Theme>
+#include <bb/device/DisplayInfo>
 
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
@@ -253,6 +254,7 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
 
         m_root = qml->createRootObject<NavigationPane>();
         qml->setContextProperty("_app", this);
+
         m_app->setScene(m_root);
 
         QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
@@ -271,8 +273,10 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
         }
 
         QObject *thread = m_root->findChild<QObject*>("postMesssage");
-        if(thread != NULL)
+        if(thread != NULL) {
             thread->setProperty("pseudo", userName);
+
+        }
     }
 
 

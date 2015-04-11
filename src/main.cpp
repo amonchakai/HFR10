@@ -26,8 +26,62 @@
 
 using namespace bb::cascades;
 
+void debugOutputMessages(QtMsgType type, const char *msg) {
+
+   if(!Settings::getLogEnabledUI()) {
+        switch (type) {
+             case QtDebugMsg:
+                 fprintf(stderr, "%s\n", msg);
+                 break;
+             case QtWarningMsg:
+                 fprintf(stderr, "%s\n", msg);
+                 break;
+             case QtCriticalMsg:
+                 fprintf(stderr, "%s\n", msg);
+                 break;
+             case QtFatalMsg:
+                 fprintf(stderr, "%s\n", msg);
+                 abort();
+        }
+   } else {
+
+       QString directory = QDir::homePath() + QLatin1String("/ApplicationData");
+       if (!QFile::exists(directory)) {
+           QDir dir;
+           dir.mkpath(directory);
+       }
+
+       QFile file(directory + "/Logs.txt");
+       if (!file.open(QIODevice::Append)) {
+           return;
+       }
+       QTextStream stream(&file);
+
+       switch (type) {
+           case QtDebugMsg:
+               stream << "<div class=\"debug\">[DEBUG]"  <<  msg << "</div>";
+               break;
+           case QtWarningMsg:
+               stream << "<div class=\"warning\">[WARNING]"  <<  msg << "</div>";
+               break;
+           case QtCriticalMsg:
+               stream << "<div class=\"critical\">[CRITICAL]"  <<  msg << "</div>";
+               break;
+           case QtFatalMsg:
+               stream << "<div class=\"fatal\">[FATAL]"  <<  msg << "</div>";
+               file.close();
+               abort();
+       }
+
+       file.close();
+   }
+
+ }
+
+
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
+    qInstallMsgHandler(debugOutputMessages);
 	Settings::loadSettings();
 
 	switch(Settings::themeValue()) {

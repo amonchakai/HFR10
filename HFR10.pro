@@ -5,5 +5,5 @@ QT += network xml
 
 include(config.pri)
 
-LIBS += -lbbsystem -lbbpim -lbb -lbbdata -lbbnetwork -lunifieddatasourcec -lbbplatform
+LIBS += -lbbsystem -lbbpim -lbb -lbbdata -lbbnetwork -lunifieddatasourcec -lbbplatform -lbbdevice
 

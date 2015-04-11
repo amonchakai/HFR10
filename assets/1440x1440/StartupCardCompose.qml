@@ -335,7 +335,7 @@ NavigationPane {
                 ListView {
                     id: smileyPickerList
                     layout: GridListLayout {
-                        columnCount: 8
+                        columnCount: 9
                     }
                     dataModel: GroupDataModel {
                         id: theModel
@@ -353,10 +353,10 @@ NavigationPane {
                                     horizontalAlignment: HorizontalAlignment.Center
                                     id: avatarImg
                                     scalingMethod: ScalingMethod.AspectFit
-                                    minHeight: tracker.height* 2
-                                    maxHeight: tracker.height* 2
-                                    minWidth: tracker.width*  2
-                                    maxWidth: tracker.width*  2
+                                    minHeight: tracker.height* 3
+                                    maxHeight: tracker.height* 3
+                                    minWidth: tracker.width*  3
+                                    maxWidth: tracker.width*  3
                                     image: tracker.image
                                     
                                     attachedObjects: [
@@ -421,7 +421,7 @@ NavigationPane {
                         preferredWidth: 80
                         onClicked: {
                             smileyPickerController.loadDefautSmiley();
-                            smileyPickerList.layout.columnCount = 8;
+                            smileyPickerList.layout.columnCount = 9;
                         }
                     }
                     ImageButton {
@@ -441,7 +441,7 @@ NavigationPane {
         
         function toogleEmoji() {
             if(emoticonsPicker.preferredHeight == 0) {
-                emoticonsPicker.preferredHeight=350;
+                emoticonsPicker.preferredHeight=500;
                 controlContainer.visible = true;
             } else {
                 emoticonsPicker.preferredHeight=0;
