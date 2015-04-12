@@ -1,10 +1,5 @@
 1
-286
-1440x1440/PostMessage.qml
-1440x1440/SmileyPicker.qml
-1440x1440/StartupCardCompose.qml
-1440x1440/StartupCardThread.qml
-1440x1440/ThreadPage.qml
+282
 720x720/PostMessage.qml
 ApplicationLog.qml
 Bookmarks.qml
@@ -42,6 +37,7 @@ images/color/Prev.png
 images/color/Refresh.png
 images/color/Reply.png
 images/color/Survey.png
+images/color/the_brain.png
 images/color/to_Bottom.png
 images/color/to_Top.png
 images/default_avatar.png

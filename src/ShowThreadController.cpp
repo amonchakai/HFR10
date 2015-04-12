@@ -34,7 +34,7 @@
 #include  "Network/WebResourceManager.h"
 #include  "DataObjects.h"
 #include  "Settings.hpp"
-
+#include  "Easter.hpp"
 
 ShowThreadController::ShowThreadController(QObject *parent)
 	: QObject(parent), m_WebView(NULL), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0), m_ActionSurvey(false) {
@@ -1029,7 +1029,11 @@ void ShowThreadController::firstPage() {
 		showThread(m_Url);
 }
 
-void ShowThreadController::lastPage(bool bas) {
+void ShowThreadController::lastPage(bool bas, bool afterNewPost) {
+
+    qDebug() << "GOTO LAST PAGE";
+    EASTER3
+
 	if(!m_UrlLastPage.isEmpty()) {
 		if(!bas)
 			showThread(m_UrlLastPage);

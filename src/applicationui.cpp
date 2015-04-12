@@ -174,6 +174,14 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 
         // Set created root object as the application scene
         m_app->setScene(root);
+
+
+        bb::device::DisplayInfo display;
+        QDeclarativePropertyMap* displayDimensions = new QDeclarativePropertyMap;
+        displayDimensions->insert( "width", QVariant( display.pixelSize().width() ) );
+        displayDimensions->insert( "height", QVariant( display.pixelSize().height() ) );
+        qml->setContextProperty( "DisplayInfo", displayDimensions );
+
     }
 }
 
@@ -228,9 +236,15 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
          m_app->setScene(m_root);
 
          QObject *thread = m_root->findChild<QObject*>("pageThread");
-         if(thread != NULL)
+         if(thread != NULL) {
              thread->setProperty("urlPage", urlToOpen);
-         else
+
+             bb::device::DisplayInfo display;
+             QDeclarativePropertyMap* displayDimensions = new QDeclarativePropertyMap;
+             displayDimensions->insert( "width", QVariant( display.pixelSize().width() ) );
+             displayDimensions->insert( "height", QVariant( display.pixelSize().height() ) );
+             qml->setContextProperty( "DisplayInfo", displayDimensions );
+         } else
              qDebug() << "pageThread variable is not found in the qml document :(";
 
 
@@ -276,6 +290,11 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
         if(thread != NULL) {
             thread->setProperty("pseudo", userName);
 
+            bb::device::DisplayInfo display;
+            QDeclarativePropertyMap* displayDimensions = new QDeclarativePropertyMap;
+            displayDimensions->insert( "width", QVariant( display.pixelSize().width() ) );
+            displayDimensions->insert( "height", QVariant( display.pixelSize().height() ) );
+            qml->setContextProperty( "DisplayInfo", displayDimensions );
         }
     }
 

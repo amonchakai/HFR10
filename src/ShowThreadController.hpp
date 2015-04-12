@@ -88,7 +88,7 @@ class ShowThreadController : public QObject {
 		void nextPage();
 		void prevPage();
 		void firstPage();
-		void lastPage(bool bas = false);
+		void lastPage(bool bas = false, bool afterNewPost = false);
 		void scrollToItem();
 
 		QString getEditUrl(int messageID) const;
@@ -115,6 +115,7 @@ class ShowThreadController : public QObject {
 	Q_SIGNALS:
 		void complete();
 		void surveyUpdated();
+		void notifyPage();
 
 
 

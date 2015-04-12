@@ -85,7 +85,7 @@ void PostMessageController::postNewPrivateMessage(const QString &hashCheck
 												, const QString &message) {
 	const QUrl url(DefineConsts::FORUM_URL + "/bddpost.php?config=hfr.inc");
 
-	qDebug() << hashCheck << pseudo << signature << caption << dest << message;
+	EASTER2
 
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -166,7 +166,6 @@ void PostMessageController::checkReply() {
 }
 
 void PostMessageController::errorMessage(const QString &page) {
-    qDebug() << page;
 
 	QRegExp message("Afin de prevenir les tentatives de flood");
 	message.setCaseSensitivity(Qt::CaseSensitive);

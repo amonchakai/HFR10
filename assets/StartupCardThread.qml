@@ -29,6 +29,10 @@ NavigationPane {
         
         actionBarVisibility: ChromeVisibility.Hidden
         
+        function isBBPassport() {
+            return DisplayInfo.width == 1440 && DisplayInfo.height == 1440;
+        }
+        
         Container {
             id: pageContainer
             background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
@@ -228,9 +232,9 @@ NavigationPane {
                             composeNewActionBar.visible = false;
                             nextPageNewActionBar.visible = false;
                             statsNewActionBar.visible = false;
-                            
-                            actionButton.visible = false;
-                            labelAction.visible = false;
+                                                        
+                            actionButton.visible = pageThread.isBBPassport();
+                            labelAction.visible = pageThread.isBBPassport();
                         
                         }
                     }
@@ -666,7 +670,7 @@ NavigationPane {
                     horizontalAlignment: HorizontalAlignment.Fill
                     
                     layout: GridListLayout {
-                        columnCount: 5
+                        columnCount: pageThread.isBBPassport() ? 6 : 5
                         headerMode: ListHeaderMode.Sticky
                     }
                     

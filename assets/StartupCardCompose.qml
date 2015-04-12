@@ -44,7 +44,9 @@ NavigationPane {
         
         actionBarVisibility: ChromeVisibility.Visible
         
-        
+        function isBBPassport() {
+            return DisplayInfo.width == 1440 && DisplayInfo.height == 1440;
+        }
         
         titleBar: TitleBar {
             id: pageTitleBar
@@ -335,7 +337,7 @@ NavigationPane {
                 ListView {
                     id: smileyPickerList
                     layout: GridListLayout {
-                        columnCount: 8
+                        columnCount: postMesssage.isBBPassport() ? 9 : 7
                     }
                     dataModel: GroupDataModel {
                         id: theModel
@@ -347,16 +349,17 @@ NavigationPane {
                             type: "item"
                             
                             Container {
+                                id: listItemContainer
                                 
                                 ImageView {
                                     verticalAlignment: VerticalAlignment.Center
                                     horizontalAlignment: HorizontalAlignment.Center
                                     id: avatarImg
                                     scalingMethod: ScalingMethod.AspectFit
-                                    minHeight: tracker.height* 2
-                                    maxHeight: tracker.height* 2
-                                    minWidth: tracker.width*  2
-                                    maxWidth: tracker.width*  2
+                                    minHeight: tracker.height* listItemContainer.ListItem.view.scalingFactor();
+                                    maxHeight: tracker.height* listItemContainer.ListItem.view.scalingFactor();
+                                    minWidth: tracker.width*  listItemContainer.ListItem.view.scalingFactor();
+                                    maxWidth: tracker.width*  listItemContainer.ListItem.view.scalingFactor();
                                     image: tracker.image
                                     
                                     attachedObjects: [
@@ -370,6 +373,10 @@ NavigationPane {
                             }
                         }
                     ]
+                    
+                    function scalingFactor() {
+                        return (postMesssage.isBBPassport() ? 3 : 2)
+                    }
                     
                     onTriggered: {
                         var chosenItem = dataModel.data(indexPath);
@@ -421,7 +428,7 @@ NavigationPane {
                         preferredWidth: 80
                         onClicked: {
                             smileyPickerController.loadDefautSmiley();
-                            smileyPickerList.layout.columnCount = 8;
+                            smileyPickerList.layout.columnCount =  (postMesssage.isBBPassport() ? 9 : 7);
                         }
                     }
                     ImageButton {
@@ -441,7 +448,7 @@ NavigationPane {
         
         function toogleEmoji() {
             if(emoticonsPicker.preferredHeight == 0) {
-                emoticonsPicker.preferredHeight=350;
+                emoticonsPicker.preferredHeight= (postMesssage.isBBPassport() ? 500 : 350);;
                 controlContainer.visible = true;
             } else {
                 emoticonsPicker.preferredHeight=0;

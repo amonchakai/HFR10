@@ -20,7 +20,11 @@ Page {
     property string listItemSelected;
     
     actionBarVisibility: ChromeVisibility.Hidden
-     
+    
+    function isBBPassport() {
+        return DisplayInfo.width == 1440 && DisplayInfo.height == 1440;
+    }
+    
     Container {
         id: pageContainer
         background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#000000" : "#ffffff" ;
@@ -129,7 +133,6 @@ Page {
                         var isContext = RegExp("SHOW_CONTEXT:([0-9]+)");
                         match = message.data.match(isContext); 
                         if(match) {
-                            
                             var own = message.data.substr(14+match[1].length)
                             pageContainer.showContextMenu(match[1], own);
                         }
@@ -222,9 +225,8 @@ Page {
                         nextPageNewActionBar.visible = false;
                         statsNewActionBar.visible = false;
                         
-                        actionButton.visible = false;
-                        labelAction.visible = false;
-                        
+                        actionBarButton.visible = pageThread.isBBPassport();
+                        actionBarLabel.visible = pageThread.isBBPassport();
                     }
                 }
                 
@@ -247,8 +249,9 @@ Page {
                         composeNewActionBar.visible = true;
                         nextPageNewActionBar.visible = true;
                         statsNewActionBar.visible = !showThreadController.emptySurvey;
-                        actionButton.visible = true;
-                        labelAction.visible = true;
+                        
+                        actionBarButton.visible = true;
+                        actionBarLabel.visible = true;
                     }
                 }                
             }     
@@ -337,7 +340,7 @@ Page {
             //showThreadController.addToFavorite(responseID);
             console.log('Add to fav!')
         }
-                
+        
         function openContextActionPage(messageID) {
             console.log('More context actions!')
             if(!contextActionPage)
@@ -401,7 +404,7 @@ Page {
                 }
 
                 ImageButton {
-                    id: actionButton
+                    id: actionBarButton
                     verticalAlignment: VerticalAlignment.Center
                     
                     preferredHeight: ui.du(8)
@@ -415,12 +418,11 @@ Page {
                 }
                 
                 Label {
-                    id: labelAction
+                    id: actionBarLabel
                     verticalAlignment: VerticalAlignment.Center
                     text: qsTr("Actions")
                     textStyle.fontSize: FontSize.Small
                 }
-                
             }    
             
             Container {
@@ -433,7 +435,7 @@ Page {
                 
                 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 // Action bar actions
-                
+
                 
                 ImageButton {
                     verticalAlignment: VerticalAlignment.Center
@@ -480,10 +482,8 @@ Page {
                         
                         nav.push(statPage);
                     
-                    
                     }
                 }
-
                 
                 ImageButton {
                     verticalAlignment: VerticalAlignment.Center
@@ -655,7 +655,7 @@ Page {
                 horizontalAlignment: HorizontalAlignment.Fill
                 
                 layout: GridListLayout {
-                    columnCount: 5
+                    columnCount: pageThread.isBBPassport() ? 6 : 5
                     headerMode: ListHeaderMode.Sticky
                 }
                 
@@ -690,10 +690,10 @@ Page {
                                 id: avatarImg
                                 scalingMethod: ScalingMethod.AspectFit
                                 image: tracker.image
-                                minHeight: ui.du(6)
-                                maxHeight: ui.du(6)
-                                minWidth: ui.du(6)
-                                maxWidth: ui.du(6)
+                                minHeight: ui.du(7)
+                                maxHeight: ui.du(7)
+                                minWidth: ui.du(7)
+                                maxWidth: ui.du(7)
                                 
                                 attachedObjects: [
                                     NetImageTracker {
@@ -731,7 +731,7 @@ Page {
                         tpage.addSignature= showThreadController.sign;
                         
                         nav.push(tpage);
-                        
+                    
                     } else if (chosenItem.action == 9) {
                         if(!statPage)
                             statPage = surveyPage.createObject();
@@ -781,11 +781,12 @@ Page {
                     statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded_orange.png" : "asset:///images/icon_stats_rounded_black_orange.png"
                 else
                     statsNewActionBar.defaultImageSource = Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_stats_rounded.png" : "asset:///images/icon_stats_rounded_black.png"
-
+                    
                 
                 statsNewActionBar.visible = !showThreadController.emptySurvey;
                 if(statPage)
                     statPage.survey = showThreadController.survey;
+                
                 scrollView.requestFocus();
             }
             
@@ -832,7 +833,6 @@ Page {
             id: surveyPage
             source: "Survey.qml"
         },
-        
         SystemDialog {
             id: leaveAppDialog
             title: qsTr("Friendly warning")
@@ -842,6 +842,33 @@ Page {
                 	linkInvocation.query.uri = tentativeNewURL;
                     linkInvocation.trigger("bb.action.OPEN");
                 }
+            }
+        },
+        Dialog {
+            id: notifyPage
+            
+            Container {
+                
+                layout: DockLayout { }
+                horizontalAlignment: HorizontalAlignment.Center
+                verticalAlignment: VerticalAlignment.Center
+                preferredHeight: ui.du(55);
+                ImageView {
+                    imageSource: "asset:///images/color/the_brain.png"
+                    horizontalAlignment: HorizontalAlignment.Center
+                    verticalAlignment: VerticalAlignment.Top
+                    
+                    preferredHeight: ui.du(40);
+                    scalingMethod: ScalingMethod.AspectFit
+                }
+                
+                Button {
+                    text: qsTr("IWH, et bientôt le monde")
+                    onClicked: { notifyPage.close() }
+                    horizontalAlignment: HorizontalAlignment.Center
+                    verticalAlignment: VerticalAlignment.Bottom
+                }
+            
             }
         }
     ]
@@ -977,7 +1004,7 @@ Page {
     
     onNeedUpdateChanged: {
         if(needUpdate) {
-        	showThreadController.lastPage(true);
+            showThreadController.lastPage(true, true);
         	activityIndicator.start();
             scrollRequested = 0;
             needUpdate = false;

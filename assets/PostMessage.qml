@@ -34,6 +34,10 @@ Page {
     
     actionBarVisibility: ChromeVisibility.Visible
     
+    function isBBPassport() {
+        return DisplayInfo.width == 1440 && DisplayInfo.height == 1440;
+    }
+    
     titleBar: TitleBar {
         id: pageTitleBar
         title: qsTr("Reply")
@@ -306,10 +310,11 @@ Page {
             ]
             
             
+            
             ListView {
                 id: smileyPickerList
                 layout: GridListLayout {
-                    columnCount: 7
+                    columnCount:  (postMesssage.isBBPassport() ? 9 : 7)
                 }
                 dataModel: GroupDataModel {
                     id: theModel
@@ -321,16 +326,17 @@ Page {
                         type: "item"
                         
                         Container {
+                            id: listItemContainer
                             
                             ImageView {
                                 verticalAlignment: VerticalAlignment.Center
                                 horizontalAlignment: HorizontalAlignment.Center
                                 id: avatarImg
                                 scalingMethod: ScalingMethod.AspectFit
-                                minHeight: tracker.height*2
-                                maxHeight: tracker.height*2
-                                minWidth: tracker.width*2
-                                maxWidth: tracker.width*2
+                                minHeight: tracker.height* listItemContainer.ListItem.view.scalingFactor();
+                                maxHeight: tracker.height* listItemContainer.ListItem.view.scalingFactor();
+                                minWidth: tracker.width* listItemContainer.ListItem.view.scalingFactor();
+                                maxWidth: tracker.width* listItemContainer.ListItem.view.scalingFactor();
                                 image: tracker.image
                                 
                                 attachedObjects: [
@@ -344,6 +350,10 @@ Page {
                         }
                     }
                 ]
+                
+                function scalingFactor() {
+                    return (postMesssage.isBBPassport() ? 3 : 2)
+                }
                 
                 onTriggered: {
                     var chosenItem = dataModel.data(indexPath);
@@ -393,7 +403,7 @@ Page {
                     preferredWidth: 80
                     onClicked: {
                         smileyPickerController.loadDefautSmiley();
-                        smileyPickerList.layout.columnCount = 7;
+                        smileyPickerList.layout.columnCount =  (postMesssage.isBBPassport() ? 9 : 7);
                     }
                 }
                 ImageButton {
@@ -413,7 +423,7 @@ Page {
     
     function toogleEmoji() {
         if(emoticonsPicker.preferredHeight == 0) {
-            emoticonsPicker.preferredHeight=350;
+            emoticonsPicker.preferredHeight= (postMesssage.isBBPassport() ? 500 : 350);
             controlContainer.visible = true;
         } else {
             emoticonsPicker.preferredHeight=0;

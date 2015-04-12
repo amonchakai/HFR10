@@ -14,7 +14,7 @@ Page {
             horizontalAlignment: HorizontalAlignment.Center
             
             layout: GridListLayout {
-                columnCount: 5
+                columnCount: DisplayInfo.height == 1440 && DisplayInfo.width == 1440 ? 9 : 5
             }
             
             dataModel: GroupDataModel {
@@ -29,6 +29,7 @@ Page {
                     Container {
                         horizontalAlignment: HorizontalAlignment.Center
                         verticalAlignment: VerticalAlignment.Center
+                        id: listItemContainer
                         
                         ImageView {
                             verticalAlignment: VerticalAlignment.Center
@@ -36,10 +37,10 @@ Page {
                             id: avatarImg
                             scalingMethod: ScalingMethod.AspectFit
                             image: tracker.image
-                            minHeight: tracker.height*2
-                            maxHeight: tracker.height*2
-                            minWidth: tracker.width*2
-                            maxWidth: tracker.width*2
+                            minHeight: tracker.height*listItemContainer.ListItem.view.scalingFactor()
+                            maxHeight: tracker.height*listItemContainer.ListItem.view.scalingFactor()
+                            minWidth: tracker.width*listItemContainer.ListItem.view.scalingFactor()
+                            maxWidth: tracker.width*listItemContainer.ListItem.view.scalingFactor()
                             
                             attachedObjects: [
                                 NetImageTracker {
@@ -52,6 +53,10 @@ Page {
                     }
                 }
             ]
+            
+            function scalingFactor() {
+                return DisplayInfo.height == 1440 && DisplayInfo.width == 1440 ? 3 : 2
+            }
             
             onTriggered: {
                 var chosenItem = dataModel.data(indexPath);
