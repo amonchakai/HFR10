@@ -43,7 +43,7 @@
 
     <!-- Fourth digit segment of the package version. First three segments are
         taken from the <versionNumber> element. Must be an integer from 0 to 2^16-1 -->
-    <buildId>138</buildId>
+    <buildId>141</buildId>
     <packageLocale>fr-FR</packageLocale>
 
     <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents
@@ -143,6 +143,31 @@
             <mime-type>hub/vnd.hfr10.item</mime-type>
             <property var="uris" value="data://local" />
         </filter>
+        <filter>
+			<action>bb.action.DELETE</action>
+			<mime-type>hub/vnd.hfr10.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
+		<filter>
+			<action>bb.action.MARKREAD</action>
+			<mime-type>hub/vnd.hfr10.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
+		<filter>
+			<action>bb.action.MARKUNREAD</action>
+			<mime-type>hub/vnd.hfr10.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
+		<filter>
+			<action>bb.action.MARKPRIORREAD</action>
+			<mime-type>hub/vnd.hfr10.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
+		<filter>
+			<action>bb.action.DELETEPRIOR</action>
+			<mime-type>hub/vnd.hfr10.item</mime-type>
+			<property var="uris" value="data://,pim:"/>
+		</filter>
     </invoke-target>
 
     <invoke-target id="pierre.lebreton.HFRBlack">
