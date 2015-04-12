@@ -519,61 +519,51 @@
 <context>
     <name>PostMessage</name>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="39"/>
         <location filename="../assets/PostMessage.qml" line="43"/>
         <source>Reply</source>
         <translation>Répondre</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="42"/>
         <location filename="../assets/PostMessage.qml" line="47"/>
         <source>Send</source>
         <translation>Envoyer</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="92"/>
         <location filename="../assets/PostMessage.qml" line="98"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="130"/>
         <location filename="../assets/PostMessage.qml" line="136"/>
         <source>New MP to: </source>
         <translation>Nouveau MP à : </translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="142"/>
         <location filename="../assets/PostMessage.qml" line="148"/>
         <source>New topic</source>
         <translation type="unfinished">Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="462"/>
         <location filename="../assets/PostMessage.qml" line="479"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="469"/>
         <location filename="../assets/PostMessage.qml" line="486"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="476"/>
         <location filename="../assets/PostMessage.qml" line="493"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="483"/>
         <location filename="../assets/PostMessage.qml" line="500"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/720x720/PostMessage.qml" line="490"/>
         <location filename="../assets/PostMessage.qml" line="507"/>
         <source>Underline</source>
         <translation>Souligner</translation>
