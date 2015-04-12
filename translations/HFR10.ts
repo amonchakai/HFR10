@@ -228,6 +228,14 @@
     </message>
 </context>
 <context>
+    <name>EMessage</name>
+    <message>
+        <location filename="../assets/EMessage.qml" line="34"/>
+        <source>Fermer</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ExploreCategory</name>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="213"/>
@@ -1266,88 +1274,83 @@
     </message>
     <message>
         <location filename="../assets/ThreadPage.qml" line="775"/>
-        <location filename="../assets/ThreadPage.qml" line="947"/>
+        <location filename="../assets/ThreadPage.qml" line="941"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="838"/>
+        <location filename="../assets/ThreadPage.qml" line="842"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="839"/>
+        <location filename="../assets/ThreadPage.qml" line="843"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="878"/>
+        <location filename="../assets/ThreadPage.qml" line="872"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="899"/>
+        <location filename="../assets/ThreadPage.qml" line="893"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="904"/>
+        <location filename="../assets/ThreadPage.qml" line="898"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="913"/>
+        <location filename="../assets/ThreadPage.qml" line="907"/>
         <source>f</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="918"/>
+        <location filename="../assets/ThreadPage.qml" line="912"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="927"/>
+        <location filename="../assets/ThreadPage.qml" line="921"/>
         <source>l</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="932"/>
+        <location filename="../assets/ThreadPage.qml" line="926"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="941"/>
+        <location filename="../assets/ThreadPage.qml" line="935"/>
         <source>p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="957"/>
+        <location filename="../assets/ThreadPage.qml" line="951"/>
         <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="962"/>
+        <location filename="../assets/ThreadPage.qml" line="956"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="969"/>
+        <location filename="../assets/ThreadPage.qml" line="963"/>
         <source>t</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="974"/>
+        <location filename="../assets/ThreadPage.qml" line="968"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPage.qml" line="981"/>
+        <location filename="../assets/ThreadPage.qml" line="975"/>
         <source>b</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../assets/ThreadPage.qml" line="866"/>
-        <source>IWH, et bientôt le monde</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -788,7 +788,14 @@ Page {
                     statPage.survey = showThreadController.survey;
                 
                 scrollView.requestFocus();
+                
             }
+            
+            onNotifyPage: {
+                eMessage.open();
+            }
+                
+            
             
         },
         ComponentDefinition {
@@ -810,9 +817,6 @@ Page {
             query {
                 onUriChanged: {
                     linkInvocation.query.updateQuery();
-                    //linkInvocation.query.invokeTargetId = "sys.browser";
-                    //linkInvocation.query.mimeType = "text/html";
-                    
                 }
             }
             
@@ -844,31 +848,21 @@ Page {
                 }
             }
         },
-        Dialog {
-            id: notifyPage
-            
-            Container {
-                
-                layout: DockLayout { }
-                horizontalAlignment: HorizontalAlignment.Center
-                verticalAlignment: VerticalAlignment.Center
-                preferredHeight: ui.du(55);
-                ImageView {
-                    imageSource: "asset:///images/color/the_brain.png"
-                    horizontalAlignment: HorizontalAlignment.Center
-                    verticalAlignment: VerticalAlignment.Top
-                    
-                    preferredHeight: ui.du(40);
-                    scalingMethod: ScalingMethod.AspectFit
+        Delegate {
+            id: eMessageDelegate
+            source: "EMessage.qml"
+        
+        },
+        Sheet {
+            id: eMessage
+            content: eMessageDelegate.object
+            onOpenedChanged: {
+                if (opened) {
+                    eMessageDelegate.active = true;
                 }
-                
-                Button {
-                    text: qsTr("IWH, et bientôt le monde")
-                    onClicked: { notifyPage.close() }
-                    horizontalAlignment: HorizontalAlignment.Center
-                    verticalAlignment: VerticalAlignment.Bottom
-                }
-            
+            }
+            onClosed: {
+                eMessageDelegate.active = false;
             }
         }
     ]

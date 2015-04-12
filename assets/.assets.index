@@ -1,5 +1,5 @@
 1
-281
+282
 ApplicationLog.qml
 Bookmarks.qml
 BugReport.qml
@@ -7,6 +7,7 @@ ColorManagement.qml
 ColorPicker.qml
 ComposeComment.qml
 ComposeIssue.qml
+EMessage.qml
 ExploreCategory.qml
 Favorite.qml
 help/about_fr.html
