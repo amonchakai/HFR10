@@ -472,17 +472,17 @@
 <context>
     <name>ListIssues</name>
     <message>
-        <location filename="../assets/ListIssues.qml" line="70"/>
+        <location filename="../assets/ListIssues.qml" line="75"/>
         <source>Loading, please wait.</source>
         <translation>Chargement, veuillez patienter</translation>
     </message>
     <message>
-        <location filename="../assets/ListIssues.qml" line="70"/>
+        <location filename="../assets/ListIssues.qml" line="75"/>
         <source>No issues in this category.</source>
         <translation>Pas de problème signalés</translation>
     </message>
     <message>
-        <location filename="../assets/ListIssues.qml" line="208"/>
+        <location filename="../assets/ListIssues.qml" line="222"/>
         <source>New</source>
         <translation>Nouveau</translation>
     </message>

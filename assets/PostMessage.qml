@@ -554,7 +554,8 @@ Page {
             newMessageCaption.visible = false;
             sendAction.enabled = true;
         }
-            
+        
+        message.requestFocus();
     }
     
     onUpdateChanged: {
