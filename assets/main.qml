@@ -26,6 +26,22 @@ TabbedPane {
     property variant focusOnMPTab
         
     attachedObjects: [
+        Delegate {
+            id: paymentDelegate
+            source: "Payment.qml"
+        
+        },
+        Sheet {
+            id: payment
+            content: paymentDelegate.object
+            onOpenedChanged: {
+                if (opened)
+                    paymentDelegate.active = true;
+            }
+            onClosed: {
+                paymentDelegate.active = false;
+            }
+        },
         Sheet {
             id: settingsPage
             Settings {
@@ -87,7 +103,16 @@ TabbedPane {
                 onTriggered: {
                     bugReport.open();
                 }
+            },
+            ActionItem {
+                title: qsTr("Donate")
+                imageSource: "asset:///images/icon_credit.png"
+                onTriggered: {
+                    payment.open();
+                }
             }
+            
+            
         ]
     }
     

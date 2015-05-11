@@ -1,5 +1,5 @@
 1
-282
+285
 ApplicationLog.qml
 Bookmarks.qml
 BugReport.qml
@@ -30,6 +30,7 @@ images/chickened.png
 images/closeIcon.png
 images/color/Clean.png
 images/color/copy.png
+images/color/Excellent.gif
 images/color/First.png
 images/color/Last.png
 images/color/Next.png
@@ -58,6 +59,7 @@ images/icon_category.svg
 images/icon_code.png
 images/icon_code.svg
 images/icon_code_black.png
+images/icon_credit.png
 images/icon_dismiss.png
 images/icon_dismiss_black.png
 images/icon_dismiss_rounded.png
@@ -264,6 +266,7 @@ model/Setietprojetsdistribues.xml
 model/Systemereseauxpro.xml
 model/VideoSon.xml
 model/WindowsSoftware.xml
+Payment.qml
 PostMessage.qml
 PostRenderer.qml
 PrivateMessage.qml

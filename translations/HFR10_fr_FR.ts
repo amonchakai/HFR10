@@ -529,6 +529,35 @@
     </message>
 </context>
 <context>
+    <name>Payment</name>
+    <message>
+        <location filename="../assets/Payment.qml" line="11"/>
+        <source>Donation</source>
+        <translation>Donation</translation>
+    </message>
+    <message>
+        <location filename="../assets/Payment.qml" line="13"/>
+        <location filename="../assets/Payment.qml" line="87"/>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+    <message>
+        <location filename="../assets/Payment.qml" line="42"/>
+        <source>http://amonchakai.github.io/HFR10/donate_en.html</source>
+        <translation>http://amonchakai.github.io/HFR10/donate_fr.html</translation>
+    </message>
+    <message>
+        <location filename="../assets/Payment.qml" line="50"/>
+        <source>Donate 2€</source>
+        <translation>Donner 1.79€</translation>
+    </message>
+    <message>
+        <location filename="../assets/Payment.qml" line="82"/>
+        <source>Excellent</source>
+        <translation>Excellent</translation>
+    </message>
+</context>
+<context>
     <name>PostMessage</name>
     <message>
         <location filename="../assets/PostMessage.qml" line="43"/>
@@ -1546,42 +1575,47 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="71"/>
+        <location filename="../assets/main.qml" line="87"/>
         <source>About</source>
         <translation type="unfinished">A propos</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="113"/>
+        <location filename="../assets/main.qml" line="138"/>
         <source>Home</source>
         <translation type="unfinished">Catégories</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="97"/>
+        <location filename="../assets/main.qml" line="122"/>
         <source>Favorite</source>
         <translation type="unfinished">Favoris</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="85"/>
+        <location filename="../assets/main.qml" line="101"/>
         <source>Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="128"/>
+        <location filename="../assets/main.qml" line="108"/>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/main.qml" line="153"/>
         <source>Message</source>
         <translation type="unfinished">Message</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="140"/>
+        <location filename="../assets/main.qml" line="165"/>
         <source>Bookmarks</source>
         <translation type="unfinished">Marque page</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="153"/>
+        <location filename="../assets/main.qml" line="178"/>
         <source>Search</source>
         <translation type="unfinished">Rechercher</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="78"/>
+        <location filename="../assets/main.qml" line="94"/>
         <source>Settings</source>
         <translation type="unfinished">Paramètres</translation>
     </message>
