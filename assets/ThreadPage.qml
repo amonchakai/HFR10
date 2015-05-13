@@ -843,8 +843,11 @@ Page {
             body: qsTr("You are going to leave the application, do you want to continue?")
             onFinished: {
                 if(result == SystemUiResult.ConfirmButtonSelection) {
-                	linkInvocation.query.uri = tentativeNewURL;
-                    linkInvocation.trigger("bb.action.OPEN");
+                    if(linkInvocation.query.uri == tentativeNewURL)
+                        linkInvocation.trigger("bb.action.OPEN");
+                    else
+                	   linkInvocation.query.uri = tentativeNewURL;
+                    
                 }
             }
         },
