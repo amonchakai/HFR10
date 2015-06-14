@@ -6,7 +6,7 @@
     <message>
         <location filename="../assets/ApplicationLog.qml" line="18"/>
         <source>Clear logs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer les journaux</translation>
     </message>
     <message>
         <location filename="../assets/ApplicationLog.qml" line="25"/>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/applicationui.cpp" line="313"/>
         <source>Success!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Succès !</translation>
     </message>
 </context>
 <context>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../assets/Bookmarks.qml" line="200"/>
         <source>Remove flag</source>
-        <translation type="unfinished">Supprimer drapeau</translation>
+        <translation type="unfinished">Supprimer le drapeau</translation>
     </message>
     <message>
         <source>Pull down to update</source>
@@ -84,7 +84,7 @@
         <location filename="../assets/BugReport.qml" line="107"/>
         <location filename="../assets/BugReport.qml" line="112"/>
         <source>Bug</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anomalie</translation>
     </message>
     <message>
         <location filename="../assets/BugReport.qml" line="134"/>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../src/BugReportController.cpp" line="484"/>
         <source>A title is required.</source>
-        <translation>Un titre est requis</translation>
+        <translation>Un titre est nécessaire.</translation>
     </message>
     <message>
         <location filename="../src/BugReportController.cpp" line="496"/>
@@ -189,7 +189,7 @@
     <message>
         <location filename="../assets/ComposeComment.qml" line="8"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Commentaire</translation>
     </message>
     <message>
         <location filename="../assets/ComposeComment.qml" line="10"/>
@@ -199,12 +199,12 @@
     <message>
         <location filename="../assets/ComposeComment.qml" line="18"/>
         <source>Post</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valider</translation>
     </message>
     <message>
         <location filename="../assets/ComposeComment.qml" line="35"/>
         <source>What is on your mind?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Que voulez-vous nous dire ?</translation>
     </message>
 </context>
 <context>
@@ -212,7 +212,7 @@
     <message>
         <location filename="../assets/ComposeIssue.qml" line="8"/>
         <source>Compose</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Composer</translation>
     </message>
     <message>
         <location filename="../assets/ComposeIssue.qml" line="10"/>
@@ -222,17 +222,17 @@
     <message>
         <location filename="../assets/ComposeIssue.qml" line="18"/>
         <source>Post</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Envoyer</translation>
     </message>
     <message>
         <location filename="../assets/ComposeIssue.qml" line="35"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titre</translation>
     </message>
     <message>
         <location filename="../assets/ComposeIssue.qml" line="40"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Description</translation>
     </message>
 </context>
 <context>
@@ -310,7 +310,7 @@
     <message>
         <location filename="../src/ExploreCategoryController.cpp" line="104"/>
         <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@
     <message>
         <location filename="../assets/Favorite.qml" line="223"/>
         <source>Remove flag</source>
-        <translation type="unfinished">Supprimer drapeau</translation>
+        <translation type="unfinished">Supprimer le drapeau</translation>
     </message>
     <message>
         <location filename="../assets/Favorite.qml" line="313"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../assets/Favorite.qml" line="353"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../assets/Favorite.qml" line="400"/>
@@ -479,7 +479,7 @@
     <message>
         <location filename="../assets/ListIssues.qml" line="75"/>
         <source>No issues in this category.</source>
-        <translation>Pas de problème signalés</translation>
+        <translation>Aucune demande dans cette catégorie</translation>
     </message>
     <message>
         <location filename="../assets/ListIssues.qml" line="222"/>
@@ -667,7 +667,7 @@
     <message>
         <location filename="../assets/PrivateMessage.qml" line="279"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Annuler</translation>
     </message>
     <message>
         <location filename="../assets/PrivateMessage.qml" line="318"/>
@@ -698,28 +698,28 @@
     <message>
         <location filename="../assets/RefreshHeader.qml" line="77"/>
         <source>%L1y ago</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Il y a %L1 an(s)</translation>
     </message>
     <message>
         <location filename="../assets/RefreshHeader.qml" line="79"/>
         <location filename="../assets/RefreshHeader.qml" line="85"/>
         <source>%L1m ago</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Il y a %L1 mois</translation>
     </message>
     <message>
         <location filename="../assets/RefreshHeader.qml" line="81"/>
         <source>%L1d ago</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Il y a %L1 jour(s)</translation>
     </message>
     <message>
         <location filename="../assets/RefreshHeader.qml" line="83"/>
         <source>%L1h ago</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Il y a %L1 heure(s)</translation>
     </message>
     <message>
         <location filename="../assets/RefreshHeader.qml" line="86"/>
         <source>just now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">À l&apos;instant</translation>
     </message>
 </context>
 <context>
@@ -763,7 +763,7 @@
     <message>
         <location filename="../assets/Search.qml" line="56"/>
         <source>Search settings</source>
-        <translation>Paramètrage de la recherche</translation>
+        <translation>Paramètres de la recherche</translation>
     </message>
     <message>
         <location filename="../assets/Search.qml" line="61"/>
@@ -936,7 +936,7 @@
     <message>
         <location filename="../src/SearchController.cpp" line="83"/>
         <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
 </context>
 <context>
@@ -944,7 +944,7 @@
     <message>
         <location filename="../src/SearchKeyRetriever.cpp" line="53"/>
         <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
 </context>
 <context>
@@ -994,7 +994,7 @@
     <message>
         <location filename="../assets/Settings.qml" line="137"/>
         <source>User: </source>
-        <translation type="unfinished">Utilisateur: </translation>
+        <translation type="unfinished">Utilisateur : </translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="114"/>
@@ -1051,7 +1051,7 @@
     <message>
         <location filename="../assets/Settings.qml" line="350"/>
         <source>Enable HUB integration</source>
-        <translation>Activer l&apos;integration au HUB</translation>
+        <translation>Activer l&apos;intégration au HUB</translation>
     </message>
     <message>
         <location filename="../assets/Settings.qml" line="358"/>
@@ -1109,7 +1109,7 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="987"/>
         <source>Link to current page copied to clipboard</source>
-        <translation>L&apos;addresse de la page courante a été copiée dans le presse papier</translation>
+        <translation>L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
     </message>
     <message>
         <source>Survey</source>
@@ -1120,7 +1120,7 @@
         <location filename="../src/ShowThreadController.cpp" line="571"/>
         <location filename="../src/ShowThreadController.cpp" line="1142"/>
         <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
     <message>
         <location filename="../src/ShowThreadController.cpp" line="1181"/>
@@ -1166,7 +1166,7 @@
     <message>
         <location filename="../src/SmileyPickerController.cpp" line="135"/>
         <source>Error: %1 status: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
 </context>
 <context>
@@ -1185,7 +1185,7 @@
     </message>
     <message>
         <source>Send PM</source>
-        <translation type="obsolete">Enoyer un MP</translation>
+        <translation type="obsolete">Envoyer un MP</translation>
     </message>
     <message>
         <source>Quote</source>
@@ -1276,12 +1276,12 @@
     <message>
         <location filename="../assets/StartupCardCompose.qml" line="145"/>
         <source>Send MP to: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Envoyer un MP à : </translation>
     </message>
     <message>
         <location filename="../assets/StartupCardCompose.qml" line="157"/>
         <source>Title: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Titre : </translation>
     </message>
     <message>
         <location filename="../assets/StartupCardCompose.qml" line="168"/>
@@ -1311,7 +1311,7 @@
     <message>
         <location filename="../assets/StartupCardCompose.qml" line="532"/>
         <source>Underline</source>
-        <translation type="unfinished">Souligner</translation>
+        <translation type="unfinished">Souligné</translation>
     </message>
 </context>
 <context>
@@ -1577,7 +1577,7 @@
     <message>
         <location filename="../assets/main.qml" line="87"/>
         <source>About</source>
-        <translation type="unfinished">A propos</translation>
+        <translation type="unfinished">À propos</translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="138"/>
@@ -1592,12 +1592,12 @@
     <message>
         <location filename="../assets/main.qml" line="101"/>
         <source>Report</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rapport</translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="108"/>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Donation</translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="153"/>
@@ -1607,7 +1607,7 @@
     <message>
         <location filename="../assets/main.qml" line="165"/>
         <source>Bookmarks</source>
-        <translation type="unfinished">Marque page</translation>
+        <translation type="unfinished">Marque-pages</translation>
     </message>
     <message>
         <location filename="../assets/main.qml" line="178"/>
