@@ -53,6 +53,7 @@
 #include "DataObjects.h"
 #include "BugReportController.hpp"
 #include "ApplicationLogController.hpp"
+#include "ProfileController.hpp"
 
 #include <bb/system/InvokeManager>
 #include <bb/system/InvokeRequest>
@@ -153,6 +154,7 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     qmlRegisterType<SearchKeyRetriever>("Network.SearchKeyRetriever", 1, 0, "SearchKeyRetriever");
     qmlRegisterType<BookmarksController>("Network.BookmarksController", 1, 0, "BookmarksController");
     qmlRegisterType<ImageUploaderController>("Network.ImageUploaderController", 1, 0, "ImageUploaderController");
+    qmlRegisterType<ProfileController>("Network.ProfileController", 1, 0, "ProfileController");
     qmlRegisterType<NetImageTracker>("com.netimage", 1, 0, "NetImageTracker");
     qmlRegisterType<Settings>("conf.settings", 1, 0, "AppSettings");
     qmlRegisterType<QTimer>("Lib.QTimer", 1, 0, "QTimer");

@@ -29,6 +29,7 @@ ExploreCategoryController::ExploreCategoryController(QObject *parent)
 
 }
 
+
 void ExploreCategoryController::listSubCat(int subcat) {
 	if(subcat < m_SubCatURL.length()) {
 		m_SelectedSubCat = subcat;
@@ -61,13 +62,15 @@ void ExploreCategoryController::loadSubCats(const QString &xmlFile) {
 
 }
 
-void ExploreCategoryController::listTopics(const QString &url_string) {
+void ExploreCategoryController::listTopics(const QString &url_string, int flag, int cat) {
 	m_Url = url_string;
-	showTopicList(url_string);
+
+	if(flag > 0) showTopicList(DefineConsts::FORUM_URL + "/forum1.php?config=hfr.inc&cat=" + QString::number(cat) + "&page=1&subcat=0&sondage=0&owntopic=" + QString::number(flag) + "&trash=0&trash_post=0&moderation=0&new=0&nojs=0&subcatgroup=0");
+    else         showTopicList(url_string);
+
 }
 
 void ExploreCategoryController::showTopicList(const QString &url_string) {
-
 	// list green + yellow flags
 	const QUrl url(url_string);
 	m_LastLoadedUrl = url_string;

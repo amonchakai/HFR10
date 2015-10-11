@@ -28,6 +28,10 @@
 #include <bb/system/SystemToast>
 #include <bb/platform/Notification>
 #include <bb/system/Clipboard>
+#include <bb/system/InvokeManager>
+#include <bb/system/InvokeRequest>
+#include <bb/system/InvokeTargetReply>
+#include <bb/system/SystemDialog>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
@@ -35,9 +39,10 @@
 #include  "DataObjects.h"
 #include  "Settings.hpp"
 #include  "Easter.hpp"
+#include  "DialogSearch.hpp"
 
 ShowThreadController::ShowThreadController(QObject *parent)
-	: QObject(parent), m_WebView(NULL), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0), m_ActionSurvey(false) {
+	: QObject(parent), m_WebView(NULL), m_ListView(NULL), m_Datas(new QList<PostDetailItem*>), m_AddSignature(false), m_ScrollAtLocation(false), m_NbWebviewLoaded(0), m_ActionSurvey(false), m_DialogSearch(NULL) {
 }
 
 
@@ -64,8 +69,121 @@ void ShowThreadController::showThread(const QString &url) {
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
 
+	loadBlackList();
+
 }
 
+
+void ShowThreadController::loadBlackList() {
+    m_BlackList.clear();
+
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+    QFile file(directory + "/blacklist.txt");
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+
+        QString line;
+        line = stream.readLine();
+        while(!line.isEmpty()) {
+            m_BlackList.insert(line);
+
+            line = stream.readLine();
+        }
+        file.close();
+    }
+}
+
+
+void ShowThreadController::intraSearch(const QString& keywords, const QString& author, bool filter) {
+    if(keywords.isEmpty() && author.isEmpty()) {
+        bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+        toast->setBody(tr("Nothing to search"));
+        toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+        toast->show();
+
+        return;
+    }
+
+    QString currentPageNumber;
+    {   // get information about current page number & last page number
+
+        QRegExp pageNumber("page=([0-9]+)");
+        pageNumber.setCaseSensitivity(Qt::CaseSensitive);
+
+        QRegExp pageNumberCleanUrl("([0-9]+).htm");
+        pageNumberCleanUrl.setCaseSensitivity(Qt::CaseSensitive);
+
+        if(pageNumber.indexIn(m_Url, 0) != -1) {
+            currentPageNumber = pageNumber.cap(1);
+        } else {
+            if(pageNumberCleanUrl.indexIn(m_Url, 0) != -1) {
+                currentPageNumber = pageNumberCleanUrl.cap(1);
+            } else {
+                currentPageNumber = "1";
+            }
+        }
+
+    }
+
+    const QUrl url(DefineConsts::FORUM_URL + "/transsearch.php?config=hfr.inc");
+
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+    QUrl params;
+    params.addQueryItem("hash_check", m_HashCheck);
+    params.addQueryItem("p", "1");
+    params.addQueryItem("post", m_PostID);
+    params.addQueryItem("cat", m_CatID);
+    params.addQueryItem("firstnum", m_FirstNum);
+    params.addQueryItem("currentnum", "");
+    params.addQueryItem("word", keywords);
+    params.addQueryItem("spseudo", author);
+    if(filter)
+        params.addQueryItem("filter", "1");
+
+    QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
+    bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplySearch()));
+    Q_ASSERT(ok);
+    Q_UNUSED(ok);
+
+    emit searchStarted();
+
+}
+
+void ShowThreadController::checkReplySearch() {
+    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+    QString response;
+    if (reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+
+            QList<QByteArray> headerList = reply->rawHeaderList();
+            bool found = false;
+            foreach(QByteArray head, headerList) {
+                if(head == "Location") {
+                    found = true;
+                    showThread(reply->rawHeader(head));
+                }
+            }
+
+            if(!found) {
+                bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+                toast->setBody(tr("Sorry, no posts could be found."));
+                toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+                toast->show();
+
+                emit complete();
+            }
+        }
+
+        reply->deleteLater();
+    }
+}
 
 
 void ShowThreadController::checkReply() {
@@ -79,18 +197,48 @@ void ShowThreadController::checkReply() {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
 
-/*				QFile file(QDir::currentPath() + "/app/native/assets/projet-hfr10-blackberry-sujet_27709_141.htm");
-				if (file.open(QIODevice::ReadOnly)) {
-				        parse(QString::fromUtf8(file.readAll()));
-				}
-*/
-				parse(response);
+
+                QRegExp searchFailed("D.sol. aucune r.ponse n.a .t. trouv.e\t<br /><br />");
+                if(searchFailed.indexIn(response) == -1) {
+                    parse(response);
+                } else {
+                    bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+                    toast->setBody(tr("Sorry, no posts could be found."));
+                    toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+                    toast->show();
+
+                    emit complete();
+                }
+
+			} else {
+
+			    QList<QByteArray> headerList = reply->rawHeaderList();
+                bool found = false;
+                foreach(QByteArray head, headerList) {
+                    if(head == "Location") {
+                        found = true;
+                        showThread(reply->rawHeader(head));
+                    }
+                }
+
+                if(!found) {
+                    bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+                    toast->setBody(tr("Nothing more to display"));
+                    toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+                    toast->show();
+                }
+
+                emit complete();
 			}
 		} else {
 			connectionTimedOut();
 		}
 
 		reply->deleteLater();
+	} else {
+	    qDebug() << reply->errorString();
 	}
 }
 
@@ -105,6 +253,58 @@ void ShowThreadController::connectionTimedOut() {
 	emit complete();
 }
 
+void ShowThreadController::invokeBrowser(const QString& url) {
+    QSettings settings("Amonchakai", "HFR10");
+
+    if(settings.value("ConfirmLeavingApp", true).toBool()) {
+        using namespace bb::cascades;
+        using namespace bb::system;
+
+        SystemDialog *dialog = new SystemDialog(tr("Yes"), tr("No"));
+
+        dialog->setTitle(tr("Friendly warning"));
+        dialog->setBody(tr("You are going to leave the application, do you want to continue?"));
+
+        bool success = connect(dialog,
+             SIGNAL(finished(bb::system::SystemUiResult::Type)),
+             this,
+             SLOT(onPromptLeavingApp(bb::system::SystemUiResult::Type)));
+
+        if (success) {
+            m_TentativeNewBrowserUrl = url;
+            dialog->show();
+        } else {
+            dialog->deleteLater();
+        }
+    } else {
+        openBrowser(url);
+    }
+}
+
+void ShowThreadController::onPromptLeavingApp(bb::system::SystemUiResult::Type result) {
+    using namespace bb::cascades;
+    using namespace bb::system;
+
+    if(result == bb::system::SystemUiResult::ConfirmButtonSelection) {
+        openBrowser(m_TentativeNewBrowserUrl);
+    }
+
+    sender()->deleteLater();
+
+}
+
+
+void ShowThreadController::openBrowser(const QString& url) {
+    if(m_InvokeManager == NULL) {
+        m_InvokeManager = new bb::system::InvokeManager(this);
+    }
+
+    bb::system::InvokeRequest request;
+    request.setAction("bb.action.OPEN");
+    request.setUri(url);
+
+    m_InvokeManager->invoke(request);
+}
 
 void ShowThreadController::parse(const QString &page) {
 
@@ -199,6 +399,11 @@ void ShowThreadController::parse(const QString &page) {
         }
     }
 
+    // ----------------------------------------------------------------------------------------------
+    // Parse info for intra search!
+    QRegExp firstNumRegExp("<input type=\"hidden\" value=\"([0-9]+)\" name=\"firstnum\" />");
+    if(firstNumRegExp.indexIn(page) != -1)
+        m_FirstNum = firstNumRegExp.cap(1);
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -231,7 +436,8 @@ void ShowThreadController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
+		if(m_BlackList.find(lastPseudo) == m_BlackList.end())
+		    parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
 
 
 		lastPos = pos;
@@ -243,12 +449,14 @@ void ShowThreadController::parse(const QString &page) {
 	parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
 	parseDataForReply(page.mid(lastPos, pos-lastPos));
 
-	PostDetailItem *item = m_Datas->last();
+	if(!m_Datas->isEmpty()) {
+	    PostDetailItem *item = m_Datas->last();
 
-	if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
-		item->getPost() += "<br /><br /><p style=\"background-color:#262626; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
-	} else {
-		item->getPost() += "<br /><br /><p style=\"background-color:#f5f5f5; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
+        if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+            item->getPost() += "<br /><br /><p style=\"background-color:#262626; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
+        } else {
+            item->getPost() += "<br /><br /><p style=\"background-color:#f5f5f5; text-align:center; \">" + currentPageNumber + "/" + lastPageNumber + "</p>";
+        }
 	}
 
 	updateView();
@@ -271,6 +479,15 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	avatarRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	avatarRegexp.setMinimal(true);
 
+	QRegExp profilRegexp = QRegExp("<a href=\"(/hfr/profil-[0-9]+.htm)\" target=\"_blank\">");
+	profilRegexp.setCaseSensitivity(Qt::CaseSensitive);
+	profilRegexp.setMinimal(true);
+
+	QRegExp urlNonFiltered("<a href=\"([^\"]+)\" class=\"cLink\"><b>Voir ce message dans le sujet non filtr.</b>");
+	urlNonFiltered.setCaseSensitivity(Qt::CaseSensitive);
+	urlNonFiltered.setMinimal(true);
+
+
 	QRegExp timestampRegexp = QRegExp(QString( "<div class=\"left\">(.+)<a href="));
 	timestampRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	timestampRegexp.setMinimal(true);
@@ -289,6 +506,20 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 		editURL = editURLRegexp.cap(1);
 		editURL.replace(QRegExp("&amp;"), "&");
 	}
+
+	QString profileUrl = "";
+    if(profilRegexp.indexIn(post, 0) != -1) {
+        profileUrl = profilRegexp.cap(1);
+        profileUrl.replace(QRegExp("&amp;"), "&");
+    }
+
+    //qDebug() << post;
+    QString topicNonFilteredUrl = "";
+    if(urlNonFiltered.indexIn(post, 0) != -1) {
+        topicNonFilteredUrl = urlNonFiltered.cap(1);
+        topicNonFilteredUrl.replace(QRegExp("&amp;"), "&");
+    }
+
 
 	QString mood = "";
 	if(moodRegexp.indexIn(post, 0) != -1)
@@ -344,7 +575,8 @@ void ShowThreadController::parsePost(const QString &postIdex, const QString &aut
 	m_Datas->last()->setTimestamp(timestamp);
 	m_Datas->last()->setPost(postContent);
 	m_Datas->last()->setIndex(postIdex.toInt());
-
+	m_Datas->last()->setProfileUrl(profileUrl);
+	m_Datas->last()->setNotFilteredUrl(topicNonFilteredUrl);
 }
 
 void ShowThreadController::parseDataForReply(const QString &page) {
@@ -546,6 +778,15 @@ QString ShowThreadController::getEditUrl(int messageID) const {
     return "";
 }
 
+QString ShowThreadController::getProfileUrl(int messageID) const {
+    for(int i = 0 ; i < m_Datas->length() ; ++i) {
+        if(m_Datas->at(i)->getIndex() == messageID)
+            return m_Datas->at(i)->getProfileUrl();
+    }
+
+    return "";
+}
+
 QString ShowThreadController::getMessageAuthor(int messageID) const {
     for(int i = 0 ; i < m_Datas->length() ; ++i) {
         if(m_Datas->at(i)->getIndex() == messageID)
@@ -661,7 +902,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	spoilerRegExp.setCaseSensitivity(Qt::CaseSensitive);
 	spoilerRegExp.setMinimal(true);
 
-	QRegExp simpleQuoteRegexp("<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b><br /><br /><p>(.*)</p></td></tr></table></div>");
+	QRegExp simpleQuoteRegexp("<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b><br /><br /><p>(.*)</p>(<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b>|</td></tr></table></div>)"); //<div class=\"container\"><table class=\"quote\">|
 	simpleQuoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	simpleQuoteRegexp.setMinimal(true);
 
@@ -707,19 +948,47 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	// ----------------------------------------------------
 	// handle [cpp][/cpp]
 
-	cleanPost = "";
-	lastPos = 0;
-	pos = 0;
-	while((pos = simpleQuoteRegexp.indexIn(post, pos)) != -1) {
-		cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
+    cleanPost = "";
+    lastPos = 0;
+    pos = 0;
+    while((pos = simpleQuoteRegexp.indexIn(post, pos)) != -1) {
+        cleanPost += "<p>" + post.mid(lastPos, pos-lastPos) + "</p>";
 
-		cleanPost += "<div class=\"quote\"><div class=\"header\" >Citation :</div>" + simpleQuoteRegexp.cap(1) + "</div>";
-		pos += simpleQuoteRegexp.matchedLength();
-		lastPos = pos;
-	}
-	cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
-	post = cleanPost;
 
+
+        if(simpleQuoteRegexp.cap(2) == "<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b>" ) {
+            cleanPost += "<div class=\"quote\"><div class=\"header\" >Citation :</div>" + simpleQuoteRegexp.cap(1) + "</div>";
+            pos += simpleQuoteRegexp.matchedLength()-105;
+            // recursive quote...
+
+            QRegExp nextClose("</td></tr></table></div>");
+            nextClose.setCaseSensitivity(Qt::CaseSensitive);
+            int indexNextClose = nextClose.indexIn(post, pos);
+            int lastMatchingPos = 0;
+            while((pos = simpleQuoteRegexp.indexIn(post, pos)) != -1 && indexNextClose != -1 ) {
+                if(pos > indexNextClose)
+                    break;
+
+                cleanPost += "<div class=\"quote\"><div class=\"header\" >Citation :</div>" + simpleQuoteRegexp.cap(1);
+                pos += simpleQuoteRegexp.matchedLength();
+                lastMatchingPos = pos;
+                indexNextClose = nextClose.indexIn(post, pos);
+            }
+            cleanPost += post.mid(lastMatchingPos, indexNextClose-lastMatchingPos) + "</div>";
+
+            pos = indexNextClose + nextClose.matchedLength();
+
+        } else {
+            cleanPost += "<div class=\"quote\"><div class=\"header\" >Citation :</div>" + simpleQuoteRegexp.cap(1) + "</div>";
+            pos += simpleQuoteRegexp.matchedLength();
+        }
+
+
+        lastPos = pos;
+
+    }
+    cleanPost += "<p>" + post.mid(lastPos, post.length()-lastPos) + "</p>";
+    post = cleanPost;
 
 
     // ----------------------------------------------------
@@ -734,7 +1003,9 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 
 
         if(quoteRegexp.cap(4) == "</p><div class=\"container\"><table class=\"citation\">" || quoteRegexp.cap(4) == "<div class=\"container\"><table class=\"citation\">") {
-            cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</p>";
+            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10)) == m_BlackList.end())
+                cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</p>";
+            else cleanPost += "<div>";
             pos += quoteRegexp.matchedLength() - 51 + (quoteRegexp.cap(4) == "<div class=\"container\"><table class=\"citation\">" ? 4 : 0);
             // recursive quote...
 
@@ -756,7 +1027,8 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
             pos = indexNextClose + nextClose.matchedLength();
 
         } else {
-            cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
+            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10)) == m_BlackList.end())
+                cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
             pos += quoteRegexp.matchedLength();
         }
 
@@ -851,6 +1123,12 @@ void ShowThreadController::updateView() {
 	    QString pageContent;
 	    for(int i = 0 ; i < m_Datas->length() ; ++i) {
 
+	        QString RenderInNonFiltered = "";
+
+	        if(!m_Datas->at(i)->getNotFilteredUrl().isEmpty()) {
+	            RenderInNonFiltered = "<div class=\"showUnfiltered\" onclick=\"sendURL(\'REDIRECT:" + m_Datas->at(i)->getNotFilteredUrl() + "\')\"><p>" + tr("Show post in a non-filtered thread") + "</p></div>";
+	        }
+
 	        QRegExp isModo("Mod.ration");
 	        if(isModo.indexIn(m_Datas->at(i)->getAuthor()) != -1) {
 	            pageContent +=
@@ -859,7 +1137,7 @@ void ShowThreadController::updateView() {
 	                        + "<div class=\"PostHeader-Text moderator\">"
 	                            + "<div style=\"position:relative; top:-20px;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getAuthor() + "</p></div>"
 	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p class=\"moderator\" style=\"font-size:25px; \">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
-	                        + "</div>"
+	                        + RenderInNonFiltered +" </div>"
 	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
 	        } else {
 	            pageContent +=
@@ -869,7 +1147,7 @@ void ShowThreadController::updateView() {
 	                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
 	                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
 	                        + "</div>"
-	                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
+	                        + "</div>" + RenderInNonFiltered +" <p>" + m_Datas->at(i)->getPost() + "</p>";
 	        }
 
 
@@ -894,6 +1172,17 @@ void ShowThreadController::updateView() {
 	    }
 
 	    m_WebView->setHtml(htmlTemplate + pageContent + endTemplate, QUrl("local:///assets/"));
+/*
+	    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
+	        QFile file(directory + "/tmp.txt");
+	        if (file.open(QIODevice::WriteOnly)) {
+	            QTextStream stream(&file);
+
+	            stream << (htmlTemplate + pageContent + endTemplate);
+
+	            file.close();
+	        }*/
+
 	} else {
 	    qDebug() << "file not found";
 	}
@@ -990,8 +1279,20 @@ void ShowThreadController::doAction(int code) {
             break;
         }
 
+        case 12:
+        {
+            if(m_DialogSearch == NULL) {
+                m_DialogSearch = new DialogSearch();
+                bool check = QObject::connect(m_DialogSearch, SIGNAL(validated(const QString&, const QString&, bool)), this, SLOT(intraSearch(const QString&, const QString&, bool)));
+                Q_ASSERT(check);
+
+            }
+            m_DialogSearch->setVisible(true);
+        }
+
     }
 }
+
 
 void ShowThreadController::nextPage() {
 	if(!m_UrlNextPage.isEmpty())

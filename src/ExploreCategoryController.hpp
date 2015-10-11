@@ -24,12 +24,15 @@ class ExploreCategoryController : public QObject {
 		bb::cascades::ListView   *m_ListView;
 		QList<ThreadListItem*>   *m_Datas;
 
+		int                       m_Flag;
 		int 					  m_SelectedSubCat;
 		QList<QString>			  m_SubCatURL;
 
 		QString					  m_GeneralUrl;
 		QString					  m_Url;
 		QString					  m_LastLoadedUrl;
+
+
 
 
 	// ----------------------------------------------------------------------------------------------
@@ -44,7 +47,7 @@ class ExploreCategoryController : public QObject {
 		inline void setListView	   	(QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
 		void loadSubCats			(const QString &xmlFile);
 		void listSubCat				(int subcat);
-		void listTopics			   	(const QString &url);
+		void listTopics			   	(const QString &url, int flag = -1, int cat = -1);
 		void checkReply				();
 		void filterByFlag			(int flag);
 		void refresh				();
@@ -57,6 +60,7 @@ class ExploreCategoryController : public QObject {
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
 		void complete();
+		void flagChanged();
 
 
 

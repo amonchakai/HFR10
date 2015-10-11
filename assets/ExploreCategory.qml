@@ -8,6 +8,7 @@ Page {
     property string  caption
     property string  subCatXml
     property int 	 flagType
+    property int     cat
     property int     subCatIndex
     property variant tpage
     property variant createPage
@@ -57,6 +58,7 @@ Page {
                 
             if(selectedValue == "read")
                 flagType = 2;
+                
         }
     }
     
@@ -370,10 +372,11 @@ Page {
     onCreationCompleted: {
         focusedItem = listCats;
         focusedItemDepth = 1;
+        flagType = -1;
     }
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);
-        exploreCategoryController.listTopics(urlPage);
+        exploreCategoryController.listTopics(urlPage, flagType, cat);
         exploreCategoryController.loadSubCats(subCatXml);
         activityIndicator.start();
     }

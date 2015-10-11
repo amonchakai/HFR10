@@ -20,6 +20,57 @@ struct Flag {
 	};
 };
 
+class ReviewListItem : public QObject {
+    Q_OBJECT
+
+    Q_PROPERTY( QString review       READ getReview       WRITE setReview        NOTIFY reviewChanged)
+    Q_PROPERTY( QString from         READ getFrom         WRITE setFrom          NOTIFY fromChanged)
+    Q_PROPERTY( QString role         READ getRole         WRITE setRole          NOTIFY roleChanged)
+    Q_PROPERTY( QString advice       READ getAdvice       WRITE setAdvice        NOTIFY adviceChanged)
+    Q_PROPERTY( QString date         READ getDate         WRITE setDate          NOTIFY dateChanged)
+    Q_PROPERTY( qint64 timestamp     READ getTimestamp    WRITE setTimestamp     NOTIFY timestampChanged)
+
+private:
+    QString m_Review;
+    QString m_From;
+    QString m_Role;
+    QString m_Advice;
+    QString m_Date;
+    qint64  m_Timestamp;
+
+public:
+    inline const QString &getReview() const                { return m_Review; }
+    inline void           setReview(const QString &s)      { m_Review = s; emit reviewChanged(); }
+
+
+    inline const QString &getFrom() const                  { return m_From; }
+    inline void           setFrom(const QString &s)        { m_From = s; emit fromChanged(); }
+
+    inline const QString &getRole() const                  { return m_Role; }
+    inline void           setRole(const QString &s)        { m_Role = s; emit roleChanged(); }
+
+    inline const QString &getAdvice() const                { return m_Advice; }
+    inline void           setAdvice(const QString &s)      { m_Advice = s; emit adviceChanged(); }
+
+    inline const QString &getDate() const                  { return m_Date; }
+    inline void           setDate(const QString &s)        { m_Date = s; emit dateChanged(); }
+
+    inline const qint64   getTimestamp() const             { return m_Timestamp; }
+    inline void           setTimestamp(qint64 s)           { m_Timestamp = s; emit timestampChanged(); }
+
+// ----------------------------------------------------------------------------------------------
+Q_SIGNALS:
+
+    void reviewChanged();
+    void fromChanged();
+    void roleChanged();
+    void adviceChanged();
+    void dateChanged();
+    void timestampChanged();
+
+
+};
+
 class ThreadListItem : public QObject {
 	Q_OBJECT
 
@@ -276,6 +327,7 @@ class PostDetailItem : public QObject {
 	Q_PROPERTY( QString timestamp	READ getTimestamp	WRITE setTimestamp	NOTIFY timestampChanged)
 	Q_PROPERTY( QString post		READ getPost		WRITE setPost		NOTIFY postChanged)
 	Q_PROPERTY( QString editUrl		READ getEditUrl		WRITE setEditUrl	NOTIFY editUrlChanged)
+	Q_PROPERTY( QString profileUrl  READ getProfileUrl  WRITE setProfileUrl NOTIFY profileUrlChanged)
 	Q_PROPERTY( int		index		READ getIndex		WRITE setIndex		NOTIFY indexChanged)
 
 	// ----------------------------------------------------------------------------------------------
@@ -287,6 +339,8 @@ private:
 	QString m_Post;
 	int		m_Index;
 	QString m_EditURL;
+	QString m_ProfileUrl;
+	QString m_NotFilteredThreadUrl;
 
 
 public:
@@ -306,6 +360,12 @@ public:
 	inline const QString &getEditUrl() const			{ return m_EditURL; }
 	inline void			  setEditUrl(const QString &s)	{ m_EditURL = s; }
 
+	inline const QString &getProfileUrl() const            { return m_ProfileUrl; }
+    inline void           setProfileUrl(const QString &s)  { m_ProfileUrl = s; }
+
+    inline const QString &getNotFilteredUrl() const            { return m_NotFilteredThreadUrl; }
+    inline void           setNotFilteredUrl(const QString &s)  { m_NotFilteredThreadUrl = s; }
+
 	inline const QString &getPost() const				{ return m_Post; }
 	inline       QString &getPost()						{ return m_Post; }
 	inline void			  setPost(const QString &s)		{ m_Post = s; }
@@ -322,6 +382,7 @@ public:
 		void postChanged();
 		void indexChanged();
 		void editUrlChanged();
+		void profileUrlChanged();
 
 };
 
@@ -410,3 +471,4 @@ public:
 
 
 #endif /* DATAOBJECTS_H_ */
+

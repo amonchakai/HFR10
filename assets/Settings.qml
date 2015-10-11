@@ -7,6 +7,7 @@ NavigationPane {
     property variant tpage
     property variant colorPage
     property variant logPage
+    property variant blacklistPage
     signal done ()
     
 	Page {
@@ -291,6 +292,52 @@ NavigationPane {
                 
                 
                 Container {
+                    preferredHeight: 90
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    layout: DockLayout {  }
+                    
+                    Container {
+                        horizontalAlignment: HorizontalAlignment.Right
+                        layout: StackLayout {
+                            orientation: LayoutOrientation.LeftToRight
+                        }
+                        ToggleButton {
+                            verticalAlignment: VerticalAlignment.Center
+                            
+                            id: togglebuttonLeaveApp
+                            checked: appSettings.askLeaveApp == 1
+                            onCheckedChanged: {
+                                if(checked)
+                                    appSettings.askLeaveApp = 1;
+                                else 
+                                    appSettings.askLeaveApp = 0;
+                            }
+                        }
+                        Container {
+                            preferredWidth: ui.du(0.5)
+                        }
+                    
+                    }
+                    Label {
+                        margin.leftOffset: ui.du(1)
+                        verticalAlignment: VerticalAlignment.Center
+                        horizontalAlignment: HorizontalAlignment.Left
+                        text: qsTr("Ask before leaving application")
+                    }
+                }
+                
+                Button {
+                    id: blacklist
+                    horizontalAlignment: HorizontalAlignment.Fill
+                    text: qsTr("Manage blacklist")
+                    onClicked: {
+                        if(!blacklistPage)
+                            blacklistPage = blackListManagement.createObject();
+                        nav.push(blacklistPage);
+                    }
+                }
+                
+                Container {
                     preferredHeight: ui.du(4)
                 }
                 // --------------------------------------------------------------------------
@@ -547,7 +594,10 @@ NavigationPane {
                 ComponentDefinition {
                     id: colorManagement
                     source: "ColorManagement.qml"
-                
+                },
+                ComponentDefinition {
+                    id: blackListManagement
+                    source: "BlackListManagement.qml"
                 }
     	    ]
     	    

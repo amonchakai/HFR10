@@ -1,6 +1,7 @@
 1
-285
+292
 ApplicationLog.qml
+BlackListManagement.qml
 Bookmarks.qml
 BugReport.qml
 ColorManagement.qml
@@ -10,6 +11,7 @@ ComposeIssue.qml
 EMessage.qml
 ExploreCategory.qml
 Favorite.qml
+Feedback.qml
 help/about_fr.html
 Help.qml
 Home.qml
@@ -37,6 +39,7 @@ images/color/Next.png
 images/color/Prev.png
 images/color/Refresh.png
 images/color/Reply.png
+images/color/Search.png
 images/color/Survey.png
 images/color/the_brain.png
 images/color/to_Bottom.png
@@ -59,6 +62,9 @@ images/icon_category.svg
 images/icon_code.png
 images/icon_code.svg
 images/icon_code_black.png
+images/icon_contact_rounded.png
+images/icon_contact_rounded.svg
+images/icon_contact_rounded_black.png
 images/icon_credit.png
 images/icon_dismiss.png
 images/icon_dismiss_black.png
@@ -189,7 +195,6 @@ images/smiley/frown.gif
 images/smiley/fuck.gif
 images/smiley/gun.gif
 images/smiley/hap.gif
-images/smiley/hebe.gif
 images/smiley/hot.gif
 images/smiley/int.gif
 images/smiley/mad.gif
@@ -197,7 +202,6 @@ images/smiley/mmmfff.gif
 images/smiley/mouais.gif
 images/smiley/ohill.gif
 images/smiley/ohwell.gif
-images/smiley/ouimaitre.gif
 images/smiley/redface.gif
 images/smiley/smile.gif
 images/smiley/smilies/ange.gif
@@ -205,6 +209,7 @@ images/smiley/smilies/bounce.gif
 images/smiley/smilies/cry.gif
 images/smiley/smilies/fou.gif
 images/smiley/smilies/gratgrat.gif
+images/smiley/smilies/hebe.gif
 images/smiley/smilies/heink.gif
 images/smiley/smilies/hello.gif
 images/smiley/smilies/jap.gif
@@ -215,6 +220,7 @@ images/smiley/smilies/miam.gif
 images/smiley/smilies/na.gif
 images/smiley/smilies/non.gif
 images/smiley/smilies/ouch.gif
+images/smiley/smilies/ouimaitre.gif
 images/smiley/smilies/pfff.gif
 images/smiley/smilies/pouah.gif
 images/smiley/smilies/pt1cable.gif
@@ -270,6 +276,7 @@ Payment.qml
 PostMessage.qml
 PostRenderer.qml
 PrivateMessage.qml
+Profile.qml
 RefreshHeader.qml
 Search.qml
 SearchResult.qml

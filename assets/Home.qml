@@ -68,6 +68,7 @@ NavigationPane {
                     
                     // Set the url of the page to load and thread caption. 
                     tpage.subCatXml = chosenItem.xml
+                    tpage.cat     = chosenItem.cat
                     tpage.urlPage = chosenItem.url
                     tpage.caption   = chosenItem.title
                     

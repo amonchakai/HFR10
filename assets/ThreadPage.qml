@@ -10,11 +10,11 @@ Page {
     property variant previewPage
     property variant statPage
     property variant contextActionPage
+    property variant profilePage
     
     property string  urlPage
     property string  caption
     property bool 	 needUpdate
-    property string  tentativeNewURL
     
     property int    scrollRequested
     property string listItemSelected;
@@ -138,8 +138,12 @@ Page {
                         }
                         isContext = RegExp("RANDOM_TAP");
                         match = message.data.match(isContext);
-                        if(match)
-                            pageContainer.closeContextMenu();
+                        if(match) {
+                            if(contextMenu.isVisible)
+                                pageContainer.closeContextMenu();
+                            if(actionPicker.preferredHeight != 0)
+                                actionPicker.preferredHeight=0;
+                        }
                         
                         console.log(message.data);
                     }
@@ -212,13 +216,15 @@ Page {
                 
                 function show(own) {
                     if(!isVisible) {
+                        var isOwn = showThreadController.getEditUrl(parseInt(listItemSelected)) != "";
                         isVisible = true;
-                        editButton.visible = true;
-                        sendMP.visible = true;
+                        editButton.visible = isOwn
+                        sendMP.visible = !isOwn;
                         addFavorite.visible = true;
                         quote.visible = true;
+                        contactButton.visible = !isOwn;
                         quoteMore.visible = true;
-                        deleteButton.visible = true;
+                        deleteButton.visible = isOwn;
                         cancelButton.visible = false;
                         
                         composeNewActionBar.visible = false;
@@ -242,6 +248,7 @@ Page {
                         quoteMore.visible = false;
                         deleteButton.visible = false;
                         cancelButton.visible = false;
+                        contactButton.visible = false;
                         
                         isVisible = false;
                         threadWebView.evaluateJavaScript("unselectAll();")
@@ -351,8 +358,7 @@ Page {
         }
         
         function invokeWebBrowser(urlPage) {
-            tentativeNewURL = urlPage;
-            leaveAppDialog.show();
+            showThreadController.invokeBrowser(urlPage);
         }
         
         function notifyWebViewLoaded() {
@@ -522,6 +528,26 @@ Page {
                 }
                 
                 ImageButton {
+                    id: contactButton
+                    defaultImageSource: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_contact_rounded.png" : "asset:///images/icon_contact_rounded_black.png"
+                    verticalAlignment: VerticalAlignment.Center
+                    preferredHeight: ui.du(8)
+                    preferredWidth: ui.du(8)
+                    visible: false
+                    
+                    onClicked: {
+                        contextMenu.close();
+                        if(!profilePage)
+                            profilePage = profile.createObject();
+                            
+                        profilePage.profileUrl = showThreadController.getProfileUrl(parseInt(listItemSelected))
+                        nav.push(profilePage);
+                        
+                    }
+                
+                }
+                
+                ImageButton {
                     id: addFavorite
                     defaultImageSource: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "asset:///images/icon_favorite_rounded.png" : "asset:///images/icon_favorite_rounded_black.png"
                     verticalAlignment: VerticalAlignment.Center
@@ -584,6 +610,7 @@ Page {
                         editButton.visible = false;
                         sendMP.visible = false;
                         addFavorite.visible = false;
+                        contactButton.visible = false;
                         deleteButton.visible = false;
                         cancelButton.visible = true;
                         quote.visible=true;
@@ -794,6 +821,10 @@ Page {
             onNotifyPage: {
                 eMessage.open();
             }
+            
+            onSearchStarted: {
+                activityIndicator.start();
+            }
                 
             
             
@@ -807,24 +838,6 @@ Page {
             id: recPageDef
             source: "ThreadPage.qml"
         },
-        Invocation {
-            id: linkInvocation
-            
-            query.invokeTargetId: "sys.browser";
-            query.invokeActionId: "bb.action.OPEN"
-            
-            
-            query {
-                onUriChanged: {
-                    linkInvocation.query.updateQuery();
-                }
-            }
-            
-            onArmed: {
-                
-                trigger("bb.action.OPEN");
-            }
-        },
         ComponentDefinition {
             id: imagePreview
             source: "ImagePreview.qml"
@@ -837,25 +850,15 @@ Page {
             id: surveyPage
             source: "Survey.qml"
         },
-        SystemDialog {
-            id: leaveAppDialog
-            title: qsTr("Friendly warning")
-            body: qsTr("You are going to leave the application, do you want to continue?")
-            onFinished: {
-                if(result == SystemUiResult.ConfirmButtonSelection) {
-                    if(linkInvocation.query.uri == tentativeNewURL)
-                        linkInvocation.trigger("bb.action.OPEN");
-                    else
-                	   linkInvocation.query.uri = tentativeNewURL;
-                    
-                }
-            }
-        },
         Delegate {
             id: eMessageDelegate
             source: "EMessage.qml"
         
         },
+        ComponentDefinition {
+            id: profile
+            source: "Profile.qml"
+        }, 
         Sheet {
             id: eMessage
             content: eMessageDelegate.object
@@ -902,6 +905,7 @@ Page {
             imageSource: "asset:///images/icon_prev_all.png"
             onTriggered: {
                 showThreadController.firstPage();
+                pageContainer.closeContextMenu();
                 activityIndicator.start();
                 scrollRequested = 0;
             }
@@ -916,6 +920,7 @@ Page {
              imageSource: "asset:///images/icon_next_all.png"
              onTriggered: {
                  showThreadController.lastPage();
+                 pageContainer.closeContextMenu();
                  activityIndicator.start();
                  scrollRequested = 0;
              }
@@ -930,6 +935,7 @@ Page {
             imageSource: "asset:///images/icon_prev.png"
             onTriggered: {
                 showThreadController.prevPage();
+                pageContainer.closeContextMenu();
                 activityIndicator.start();
                 scrollRequested = 0;
             }
@@ -946,6 +952,7 @@ Page {
             ActionBar.placement: ActionBarPlacement.OnBar
         	onTriggered: {
         		showThreadController.nextPage();
+                pageContainer.closeContextMenu();
                 activityIndicator.start();
                 scrollRequested = 0;
             }
@@ -995,7 +1002,7 @@ Page {
     onUrlPageChanged: {
         showThreadController.showThread(urlPage);
         scrollRequested = 0;
-
+        pageContainer.closeContextMenu();
         activityIndicator.start();
     }
     

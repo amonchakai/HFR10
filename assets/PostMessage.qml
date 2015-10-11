@@ -156,6 +156,13 @@ Page {
             layoutProperties: StackLayoutProperties {
                 spaceQuota: 1
             }
+            
+            onFocusedChanged: {
+                if(focused) {
+                    emoticonsPicker.preferredHeight=0;
+                    controlContainer.visible=false;
+                }
+            }
         
             
             editor {
@@ -180,7 +187,6 @@ Page {
                     if(selectionStart != 0 && selectionStart != selectionStop)
                         selectionBegin = selectionStart;
                 }
-                
             }
             
         }
