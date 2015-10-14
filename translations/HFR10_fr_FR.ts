@@ -1378,7 +1378,7 @@
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1276"/>
+        <location filename="../src/ShowThreadController.cpp" line="1277"/>
         <source>Link to current page copied to clipboard</source>
         <translation>L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
     </message>
@@ -1397,9 +1397,9 @@
         <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="741"/>
-        <location filename="../src/ShowThreadController.cpp" line="812"/>
-        <location filename="../src/ShowThreadController.cpp" line="1443"/>
+        <location filename="../src/ShowThreadController.cpp" line="742"/>
+        <location filename="../src/ShowThreadController.cpp" line="813"/>
+        <location filename="../src/ShowThreadController.cpp" line="1444"/>
         <source>Error: %1 status: %2</source>
         <translation>Erreur : %1 statut : %2</translation>
     </message>
@@ -1409,17 +1409,17 @@
         <translation>Rien à chercher</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1129"/>
+        <location filename="../src/ShowThreadController.cpp" line="1130"/>
         <source>Show post in a non-filtered thread</source>
         <translation>Montrer le post dans un sujet non filtré</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1482"/>
+        <location filename="../src/ShowThreadController.cpp" line="1483"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation>/app/native/assets/model/action_list_fr.xml</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="679"/>
+        <location filename="../src/ShowThreadController.cpp" line="680"/>
         <source>Vote</source>
         <translation>Voter</translation>
     </message>

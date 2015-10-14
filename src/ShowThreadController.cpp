@@ -85,7 +85,7 @@ void ShowThreadController::loadBlackList() {
         QString line;
         line = stream.readLine();
         while(!line.isEmpty()) {
-            m_BlackList.insert(line);
+            m_BlackList.insert(line.toLower());
 
             line = stream.readLine();
         }
@@ -436,8 +436,9 @@ void ShowThreadController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		if(m_BlackList.find(lastPseudo) == m_BlackList.end())
+		if(m_BlackList.find(lastPseudo.toLower()) == m_BlackList.end()) {
 		    parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
+		}
 
 
 		lastPos = pos;
@@ -1126,7 +1127,7 @@ void ShowThreadController::updateView() {
 	        QString RenderInNonFiltered = "";
 
 	        if(!m_Datas->at(i)->getNotFilteredUrl().isEmpty()) {
-	            RenderInNonFiltered = "<div class=\"showUnfiltered\" onclick=\"sendURL(\'REDIRECT:" + m_Datas->at(i)->getNotFilteredUrl() + "\')\"><p>" + tr("Show post in a non-filtered thread") + "</p></div>";
+	            RenderInNonFiltered = "<br/>&nbsp;<div class=\"showUnfiltered\" onclick=\"sendURL(\'REDIRECT:" + m_Datas->at(i)->getNotFilteredUrl() + "\')\"><p>" + tr("Show post in a non-filtered thread") + "</p></div>";
 	        }
 
 	        QRegExp isModo("Mod.ration");
