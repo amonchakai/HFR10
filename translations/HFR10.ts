@@ -1324,71 +1324,71 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="176"/>
-        <location filename="../src/ShowThreadController.cpp" line="207"/>
+        <location filename="../src/ShowThreadController.cpp" line="177"/>
+        <location filename="../src/ShowThreadController.cpp" line="208"/>
         <source>Sorry, no posts could be found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="228"/>
+        <location filename="../src/ShowThreadController.cpp" line="229"/>
         <source>Nothing more to display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="249"/>
+        <location filename="../src/ShowThreadController.cpp" line="250"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="263"/>
+        <location filename="../src/ShowThreadController.cpp" line="264"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="263"/>
+        <location filename="../src/ShowThreadController.cpp" line="264"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="265"/>
+        <location filename="../src/ShowThreadController.cpp" line="266"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="266"/>
+        <location filename="../src/ShowThreadController.cpp" line="267"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="680"/>
+        <location filename="../src/ShowThreadController.cpp" line="697"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="742"/>
-        <location filename="../src/ShowThreadController.cpp" line="813"/>
-        <location filename="../src/ShowThreadController.cpp" line="1444"/>
+        <location filename="../src/ShowThreadController.cpp" line="759"/>
+        <location filename="../src/ShowThreadController.cpp" line="830"/>
+        <location filename="../src/ShowThreadController.cpp" line="1461"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1277"/>
-        <source>Link to current page copied to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ShowThreadController.cpp" line="101"/>
-        <source>Nothing to search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ShowThreadController.cpp" line="1130"/>
+        <location filename="../src/ShowThreadController.cpp" line="1147"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1483"/>
+        <location filename="../src/ShowThreadController.cpp" line="1294"/>
+        <source>Link to current page copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1500"/>
         <source>/app/native/assets/model/action_list.xml</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="102"/>
+        <source>Nothing to search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -88,6 +88,7 @@ void ShowThreadController::loadBlackList() {
             m_BlackList.insert(line.toLower());
 
             line = stream.readLine();
+
         }
         file.close();
     }
@@ -431,13 +432,29 @@ void ShowThreadController::parse(const QString &page) {
 
 	m_Datas->clear();				// cleanup data before loading new data
 
+	for(QSet<QString>::iterator it = m_BlackList.begin() ;  it != m_BlackList.end() ; ++it)
+	    qDebug() << "blacklist item: " << (*it) << it->length();
+
+
 	// Cut the entire page into posts
 	while((pos = regexp.indexIn(page, lastPos)) != -1) {
 		pos += regexp.matchedLength();
+		lastPseudo = lastPseudo.replace("\0", "");
+
+		for(int i  = 0 ; i< lastPseudo.length() ; ++i)
+		    if(lastPseudo.at(i).toAscii() == 0) {
+		        lastPseudo = lastPseudo.mid(0, i) + lastPseudo.mid(i+1);
+		        i = 0;
+		    }
 
 		// parse each post individually
-		if(m_BlackList.find(lastPseudo.toLower()) == m_BlackList.end()) {
+		if(!m_BlackList.contains(lastPseudo.toLower())) {
+		    qDebug() << "[PASS] " << lastPseudo.toLower() << lastPseudo.length() ;
+
+
 		    parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
+		} else {
+		    qDebug() << "[BAN] " << lastPseudo.toLower();
 		}
 
 
@@ -903,7 +920,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 	spoilerRegExp.setCaseSensitivity(Qt::CaseSensitive);
 	spoilerRegExp.setMinimal(true);
 
-	QRegExp simpleQuoteRegexp("<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b><br /><br /><p>(.*)</p>(<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b>|</td></tr></table></div>)"); //<div class=\"container\"><table class=\"quote\">|
+	QRegExp simpleQuoteRegexp("<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b><br /><br />(.*)(<div class=\"container\"><table class=\"quote\"><tr class=\"none\"><td><b class=\"s1\">Citation :</b>|</td></tr></table></div>)"); //<div class=\"container\"><table class=\"quote\">|
 	simpleQuoteRegexp.setCaseSensitivity(Qt::CaseSensitive);
 	simpleQuoteRegexp.setMinimal(true);
 
@@ -1004,7 +1021,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
 
 
         if(quoteRegexp.cap(4) == "</p><div class=\"container\"><table class=\"citation\">" || quoteRegexp.cap(4) == "<div class=\"container\"><table class=\"citation\">") {
-            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10)) == m_BlackList.end())
+            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10).toLower()) == m_BlackList.end())
                 cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</p>";
             else cleanPost += "<div>";
             pos += quoteRegexp.matchedLength() - 51 + (quoteRegexp.cap(4) == "<div class=\"container\"><table class=\"citation\">" ? 4 : 0);
@@ -1028,7 +1045,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
             pos = indexNextClose + nextClose.matchedLength();
 
         } else {
-            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10)) == m_BlackList.end())
+            if(m_BlackList.find(quoteRegexp.cap(2).mid(0, quoteRegexp.cap(2).length()-10).toLower()) == m_BlackList.end())
                 cleanPost += "<div class=\"quote\"><div class=\"header\"><p onclick=\"sendURL(\'REDIRECT:" + quoteRegexp.cap(1) + "\')\">" + quoteRegexp.cap(2) + "</p></div>" + quoteRegexp.cap(3) + "</div>";
             pos += quoteRegexp.matchedLength();
         }

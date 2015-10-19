@@ -1352,76 +1352,76 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="176"/>
-        <location filename="../src/ShowThreadController.cpp" line="207"/>
+        <location filename="../src/ShowThreadController.cpp" line="177"/>
+        <location filename="../src/ShowThreadController.cpp" line="208"/>
         <source>Sorry, no posts could be found.</source>
         <translation>Désolé, aucun posts n&apos;a pus être trouvé.</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="228"/>
+        <location filename="../src/ShowThreadController.cpp" line="229"/>
         <source>Nothing more to display</source>
         <translation>Rien à afficher</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="249"/>
+        <location filename="../src/ShowThreadController.cpp" line="250"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="263"/>
+        <location filename="../src/ShowThreadController.cpp" line="264"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="263"/>
+        <location filename="../src/ShowThreadController.cpp" line="264"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1277"/>
+        <location filename="../src/ShowThreadController.cpp" line="1294"/>
         <source>Link to current page copied to clipboard</source>
-        <translation>L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
+        <translation type="unfinished">L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
     </message>
     <message>
         <source>Survey</source>
         <translation type="obsolete">Sondage</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="265"/>
+        <location filename="../src/ShowThreadController.cpp" line="266"/>
         <source>Friendly warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="266"/>
+        <location filename="../src/ShowThreadController.cpp" line="267"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="742"/>
-        <location filename="../src/ShowThreadController.cpp" line="813"/>
-        <location filename="../src/ShowThreadController.cpp" line="1444"/>
+        <location filename="../src/ShowThreadController.cpp" line="759"/>
+        <location filename="../src/ShowThreadController.cpp" line="830"/>
+        <location filename="../src/ShowThreadController.cpp" line="1461"/>
         <source>Error: %1 status: %2</source>
-        <translation>Erreur : %1 statut : %2</translation>
+        <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="101"/>
+        <location filename="../src/ShowThreadController.cpp" line="102"/>
         <source>Nothing to search</source>
         <translation>Rien à chercher</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1130"/>
+        <location filename="../src/ShowThreadController.cpp" line="1147"/>
         <source>Show post in a non-filtered thread</source>
-        <translation>Montrer le post dans un sujet non filtré</translation>
+        <translation type="unfinished">Montrer le post dans un sujet non filtré</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1483"/>
+        <location filename="../src/ShowThreadController.cpp" line="1500"/>
         <source>/app/native/assets/model/action_list.xml</source>
-        <translation>/app/native/assets/model/action_list_fr.xml</translation>
+        <translation type="unfinished">/app/native/assets/model/action_list_fr.xml</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="680"/>
+        <location filename="../src/ShowThreadController.cpp" line="697"/>
         <source>Vote</source>
-        <translation>Voter</translation>
+        <translation type="unfinished">Voter</translation>
     </message>
 </context>
 <context>
