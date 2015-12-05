@@ -309,53 +309,53 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="215"/>
+        <location filename="../assets/ExploreCategory.qml" line="218"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="218"/>
-        <location filename="../assets/ExploreCategory.qml" line="340"/>
+        <location filename="../assets/ExploreCategory.qml" line="221"/>
+        <location filename="../assets/ExploreCategory.qml" line="343"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="225"/>
+        <location filename="../assets/ExploreCategory.qml" line="228"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="232"/>
+        <location filename="../assets/ExploreCategory.qml" line="235"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="308"/>
+        <location filename="../assets/ExploreCategory.qml" line="311"/>
         <source>Sub-Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="322"/>
+        <location filename="../assets/ExploreCategory.qml" line="325"/>
         <source>s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="327"/>
+        <location filename="../assets/ExploreCategory.qml" line="330"/>
         <source>New topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="348"/>
+        <location filename="../assets/ExploreCategory.qml" line="351"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="356"/>
+        <location filename="../assets/ExploreCategory.qml" line="359"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="364"/>
+        <location filename="../assets/ExploreCategory.qml" line="367"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -363,7 +363,8 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="107"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="115"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="336"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -371,57 +372,57 @@
 <context>
     <name>Favorite</name>
     <message>
-        <location filename="../assets/Favorite.qml" line="189"/>
+        <location filename="../assets/Favorite.qml" line="196"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="192"/>
+        <location filename="../assets/Favorite.qml" line="199"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="199"/>
+        <location filename="../assets/Favorite.qml" line="206"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="206"/>
+        <location filename="../assets/Favorite.qml" line="213"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="214"/>
+        <location filename="../assets/Favorite.qml" line="221"/>
         <source>Color Tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="223"/>
+        <location filename="../assets/Favorite.qml" line="230"/>
         <source>Remove flag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="313"/>
+        <location filename="../assets/Favorite.qml" line="320"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="352"/>
+        <location filename="../assets/Favorite.qml" line="359"/>
         <source>Flag will be deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="353"/>
+        <location filename="../assets/Favorite.qml" line="360"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="400"/>
+        <location filename="../assets/Favorite.qml" line="408"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="408"/>
+        <location filename="../assets/Favorite.qml" line="416"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -459,6 +460,24 @@
     <message>
         <location filename="../assets/Help.qml" line="25"/>
         <source>http://amonchakai.github.io</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Home</name>
+    <message>
+        <location filename="../assets/Home.qml" line="154"/>
+        <source>Pull down to update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Home.qml" line="163"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Home.qml" line="172"/>
+        <source>r</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -545,17 +564,17 @@
 <context>
     <name>ListIssues</name>
     <message>
-        <location filename="../assets/ListIssues.qml" line="75"/>
+        <location filename="../assets/ListIssues.qml" line="122"/>
         <source>Loading, please wait.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ListIssues.qml" line="75"/>
+        <location filename="../assets/ListIssues.qml" line="122"/>
         <source>No issues in this category.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ListIssues.qml" line="222"/>
+        <location filename="../assets/ListIssues.qml" line="269"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
@@ -851,37 +870,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="420"/>
+        <location filename="../assets/Profile.qml" line="431"/>
         <source>Feedback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="444"/>
+        <location filename="../assets/Profile.qml" line="455"/>
         <source>Video games</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="457"/>
+        <location filename="../assets/Profile.qml" line="468"/>
         <source>Buy &amp; Sales</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="481"/>
+        <location filename="../assets/Profile.qml" line="492"/>
         <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="498"/>
+        <location filename="../assets/Profile.qml" line="509"/>
         <source>BlackList user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="544"/>
+        <location filename="../assets/Profile.qml" line="555"/>
         <source>Video games </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Profile.qml" line="545"/>
+        <location filename="../assets/Profile.qml" line="556"/>
         <source>Buy &amp; Sales </source>
         <translation type="unfinished"></translation>
     </message>

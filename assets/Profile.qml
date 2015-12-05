@@ -404,6 +404,17 @@ Page {
                 WebView {
                     id: signature
                     horizontalAlignment: HorizontalAlignment.Fill
+                    
+                    onNavigationRequested: {
+                        if(request.navigationType != WebNavigationType.Other) {
+                            request.action = WebNavigationRequestAction.Ignore;
+                            
+                            pageContainer.invokeWebBrowser(request.url);
+                        
+                        } else { 
+                            request.action = WebNavigationRequestAction.Accept;
+                        }
+                    }
                 }
                 
                 Container {
@@ -535,9 +546,9 @@ Page {
                     signature.html = "<html><body>" + profileController.signature + "</body></html>";
                     site.text = "<html><body>" + profileController.site + "</body></html>";
                 } else {
-                    quote.text = "<html><head><style>html {background: #000000; color: #ffffff; }</style></head><body>" + profileController.citation + "</body></html>";
-                    signature.html = "<html><head><style>html {background: #000000; color: #ffffff; }</style></head><body>" + profileController.signature + "</body></html>";
-                    site.text = "<html><head><style>html {background: #000000; color: #ffffff; }</style></head><body>" + profileController.site + "</body></html>";
+                    quote.text = "<html><head><style>html {background: #000000; color: #ffffff; a:link { color: #086eb9; } a:visited { color: #569bce; } a:hover { color: #086eb9; } a:active { color: #086eb9; }}</style></head><body>" + profileController.citation + "</body></html>";
+                    signature.html = "<html><head><style>html {background: #000000; color: #ffffff; a:link { color: #086eb9; }; a:visited { color: #569bce; } a:hover { color: #086eb9; } a:active { color: #086eb9; }  }</style></head><body>" + profileController.signature + "</body></html>";
+                    site.text = "<html><head><style>html {background: #000000; color: #ffffff; a:link { color: #086eb9; } a:visited { color: #569bce; } a:hover { color: #086eb9; } a:active { color: #086eb9; } }</style></head><body>" + profileController.site + "</body></html>";
                 }
                 
                 

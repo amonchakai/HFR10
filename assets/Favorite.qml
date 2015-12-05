@@ -10,6 +10,7 @@ NavigationPane {
     property int     navDepth
     property variant tpage
     property variant tColPage
+    property bool    requestRefresh
     
     property variant itemToTag
     property int     chosenTag
@@ -24,7 +25,13 @@ NavigationPane {
     property variant focusStage6
     property variant focusStage7
     
+    onRequestRefreshChanged: {
+        listFavoriteController.getFavorite();
+    }
+    
     Page {
+        
+        
         
 	    Container {
             layout: DockLayout {
@@ -393,6 +400,7 @@ NavigationPane {
             listFav.requestFocus();
             
             focusOnFavTab = listFav;
+            requestRefresh = false;
         }
 	    
 	    actions: [

@@ -18,6 +18,13 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/GroupDataModel>
 #include <bb/platform/Notification>
+#include <bb/data/JsonDataAccess>
+#include <bb/cascades/GroupDataModel>
+
+#include <bb/cascades/Application>
+#include <bb/cascades/ThemeSupport>
+#include <bb/cascades/ColorTheme>
+#include <bb/cascades/Theme>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
@@ -25,12 +32,234 @@
 #include  "Settings.hpp"
 
 ExploreCategoryController::ExploreCategoryController(QObject *parent)
-	: QObject(parent), m_ListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SelectedSubCat(0) {
+	: QObject(parent), m_ListView(NULL), m_RootForumListView(NULL), m_Datas(new QList<ThreadListItem*>()), m_SelectedSubCat(0) {
 
 }
 
 
+void ExploreCategoryController::loadIndex() {
+    if(!m_RootForumListView)
+        return;
+
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData/Cats/");
+    if (!QFile::exists(directory)) {
+        QDir dir;
+        dir.mkpath(directory);
+    }
+
+    QFile file(directory + "/CacheCategories.json");
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        buildIndex();
+        return;
+    }
+
+    updateIndexView(file.readAll());
+    file.close();
+
+}
+
+void ExploreCategoryController::updateIndexView(const QByteArray& buffer) {
+    using namespace bb::data;
+    JsonDataAccess jda;
+
+    QVariant qtData = jda.loadFromBuffer(buffer);
+
+    if(jda.hasError()) {
+        qDebug() << jda.error().errorMessage();
+    }
+
+
+    if(m_RootForumListView == NULL) {
+        qWarning() << "did not received the list. quit.";
+        return;
+    }
+
+    using namespace bb::cascades;
+    GroupDataModel* dataModel = dynamic_cast<GroupDataModel*>(m_RootForumListView->dataModel());
+    dataModel->clear();
+
+    QList<QVariant> list = qtData.toList();
+    for(int k = 0; k < (list.size()/2); k++) list.swap(k,list.size()-(1+k));
+    dataModel->insertList(list);
+
+    emit catLoaded();
+}
+
+void ExploreCategoryController::buildIndex() {
+    const QUrl url(DefineConsts::FORUM_URL);
+
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+
+    QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
+    bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplyIndex()));
+    Q_ASSERT(ok);
+    Q_UNUSED(ok);
+}
+
+void ExploreCategoryController::checkReplyIndex() {
+    QNetworkReply* reply = qobject_cast<QNetworkReply*>(sender());
+
+    QString response;
+    if (reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            const int available = reply->bytesAvailable();
+            if (available > 0) {
+                const QByteArray buffer(reply->readAll());
+                response = QString::fromUtf8(buffer);
+                parseIndex(response);
+            }
+        } else {
+            response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
+            qDebug() << response;
+        }
+
+        reply->deleteLater();
+    }
+}
+
+void ExploreCategoryController::parseIndex(const QString &page) {
+    QRegExp mainCat("<tr class=\"cat cBackCouleurTab1\" id=\"cat([0-9]+)\".*<a href=\"([^\"]+)\" class=\"cCatTopic\">(.*)</a>");
+    mainCat.setMinimal(true);
+    mainCat.setCaseSensitivity(Qt::CaseSensitive);
+
+
+    int pos = 0;
+    int lastPos = 0;
+
+    QMap<int, QString> icons;
+    icons[1] = "ProcessorFilled-40@2x";
+    icons[16] = "KeyboardFilled-40@2x";
+    icons[15] = "LaptopFilled-40@2x";
+    icons[2] = "SupportFilled-40@2x";
+    icons[30] = "ShieldFilled-40@2x";
+    icons[23] = "SmartphoneTabletFilled-40@2x";
+    icons[25] = "Apple@2x";
+    icons[3] = "VideoCallFilled-40@2x";
+    icons[14] = "CameraFilled-40@2x";
+    icons[5] = "ControllerFilled-40@2x";
+    icons[4] = "WindowsClientFilled-40@2x";
+    icons[22] = "Wi-FiLogoFilled-40@2x";
+    icons[21] = "VOIPGatewayFilled-40@2x";
+    icons[11] = "Debian-40@2x";
+    icons[10] = "SourceCodeFilled-40@2x";
+    icons[12] = "DesignFilled-40@2x";
+    icons[6] = "PriceTagUSDFilled-40@2x";
+    icons[8] = "GraduationCapFilled-40@2x";
+    icons[9] = "BroadcastingFilled-40@2x";
+    icons[13] = "ChatFilled-40@2x";
+
+    QString prevCatId = "";
+    QByteArray buffer = "[";
+    bool inserted = false;
+    while((pos = mainCat.indexIn(page, lastPos)) != -1) {
+        pos += mainCat.matchedLength();
+
+        QString iconPath = icons[30];
+        if(icons.find(mainCat.cap(1).toInt()) != icons.end()) {
+            iconPath = icons.find(mainCat.cap(1).toInt()).value();
+        }
+
+        if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+            iconPath = "asset:///images/categories/" + iconPath + "_white" + ".png";
+        } else {
+            iconPath = "asset:///images/categories/" + iconPath + ".png";
+        }
+
+
+
+        // parse the sub-cats
+        parseIndexDetails(page.mid(lastPos, pos-lastPos), prevCatId);
+
+        // generate a json file to list the categories
+        if(!mainCat.cap(3).isEmpty()) {
+            if(inserted) buffer += ", ";
+            buffer += "\n\t{ \"group\": \"HFR\", \"icon\": \"" + iconPath + "\", \"title\": \""
+                    + mainCat.cap(3).toUtf8().replace("&amp;", "&") + "\", \"url\": \"" + DefineConsts::FORUM_URL + mainCat.cap(2).replace("hfr/AchatsVentes/Hardware/liste_sujet", "hfr/AchatsVentes/liste_sujet") + "\", \"xml\": \"" + QDir::homePath() + QLatin1String("/HFRBlackData/Cats/") + mainCat.cap(1) + ".xml\", \"catId\": " + mainCat.cap(1) + "} ";
+            inserted = true;
+        }
+
+        prevCatId = mainCat.cap(1);
+        lastPos = pos;
+    }
+    // parse the sub-cats
+    parseIndexDetails(page.mid(lastPos, pos-lastPos), mainCat.cap(1));
+
+    // generate a json file to list the categories
+    if(!mainCat.cap(3).isEmpty()){
+        QString iconPath = icons[30];
+        if(icons.find(mainCat.cap(1).toInt()) != icons.end()) {
+            iconPath = icons.find(mainCat.cap(1).toInt()).value();
+        }
+        if(bb::cascades::Application::instance()->themeSupport()->theme()->colorTheme()->style() == bb::cascades::VisualStyle::Dark) {
+            iconPath = "asset:///images/categories/" + iconPath + "_white" + ".png";
+        } else {
+            iconPath = "asset:///images/categories/" + iconPath + ".png";
+        }
+
+        if(inserted) buffer += ", ";
+        buffer += "\n\t{ \"group\": \"HFR\", \"icon\": \"" + iconPath + "\", \"title\": \""
+                 + mainCat.cap(3).toUtf8().replace("&amp;", "&") + "\", \"url\": \"" + DefineConsts::FORUM_URL + mainCat.cap(2).replace("hfr/AchatsVentes/Hardware/liste_sujet", "hfr/AchatsVentes/liste_sujet") + "\", \"xml\": \"" + QDir::homePath() + QLatin1String("/HFRBlackData/Cats/") + mainCat.cap(1) + ".xml\", \"catId\": " + mainCat.cap(1) + "} ";
+    }
+
+    buffer += "\n]";
+
+
+
+    // update the view
+    updateIndexView(buffer);
+
+
+    // cache the list of cats
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData/Cats/");
+    if (!QFile::exists(directory)) {
+        QDir dir;
+        dir.mkpath(directory);
+    }
+
+    QFile file(directory + "/CacheCategories.json");
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(buffer);
+        file.close();
+    }
+
+}
+
+void ExploreCategoryController::parseIndexDetails(const QString& catDetails, const QString catId) {
+    QRegExp subcat("<a href=\"(.*)\" class=\"Tableau\">(.*)</a>");
+    subcat.setMinimal(true);
+    subcat.setCaseSensitivity(Qt::CaseSensitive);
+
+    QByteArray buffer = "<root>";
+    int pos = 0;
+    while((pos = subcat.indexIn(catDetails, pos)) != -1) {
+        buffer += "\n\t<item title=\"" + subcat.cap(2).toUtf8() + "\" url=\"" + DefineConsts::FORUM_URL + subcat.cap(1) + "\" />";
+        pos += subcat.matchedLength();
+    }
+    buffer += "\n</root>";
+
+
+    // cache the list of subcats
+    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData/Cats/");
+    if (!QFile::exists(directory)) {
+        QDir dir;
+        dir.mkpath(directory);
+    }
+
+    QFile file(directory + "/" + catId + ".xml");
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(buffer);
+        file.close();
+    }
+
+}
+
 void ExploreCategoryController::listSubCat(int subcat) {
+    if(subcat < 0) return;
+
+    qDebug()  << "ExploreCategoryController::listSubCat(" << subcat << ");";
 	if(subcat < m_SubCatURL.length()) {
 		m_SelectedSubCat = subcat;
 		qDebug() << m_SubCatURL[subcat];
@@ -39,7 +268,7 @@ void ExploreCategoryController::listSubCat(int subcat) {
 }
 
 void ExploreCategoryController::loadSubCats(const QString &xmlFile) {
-	QFile file(QDir::currentPath() + "/app/native/assets/model/" + xmlFile);
+	QFile file(xmlFile);
 
 	if (file.open(QIODevice::ReadOnly)) {
 		QString content = QString::fromUtf8(file.readAll());

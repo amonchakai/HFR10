@@ -22,6 +22,7 @@ class ExploreCategoryController : public QObject {
 	private:
 
 		bb::cascades::ListView   *m_ListView;
+		bb::cascades::ListView   *m_RootForumListView;
 		QList<ThreadListItem*>   *m_Datas;
 
 		int                       m_Flag;
@@ -45,10 +46,16 @@ class ExploreCategoryController : public QObject {
 
 	public Q_SLOTS:
 		inline void setListView	   	(QObject *listView) 		{m_ListView = dynamic_cast<bb::cascades::ListView*>(listView); }
+		inline void setForumRootListView(QObject *listView)     {m_RootForumListView = dynamic_cast<bb::cascades::ListView*>(listView); }
+		void loadIndex              ();
+		void buildIndex             ();
 		void loadSubCats			(const QString &xmlFile);
 		void listSubCat				(int subcat);
 		void listTopics			   	(const QString &url, int flag = -1, int cat = -1);
 		void checkReply				();
+		void checkReplyIndex        ();
+		void parseIndex             (const QString &page);
+		void parseIndexDetails      (const QString& catDetails, const QString catId);
 		void filterByFlag			(int flag);
 		void refresh				();
 
@@ -59,6 +66,7 @@ class ExploreCategoryController : public QObject {
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:
+	    void catLoaded();
 		void complete();
 		void flagChanged();
 
@@ -72,6 +80,7 @@ class ExploreCategoryController : public QObject {
 		void parse(const QString &page);
 		void parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, const QString &threadListing);
 		void updateView();
+		void updateIndexView(const QByteArray& buffer);
 
 };
 

@@ -126,9 +126,9 @@ TabbedPane {
         delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
         
         delegate: Delegate {
+            id: favorite
             source: "Favorite.qml"
-        }
-    
+        }    
     } //End of favorite tab
     
 

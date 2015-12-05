@@ -1,4 +1,4 @@
-import bb.cascades 1.2
+import bb.cascades 1.3
 import Network.ExploreCategoryController 1.0
 import bb.system 1.2
 
@@ -195,6 +195,9 @@ Page {
                                     ImageView {
                                         imageSource: pageNumContainter.getFlag(ListItemData.flagType)
                                         horizontalAlignment: HorizontalAlignment.Left
+                                        preferredHeight: ui.du(2)
+                                        verticalAlignment: VerticalAlignment.Center
+                                        scalingMethod: ScalingMethod.AspectFit
                                     }
                                     Label {
                                         text: ListItemData.pages
@@ -373,6 +376,7 @@ Page {
         focusedItem = listCats;
         focusedItemDepth = 1;
         flagType = -1;
+        subCatIndex = -1;
     }
     onUrlPageChanged: {
         exploreCategoryController.setListView(listCats);

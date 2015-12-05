@@ -1,4 +1,5 @@
-import bb.cascades 1.2
+import bb.cascades 1.3
+import Network.ExploreCategoryController 1.0
 
 NavigationPane {
     id: nav
@@ -18,12 +19,58 @@ NavigationPane {
     
 	Page {
 	    Container {
+	        layout: DockLayout { }
+	        
+            ActivityIndicator {
+                id: activityIndicator
+                horizontalAlignment: HorizontalAlignment.Center
+                verticalAlignment: VerticalAlignment.Top
+                preferredHeight: 60
+            }
             
 	        ListView {
 	            id: homeList
+                signal refreshTriggered()
+                property bool loading: false
+                leadingVisualSnapThreshold: 2.0
+                leadingVisual: RefreshHeader {
+                    id: refreshHandler
+                    onRefreshTriggered: {
+                        homeList.refreshTriggered();
+                    }
+                }
+                onTouch: {
+                    refreshHandler.onListViewTouch(event);
+                }
+                onLoadingChanged: {
+                    refreshHandler.refreshing = refreshableList.loading;
+                    
+                    if(!refreshHandler.refreshing) {
+                        // If the refresh is done 
+                        // Force scroll to top to ensure that all items are visible
+                        scrollToPosition(ScrollPosition.Beginning, ScrollAnimation.None);
+                    }
+                }
+                
+                onRefreshTriggered: {
+                    activityIndicator.start();
+                    exploreCategoryController.buildIndex();
+                }
 	            
-	            dataModel: XmlDataModel {
-	                source: "model/listCategories.xml"
+	            
+	            dataModel: GroupDataModel {	                
+                    property bool empty: true
+                    id: theModel
+                    sortingKeys: ["group"]
+                    grouping: ItemGrouping.ByFullValue
+                    
+                    onItemAdded: empty = isEmpty()  
+                    onItemRemoved: empty = isEmpty()  
+                    onItemUpdated: empty = isEmpty()  
+                    
+                    // You might see an 'unknown signal' error  
+                    // in the QML-editor, guess it's a SDK bug.  
+                    onItemsChanged: empty = isEmpty()
 	            }
 	            
 	            listItemComponents: [
@@ -43,14 +90,22 @@ NavigationPane {
 	                            horizontalAlignment: HorizontalAlignment.Fill
 	                            
 	                            Container {
-	                                preferredWidth: 4
+	                                preferredWidth: ui.du(2)
+	                            }
+	                            
+	                            ImageView {
+	                                verticalAlignment: VerticalAlignment.Center
+	                                preferredHeight: ui.du(5)
+	                                scalingMethod: ScalingMethod.AspectFit
+	                                imageSource: ListItemData.icon
+	                                
 	                            }
 	                            
 	                            Label {
 	                                id: itemText
 	                                text: ListItemData.title
 	                                verticalAlignment: VerticalAlignment.Center
-	                                textStyle.base: SystemDefaults.TextStyles.TitleText
+	                                //textStyle.base: SystemDefaults.TextStyles.TitleText
 	                                accessibilityMode: A11yMode.Collapsed 
 	                            }    
 	                            
@@ -66,29 +121,86 @@ NavigationPane {
                     if(!tpage)
                         tpage = categoryPage.createObject();
                     
+                    console.log('chosen url: ' + chosenItem.url)
                     // Set the url of the page to load and thread caption. 
                     tpage.subCatXml = chosenItem.xml
-                    tpage.cat     = chosenItem.cat
+                    tpage.cat     = chosenItem.catId
                     tpage.urlPage = chosenItem.url
                     tpage.caption   = chosenItem.title
                     
                     nav.push(tpage);
                 }
+	        } // end view
+	        
+            Container {  
+                id: dataEmptyLabel
+                visible: theModel.empty && !activityIndicator.running //model.isEmpty() will not work  
+                horizontalAlignment: HorizontalAlignment.Center  
+                verticalAlignment: VerticalAlignment.Center  
                 
+                layout: StackLayout {
+                    orientation: LayoutOrientation.LeftToRight
+                }
                 
-                attachedObjects: [
-                    ComponentDefinition {
-                        id: categoryPage
-                        source: "ExploreCategory.qml"
+                ImageView {
+                    imageSource: "asset:///images/pull-to-refresh.png"
+                    horizontalAlignment: HorizontalAlignment.Left
+                    verticalAlignment: VerticalAlignment.Center
+                }
+                
+                Label {
+                    horizontalAlignment: HorizontalAlignment.Right
+                    verticalAlignment: VerticalAlignment.Center
+                    text: qsTr("Pull down to update")  
+                    textStyle.textAlign: TextAlign.Center  
+                }
+            
+            }
+	    } //end container
+	    
+        actions: [
+            ActionItem {
+                title: qsTr("Refresh")
+                imageSource: "asset:///images/icon_refresh.png"
+                onTriggered: {
+                    activityIndicator.start();
+                    exploreCategoryController.buildIndex();
+                }
+                
+                shortcuts: [
+                    Shortcut {
+                        key: qsTr("r")
                     }
                 ]
-	        } // end view
-	    } //end container
+            }
+        ]
+        
+	    
+        onCreationCompleted: {
+            navDepth = 0;
+            
+            exploreCategoryController.setForumRootListView(homeList);
+            exploreCategoryController.loadIndex();
+        }
+        
+        attachedObjects: [
+            ExploreCategoryController {
+                id: exploreCategoryController
+                
+                onCatLoaded: {
+                    activityIndicator.stop();
+                }
+            
+            }, 
+            ComponentDefinition {
+                id: categoryPage
+                source: "ExploreCategory.qml"
+            }
+        ]
+        
 	} // end page
 
-    onCreationCompleted: {
-        navDepth = 0;
-    }
+    
 
     onPopTransitionEnded: {
         --navDepth;

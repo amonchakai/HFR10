@@ -12,10 +12,11 @@ Page {
         accessibility.name: "SubcatPickerListView"
         
         dataModel: XmlDataModel {
-            source: "model/" + subcatXml
+            source: "file:" + subcatXml
         }
         onTriggered: {
             pageCat.subCatIndex = indexPath[0];
+            console.log('Selected sub cat: ' + pageCat.subCatIndex)
             nav.pop();
         }
     }

@@ -253,10 +253,10 @@ Page {
                 }
             }
             ImageButton {
-                defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ?  "asset:///images/icon_code_black.png" : "asset:///images/icon_code.png"
+                defaultImageSource: Application.themeSupport.theme.colorTheme.style != VisualStyle.Dark ?  "asset:///images/icon_strike_black.png" : "asset:///images/icon_strike.png"
                 verticalAlignment: VerticalAlignment.Center
                 onClicked: {
-                    formContainer.insertTag("cpp");
+                    formContainer.insertTag("strike");
                 }
             }
             Container {
