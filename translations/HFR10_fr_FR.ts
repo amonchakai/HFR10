@@ -1913,12 +1913,12 @@
         <translation>Message</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="179"/>
+        <location filename="../assets/main.qml" line="180"/>
         <source>Bookmarks</source>
         <translation>Marque-pages</translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="192"/>
+        <location filename="../assets/main.qml" line="194"/>
         <source>Search</source>
         <translation>Rechercher</translation>
     </message>

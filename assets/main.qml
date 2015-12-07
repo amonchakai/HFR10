@@ -176,6 +176,7 @@ TabbedPane {
     } //End of Setting tab
     
     Tab {
+        id: tabBookmark
         title: qsTr("Bookmarks") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.InOverflow
         imageSource: "asset:///images/Bookmarks.png"
@@ -189,6 +190,7 @@ TabbedPane {
     }
     
     Tab { //Browse tab
+        id: tabSearch
         title: qsTr("Search") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.InOverflow
         imageSource: "asset:///images/icon_browse.png"
@@ -224,6 +226,21 @@ TabbedPane {
             }
             tabFav.isInitDone = false;
             tabMP.isInitDone = true;
+        }
+        
+        if(activeTab == tabHome) {
+            tabFav.isInitDone = false;
+            tabMP.isInitDone = false;
+        }
+        
+        if(activeTab == tabBookmark) {
+            tabFav.isInitDone = false;
+            tabMP.isInitDone = false;
+        }
+        
+        if(activeTab == tabSearch) {
+            tabFav.isInitDone = false;
+            tabMP.isInitDone = false;
         }
     }
     
