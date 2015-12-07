@@ -311,6 +311,7 @@ NavigationPane {
 	        privateMessageController.load();
 	        navDepth = 0;
             focusOnMPTab = listMP;
+            pmController = privateMessageController;
 	    }
 	    
         actions: [

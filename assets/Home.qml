@@ -30,6 +30,7 @@ NavigationPane {
             
 	        ListView {
 	            id: homeList
+                focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable
                 signal refreshTriggered()
                 property bool loading: false
                 leadingVisualSnapThreshold: 2.0
@@ -189,6 +190,7 @@ NavigationPane {
                 
                 onCatLoaded: {
                     activityIndicator.stop();
+                    homeList.requestFocus();
                 }
             
             }, 

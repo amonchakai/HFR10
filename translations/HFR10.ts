@@ -372,57 +372,57 @@
 <context>
     <name>Favorite</name>
     <message>
-        <location filename="../assets/Favorite.qml" line="196"/>
+        <location filename="../assets/Favorite.qml" line="194"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="199"/>
+        <location filename="../assets/Favorite.qml" line="197"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="206"/>
+        <location filename="../assets/Favorite.qml" line="204"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="213"/>
+        <location filename="../assets/Favorite.qml" line="211"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="221"/>
+        <location filename="../assets/Favorite.qml" line="219"/>
         <source>Color Tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="230"/>
+        <location filename="../assets/Favorite.qml" line="228"/>
         <source>Remove flag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="320"/>
+        <location filename="../assets/Favorite.qml" line="318"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="359"/>
+        <location filename="../assets/Favorite.qml" line="357"/>
         <source>Flag will be deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="360"/>
+        <location filename="../assets/Favorite.qml" line="358"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="408"/>
+        <location filename="../assets/Favorite.qml" line="407"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="416"/>
+        <location filename="../assets/Favorite.qml" line="415"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -466,17 +466,17 @@
 <context>
     <name>Home</name>
     <message>
-        <location filename="../assets/Home.qml" line="154"/>
+        <location filename="../assets/Home.qml" line="155"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Home.qml" line="163"/>
+        <location filename="../assets/Home.qml" line="164"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Home.qml" line="172"/>
+        <location filename="../assets/Home.qml" line="173"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -754,12 +754,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="318"/>
+        <location filename="../assets/PrivateMessage.qml" line="319"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="326"/>
+        <location filename="../assets/PrivateMessage.qml" line="327"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1704,47 +1704,47 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../assets/main.qml" line="87"/>
+        <location filename="../assets/main.qml" line="89"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="94"/>
+        <location filename="../assets/main.qml" line="96"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="101"/>
+        <location filename="../assets/main.qml" line="103"/>
         <source>Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="108"/>
+        <location filename="../assets/main.qml" line="110"/>
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="122"/>
+        <location filename="../assets/main.qml" line="125"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="138"/>
+        <location filename="../assets/main.qml" line="146"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="153"/>
+        <location filename="../assets/main.qml" line="162"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="165"/>
+        <location filename="../assets/main.qml" line="179"/>
         <source>Bookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/main.qml" line="178"/>
+        <location filename="../assets/main.qml" line="192"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>

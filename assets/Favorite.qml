@@ -31,8 +31,6 @@ NavigationPane {
     
     Page {
         
-        
-        
 	    Container {
             layout: DockLayout {
                 
@@ -401,6 +399,7 @@ NavigationPane {
             
             focusOnFavTab = listFav;
             requestRefresh = false;
+            favController = listFavoriteController;
         }
 	    
 	    actions: [

@@ -24,6 +24,8 @@ TabbedPane {
     activeTab: tabFav
     property variant focusOnFavTab
     property variant focusOnMPTab
+    property variant favController
+    property variant pmController
         
     attachedObjects: [
         Delegate {
@@ -119,11 +121,17 @@ TabbedPane {
     
     Tab { //Favorite tab
         id: tabFav
+        property bool isInitDone: false
         title: qsTr("Favorite") + Retranslate.onLocaleOrLanguageChanged
         
         imageSource: "asset:///images/icon_favorites.png"
         
         delegateActivationPolicy: TabDelegateActivationPolicy.ActivateImmediately
+        
+        onTriggered: {
+            if(isInitDone)
+                favController.getFavorite();
+        }
         
         delegate: Delegate {
             id: favorite
@@ -150,6 +158,7 @@ TabbedPane {
     
     Tab { //Setting tab
         id: tabMP
+        property bool isInitDone: false
         title: qsTr("Message") + Retranslate.onLocaleOrLanguageChanged
         ActionBar.placement: ActionBarPlacement.OnBar
         imageSource: "asset:///images/icon_mp.png"
@@ -157,6 +166,11 @@ TabbedPane {
         
         delegate: Delegate {
             source: "PrivateMessage.qml"
+        }
+        
+        onTriggered: {
+            if(isInitDone)
+                pmController.getMessages();
         }
     
     } //End of Setting tab
@@ -191,19 +205,25 @@ TabbedPane {
         if(!loginController.isLogged()) {
             welcome.open();
         }
+        tabFav.isInitDone = true;
     }
     
     onActiveTabChanged: {
+
         if(activeTab == tabFav) {
             if(focusOnFavTab) {
                 focusOnFavTab.requestFocus();
             }
+            tabFav.isInitDone = true;
+            tabMP.isInitDone = false;
         }
         
         if(activeTab == tabMP) {
             if(focusOnMPTab) {
                 focusOnMPTab.requestFocus();
             }
+            tabFav.isInitDone = false;
+            tabMP.isInitDone = true;
         }
     }
     
