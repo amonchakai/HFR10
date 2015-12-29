@@ -70,6 +70,13 @@ NavigationPane {
                         id: threadWebView
                         settings.background: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? "#2E2E2E" : "#ffffff" ;
                         
+                        gestureHandlers: [
+                            DoubleTapHandler {
+                                onDoubleTapped: {
+                                    showThreadController.nextPage();
+                                }
+                            }
+                        ]
                         
                         onNavigationRequested: {
                             if(request.navigationType != WebNavigationType.Other) {

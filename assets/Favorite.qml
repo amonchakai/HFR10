@@ -73,6 +73,14 @@ NavigationPane {
                         }
                     }
                     
+                    gestureHandlers: [
+                        DoubleTapHandler {
+                            onDoubleTapped: {
+                                listFav.refreshTriggered();
+                            }
+                        }
+                    ]
+                    
                     // ---------------------------------------------------------------------
                     // view
     

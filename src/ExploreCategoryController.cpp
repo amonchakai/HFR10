@@ -109,6 +109,7 @@ void ExploreCategoryController::checkReplyIndex() {
             if (available > 0) {
                 const QByteArray buffer(reply->readAll());
                 response = QString::fromUtf8(buffer);
+
                 parseIndex(response);
             }
         } else {
@@ -185,7 +186,7 @@ void ExploreCategoryController::parseIndex(const QString &page) {
         lastPos = pos;
     }
     // parse the sub-cats
-    parseIndexDetails(page.mid(lastPos, pos-lastPos), mainCat.cap(1));
+    parseIndexDetails(page.mid(lastPos, pos-lastPos), prevCatId);
 
     // generate a json file to list the categories
     if(!mainCat.cap(3).isEmpty()){
@@ -330,7 +331,15 @@ void ExploreCategoryController::checkReply() {
 			if (available > 0) {
 				const QByteArray buffer(reply->readAll());
 				response = QString::fromUtf8(buffer);
+
 				parse(response);
+/*
+				QFile htmlEndTemplateFile(QDir::currentPath() + "/app/native/assets/topics.html");
+                if (htmlEndTemplateFile.open(QIODevice::ReadOnly)) {
+                    //parse(response);
+                    parse(htmlEndTemplateFile.readAll());
+                }
+*/
 			}
 		} else {
 			response = tr("Error: %1 status: %2").arg(reply->errorString(), reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString());
@@ -407,9 +416,9 @@ void ExploreCategoryController::parse(const QString &page) {
 	// Parse categories using regexp
 
 	// Get favorite topics
-	QRegExp regexp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"Sujet n.[0-9]+\">(.+)</a></td>"));  	// topics' name
-
-
+	//QRegExp regexp(QString("sujet ligne_booleen cBackCouleurTab[0-9] ( ligne_sticky\"|\") >.*<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"[^\"]+\">(.+)</a></td>"));  	// topics' name
+	QRegExp regexp(QString("<td class=\"sujetCase1 cBackCouleurTab[0-9] \"><img src=\".*\" title=\".*\" alt=\"(Off|On)\" /></td>.*<a href=\"(.+)\" class=\"cCatTopic\" title=\"[^\"]+\">(.+)</a></td>"));
+	QRegExp stickyRegExp(QString("ligne_sticky"));
 	regexp.setCaseSensitivity(Qt::CaseSensitive);
 	regexp.setMinimal(true);
 
@@ -421,6 +430,7 @@ void ExploreCategoryController::parse(const QString &page) {
 	QString caption;
 	QString urlFirstPage;
 	bool read = regexp.cap(1).compare("On") == 0;
+	bool sticky = stickyRegExp.indexIn(page.mid(pos, lastPos)) != -1;
 
 	if(lastPos != -1) {
 		caption = regexp.cap(3);
@@ -439,9 +449,9 @@ void ExploreCategoryController::parse(const QString &page) {
 		pos += regexp.matchedLength();
 
 		// parse each post individually
-		parseThreadListing(caption, urlFirstPage, read, page.mid(lastPos, pos-lastPos));
+		parseThreadListing(caption, urlFirstPage, read, sticky, page.mid(lastPos, pos-lastPos));
 
-		lastPos = pos;
+
 		caption = regexp.cap(3);
 		caption.replace(andAmp,"&");
 		caption.replace(quote,"\"");
@@ -453,8 +463,11 @@ void ExploreCategoryController::parse(const QString &page) {
 		urlFirstPage.replace(andAmp,"&");
 
 		read = regexp.cap(1).compare("On") == 0;
+		sticky = stickyRegExp.indexIn(page.mid(pos, lastPos)) != -1;
+
+		lastPos = pos;
 	}
-	parseThreadListing(caption, urlFirstPage, read, page.mid(lastPos, pos-lastPos));
+	parseThreadListing(caption, urlFirstPage, read, sticky, page.mid(lastPos, pos-lastPos));
 
 
 	updateView();
@@ -463,7 +476,7 @@ void ExploreCategoryController::parse(const QString &page) {
 }
 
 
-void ExploreCategoryController::parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, const QString &threadListing) {
+void ExploreCategoryController::parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, bool sticky, const QString &threadListing) {
 	ThreadListItem *item = new ThreadListItem();
 	QRegExp andAmp("&amp;");
 	QRegExp nbsp("&nbsp;");
@@ -471,6 +484,7 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 	item->setTitle(caption);
 	item->setRead(read);
 	item->setUrlFirstPage(urlFirstPage);
+	item->setSticky(sticky);
 
 	QRegExp lastPostReadRegexp("</td><td class=\"sujetCase5\"><a href=\"(.*#t[0-9bas]+)\"><img src=");
 	lastPostReadRegexp.setCaseSensitivity(Qt::CaseSensitive);

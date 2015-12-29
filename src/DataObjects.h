@@ -85,6 +85,7 @@ class ThreadListItem : public QObject {
 	Q_PROPERTY( QString urlLastPostRead  READ getUrlLastPostRead    WRITE setUrlLastPostRead    NOTIFY urlLastPostReadChanged)
 	Q_PROPERTY( int 	flagType    READ getFlagType    WRITE setFlagType    NOTIFY flagTypeChanged)
 	Q_PROPERTY( bool 	read	    READ isRead		    WRITE setRead	     NOTIFY readChanged)
+	Q_PROPERTY( bool    sticky      READ isSticky       WRITE setSticky      NOTIFY stickyChanged)
 	Q_PROPERTY( int     color       READ getColor       WRITE setColor       NOTIFY colorChanged)
 
 	// ----------------------------------------------------------------------------------------------
@@ -103,6 +104,7 @@ private:
 	QString m_UrlLastPostRead;
 	int 	m_FlagType;
 	bool 	m_Read;
+	bool    m_Sticky;
 	int     m_Color;
 
 
@@ -151,6 +153,9 @@ public:
 	inline bool 		  isRead() const					{ return m_Read; }
 	inline void 		  setRead(bool r)					{ m_Read = r; emit readChanged(); }
 
+    inline bool           isSticky() const                    { return m_Sticky; }
+    inline void           setSticky(bool r)                   { m_Sticky = r; emit stickyChanged(); }
+
 	inline int            getColor() const                  { return m_Color; }
     inline void           setColor(int r)                   { m_Color = r; emit colorChanged(); }
 
@@ -168,6 +173,7 @@ public:
 		void readChanged();
 		void urlLastPostReadChanged();
 		void colorChanged();
+		void stickyChanged();
 
 };
 

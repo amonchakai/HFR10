@@ -140,10 +140,34 @@ Page {
                                 orientation: LayoutOrientation.TopToBottom
                             }
                             verticalAlignment: VerticalAlignment.Top
-                            Label {
-                                text: ListItemData.title
-                                textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
+                            horizontalAlignment: HorizontalAlignment.Fill
+                            
+                            Container {
+                                layout: StackLayout {
+                                    orientation: LayoutOrientation.LeftToRight
+                                }
+                                horizontalAlignment: HorizontalAlignment.Fill
+                                verticalAlignment: VerticalAlignment.Top
+                                
+                                ImageView {
+                                    imageSource: "asset:///images/flechesticky.gif"
+                                    minHeight: ui.du(2)
+                                    maxHeight: ui.du(2)
+                                    minWidth: ui.du(2)
+                                    maxWidth: ui.du(2)
+                                    visible: ListItemData.sticky
+                                    scalingMethod: ScalingMethod.AspectFit
+                                    verticalAlignment: VerticalAlignment.Center
+                                }
+                            
+                                Label {
+                                    text: ListItemData.title
+                                    textStyle.fontWeight: titleContainer.typeFromReadStatus(ListItemData.read)
+                                    verticalAlignment: VerticalAlignment.Center
+                                }
+                            
                             }
+                            
                             
                             Container {
                                 layout: DockLayout {
@@ -158,6 +182,7 @@ Page {
                                         color: Application.themeSupport.theme.colorTheme.style == VisualStyle.Dark ? Color.create("#00a8df")  : Color.Blue
                                     }
                                 }
+                                
                                 Container {
                                     id: pageNumContainter
                                     

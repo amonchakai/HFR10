@@ -78,7 +78,7 @@ class ExploreCategoryController : public QObject {
 
 		void showTopicList(const QString &url);
 		void parse(const QString &page);
-		void parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, const QString &threadListing);
+		void parseThreadListing(const QString &caption, const QString &urlFirstPage, bool read, bool sticky, const QString &threadListing);
 		void updateView();
 		void updateIndexView(const QByteArray& buffer);
 

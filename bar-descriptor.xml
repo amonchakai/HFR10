@@ -38,12 +38,12 @@
         An updated version of application must have a versionNumber value higher
         than the previous version. Required. -->
     <versionNumber>1.8.7</versionNumber>
-    <platformVersion>10.2.0</platformVersion>
+    <platformVersion>10.3.1</platformVersion>
     <authorId>gYAAgCQoPRQtK2AS30z0Bo75Z74</authorId>
 
     <!-- Fourth digit segment of the package version. First three segments are
         taken from the <versionNumber> element. Must be an integer from 0 to 2^16-1 -->
-    <buildId>152</buildId>
+    <buildId>153</buildId>
     <packageLocale>fr-FR</packageLocale>
 
     <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents

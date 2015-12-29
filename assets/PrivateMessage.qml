@@ -64,6 +64,14 @@ NavigationPane {
     	                }
     	            }
     	            
+                    gestureHandlers: [
+                        DoubleTapHandler {
+                            onDoubleTapped: {
+                                listMP.refreshTriggered();
+                            }
+                        }
+                    ]
+    	            
     	            // ------------------------------------------------------------------
     	            // view
                     focusRetentionPolicyFlags: FocusRetentionPolicy.LoseToFocusable

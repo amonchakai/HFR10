@@ -1,5 +1,5 @@
 1
-317
+320
 ApplicationLog.qml
 BlackListManagement.qml
 Bookmarks.qml
@@ -88,6 +88,7 @@ images/color/to_Top.png
 images/default_avatar.png
 images/EnhancementRequest.png
 images/EnhancementRequest_white.png
+images/flechesticky.gif
 images/HelpRequest.png
 images/HelpRequest_white.png
 images/icon_about.png
@@ -316,4 +317,6 @@ template.html
 template_black.html
 template_end.html
 ThreadPage.qml
+topics.html
+topics_list.html
 Welcome.qml
