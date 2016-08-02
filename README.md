@@ -1,4 +1,4 @@
-# HFRBlack
+# HFR10
 BlackBerry App for forum.hardware.fr (HFR)
 
 HFR10, Copyright (C) 2014, Amonchakai

@@ -1,5 +1,5 @@
 1
-320
+318
 ApplicationLog.qml
 BlackListManagement.qml
 Bookmarks.qml
@@ -317,6 +317,4 @@ template.html
 template_black.html
 template_end.html
 ThreadPage.qml
-topics.html
-topics_list.html
 Welcome.qml
