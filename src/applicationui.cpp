@@ -230,8 +230,15 @@ void ApplicationUI::onInvoked(const bb::system::InvokeRequest& request) {
 
          qDebug() << "URL TO OPEN: " << urlToOpen;
 
-         QmlDocument *qml = QmlDocument::create("asset:///StartupCardThread.qml")
+         QSettings settings("Amonchakai", "HFR10");
+
+         QmlDocument *qml;
+         if(settings.value("ThreadInterface", 1).toInt() == 1)
+             qml = QmlDocument::create("asset:///StartupCardThread.qml")
                                                           .parent(this);
+         else
+             qml = QmlDocument::create("asset:///StartupCardThreadNative.qml")
+                                                                       .parent(this);
 
          m_root = qml->createRootObject<NavigationPane>();
          qml->setContextProperty("_app", this);

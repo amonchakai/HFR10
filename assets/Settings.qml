@@ -234,6 +234,28 @@ NavigationPane {
                 } 
                 
                 
+                DropDown {
+                    id: threadInterface
+                    title: qsTr("Thread interface")
+                    options: [
+                        Option {
+                            text: qsTr("Custom")
+                            selected: appSettings.threadInterface == 1 ? true : false
+                            value: 1
+                        },
+                        Option {
+                            text: qsTr("Native")
+                            selected: appSettings.threadInterface == 2 ? true : false
+                            value: 2
+                        } 
+                    ]
+                    onSelectedOptionChanged: {
+                        appSettings.threadInterface = threadInterface.selectedOption.value;
+                    }
+                
+                } 
+                
+                
                 Container {
                     preferredHeight: ui.du(4)
                 }

@@ -1,5 +1,6 @@
 import bb.cascades 1.2
 import Network.SearchController 1.0
+import conf.settings 1.0
 
 Page {
     property string search
@@ -157,7 +158,10 @@ Page {
             
             function gotoPage(urlFirstPage, titleTopic) {
                 if(!tpage) {
-                    tpage = threadPage.createObject();
+                    if(appSettings.threadInterface == 1)
+                        tpage = threadPage.createObject();
+                    else
+                        tpage = threadPageNative.createObject();
                 }
                 // Set the url of the page to load and thread caption. 
                 tpage.urlPage = urlFirstPage
@@ -171,7 +175,10 @@ Page {
                 
                 // Create the content page and push it on top to drill down to it.
                 if(!tpage) {
-                    tpage = threadPage.createObject();
+                    if(appSettings.threadInterface == 1)
+                        tpage = threadPage.createObject();
+                    else
+                        tpage = threadPageNative.createObject();
                 }
                 
                 // Set the url of the page to load and thread caption. 
@@ -198,6 +205,13 @@ Page {
         ComponentDefinition {
             id: threadPage
             source: "ThreadPage.qml"
+        },
+        ComponentDefinition {
+            id: threadPageNative
+            source: "ThreadPageNative.qml"
+        },
+        AppSettings {
+            id: appSettings
         }
     ] 
     

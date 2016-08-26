@@ -1,6 +1,7 @@
 import bb.cascades 1.3
 import Network.ExploreCategoryController 1.0
 import bb.system 1.2
+import conf.settings 1.0
 
 Page {
     id: pageCat
@@ -271,7 +272,10 @@ Page {
             
             function gotoPage(urlFirstPage, titleTopic) {
                 if(!tpage) {
-                    tpage = threadPage.createObject();
+                    if(appSettings.threadInterface == 1)
+                        tpage = threadPage.createObject();
+                    else
+                        tpage = threadPageNative.createObject();
                 }
                 // Set the url of the page to load and thread caption. 
                 tpage.urlPage = urlFirstPage
@@ -285,7 +289,10 @@ Page {
                 
                 // Create the content page and push it on top to drill down to it.
                 if(!tpage) {
-                    tpage = threadPage.createObject();
+                    if(appSettings.threadInterface == 1)
+                        tpage = threadPage.createObject();
+                    else
+                        tpage = threadPageNative.createObject();
                 }
                 
                 // Set the url of the page to load and thread caption. 
@@ -317,9 +324,16 @@ Page {
                 listTopic = listCats;
             }
         }, 
+        AppSettings {
+            id: appSettings
+        },
         ComponentDefinition {
             id: threadPage
             source: "ThreadPage.qml"
+        },
+        ComponentDefinition {
+            id: threadPageNative
+            source: "ThreadPageNative.qml"
         },
         ComponentDefinition {
             id: subcatPicker

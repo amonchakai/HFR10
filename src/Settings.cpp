@@ -24,6 +24,7 @@
 int Settings::m_FontSize = 25;
 int Settings::m_SmileySize = 3;
 int Settings::m_Theme = 0;
+int Settings::m_ThreadInterface = 2;
 int Settings::m_AutoRefresh = 0;
 int Settings::m_AskLeaveApp = 1;
 bool Settings::m_HubIntegration = false;
@@ -60,6 +61,7 @@ void Settings::loadSettings() {
 	m_FontSize   = m_Settings->value("FontSize", 25).toInt();
 	m_SmileySize = m_Settings->value("SimleySize", 3).toInt();
 	m_Theme      = m_Settings->value("Theme", 0).toInt();
+	m_ThreadInterface = m_Settings->value("ThreadInterface", 2).toInt();
 	m_AutoRefresh= m_Settings->value("AutoRefresh", 0).toInt();
 	m_HubIntegration= m_Settings->value("HubIntegration", false).toBool();
 	m_HubRefreshRate= m_Settings->value("HubRefreshRate", 5).toInt();
@@ -124,6 +126,7 @@ void Settings::saveSettings() const {
     m_Settings->setValue("AutoRefresh", m_AutoRefresh);
     m_Settings->setValue("LogEnabled", m_LogEnabled);
     m_Settings->setValue("ConfirmLeavingApp", m_AskLeaveApp);
+    m_Settings->setValue("ThreadInterface", m_ThreadInterface);
 
     if(!m_Settings->value("HubIntegration", false).toBool()) {
         if(m_HubIntegration) {

@@ -1112,7 +1112,7 @@ void ShowThreadController::updateView() {
 
 
 	if(m_WebView == NULL) {
-		qWarning() << "did not received the listview. quit.";
+		qWarning() << "did not received the webview. quit.";
 		return;
 	}
 
@@ -1168,38 +1168,10 @@ void ShowThreadController::updateView() {
 	                        + "</div>" + RenderInNonFiltered +" <p>" + m_Datas->at(i)->getPost() + "</p>";
 	        }
 
-
-
-
-
-// In case we use jQuery mobile...
-/*
-            pageContent +=
-            QString("<div class=\"PostHeader\" onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\" id=\"postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\">")
-                        + "<img onclick=\"addItemTapped(" + QString::number(m_Datas->at(i)->getIndex()) + ")\"  src=\"" + m_Datas->at(i)->getAvatar() + "\" style=\"height:80%; width:auto; position:relative; top:10%; left:5px; max-width:100px; display: inline-block;\" />"
-                        + "<div class=\"PostHeader-Text\">"
-                            + "<div style=\"position:relative; top:-20px;\"><p " + blackTheme +">" + m_Datas->at(i)->getAuthor() + "</p></div>"
-                            + "<div style=\"position:relative; top:-35px; font-size:small;\"><p " + blackTheme +">" + m_Datas->at(i)->getTimestamp() + "</p></div>"
-                        + "</div>"
-                     + "</div><p>" + m_Datas->at(i)->getPost() + "</p>";
-
-            pageContent +=
-               QString("<script type=\"text/javascript\"> $(function(){ $( \"#postHeader" + QString::number(m_Datas->at(i)->getIndex()) + "\").bind( \"taphold\", tapholdHandler ); function tapholdHandler( event ){ $( event.target ).addClass( \"taphold\" ); toggleSelectItem(" + QString::number(m_Datas->at(i)->getIndex()) + "); $( \"#right\" ).panel( \"open\" , \"" + QString::number(m_Datas->at(i)->getIndex()) + "\" ); }}); </script>");
-*/
-
 	    }
 
-	    m_WebView->setHtml(htmlTemplate + pageContent + endTemplate, QUrl("local:///assets/"));
-/*
-	    QString directory = QDir::homePath() + QLatin1String("/HFRBlackData");
-	        QFile file(directory + "/tmp.txt");
-	        if (file.open(QIODevice::WriteOnly)) {
-	            QTextStream stream(&file);
+	    m_WebView->setHtml(htmlTemplate + pageContent + "<br/>" +  endTemplate, QUrl("local:///assets/"));
 
-	            stream << (htmlTemplate + pageContent + endTemplate);
-
-	            file.close();
-	        }*/
 
 	} else {
 	    qDebug() << "file not found";

@@ -21,6 +21,7 @@ class Settings : public QObject {
 	Q_PROPERTY( int fontSize 	    READ getFontSize    WRITE setFontSize		NOTIFY fontSizeChanged)
 	Q_PROPERTY( int smileySize 	    READ getSmileySize  WRITE setSmileySize		NOTIFY smileySizeChanged)
 	Q_PROPERTY( int theme	 	    READ getTheme	    WRITE setTheme			NOTIFY themeChanged)
+	Q_PROPERTY( int threadInterface READ getThreadInterface WRITE setThreadInterface NOTIFY threadInterfaceChanged)
 	Q_PROPERTY( int autoRefresh	    READ getAutoRefresh WRITE setAutoRefresh    NOTIFY autoRefreshChanged)
 	Q_PROPERTY( int askLeaveApp     READ getAskLeaveApp WRITE setAskLeaveApp    NOTIFY askLeaveAppChanged)
 	Q_PROPERTY( bool hubIntegration  READ getHubIntegration WRITE setHubIntegration   NOTIFY hubIntegrationChanged)
@@ -41,6 +42,7 @@ private:
 	static int m_FontSize;
 	static int m_SmileySize;
 	static int m_Theme;
+	static int m_ThreadInterface;
 	static int m_AutoRefresh;
 	static bool m_HubIntegration;
 	static int m_HubRefreshRate;
@@ -73,6 +75,9 @@ public:
 
 	inline void setTheme(int s) 						{ m_Theme = s; }
 	inline int  getTheme() const						{ return m_Theme; }
+
+	inline int  getThreadInterface() const              { return m_ThreadInterface; }
+	inline void  setThreadInterface(int s)              { m_ThreadInterface = s; }
 
 	inline void setSmileySize(int s) 					{ m_SmileySize = s; }
 	inline int  getSmileySize() const				    { return m_SmileySize; }
@@ -139,6 +144,7 @@ public Q_SLOTS:
 		void fontSizeChanged();
 		void smileySizeChanged();
 		void themeChanged();
+		void threadInterfaceChanged();
 		void autoRefreshChanged();
 		void hubIntegrationChanged();
 		void hubRefreshRateChanged();

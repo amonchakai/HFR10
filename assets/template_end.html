@@ -71,8 +71,9 @@
 
 		function clickAnyWhere(e) {
 			sendURL('RANDOM_TAP'); 
-			if(!multipleSelectionInProgress)
+			if(!multipleSelectionInProgress) {
 				unselectAll();
+			}
 		}
 
 		function unselectAll() {
@@ -84,13 +85,14 @@
 					selectItem(SelectionList[i], false);
 				SelectionList = new Array();
 			}
-
+			sendURL('unselect all');
 			multipleSelectionInProgress = false;
 		}
 
 		function startMultiselect() {
 			multipleSelectionInProgress = true;
 			addItemTapped(CurrentItem);
+			sendURL('Multiselect in progress');
 		}
 
 
@@ -100,6 +102,7 @@
 				listPosts += SelectionList[i] + ", ";
 			}
 			sendURL('QUOTE_MULTIPLES:' + listPosts);
+			sendURL('retrieve multiselect');
 		}
 
 

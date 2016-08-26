@@ -2,6 +2,7 @@ import bb.cascades 1.2
 import Network.PrivateMessageController 1.0
 import Lib.QTimer 1.0
 import bb.system 1.2
+import conf.settings 1.0
 
 NavigationPane {
     id: nav
@@ -196,8 +197,13 @@ NavigationPane {
     	            ]
     	            
                     function gotoPage(urlFirstPage, titleTopic) {
-                        if(!tpage)
-                        	tpage = threadPage.createObject();
+                        if(!tpage) {
+                            if(appSettings.threadInterface == 1)
+                                tpage = threadPage.createObject();
+                            else
+                                tpage = threadPageNative.createObject();
+                        }
+                        	
                         
                         // Set the url of the page to load and thread caption. 
                         tpage.urlPage = urlFirstPage
@@ -218,8 +224,12 @@ NavigationPane {
     	                var chosenItem = dataModel.data(indexPath);
     	                
     	                // Create the content page and push it on top to drill down to it.
-                        if(!tpage)
-    	                   tpage = threadPage.createObject();
+                        if(!tpage) {
+                            if(appSettings.threadInterface == 1)
+                                tpage = threadPage.createObject();
+                            else
+                                tpage = threadPageNative.createObject();
+                        }
     	                
     	                // Set the url of the page to load and thread caption. 
                        tpage.urlPage = chosenItem.urlLastPage
@@ -274,10 +284,17 @@ NavigationPane {
                     activityIndicator.start();
 	            }
 	        }, 
+            AppSettings {
+                id: appSettings
+            },
 	        ComponentDefinition {
 	            id: threadPage
 	            source: "ThreadPage.qml"
 	        },
+            ComponentDefinition {
+                id: threadPageNative
+                source: "ThreadPageNative.qml"
+            },
             SystemToast {
                 id: deleteToast
                 property string who

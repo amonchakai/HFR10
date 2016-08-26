@@ -250,7 +250,10 @@ NavigationPane {
                     
                     function gotoPage(urlFirstPage, titleTopic) {
                         if(!tpage) {
-                            tpage = threadPage.createObject();
+                            if(appSettings.threadInterface == 1)
+                                tpage = threadPage.createObject();
+                            else
+                                tpage = threadPageNative.createObject();
                         }
                         
                         // Set the url of the page to load and thread caption. 
@@ -288,7 +291,10 @@ NavigationPane {
     	                
     	                // Create the content page and push it on top to drill down to it.
                         if(!tpage) {
-                            tpage = threadPage.createObject();
+                            if(appSettings.threadInterface == 1)
+                                tpage = threadPage.createObject();
+                            else
+                                tpage = threadPageNative.createObject();
                         }
     	                
     	                // Set the url of the page to load and thread caption. 
@@ -350,6 +356,10 @@ NavigationPane {
 	                 id: threadPage
 	                 source: "ThreadPage.qml"
 	             },
+                 ComponentDefinition {
+                     id: threadPageNative
+                     source: "ThreadPageNative.qml"
+                 },
                  AppSettings {
                      id: appSettings
                  },

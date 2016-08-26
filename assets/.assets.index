@@ -1,5 +1,5 @@
 1
-318
+328
 ApplicationLog.qml
 BlackListManagement.qml
 Bookmarks.qml
@@ -72,9 +72,12 @@ images/chickened.png
 images/closeIcon.png
 images/color/200.gif
 images/color/Clean.png
+images/color/Clean_BW.png
 images/color/copy.png
+images/color/copy_BW.png
 images/color/Excellent.gif
 images/color/First.png
+images/color/ic_search.png
 images/color/Last.png
 images/color/Next.png
 images/color/Prev.png
@@ -91,6 +94,10 @@ images/EnhancementRequest_white.png
 images/flechesticky.gif
 images/HelpRequest.png
 images/HelpRequest_white.png
+images/ic_cancel.png
+images/ic_compose.png
+images/ic_delete.png
+images/ic_select_more.png
 images/icon_about.png
 images/icon_bold.png
 images/icon_bold.svg
@@ -104,6 +111,7 @@ images/icon_category.svg
 images/icon_code.png
 images/icon_code.svg
 images/icon_code_black.png
+images/icon_contact.png
 images/icon_contact_rounded.png
 images/icon_contact_rounded.svg
 images/icon_contact_rounded_black.png
@@ -310,6 +318,7 @@ Settings.qml
 SmileyPicker.qml
 StartupCardCompose.qml
 StartupCardThread.qml
+StartupCardThreadNative.qml
 SubCategoryPicker.qml
 Survey.qml
 SurveyHeader.qml
@@ -317,4 +326,5 @@ template.html
 template_black.html
 template_end.html
 ThreadPage.qml
+ThreadPageNative.qml
 Welcome.qml

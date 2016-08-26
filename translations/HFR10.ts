@@ -22,7 +22,7 @@
 <context>
     <name>ApplicationUI</name>
     <message>
-        <location filename="../src/applicationui.cpp" line="315"/>
+        <location filename="../src/applicationui.cpp" line="322"/>
         <source>Success!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -98,7 +98,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Bookmarks.qml" line="281"/>
+        <location filename="../assets/Bookmarks.qml" line="287"/>
         <source>Use the star to mark new content</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,53 +309,53 @@
 <context>
     <name>ExploreCategory</name>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="243"/>
+        <location filename="../assets/ExploreCategory.qml" line="244"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="246"/>
-        <location filename="../assets/ExploreCategory.qml" line="368"/>
+        <location filename="../assets/ExploreCategory.qml" line="247"/>
+        <location filename="../assets/ExploreCategory.qml" line="382"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="253"/>
+        <location filename="../assets/ExploreCategory.qml" line="254"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="260"/>
+        <location filename="../assets/ExploreCategory.qml" line="261"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="336"/>
+        <location filename="../assets/ExploreCategory.qml" line="350"/>
         <source>Sub-Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="350"/>
+        <location filename="../assets/ExploreCategory.qml" line="364"/>
         <source>s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="355"/>
+        <location filename="../assets/ExploreCategory.qml" line="369"/>
         <source>New topic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="376"/>
+        <location filename="../assets/ExploreCategory.qml" line="390"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="384"/>
+        <location filename="../assets/ExploreCategory.qml" line="398"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="392"/>
+        <location filename="../assets/ExploreCategory.qml" line="406"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -402,27 +402,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="326"/>
+        <location filename="../assets/Favorite.qml" line="332"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="365"/>
+        <location filename="../assets/Favorite.qml" line="375"/>
         <source>Flag will be deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="366"/>
+        <location filename="../assets/Favorite.qml" line="376"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="415"/>
+        <location filename="../assets/Favorite.qml" line="425"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Favorite.qml" line="423"/>
+        <location filename="../assets/Favorite.qml" line="433"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -714,52 +714,52 @@
 <context>
     <name>PrivateMessage</name>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="117"/>
+        <location filename="../assets/PrivateMessage.qml" line="118"/>
         <source>[Not Read] </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="168"/>
+        <location filename="../assets/PrivateMessage.qml" line="169"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="171"/>
+        <location filename="../assets/PrivateMessage.qml" line="172"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="178"/>
+        <location filename="../assets/PrivateMessage.qml" line="179"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="186"/>
+        <location filename="../assets/PrivateMessage.qml" line="187"/>
         <source>Delete PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="256"/>
+        <location filename="../assets/PrivateMessage.qml" line="266"/>
         <source>Pull down to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="286"/>
+        <location filename="../assets/PrivateMessage.qml" line="303"/>
         <source>PM will be deleted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="287"/>
+        <location filename="../assets/PrivateMessage.qml" line="304"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="327"/>
+        <location filename="../assets/PrivateMessage.qml" line="344"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/PrivateMessage.qml" line="335"/>
+        <location filename="../assets/PrivateMessage.qml" line="352"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1175,22 +1175,22 @@
 <context>
     <name>SearchResult</name>
     <message>
-        <location filename="../assets/SearchResult.qml" line="129"/>
+        <location filename="../assets/SearchResult.qml" line="130"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="132"/>
+        <location filename="../assets/SearchResult.qml" line="133"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="139"/>
+        <location filename="../assets/SearchResult.qml" line="140"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/SearchResult.qml" line="146"/>
+        <location filename="../assets/SearchResult.qml" line="147"/>
         <source>Last page read</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1265,77 +1265,92 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="246"/>
+        <location filename="../assets/Settings.qml" line="239"/>
+        <source>Thread interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="242"/>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="247"/>
+        <source>Native</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Settings.qml" line="268"/>
         <source>Feature settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="289"/>
+        <location filename="../assets/Settings.qml" line="311"/>
         <source>Refresh favorite automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="325"/>
+        <location filename="../assets/Settings.qml" line="347"/>
         <source>Ask before leaving application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="332"/>
+        <location filename="../assets/Settings.qml" line="354"/>
         <source>Manage blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="349"/>
+        <location filename="../assets/Settings.qml" line="371"/>
         <source>Hub integration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="397"/>
+        <location filename="../assets/Settings.qml" line="419"/>
         <source>Enable HUB integration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="405"/>
+        <location filename="../assets/Settings.qml" line="427"/>
         <source>Update HUB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="415"/>
+        <location filename="../assets/Settings.qml" line="437"/>
         <source>Color management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="458"/>
+        <location filename="../assets/Settings.qml" line="480"/>
         <source>Refresh HUB every: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="513"/>
+        <location filename="../assets/Settings.qml" line="535"/>
         <source>Maintenance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="524"/>
+        <location filename="../assets/Settings.qml" line="546"/>
         <source>Clear image cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="536"/>
+        <location filename="../assets/Settings.qml" line="558"/>
         <source>Enable logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Settings.qml" line="567"/>
+        <location filename="../assets/Settings.qml" line="589"/>
         <source>Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings.cpp" line="313"/>
+        <location filename="../src/Settings.cpp" line="316"/>
         <source>Remove from Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/Settings.cpp" line="314"/>
+        <location filename="../src/Settings.cpp" line="317"/>
         <source>Are you sure you want to show again this user?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1386,7 +1401,7 @@
     <message>
         <location filename="../src/ShowThreadController.cpp" line="759"/>
         <location filename="../src/ShowThreadController.cpp" line="830"/>
-        <location filename="../src/ShowThreadController.cpp" line="1461"/>
+        <location filename="../src/ShowThreadController.cpp" line="1433"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1396,12 +1411,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1294"/>
+        <location filename="../src/ShowThreadController.cpp" line="1266"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1500"/>
+        <location filename="../src/ShowThreadController.cpp" line="1472"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1600,6 +1615,178 @@
     </message>
 </context>
 <context>
+    <name>StartupCardThreadNative</name>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="327"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="520"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="330"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="337"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="510"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="548"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="664"/>
+        <source>Quote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="333"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="610"/>
+        <source>Delete post</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="340"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="669"/>
+        <source>PM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="344"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="639"/>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="347"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="544"/>
+        <source>Quote more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="350"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="574"/>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="358"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="490"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="495"/>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="362"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="405"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="365"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="408"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="653"/>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="370"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="379"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="413"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="422"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="601"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="630"/>
+        <source>Survey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="373"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="376"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="416"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="419"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="595"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="619"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="624"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="658"/>
+        <source>Prev page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="385"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="534"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="538"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="388"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="564"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="568"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="163"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="511"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="551"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="674"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="528"/>
+        <source>r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="558"/>
+        <source>f</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="586"/>
+        <source>l</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="647"/>
+        <source>p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="680"/>
+        <source>n</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="686"/>
+        <source>To Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="693"/>
+        <source>t</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="698"/>
+        <source>To Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="705"/>
+        <source>b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="710"/>
+        <source>Clear cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="717"/>
+        <source>Copy link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="724"/>
+        <source>Intra. search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ThreadPage</name>
     <message>
         <location filename="../assets/ThreadPage.qml" line="436"/>
@@ -1680,6 +1867,178 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="992"/>
         <source>b</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThreadPageNative</name>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="347"/>
+        <location filename="../assets/ThreadPageNative.qml" line="388"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="350"/>
+        <location filename="../assets/ThreadPageNative.qml" line="391"/>
+        <location filename="../assets/ThreadPageNative.qml" line="636"/>
+        <source>Next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="355"/>
+        <location filename="../assets/ThreadPageNative.qml" line="364"/>
+        <location filename="../assets/ThreadPageNative.qml" line="396"/>
+        <location filename="../assets/ThreadPageNative.qml" line="405"/>
+        <location filename="../assets/ThreadPageNative.qml" line="584"/>
+        <location filename="../assets/ThreadPageNative.qml" line="613"/>
+        <source>Survey</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="343"/>
+        <location filename="../assets/ThreadPageNative.qml" line="473"/>
+        <location filename="../assets/ThreadPageNative.qml" line="478"/>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="511"/>
+        <source>r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="370"/>
+        <location filename="../assets/ThreadPageNative.qml" line="517"/>
+        <location filename="../assets/ThreadPageNative.qml" line="521"/>
+        <source>First page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="541"/>
+        <source>f</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="373"/>
+        <location filename="../assets/ThreadPageNative.qml" line="547"/>
+        <location filename="../assets/ThreadPageNative.qml" line="551"/>
+        <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="569"/>
+        <source>l</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="358"/>
+        <location filename="../assets/ThreadPageNative.qml" line="361"/>
+        <location filename="../assets/ThreadPageNative.qml" line="399"/>
+        <location filename="../assets/ThreadPageNative.qml" line="402"/>
+        <location filename="../assets/ThreadPageNative.qml" line="578"/>
+        <location filename="../assets/ThreadPageNative.qml" line="602"/>
+        <location filename="../assets/ThreadPageNative.qml" line="607"/>
+        <location filename="../assets/ThreadPageNative.qml" line="641"/>
+        <source>Prev page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="312"/>
+        <location filename="../assets/ThreadPageNative.qml" line="503"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="315"/>
+        <location filename="../assets/ThreadPageNative.qml" line="322"/>
+        <location filename="../assets/ThreadPageNative.qml" line="493"/>
+        <location filename="../assets/ThreadPageNative.qml" line="529"/>
+        <location filename="../assets/ThreadPageNative.qml" line="647"/>
+        <source>Quote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="318"/>
+        <location filename="../assets/ThreadPageNative.qml" line="593"/>
+        <source>Delete post</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="325"/>
+        <location filename="../assets/ThreadPageNative.qml" line="652"/>
+        <source>PM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="329"/>
+        <location filename="../assets/ThreadPageNative.qml" line="622"/>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="332"/>
+        <location filename="../assets/ThreadPageNative.qml" line="527"/>
+        <source>Quote more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="335"/>
+        <location filename="../assets/ThreadPageNative.qml" line="557"/>
+        <source>Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="148"/>
+        <location filename="../assets/ThreadPageNative.qml" line="494"/>
+        <location filename="../assets/ThreadPageNative.qml" line="532"/>
+        <location filename="../assets/ThreadPageNative.qml" line="657"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="630"/>
+        <source>p</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="663"/>
+        <source>n</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="669"/>
+        <source>To Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="676"/>
+        <source>t</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="681"/>
+        <source>To Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="688"/>
+        <source>b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="693"/>
+        <source>Clear cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="700"/>
+        <source>Copy link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="707"/>
+        <source>Intra. search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
