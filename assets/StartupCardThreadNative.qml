@@ -156,7 +156,7 @@ NavigationPane {
                             if(match) {
                                 var own = message.data.substr(14+match[1].length)
                                 var isOwn = showThreadController.getEditUrl(parseInt(match[1])) != "";
-                                pageContainer.showContextMenu(match[1], own);
+                                pageContainer.showContextMenu(match[1], isOwn);
                             }
                             isContext = RegExp("RANDOM_TAP");
                             match = message.data.match(isContext);
