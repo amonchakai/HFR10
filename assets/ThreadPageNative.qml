@@ -140,7 +140,8 @@ Page {
                         match = message.data.match(isContext); 
                         if(match) {
                             var own = message.data.substr(14+match[1].length)
-                            pageContainer.showContextMenu(match[1], own);
+                            var isOwn = showThreadController.getEditUrl(parseInt(match[1])) != "";
+                            pageContainer.showContextMenu(match[1], isOwn);
                         }
                         isContext = RegExp("RANDOM_TAP");
                         match = message.data.match(isContext);

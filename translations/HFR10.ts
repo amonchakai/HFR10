@@ -1617,171 +1617,171 @@
 <context>
     <name>StartupCardThreadNative</name>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="327"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="520"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="328"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="521"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="330"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="337"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="510"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="548"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="664"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="331"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="338"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="511"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="549"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="665"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="333"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="610"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="334"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="611"/>
         <source>Delete post</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="340"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="669"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="341"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="670"/>
         <source>PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="344"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="639"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="345"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="640"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="347"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="544"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="348"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="545"/>
         <source>Quote more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="350"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="574"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="351"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="575"/>
         <source>Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="358"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="490"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="495"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="359"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="491"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="496"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="362"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="405"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="363"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="406"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="365"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="408"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="653"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="366"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="409"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="654"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="370"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="379"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="413"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="422"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="601"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="630"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="371"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="380"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="414"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="423"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="602"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="631"/>
         <source>Survey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="373"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="376"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="416"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="419"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="595"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="619"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="624"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="658"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="374"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="377"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="417"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="420"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="596"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="620"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="625"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="659"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="385"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="534"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="538"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="386"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="535"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="539"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="388"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="564"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="568"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="389"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="565"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="569"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="163"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="511"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="551"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="674"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="164"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="512"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="552"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="675"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="528"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="529"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="558"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="559"/>
         <source>f</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="586"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="587"/>
         <source>l</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="647"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="648"/>
         <source>p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="680"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="681"/>
         <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="686"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="687"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="693"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="694"/>
         <source>t</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="698"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="699"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="705"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="706"/>
         <source>b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="710"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="711"/>
         <source>Clear cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="717"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="718"/>
         <source>Copy link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/StartupCardThreadNative.qml" line="724"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="725"/>
         <source>Intra. search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1873,171 +1873,171 @@
 <context>
     <name>ThreadPageNative</name>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="347"/>
-        <location filename="../assets/ThreadPageNative.qml" line="388"/>
+        <location filename="../assets/ThreadPageNative.qml" line="348"/>
+        <location filename="../assets/ThreadPageNative.qml" line="389"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="350"/>
-        <location filename="../assets/ThreadPageNative.qml" line="391"/>
-        <location filename="../assets/ThreadPageNative.qml" line="636"/>
+        <location filename="../assets/ThreadPageNative.qml" line="351"/>
+        <location filename="../assets/ThreadPageNative.qml" line="392"/>
+        <location filename="../assets/ThreadPageNative.qml" line="637"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="355"/>
-        <location filename="../assets/ThreadPageNative.qml" line="364"/>
-        <location filename="../assets/ThreadPageNative.qml" line="396"/>
-        <location filename="../assets/ThreadPageNative.qml" line="405"/>
-        <location filename="../assets/ThreadPageNative.qml" line="584"/>
-        <location filename="../assets/ThreadPageNative.qml" line="613"/>
+        <location filename="../assets/ThreadPageNative.qml" line="356"/>
+        <location filename="../assets/ThreadPageNative.qml" line="365"/>
+        <location filename="../assets/ThreadPageNative.qml" line="397"/>
+        <location filename="../assets/ThreadPageNative.qml" line="406"/>
+        <location filename="../assets/ThreadPageNative.qml" line="585"/>
+        <location filename="../assets/ThreadPageNative.qml" line="614"/>
         <source>Survey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="343"/>
-        <location filename="../assets/ThreadPageNative.qml" line="473"/>
-        <location filename="../assets/ThreadPageNative.qml" line="478"/>
+        <location filename="../assets/ThreadPageNative.qml" line="344"/>
+        <location filename="../assets/ThreadPageNative.qml" line="474"/>
+        <location filename="../assets/ThreadPageNative.qml" line="479"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="511"/>
+        <location filename="../assets/ThreadPageNative.qml" line="512"/>
         <source>r</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="370"/>
-        <location filename="../assets/ThreadPageNative.qml" line="517"/>
-        <location filename="../assets/ThreadPageNative.qml" line="521"/>
+        <location filename="../assets/ThreadPageNative.qml" line="371"/>
+        <location filename="../assets/ThreadPageNative.qml" line="518"/>
+        <location filename="../assets/ThreadPageNative.qml" line="522"/>
         <source>First page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="541"/>
+        <location filename="../assets/ThreadPageNative.qml" line="542"/>
         <source>f</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="373"/>
-        <location filename="../assets/ThreadPageNative.qml" line="547"/>
-        <location filename="../assets/ThreadPageNative.qml" line="551"/>
+        <location filename="../assets/ThreadPageNative.qml" line="374"/>
+        <location filename="../assets/ThreadPageNative.qml" line="548"/>
+        <location filename="../assets/ThreadPageNative.qml" line="552"/>
         <source>Last page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="569"/>
+        <location filename="../assets/ThreadPageNative.qml" line="570"/>
         <source>l</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="358"/>
-        <location filename="../assets/ThreadPageNative.qml" line="361"/>
-        <location filename="../assets/ThreadPageNative.qml" line="399"/>
-        <location filename="../assets/ThreadPageNative.qml" line="402"/>
-        <location filename="../assets/ThreadPageNative.qml" line="578"/>
-        <location filename="../assets/ThreadPageNative.qml" line="602"/>
-        <location filename="../assets/ThreadPageNative.qml" line="607"/>
-        <location filename="../assets/ThreadPageNative.qml" line="641"/>
+        <location filename="../assets/ThreadPageNative.qml" line="359"/>
+        <location filename="../assets/ThreadPageNative.qml" line="362"/>
+        <location filename="../assets/ThreadPageNative.qml" line="400"/>
+        <location filename="../assets/ThreadPageNative.qml" line="403"/>
+        <location filename="../assets/ThreadPageNative.qml" line="579"/>
+        <location filename="../assets/ThreadPageNative.qml" line="603"/>
+        <location filename="../assets/ThreadPageNative.qml" line="608"/>
+        <location filename="../assets/ThreadPageNative.qml" line="642"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="312"/>
-        <location filename="../assets/ThreadPageNative.qml" line="503"/>
+        <location filename="../assets/ThreadPageNative.qml" line="313"/>
+        <location filename="../assets/ThreadPageNative.qml" line="504"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="315"/>
-        <location filename="../assets/ThreadPageNative.qml" line="322"/>
-        <location filename="../assets/ThreadPageNative.qml" line="493"/>
-        <location filename="../assets/ThreadPageNative.qml" line="529"/>
-        <location filename="../assets/ThreadPageNative.qml" line="647"/>
+        <location filename="../assets/ThreadPageNative.qml" line="316"/>
+        <location filename="../assets/ThreadPageNative.qml" line="323"/>
+        <location filename="../assets/ThreadPageNative.qml" line="494"/>
+        <location filename="../assets/ThreadPageNative.qml" line="530"/>
+        <location filename="../assets/ThreadPageNative.qml" line="648"/>
         <source>Quote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="318"/>
-        <location filename="../assets/ThreadPageNative.qml" line="593"/>
+        <location filename="../assets/ThreadPageNative.qml" line="319"/>
+        <location filename="../assets/ThreadPageNative.qml" line="594"/>
         <source>Delete post</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="325"/>
-        <location filename="../assets/ThreadPageNative.qml" line="652"/>
+        <location filename="../assets/ThreadPageNative.qml" line="326"/>
+        <location filename="../assets/ThreadPageNative.qml" line="653"/>
         <source>PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="329"/>
-        <location filename="../assets/ThreadPageNative.qml" line="622"/>
+        <location filename="../assets/ThreadPageNative.qml" line="330"/>
+        <location filename="../assets/ThreadPageNative.qml" line="623"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="332"/>
-        <location filename="../assets/ThreadPageNative.qml" line="527"/>
+        <location filename="../assets/ThreadPageNative.qml" line="333"/>
+        <location filename="../assets/ThreadPageNative.qml" line="528"/>
         <source>Quote more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="335"/>
-        <location filename="../assets/ThreadPageNative.qml" line="557"/>
+        <location filename="../assets/ThreadPageNative.qml" line="336"/>
+        <location filename="../assets/ThreadPageNative.qml" line="558"/>
         <source>Profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="148"/>
-        <location filename="../assets/ThreadPageNative.qml" line="494"/>
-        <location filename="../assets/ThreadPageNative.qml" line="532"/>
-        <location filename="../assets/ThreadPageNative.qml" line="657"/>
+        <location filename="../assets/ThreadPageNative.qml" line="149"/>
+        <location filename="../assets/ThreadPageNative.qml" line="495"/>
+        <location filename="../assets/ThreadPageNative.qml" line="533"/>
+        <location filename="../assets/ThreadPageNative.qml" line="658"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="630"/>
+        <location filename="../assets/ThreadPageNative.qml" line="631"/>
         <source>p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="663"/>
+        <location filename="../assets/ThreadPageNative.qml" line="664"/>
         <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="669"/>
+        <location filename="../assets/ThreadPageNative.qml" line="670"/>
         <source>To Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="676"/>
+        <location filename="../assets/ThreadPageNative.qml" line="677"/>
         <source>t</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="681"/>
+        <location filename="../assets/ThreadPageNative.qml" line="682"/>
         <source>To Bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="688"/>
+        <location filename="../assets/ThreadPageNative.qml" line="689"/>
         <source>b</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="693"/>
+        <location filename="../assets/ThreadPageNative.qml" line="694"/>
         <source>Clear cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="700"/>
+        <location filename="../assets/ThreadPageNative.qml" line="701"/>
         <source>Copy link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/ThreadPageNative.qml" line="707"/>
+        <location filename="../assets/ThreadPageNative.qml" line="708"/>
         <source>Intra. search</source>
         <translation type="unfinished"></translation>
     </message>
