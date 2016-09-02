@@ -1678,6 +1678,7 @@
         <location filename="../assets/StartupCardThreadNative.qml" line="366"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="409"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="654"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="659"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1699,7 +1700,6 @@
         <location filename="../assets/StartupCardThreadNative.qml" line="596"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="620"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="625"/>
-        <location filename="../assets/StartupCardThreadNative.qml" line="659"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1882,6 +1882,7 @@
         <location filename="../assets/ThreadPageNative.qml" line="351"/>
         <location filename="../assets/ThreadPageNative.qml" line="392"/>
         <location filename="../assets/ThreadPageNative.qml" line="637"/>
+        <location filename="../assets/ThreadPageNative.qml" line="642"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1939,7 +1940,6 @@
         <location filename="../assets/ThreadPageNative.qml" line="579"/>
         <location filename="../assets/ThreadPageNative.qml" line="603"/>
         <location filename="../assets/ThreadPageNative.qml" line="608"/>
-        <location filename="../assets/ThreadPageNative.qml" line="642"/>
         <source>Prev page</source>
         <translation type="unfinished"></translation>
     </message>

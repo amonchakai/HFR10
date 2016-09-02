@@ -656,7 +656,7 @@ NavigationPane {
                 ActionBar.placement: ActionBarPlacement.OnBar
                 onTriggered: {
                     
-                    if(prevPageAction.title == qsTr("Prev page")) {
+                    if(nextPageAction.title == qsTr("Next page")) {
                         showThreadController.nextPage();
                         activityIndicator.start();
                         scrollRequested = 0;
