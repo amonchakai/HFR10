@@ -190,7 +190,9 @@ void PostMessageController::errorMessage(const QString &page) {
 
 void PostMessageController::getSubCatsInfo(const QString &url_str) {
 
-    const QUrl url(DefineConsts::FORUM_URL + "/hfr/" + url_str.mid(0, url_str.length()-4) + "/nouveau_sujet.htm");
+    qDebug() << "PostMessageController::getSubCatsInfo" << url_str;
+
+    const QUrl url(DefineConsts::FORUM_URL + "/hfr/" + url_str + "/nouveau_sujet.htm");
 
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");

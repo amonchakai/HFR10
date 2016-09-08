@@ -22,7 +22,7 @@ Page {
     property string  quoteURL
     
     property string smileyToAdd
-    property string subcatxml
+    property string subcat
     
     property bool   update
     
@@ -149,6 +149,7 @@ Page {
         }
         DropDown {
             id: sousCat
+            title: qsTr("Sub-Cat")
             visible: false
         }
         TextArea {
@@ -576,7 +577,7 @@ Page {
         if(mode == 5) {
             newTopic.visible = true;
             sousCat.visible = true;
-            postMessageController.getSubCatsInfo(subcatxml);
+            postMessageController.getSubCatsInfo(subcat);
             activityIndicator.start();
         } else {
             newTopic.visible = false;

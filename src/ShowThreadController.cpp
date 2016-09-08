@@ -386,9 +386,10 @@ void ShowThreadController::parse(const QString &page) {
 
     // ----------------------------------------------------------------------------------------------
     // Parse new MP, and notify if needed!
-    QRegExp newMP("Vous avez ([0-9]+) nouveau[x]* message[s]*");
+    QRegExp newMP("class=\"red\">Vous avez ([0-9]+) nouveau[x]? message[s]?");
     newMP.setMinimal(true);
     if(newMP.indexIn(page) != -1) {
+        qDebug() << "Plouf notif ------------------------------------- " << newMP.cap(1);
         if(Settings::getMPNotificationUp) {
             Settings::setMPNotificationUp(true);
 

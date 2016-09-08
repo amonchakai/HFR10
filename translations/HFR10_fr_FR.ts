@@ -327,7 +327,7 @@
     </message>
     <message>
         <location filename="../assets/ExploreCategory.qml" line="247"/>
-        <location filename="../assets/ExploreCategory.qml" line="382"/>
+        <location filename="../assets/ExploreCategory.qml" line="384"/>
         <source>First page</source>
         <translation>Première page</translation>
     </message>
@@ -361,17 +361,17 @@
         <translation>Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="390"/>
+        <location filename="../assets/ExploreCategory.qml" line="392"/>
         <source>Prev page</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="398"/>
+        <location filename="../assets/ExploreCategory.qml" line="400"/>
         <source>Next page</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../assets/ExploreCategory.qml" line="406"/>
+        <location filename="../assets/ExploreCategory.qml" line="408"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
@@ -693,27 +693,32 @@
         <translation>Nouveau Sujet</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="485"/>
+        <location filename="../assets/PostMessage.qml" line="152"/>
+        <source>Sub-Cat</source>
+        <translation>Sous-catégorie</translation>
+    </message>
+    <message>
+        <location filename="../assets/PostMessage.qml" line="486"/>
         <source>Quote</source>
         <translation>Citer</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="492"/>
+        <location filename="../assets/PostMessage.qml" line="493"/>
         <source>Code</source>
         <translation>Code</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="499"/>
+        <location filename="../assets/PostMessage.qml" line="500"/>
         <source>Bold</source>
         <translation>Gras</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="506"/>
+        <location filename="../assets/PostMessage.qml" line="507"/>
         <source>Italic</source>
         <translation>Italique</translation>
     </message>
     <message>
-        <location filename="../assets/PostMessage.qml" line="513"/>
+        <location filename="../assets/PostMessage.qml" line="514"/>
         <source>Underline</source>
         <translation>Souligner</translation>
     </message>
@@ -730,7 +735,7 @@
         <translation>Trop de réponses consécutives, veuillez patienter 10 minutes avant de pouvoir reposter ici</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="510"/>
+        <location filename="../src/PostMessageController.cpp" line="512"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
@@ -1412,7 +1417,7 @@
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1266"/>
+        <location filename="../src/ShowThreadController.cpp" line="1267"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished">L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
     </message>
@@ -1431,9 +1436,9 @@
         <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="759"/>
-        <location filename="../src/ShowThreadController.cpp" line="830"/>
-        <location filename="../src/ShowThreadController.cpp" line="1433"/>
+        <location filename="../src/ShowThreadController.cpp" line="760"/>
+        <location filename="../src/ShowThreadController.cpp" line="831"/>
+        <location filename="../src/ShowThreadController.cpp" line="1434"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
@@ -1443,17 +1448,17 @@
         <translation>Rien à chercher</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1147"/>
+        <location filename="../src/ShowThreadController.cpp" line="1148"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished">Montrer le post dans un sujet non filtré</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1472"/>
+        <location filename="../src/ShowThreadController.cpp" line="1473"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished">/app/native/assets/model/action_list_fr.xml</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="697"/>
+        <location filename="../src/ShowThreadController.cpp" line="698"/>
         <source>Vote</source>
         <translation type="unfinished">Voter</translation>
     </message>

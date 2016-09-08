@@ -370,9 +370,11 @@ Page {
             imageSource: "asset:///images/icon_write.png"
             ActionBar.placement: ActionBarPlacement.InOverflow
             onTriggered: {
+                var lastSlash = urlPage.lastIndexOf("/");
+                
                 if(!createPage)
                     createPage = postMessage.createObject();
-                createPage.subcatxml = subCatXml;
+                createPage.subcat = urlPage.substring(urlPage.substring(0, lastSlash).lastIndexOf("/")+1, lastSlash);
                 createPage.mode = 5;
                 createPage.update = true;
                 nav.push(createPage);
