@@ -385,31 +385,91 @@ void PostMessageController::parseEditMessage(const QString &editpage) {
 		message.replace(sup, ">");
 	}
 
-	QRegExp postData(QString("<input type=\"hidden\" name=\"hash_check\" value=\"([0-9a-z]+)\" />")
-							+ 	".*<input type=\"hidden\" name=\"parents\" value=\"([0-9]*)\" />"
-							+ 	".*<input type=\"hidden\" name=\"post\" value=\"([0-9]+)\" />"
-							+ 	".*<input type=\"hidden\" name=\"cat\" id=\"catid\" value=\"([0-9a-z]+)\" />"
-							+ 	".*<input type=\"hidden\" name=\"numreponse\" value=\"([0-9a-z]+)\" />"
-							+	".*<input type=\"hidden\" name=\"page\" value=\"([0-9]+)\" />"
-							+	".*<input type=\"hidden\" name=\"sujet\" value=\"(.+)\" />"
-							+	".*<input maxlength=\"[0-9]+\" accesskey=\"p\" size=\"[0-9]+\" name=\"pseudo\" value=\"(.+)\""
-	);
 
+	QRegExp hashCheckRegExp("<input type=\"hidden\" name=\"hash_check\" value=\"([0-9a-z]+)\" />");
+	QRegExp parentRegExp("<input type=\"hidden\" name=\"parents\" value=\"([0-9]*)\" />");
+	QRegExp postRegExp("<input type=\"hidden\" name=\"post\" value=\"([0-9]+)\" />");
+	QRegExp catRegExp("<input type=\"hidden\" name=\"cat\" id=\"catid\" value=\"([0-9a-z]+)\" />");
+	QRegExp numResponseRegExp("<input type=\"hidden\" name=\"numreponse\" value=\"([0-9a-z]+)\" />");
+	QRegExp pageRegExp("<input type=\"hidden\" name=\"page\" value=\"([0-9]+)\" />");
+	QRegExp sujetRegExp("<input type=\"hidden\" name=\"sujet\" value=\"(.+)\" />");
+	QRegExp pseudoRegExp("<input maxlength=\"[0-9]+\" accesskey=\"p\" size=\"[0-9]+\" name=\"pseudo\" value=\"(.+)\"");
 
-	postData.setCaseSensitivity(Qt::CaseSensitive);
-	postData.setMinimal(true);
+	hashCheckRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	hashCheckRegExp.setMinimal(true);
 
-	if(postData.indexIn(editpage, 0) != -1) {
-		m_HashCheck = postData.cap(1);
-		m_Parent = postData.cap(2);
-		m_PostID = postData.cap(3);
-		m_CatID = postData.cap(4);
-		m_ResponseID = postData.cap(5);
-		m_Page = postData.cap(6);
-		m_ThreadTitle = postData.cap(7);
+	parentRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	parentRegExp.setMinimal(true);
+
+	postRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	postRegExp.setMinimal(true);
+
+	catRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	catRegExp.setMinimal(true);
+
+	numResponseRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	numResponseRegExp.setMinimal(true);
+
+	pageRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	pageRegExp.setMinimal(true);
+
+	sujetRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	sujetRegExp.setMinimal(true);
+
+	pseudoRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	pseudoRegExp.setMinimal(true);
+
+	if(hashCheckRegExp.indexIn(editpage, 0) != -1)  {
+		m_HashCheck = hashCheckRegExp.cap(1);
+	}
+
+	if(parentRegExp.indexIn(editpage, 0) != -1)  {
+		m_Parent = parentRegExp.cap(1);
+	}
+
+	if(postRegExp.indexIn(editpage, 0) != -1)  {
+		m_PostID = postRegExp.cap(1);
+	}
+
+	if(catRegExp.indexIn(editpage, 0) != -1)  {
+		m_CatID = catRegExp.cap(1);
+	}
+
+	if(numResponseRegExp.indexIn(editpage, 0) != -1)  {
+		m_ResponseID = numResponseRegExp.cap(1);
+	}
+
+	if(pageRegExp.indexIn(editpage, 0) != -1)  {
+		m_Page = pageRegExp.cap(1);
+	}
+
+	if(sujetRegExp.indexIn(editpage, 0) != -1)  {
+		m_ThreadTitle = sujetRegExp.cap(1);
+	} else {
+	    QRegExp sujetRegExp("<input maxlength=\"70\" accesskey=\"t\" size=\"50\" name=\"sujet\" value=\"(.+)\" />");
+	    sujetRegExp.setCaseSensitivity(Qt::CaseSensitive);
+	    sujetRegExp.setMinimal(true);
+	    if(sujetRegExp.indexIn(editpage, 0) != -1)  {
+	        m_ThreadTitle = sujetRegExp.cap(1);
+	    }
+	}
+
+	if(pseudoRegExp.indexIn(editpage, 0) != -1)  {
 		m_AddSignature = false;
-		m_Pseudo = postData.cap(8);
+		m_Pseudo = pseudoRegExp.cap(1);
+	}
 
+
+    qDebug() << "Get message parsing: " << m_HashCheck << m_ResponseID << m_PostID << m_CatID << m_Parent << m_Pseudo << m_ThreadTitle;
+
+
+	QRegExp subCategory("<td class=\"repCase2\"><select name=\"subcat\">.*<option value=\"([0-9]+)\" selected=\"selected\">.*</select></td></tr><tr class=\"reponse toberead1\">");
+	subCategory.setCaseSensitivity(Qt::CaseSensitive);
+	subCategory.setMinimal(true);
+
+	m_SubCatId = "";
+	if(subCategory.indexIn(editpage, 0) != -1) {
+	    m_SubCatId = subCategory.cap(1);
 	}
 
 	emit messageLoaded(message);
@@ -487,6 +547,8 @@ void PostMessageController::postEdit(const QString &message) {
     QString copyMessage = message;
     copyMessage.replace("+", "%2");
 
+    qDebug() << m_HashCheck << m_ResponseID << m_PostID << m_CatID << m_Parent << m_Pseudo << m_ThreadTitle;
+
 	QUrl params;
 	params.addQueryItem("hash_check", m_HashCheck);
 	params.addQueryItem("numreponse", m_ResponseID);
@@ -498,6 +560,10 @@ void PostMessageController::postEdit(const QString &message) {
 	params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
 	params.addQueryItem("sujet", m_ThreadTitle);
 	params.addQueryItem("signature", "1");
+	if(m_SubCatId != "") {
+	    params.addQueryItem("subcat", m_SubCatId);
+//	    params.addQueryItem("have_sondage", "0");
+	}
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));

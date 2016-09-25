@@ -28,6 +28,7 @@ private:
 	QString m_Page;
 	QString m_ThreadTitle;
 	QString m_Pseudo;
+	QString m_SubCatId;
 	bool m_AddSignature;
 
 

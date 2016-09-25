@@ -711,7 +711,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="512"/>
+        <location filename="../src/PostMessageController.cpp" line="578"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1399,29 +1399,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="698"/>
+        <location filename="../src/ShowThreadController.cpp" line="692"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="760"/>
-        <location filename="../src/ShowThreadController.cpp" line="831"/>
-        <location filename="../src/ShowThreadController.cpp" line="1434"/>
+        <location filename="../src/ShowThreadController.cpp" line="754"/>
+        <location filename="../src/ShowThreadController.cpp" line="825"/>
+        <location filename="../src/ShowThreadController.cpp" line="1428"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1148"/>
+        <location filename="../src/ShowThreadController.cpp" line="1142"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1267"/>
+        <location filename="../src/ShowThreadController.cpp" line="1261"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1473"/>
+        <location filename="../src/ShowThreadController.cpp" line="1467"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1676,6 +1676,7 @@
     <message>
         <location filename="../assets/StartupCardThreadNative.qml" line="363"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="406"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="659"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1880,6 +1881,7 @@
     <message>
         <location filename="../assets/ThreadPageNative.qml" line="348"/>
         <location filename="../assets/ThreadPageNative.qml" line="389"/>
+        <location filename="../assets/ThreadPageNative.qml" line="642"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>

@@ -735,7 +735,7 @@
         <translation>Trop de réponses consécutives, veuillez patienter 10 minutes avant de pouvoir reposter ici</translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="512"/>
+        <location filename="../src/PostMessageController.cpp" line="578"/>
         <source>Connection timed out</source>
         <translation>La connexion a échoué</translation>
     </message>
@@ -1417,7 +1417,7 @@
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1267"/>
+        <location filename="../src/ShowThreadController.cpp" line="1261"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished">L&apos;adresse de la page courante a été copiée dans le presse papier</translation>
     </message>
@@ -1436,9 +1436,9 @@
         <translation>Vous êtes sur le point de quitter l&apos;application, êtes-vous sûr de vouloir continuer?</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="760"/>
-        <location filename="../src/ShowThreadController.cpp" line="831"/>
-        <location filename="../src/ShowThreadController.cpp" line="1434"/>
+        <location filename="../src/ShowThreadController.cpp" line="754"/>
+        <location filename="../src/ShowThreadController.cpp" line="825"/>
+        <location filename="../src/ShowThreadController.cpp" line="1428"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished">Erreur : %1 statut : %2</translation>
     </message>
@@ -1448,17 +1448,17 @@
         <translation>Rien à chercher</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1148"/>
+        <location filename="../src/ShowThreadController.cpp" line="1142"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished">Montrer le post dans un sujet non filtré</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1473"/>
+        <location filename="../src/ShowThreadController.cpp" line="1467"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished">/app/native/assets/model/action_list_fr.xml</translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="698"/>
+        <location filename="../src/ShowThreadController.cpp" line="692"/>
         <source>Vote</source>
         <translation type="unfinished">Voter</translation>
     </message>
@@ -1819,6 +1819,7 @@
     <message>
         <location filename="../assets/StartupCardThreadNative.qml" line="363"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="406"/>
+        <location filename="../assets/StartupCardThreadNative.qml" line="659"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>
@@ -2059,6 +2060,7 @@
     <message>
         <location filename="../assets/ThreadPageNative.qml" line="348"/>
         <location filename="../assets/ThreadPageNative.qml" line="389"/>
+        <location filename="../assets/ThreadPageNative.qml" line="642"/>
         <source>Refresh</source>
         <translation>Rafraîchir</translation>
     </message>

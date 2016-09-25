@@ -68,11 +68,21 @@ QString WebResourceManager::getMatchingImage(const QString& requestedURL) const 
 
     // check if image already available
     QUrl url = QUrl(requestedURL);
+
+
+    int dotExtPos = url.path().lastIndexOf(".");
+    QString ext;
+    if(dotExtPos > 0) {
+        ext = url.path().mid(dotExtPos);
+    } else {
+        ext = ".PNG";
+    }
+
     // Check if image is stored on disc
     // The qHash is a bucket type hash so the doubling is to remove possible collisions.
     QString diskPath = QDir::homePath() + "/../native/assets/TMP/"
             + QString::number(qHash(url.host())) + "_"
-            + QString::number(qHash(url.path())) + ".PNG";
+            + QString::number(qHash(url.path())) + ext;
 
     QFile imageFile(diskPath);
 
@@ -81,7 +91,7 @@ QString WebResourceManager::getMatchingImage(const QString& requestedURL) const 
         qDebug() << requestedURL << "...existing";
         qDebug() << diskPath;
         return "asset:///TMP/" + QString::number(qHash(url.host())) + "_"
-                + QString::number(qHash(url.path())) + ".PNG";
+                + QString::number(qHash(url.path())) + ext;
     } else {
         // check if the file is being downloaded, if so, skip it
         m_EditQueue->lockForRead();
@@ -89,7 +99,7 @@ QString WebResourceManager::getMatchingImage(const QString& requestedURL) const 
             if(m_DownloadQueue->at(i).compare(requestedURL) == 0) {
                 m_EditQueue->unlock();
                 return "asset:///TMP/" + QString::number(qHash(url.host())) + "_"
-                + QString::number(qHash(url.path())) + ".PNG";;
+                + QString::number(qHash(url.path())) + ext;
             }
         m_EditQueue->unlock();
 
@@ -130,11 +140,25 @@ void WebResourceManager::getImage(const QString& requestedURL) const {
 
 	// check if image already available
 	QUrl url = QUrl(requestedURL);
+
+
+	int dotExtPos = url.path().lastIndexOf(".");
+    QString ext;
+    if(dotExtPos > 0) {
+        ext = url.path().mid(dotExtPos);
+    } else {
+        ext = ".PNG";
+    }
+
+    qDebug() << "[Requested image]" << requestedURL;
+
+
 	// Check if image is stored on disc
 	// The qHash is a bucket type hash so the doubling is to remove possible collisions.
 	QString diskPath = QDir::homePath() + "/Cache/"
 			+ QString::number(qHash(url.host())) + "_"
-			+ QString::number(qHash(url.path())) + ".PNG";
+			+ QString::number(qHash(url.path())) + ext;
+
 
 	QFile imageFile(diskPath);
 
@@ -174,19 +198,35 @@ void WebResourceManager::checkReply() {
 		if (reply->error() == QNetworkReply::NoError) {
 			const int available = reply->bytesAvailable();
 			if (available > 0) {
-				QImage qImage;
-				qImage.loadFromData(reply->readAll());
 
-				if (qImage.isNull()) {
+			    QByteArray imageData(reply->readAll());
+
+				if (imageData.size() == 0) {
 					return;
 				}
 
+				int dotExtPos = reply->url().path().lastIndexOf(".");
+                QString ext;
+                if(dotExtPos > 0) {
+                    ext = reply->url().path().mid(dotExtPos);
+                } else {
+                    ext = ".PNG";
+                }
+
 				QString diskPath = QDir::homePath() + "/Cache/"
 								+ QString::number(qHash(reply->url().host())) + "_"
-								+ QString::number(qHash(reply->url().path())) + ".PNG";
+								+ QString::number(qHash(reply->url().path())) + ext;
 
-				if (qImage.save(diskPath)) {
-						emit onImageReady(reply->url().toString(), diskPath);
+
+				QFile file(diskPath);
+                if (file.open(QIODevice::WriteOnly)) {
+                    QDataStream stream(&file);
+                    stream.writeRawData(imageData.data(), imageData.size());
+                    file.close();
+
+                    emit onImageReady(reply->url().toString(), diskPath);
+                } else {
+				    qDebug() << "Cannot save: " << diskPath;
 				}
 
 				// remove item from download queue

@@ -450,14 +450,8 @@ void ShowThreadController::parse(const QString &page) {
 
 		// parse each post individually
 		if(!m_BlackList.contains(lastPseudo.toLower())) {
-		    qDebug() << "[PASS] " << lastPseudo.toLower() << lastPseudo.length() ;
-
-
 		    parsePost(lastPostIndex, lastPseudo, page.mid(lastPos, pos-lastPos));
-		} else {
-		    qDebug() << "[BAN] " << lastPseudo.toLower();
 		}
-
 
 		lastPos = pos;
 		lastPostIndex = regexp.cap(2);

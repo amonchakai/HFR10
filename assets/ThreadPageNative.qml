@@ -639,7 +639,7 @@ Page {
             ActionBar.placement: ActionBarPlacement.OnBar
             onTriggered: {
                 
-                if(nextPageAction.title == qsTr("Next page")) {
+                if(nextPageAction.title == qsTr("Next page") || nextPageAction.title == qsTr("Refresh")) {
                     showThreadController.nextPage();
                     activityIndicator.start();
                     scrollRequested = 0;
