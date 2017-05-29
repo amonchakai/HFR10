@@ -364,7 +364,7 @@
     <name>ExploreCategoryController</name>
     <message>
         <location filename="../src/ExploreCategoryController.cpp" line="116"/>
-        <location filename="../src/ExploreCategoryController.cpp" line="345"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="346"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1363,70 +1363,90 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="177"/>
-        <location filename="../src/ShowThreadController.cpp" line="208"/>
+        <location filename="../src/ShowThreadController.cpp" line="178"/>
+        <location filename="../src/ShowThreadController.cpp" line="209"/>
         <source>Sorry, no posts could be found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="229"/>
+        <location filename="../src/ShowThreadController.cpp" line="230"/>
         <source>Nothing more to display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="250"/>
+        <location filename="../src/ShowThreadController.cpp" line="251"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="264"/>
+        <location filename="../src/ShowThreadController.cpp" line="265"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="264"/>
+        <location filename="../src/ShowThreadController.cpp" line="265"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="266"/>
+        <location filename="../src/ShowThreadController.cpp" line="267"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="267"/>
+        <location filename="../src/ShowThreadController.cpp" line="268"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="692"/>
+        <location filename="../src/ShowThreadController.cpp" line="693"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="754"/>
-        <location filename="../src/ShowThreadController.cpp" line="825"/>
-        <location filename="../src/ShowThreadController.cpp" line="1428"/>
+        <location filename="../src/ShowThreadController.cpp" line="755"/>
+        <location filename="../src/ShowThreadController.cpp" line="826"/>
+        <location filename="../src/ShowThreadController.cpp" line="1541"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1142"/>
+        <location filename="../src/ShowThreadController.cpp" line="1145"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1261"/>
+        <location filename="../src/ShowThreadController.cpp" line="1262"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1467"/>
+        <location filename="../src/ShowThreadController.cpp" line="1385"/>
+        <source>Which page do you want to go?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1386"/>
+        <source>Your current location: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1389"/>
+        <source>page number...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1460"/>
+        <source>The URL format was unexpected... Please go to the HFR10 topic to report the issue...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ShowThreadController.cpp" line="1580"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="102"/>
+        <location filename="../src/ShowThreadController.cpp" line="103"/>
         <source>Nothing to search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1618,6 +1638,11 @@
         <source>b</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../assets/StartupCardThread.qml" line="980"/>
+        <source>Goto Page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StartupCardThreadNative</name>
@@ -1721,6 +1746,11 @@
         <location filename="../assets/StartupCardThreadNative.qml" line="565"/>
         <location filename="../assets/StartupCardThreadNative.qml" line="569"/>
         <source>Last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/StartupCardThreadNative.qml" line="732"/>
+        <source>Goto Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1873,6 +1903,11 @@
     <message>
         <location filename="../assets/ThreadPage.qml" line="992"/>
         <source>b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPage.qml" line="997"/>
+        <source>Goto Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2046,6 +2081,11 @@
     <message>
         <location filename="../assets/ThreadPageNative.qml" line="708"/>
         <source>Intra. search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/ThreadPageNative.qml" line="715"/>
+        <source>Goto Page</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

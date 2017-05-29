@@ -32,6 +32,7 @@
 #include <bb/system/InvokeRequest>
 #include <bb/system/InvokeTargetReply>
 #include <bb/system/SystemDialog>
+#include <bb/system/SystemPrompt>
 
 #include  "Globals.h"
 #include  "Network/HFRNetworkAccessManager.hpp"
@@ -858,6 +859,8 @@ void ShowThreadController::addBookmark(int messageID) {
     cvtCatName[8] = "Emploi & Etudes";
     cvtCatName[9] = "Seti et projets distribues";
     cvtCatName[13] = "Discussions";
+    cvtCatName[30] = "Electronique, domotique, DIY";
+    cvtCatName[31] = "Service client shop.hardware.fr";
 
     ThreadListItem item;
     item.setTitle(m_ThreadTitle);
@@ -1193,8 +1196,6 @@ void ShowThreadController::scrollToItem() {
 		    m_WebView->evaluateJavaScript("scrollToEndPage();");
 		}
 	}
-
-
 }
 
 
@@ -1352,6 +1353,118 @@ void ShowThreadController::lastPage(bool bas, bool afterNewPost) {
 
 		showThread(m_Url + "#bas");
 	}
+}
+
+void ShowThreadController::gotoPageMenu() {
+    using namespace bb::cascades;
+    using namespace bb::system;
+
+    QString currentPageNumber;
+    {   // get information about current page number & last page number
+
+        QRegExp pageNumber("page=([0-9]+)");
+        pageNumber.setCaseSensitivity(Qt::CaseSensitive);
+
+        QRegExp pageNumberCleanUrl("([0-9]+).htm");
+        pageNumberCleanUrl.setCaseSensitivity(Qt::CaseSensitive);
+
+        if(pageNumber.indexIn(m_Url, 0) != -1) {
+            currentPageNumber = pageNumber.cap(1);
+        } else {
+            if(pageNumberCleanUrl.indexIn(m_Url, 0) != -1) {
+                currentPageNumber = pageNumberCleanUrl.cap(1);
+            } else {
+                currentPageNumber = "1";
+            }
+        }
+
+    }
+
+
+    SystemPrompt *prompt = new SystemPrompt();
+    prompt->setTitle(tr("Which page do you want to go?"));
+    prompt->setBody(tr("Your current location: ") + currentPageNumber + " / " + m_Page);
+
+    prompt->setDismissAutomatically(true);
+    prompt->inputField()->setEmptyText(tr("page number..."));
+    prompt->inputField()->setInputMode(bb::system::SystemUiInputMode::NumericKeypad);
+
+
+    bool success = QObject::connect(prompt,
+        SIGNAL(finished(bb::system::SystemUiResult::Type)),
+        this,
+        SLOT(onPromptFinishedPagNumberSelected(bb::system::SystemUiResult::Type)));
+
+    if (success) {
+        prompt->show();
+     } else {
+        prompt->deleteLater();
+    }
+
+}
+
+
+void ShowThreadController::onPromptFinishedPagNumberSelected(bb::system::SystemUiResult::Type result) {
+    using namespace bb::cascades;
+    using namespace bb::system;
+
+    if(result == bb::system::SystemUiResult::ConfirmButtonSelection) {
+
+        SystemPrompt* prompt = qobject_cast<SystemPrompt*>(sender());
+        if(prompt != NULL) {
+           if(prompt->inputFieldTextEntry().toInt() < 2) {
+               firstPage();
+               sender()->deleteLater();
+               return;
+           }
+
+           if(prompt->inputFieldTextEntry().toInt() >= m_Page.toInt()) {
+              lastPage();
+              sender()->deleteLater();
+              return;
+          }
+
+
+           prompt->inputFieldTextEntry().toInt();
+
+           qDebug() << "user input:" << prompt->inputFieldTextEntry() ;
+
+           // http://forum.hardware.fr/hfr/electroniquedomotiquediy/silicium-blabla-electronique-sujet_3_130.htm#t153437
+           QString buildURL = m_Url;
+           QRegExp pageNumberCleanUrl("([0-9]+).htm");
+           pageNumberCleanUrl.setCaseSensitivity(Qt::CaseSensitive);
+
+           if(pageNumberCleanUrl.indexIn(buildURL) != -1) {
+               buildURL.replace(pageNumberCleanUrl, prompt->inputFieldTextEntry() + ".htm");
+
+               showThread(buildURL);
+               sender()->deleteLater();
+               return;
+
+           }
+
+           QRegExp pageNumber("page=([0-9]+)");
+           pageNumber.setCaseSensitivity(Qt::CaseSensitive);
+
+           if(pageNumber.indexIn(buildURL) != -1) {
+              buildURL.replace(pageNumber, "page=" + prompt->inputFieldTextEntry());
+
+              showThread(buildURL);
+              sender()->deleteLater();
+              return;
+           }
+
+
+           bb::system::SystemToast *toast = new bb::system::SystemToast(this);
+
+           toast->setBody(tr("The URL format was unexpected... Please go to the HFR10 topic to report the issue..."));
+           toast->setPosition(bb::system::SystemUiPosition::MiddleCenter);
+           toast->show();
+
+        }
+    }
+
+    sender()->deleteLater();
 }
 
 

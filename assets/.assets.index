@@ -1,5 +1,5 @@
 1
-328
+333
 ApplicationLog.qml
 BlackListManagement.qml
 Bookmarks.qml
@@ -44,6 +44,8 @@ images/categories/DesignFilled-40@2x.png
 images/categories/DesignFilled-40@2x_white.png
 images/categories/GraduationCapFilled-40@2x.png
 images/categories/GraduationCapFilled-40@2x_white.png
+images/categories/groceries.png
+images/categories/groceries_white.png
 images/categories/KeyboardFilled-40@2x.png
 images/categories/KeyboardFilled-40@2x_white.png
 images/categories/LaptopFilled-40@2x.png
@@ -60,6 +62,8 @@ images/categories/SourceCodeFilled-40@2x.png
 images/categories/SourceCodeFilled-40@2x_white.png
 images/categories/SupportFilled-40@2x.png
 images/categories/SupportFilled-40@2x_white.png
+images/categories/tools.png
+images/categories/tools_white.png
 images/categories/VideoCallFilled-40@2x.png
 images/categories/VideoCallFilled-40@2x_white.png
 images/categories/VOIPGatewayFilled-40@2x.png
@@ -97,6 +101,7 @@ images/HelpRequest_white.png
 images/ic_cancel.png
 images/ic_compose.png
 images/ic_delete.png
+images/ic_forward.png
 images/ic_select_more.png
 images/icon_about.png
 images/icon_bold.png

@@ -135,7 +135,7 @@ void ExploreCategoryController::parseIndex(const QString &page) {
     icons[16] = "KeyboardFilled-40@2x";
     icons[15] = "LaptopFilled-40@2x";
     icons[2] = "SupportFilled-40@2x";
-    icons[30] = "ShieldFilled-40@2x";
+    icons[30] = "tools";
     icons[23] = "SmartphoneTabletFilled-40@2x";
     icons[25] = "Apple@2x";
     icons[3] = "VideoCallFilled-40@2x";
@@ -151,6 +151,7 @@ void ExploreCategoryController::parseIndex(const QString &page) {
     icons[8] = "GraduationCapFilled-40@2x";
     icons[9] = "BroadcastingFilled-40@2x";
     icons[13] = "ChatFilled-40@2x";
+    icons[31] = "groceries";
 
     QString prevCatId = "";
     QByteArray buffer = "[";

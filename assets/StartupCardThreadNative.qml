@@ -727,6 +727,13 @@ NavigationPane {
                 onTriggered: {
                     showThreadController.doAction(12);
                 }
+            },
+            ActionItem {
+                title: qsTr("Goto Page")
+                imageSource: "asset:///images/ic_forward.png"
+                onTriggered: {
+                    showThreadController.gotoPageMenu();
+                }
             }
         ]    
         onActionBarVisibilityChanged: {
@@ -747,8 +754,10 @@ NavigationPane {
         
         onNeedUpdateChanged: {
             if(needUpdate) {
-                showThreadController.lastPage(true, true);
-                activityIndicator.start();
+                if(showThreadController.isLastPage()) {
+                    showThreadController.lastPage(true, true);
+                    activityIndicator.start();
+                }
                 scrollRequested = 0;
                 needUpdate = false;
             } 

@@ -110,6 +110,7 @@ class ShowThreadController : public QObject {
 		void firstPage();
 		void lastPage(bool bas = false, bool afterNewPost = false);
 		void scrollToItem();
+		void gotoPageMenu();
 
 		QString getEditUrl(int messageID) const;
 		QString getProfileUrl(int messageID) const;
@@ -135,6 +136,7 @@ class ShowThreadController : public QObject {
 		void invokeBrowser      (const QString& url);
 		void onPromptLeavingApp (bb::system::SystemUiResult::Type result);
 		void checkReplySearch   ();
+		void onPromptFinishedPagNumberSelected(bb::system::SystemUiResult::Type);
 
 	// ----------------------------------------------------------------------------------------------
 	Q_SIGNALS:

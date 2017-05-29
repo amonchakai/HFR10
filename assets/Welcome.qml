@@ -17,7 +17,7 @@ Page {
                 id: label
                 text: "HFR10"
                 textStyle {
-                    color: Color.White
+                    color: Color.Black
                     base: SystemDefaults.TextStyles.PrimaryText
                 }
             }
@@ -26,7 +26,7 @@ Page {
                 id: login
                 hintText: qsTr("Login")
                 textStyle {
-                    color: Color.White
+                    color: Color.Black
                 }
                 backgroundVisible: false
             }
@@ -37,7 +37,7 @@ Page {
                 inputMode: TextFieldInputMode.Password
                 backgroundVisible: false
                 textStyle {
-                    color: Color.White
+                    color: Color.Black
                 }
                 
             }

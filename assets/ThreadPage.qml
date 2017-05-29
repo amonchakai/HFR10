@@ -992,6 +992,13 @@ Page {
                     key: qsTr("b")
                 }
             ]
+        },
+        ActionItem {
+            title: qsTr("Goto Page")
+            imageSource: "asset:///images/ic_forward.png"
+            onTriggered: {
+                showThreadController.gotoPageMenu();
+            }
         }
     ]    
     onActionBarVisibilityChanged: {
@@ -1015,8 +1022,11 @@ Page {
     
     onNeedUpdateChanged: {
         if(needUpdate) {
-            showThreadController.lastPage(true, true);
-        	activityIndicator.start();
+            if(showThreadController.isLastPage()) {
+                showThreadController.lastPage(true, true);
+                activityIndicator.start();
+            }
+               
             scrollRequested = 0;
             needUpdate = false;
         } 
