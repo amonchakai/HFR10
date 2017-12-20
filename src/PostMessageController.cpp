@@ -70,6 +70,14 @@ void PostMessageController::postMessage(const QString &hashCheck,
 	params.addQueryItem("sujet", threadTitle);
 	params.addQueryItem("signature", signature ? "1" : "0");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 	m_MessageBeingPosted = true;
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -101,6 +109,14 @@ void PostMessageController::postNewPrivateMessage(const QString &hashCheck
 	params.addQueryItem("sujet", caption);
 	params.addQueryItem("signature", signature ? "1" : "0");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -127,6 +143,14 @@ void PostMessageController::postNewTopic(         const QString &caption
     params.addEncodedQueryItem("content_form", QUrl::toPercentEncoding(message));
     params.addQueryItem("sujet", caption);
     params.addQueryItem("signature", "1");
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
@@ -196,6 +220,14 @@ void PostMessageController::getSubCatsInfo(const QString &url_str) {
 
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(getDropdownData()));
@@ -275,6 +307,15 @@ void PostMessageController::getEditMessage(const QString &messageUrl) {
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
+
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkGetMessageReply()));
 	Q_ASSERT(ok);
@@ -309,6 +350,14 @@ void PostMessageController::getQuotedMessages(const QString &url_str) {
 
 		QNetworkRequest request(url);
 		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+		QSslConfiguration sslConfig = request.sslConfiguration();
+        sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+        sslConfig.setPeerVerifyDepth(1);
+        sslConfig.setProtocol(QSsl::TlsV1);
+        sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+        request.setSslConfiguration(sslConfig);
 
 
 		QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
@@ -564,6 +613,14 @@ void PostMessageController::postEdit(const QString &message) {
 	    params.addQueryItem("subcat", m_SubCatId);
 //	    params.addQueryItem("have_sondage", "0");
 	}
+
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));

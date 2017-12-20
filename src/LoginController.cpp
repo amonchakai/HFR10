@@ -27,7 +27,7 @@ LoginController::LoginController(QObject *parent)
 void LoginController::login(const QString &login, const QString &password) {
 	m_User = login;
 
-	const QUrl url(DefineConsts::HARDWARE_FR_URL + "/membres/popupLogin.php");
+	const QUrl url(DefineConsts::FORUM_URL + "/login_validation.php?config=hfr.inc");
 
 
 	QNetworkRequest request(url);
@@ -35,14 +35,33 @@ void LoginController::login(const QString &login, const QString &password) {
 
 	QUrl params;
 	params.addQueryItem("pseudo", login);
-	params.addQueryItem("pwd", password);
-	params.addQueryItem("action", "send");
-	params.addQueryItem("login", "Se connecter");
+	params.addQueryItem("password", password);
+
+//    params.addQueryItem("cat", "");
+//	params.addQueryItem("page", "1");
+//	params.addQueryItem("config", "hfr.inc");
+//	params.addQueryItem("p", "1");
+//	params.addQueryItem("sondage", "0");
+//	params.addQueryItem("owntopic", "0");
+//	params.addQueryItem("post", "");
+//	params.addQueryItem("hash_check", "");
+//	params.addQueryItem("referer", DefineConsts::FORUM_URL);
+//	params.addQueryItem("Valider", "Valider");
+
+	QSslConfiguration sslConfig = request.sslConfiguration();
+	sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+	sslConfig.setPeerVerifyDepth(1);
+	sslConfig.setProtocol(QSsl::TlsV1);
+	sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+	request.setSslConfiguration(sslConfig);
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
 	Q_ASSERT(ok);
 	Q_UNUSED(ok);
+
+	qDebug() << "Run2" ;
 }
 
 
@@ -64,6 +83,7 @@ void LoginController::checkReply() {
 				emit complete();
 			}
 		} else {
+		    qDebug() << reply->errorString();
 			connectionTimedOut();
 		}
 

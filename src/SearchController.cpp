@@ -54,6 +54,14 @@ void SearchController::search(const QString &search,
 	params.addQueryItem("resSearch", QString::number(numberOfMessages));
 	params.addQueryItem("orderSearch", QString::number(sortBy));
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
 	Q_ASSERT(ok);
@@ -107,6 +115,14 @@ void SearchController::waitMore(const QString &page) {
 
 		QNetworkRequest request(url);
 		request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+		QSslConfiguration sslConfig = request.sslConfiguration();
+        sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+        sslConfig.setPeerVerifyDepth(1);
+        sslConfig.setProtocol(QSsl::TlsV1);
+        sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+        request.setSslConfiguration(sslConfig);
 
 		QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 		bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));

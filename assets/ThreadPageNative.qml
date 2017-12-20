@@ -73,7 +73,7 @@ Page {
                         if(request.navigationType != WebNavigationType.Other) {
                             request.action = WebNavigationRequestAction.Ignore;
                             
-                            if(request.url.toString().substr(0,31) == "http://forum.hardware.fr/forum2") {
+                            if(request.url.toString().substr(0,31) == "https://forum.hardware.fr/forum2") {
                                 pageContainer.pushNewUrl(request.url.toString().substring(24));
                             } else {
                                 

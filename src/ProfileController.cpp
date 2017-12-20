@@ -29,6 +29,13 @@ void ProfileController::loadProfile(const QString& url) {
     QNetworkRequest request(DefineConsts::FORUM_URL+url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -225,6 +232,13 @@ void ProfileController::loadFeedback(const QString& url) {
     QNetworkRequest request(DefineConsts::FORUM_URL+url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplyFeedback()));

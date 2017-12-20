@@ -363,8 +363,8 @@
 <context>
     <name>ExploreCategoryController</name>
     <message>
-        <location filename="../src/ExploreCategoryController.cpp" line="116"/>
-        <location filename="../src/ExploreCategoryController.cpp" line="346"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="123"/>
+        <location filename="../src/ExploreCategoryController.cpp" line="360"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -551,12 +551,12 @@
 <context>
     <name>ListFavoriteController</name>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="107"/>
+        <location filename="../src/ListFavoriteController.cpp" line="123"/>
         <source>You are not logged in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ListFavoriteController.cpp" line="147"/>
+        <location filename="../src/ListFavoriteController.cpp" line="163"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -582,12 +582,12 @@
 <context>
     <name>LoginController</name>
     <message>
-        <location filename="../src/LoginController.cpp" line="81"/>
+        <location filename="../src/LoginController.cpp" line="101"/>
         <source>Login failed, please check if your user name and password are correct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/LoginController.cpp" line="89"/>
+        <location filename="../src/LoginController.cpp" line="109"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -706,12 +706,12 @@
 <context>
     <name>PostMessageController</name>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="177"/>
+        <location filename="../src/PostMessageController.cpp" line="201"/>
         <source>Too many consecutive replies, please wait 10 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PostMessageController.cpp" line="578"/>
+        <location filename="../src/PostMessageController.cpp" line="635"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -772,12 +772,12 @@
 <context>
     <name>PrivateMessageController</name>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="81"/>
+        <location filename="../src/PrivateMessageController.cpp" line="89"/>
         <source>You are not logged in.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/PrivateMessageController.cpp" line="98"/>
+        <location filename="../src/PrivateMessageController.cpp" line="106"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
@@ -913,12 +913,12 @@
 <context>
     <name>ProfileController</name>
     <message>
-        <location filename="../src/ProfileController.cpp" line="65"/>
+        <location filename="../src/ProfileController.cpp" line="72"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ProfileController.cpp" line="327"/>
+        <location filename="../src/ProfileController.cpp" line="341"/>
         <source>User was added to the blacklist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1164,7 +1164,7 @@
 <context>
     <name>SearchController</name>
     <message>
-        <location filename="../src/SearchController.cpp" line="83"/>
+        <location filename="../src/SearchController.cpp" line="91"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1172,7 +1172,7 @@
 <context>
     <name>SearchKeyRetriever</name>
     <message>
-        <location filename="../src/SearchKeyRetriever.cpp" line="53"/>
+        <location filename="../src/SearchKeyRetriever.cpp" line="61"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1363,90 +1363,90 @@
 <context>
     <name>ShowThreadController</name>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="178"/>
-        <location filename="../src/ShowThreadController.cpp" line="209"/>
+        <location filename="../src/ShowThreadController.cpp" line="195"/>
+        <location filename="../src/ShowThreadController.cpp" line="226"/>
         <source>Sorry, no posts could be found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="230"/>
+        <location filename="../src/ShowThreadController.cpp" line="247"/>
         <source>Nothing more to display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="251"/>
+        <location filename="../src/ShowThreadController.cpp" line="268"/>
         <source>Connection timed out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="265"/>
+        <location filename="../src/ShowThreadController.cpp" line="282"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="265"/>
+        <location filename="../src/ShowThreadController.cpp" line="282"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="267"/>
+        <location filename="../src/ShowThreadController.cpp" line="284"/>
         <source>Friendly warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="268"/>
+        <location filename="../src/ShowThreadController.cpp" line="285"/>
         <source>You are going to leave the application, do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="693"/>
+        <location filename="../src/ShowThreadController.cpp" line="710"/>
         <source>Vote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="755"/>
-        <location filename="../src/ShowThreadController.cpp" line="826"/>
-        <location filename="../src/ShowThreadController.cpp" line="1541"/>
+        <location filename="../src/ShowThreadController.cpp" line="780"/>
+        <location filename="../src/ShowThreadController.cpp" line="861"/>
+        <location filename="../src/ShowThreadController.cpp" line="1585"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1145"/>
+        <location filename="../src/ShowThreadController.cpp" line="1180"/>
         <source>Show post in a non-filtered thread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1262"/>
+        <location filename="../src/ShowThreadController.cpp" line="1297"/>
         <source>Link to current page copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1385"/>
+        <location filename="../src/ShowThreadController.cpp" line="1420"/>
         <source>Which page do you want to go?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1386"/>
+        <location filename="../src/ShowThreadController.cpp" line="1421"/>
         <source>Your current location: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1389"/>
+        <location filename="../src/ShowThreadController.cpp" line="1424"/>
         <source>page number...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1460"/>
+        <location filename="../src/ShowThreadController.cpp" line="1495"/>
         <source>The URL format was unexpected... Please go to the HFR10 topic to report the issue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="1580"/>
+        <location filename="../src/ShowThreadController.cpp" line="1624"/>
         <source>/app/native/assets/model/action_list.xml</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ShowThreadController.cpp" line="103"/>
+        <location filename="../src/ShowThreadController.cpp" line="111"/>
         <source>Nothing to search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1482,7 +1482,7 @@
 <context>
     <name>SmileyPickerController</name>
     <message>
-        <location filename="../src/SmileyPickerController.cpp" line="135"/>
+        <location filename="../src/SmileyPickerController.cpp" line="143"/>
         <source>Error: %1 status: %2</source>
         <translation type="unfinished"></translation>
     </message>

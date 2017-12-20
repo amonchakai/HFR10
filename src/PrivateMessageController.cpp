@@ -37,6 +37,14 @@ void PrivateMessageController::getMessages() {
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -123,6 +131,14 @@ void PrivateMessageController::deletePrivateMessage(const QString &urlFirstPage)
     params.addQueryItem("action_reaction", "valid_eff_prive");
     params.addQueryItem("topic1", postIDRegExp.cap(1));
     params.addQueryItem("hash_check", m_HashCheck);
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkMessageDeleted()));

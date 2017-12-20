@@ -64,6 +64,14 @@ void ShowThreadController::showThread(const QString &url) {
 	QNetworkRequest request(DefineConsts::FORUM_URL+url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -146,6 +154,15 @@ void ShowThreadController::intraSearch(const QString& keywords, const QString& a
     params.addQueryItem("spseudo", author);
     if(filter)
         params.addQueryItem("filter", "1");
+
+
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplySearch()));
@@ -731,6 +748,14 @@ void ShowThreadController::addToFavorite(int responseID) {
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSuccessAddAddFavorite()));
 	Q_ASSERT(ok);
@@ -776,6 +801,16 @@ void ShowThreadController::deletePost(int messageID) {
 	params.addQueryItem("cat", m_CatID);
 	params.addQueryItem("pseudo", m_Pseudo);
 	params.addQueryItem("delete", "1");
+
+
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->post(request, params.encodedQuery());
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkSuccessDeletePost()));
@@ -1093,7 +1128,7 @@ void ShowThreadController::cleanupPost(QString &post, int messageID) {
     if(Settings::smileySize() != 2) {
 
         // resize default smileys
-        QRegExp smileys("<img src=\"http://forum-images.hardware.fr/icones/");
+        QRegExp smileys("<img src=\"https://forum-images.hardware.fr/icones/");
         cleanPost.replace(smileys, "<img width=\"" + QString::number(Settings::smileySize()) + "%\" height=\"auto\" src=\"local:///assets/images/smiley/");
 
     }
@@ -1513,6 +1548,15 @@ void ShowThreadController::vote(const QString &vote) {
 			++i;
 		}
 	}
+
+
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
 
 

@@ -90,6 +90,14 @@ void SmileyPickerController::getSmiley(const QString &keyword) {
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
+
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));

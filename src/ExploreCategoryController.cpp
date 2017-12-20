@@ -92,6 +92,13 @@ void ExploreCategoryController::buildIndex() {
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
     QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
     bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReplyIndex()));
@@ -309,6 +316,13 @@ void ExploreCategoryController::showTopicList(const QString &url_string) {
 	QNetworkRequest request(url);
 	request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
+	QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslConfig.setPeerVerifyDepth(1);
+    sslConfig.setProtocol(QSsl::TlsV1);
+    sslConfig.setSslOption(QSsl::SslOptionDisableSessionTickets, true);
+
+    request.setSslConfiguration(sslConfig);
 
 	QNetworkReply* reply = HFRNetworkAccessManager::get()->get(request);
 	bool ok = connect(reply, SIGNAL(finished()), this, SLOT(checkReply()));
@@ -529,11 +543,11 @@ void ExploreCategoryController::parseThreadListing(const QString &caption, const
 		item->setLastAuthor(lastPageRegExp.cap(3));
 	}
 
-	QRegExp flagTypeRegexp("<img src=\"http://forum-images.hardware.fr/themes_static/images_forum/1/favoris.gif\"");
+	QRegExp flagTypeRegexp("<img src=\"https://forum-images.hardware.fr/themes_static/images_forum/1/favoris.gif\"");
 	if(flagTypeRegexp.indexIn(threadListing, 0) != -1)
 		item->setFlagType(Flag::FAVORITE);
 
-	flagTypeRegexp = QRegExp("<img src=\"http://forum-images.hardware.fr/themes_static/images_forum/1/flag([0-1]).gif\"");
+	flagTypeRegexp = QRegExp("<img src=\"https://forum-images.hardware.fr/themes_static/images_forum/1/flag([0-1]).gif\"");
 	if(flagTypeRegexp.indexIn(threadListing, 0) != -1) {
 		switch(flagTypeRegexp.cap(1).toInt()) {
 			case 0:
